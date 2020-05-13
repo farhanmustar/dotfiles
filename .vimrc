@@ -267,3 +267,5 @@ inoremap <Right>	<NOP>
 " Disable Execute Mode
 nmap Q	<NOP>
 
+" Map visual block to ctrl shift v sometimes enable normal ctrl v ???
+map <c-s-v> <c-v>
