@@ -10,9 +10,9 @@ swipe:
       command: 'xdotool key XF86AudioLowerVolume'
   4:
     left:
-      command: 'xdotool key ctrl+alt+Down'
+      command: 'xdotool key ctrl+alt+Right'
     right:
-      command: 'xdotool key ctrl+alt+Up'
+      command: 'xdotool key ctrl+alt+Left'
 
 tap:
   3:
