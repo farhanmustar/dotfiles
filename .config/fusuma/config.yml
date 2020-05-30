@@ -13,6 +13,10 @@ swipe:
       command: 'xdotool key ctrl+alt+Right'
     right:
       command: 'xdotool key ctrl+alt+Left'
+    up:
+      command: 'xdotool key XF86MonBrightnessUp'
+    down:
+      command: 'xdotool key XF86MonBrightnessDown'
 
 tap:
   3:
