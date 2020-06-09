@@ -41,6 +41,7 @@ Plugin 'erisian/rest_tools'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ludovicchabant/vim-lawrencium'
+Plugin 'fidian/hexmode'
 
 
 " All of your Plugins must be added before the following line
