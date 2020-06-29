@@ -51,6 +51,9 @@
 [rebase]
   autoStash = true
 
+[diff]
+  renames = true
+
 [user]
   #email = farhanmustar@gmail.com
   #name = Farhan Mustar
