@@ -27,6 +27,7 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
 Plugin 'djoshea/vim-autoread'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'szw/vim-ctrlspace'
