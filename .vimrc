@@ -161,6 +161,9 @@ let g:UltiSnipsExpandTrigger = '<TAB>'
 let g:UltiSnipsJumpForwardTrigger = '<TAB>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 
+" vim-table-mode config
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
 
 " Import mswin key mappings and behavior.
 source $VIMRUNTIME/mswin.vim
