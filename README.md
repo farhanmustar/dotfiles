@@ -3,7 +3,7 @@ Configuration files for a ROS developer who uses vim and byobu.
 Usage:
 
 ```bash
-git clone https://github.com/patrickcjh/dotfiles ~/dotfiles
+git clone https://github.com/farhanmustar/dotfiles ~/dotfiles
 rsync -a ~/dotfiles/ ~
 rm -rf ~/dotfiles
 ```

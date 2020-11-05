@@ -50,3 +50,7 @@
 
 [rebase]
   autoStash = true
+
+[user]
+  #email = farhanmustar@gmail.com
+  #name = Farhan Mustar
