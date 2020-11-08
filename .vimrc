@@ -20,7 +20,6 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'justmao945/vim-clang'
 "Plugin 'scrooloose/syntastic'
 "Plugin 'taketwo/vim-ros'
-"Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': 'cd app && yarn install', 'onupdate': 'cd app && yarn install' }
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'dhruvasagar/vim-table-mode'
@@ -36,6 +35,10 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+
+if executable('yarn')
+  Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': 'cd app && yarn install', 'onupdate': 'cd app && yarn install' }
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
