@@ -1,6 +1,6 @@
 " auto install vundle
-if empty(glob('~/.vim/bundle/Vundle.vim'))
-  execute '! git clone https://github.com/VundleVim/Vundle.vim.git ' . glob('~') . '/.vim/bundle/Vundle.vim'
+if empty(glob('~/.vim/bundle/Vundle.vim')) && executable('git')
+  execute '!git clone https://github.com/farhanmustar/Vundle.vim.git ' . glob('~') . '/.vim/bundle/Vundle.vim'
 endif
 
 set nocompatible              " be iMproved, required
@@ -13,7 +13,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'farhanmustar/Vundle.vim'
 
 "Plugin 'SirVer/ultisnips'
 "Plugin 'Valloric/YouCompleteMe'
@@ -37,7 +37,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 
 if executable('yarn')
-  Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': 'cd app && yarn install', 'onupdate': 'cd app && yarn install' }
+  Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': '!cd app && yarn install', 'onupdate': '!cd app && yarn install' }
 endif
 
 " All of your Plugins must be added before the following line
