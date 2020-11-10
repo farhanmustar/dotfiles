@@ -8,7 +8,10 @@ rsync -a ~/dotfiles/ ~
 rm -rf ~/dotfiles
 ```
 
-Install vundle for vim by running this or find online
-```
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+This configuration require vim 8.0.
+for older ubuntu system need to update vim using third party source.
+```bash
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt-get update
+sudo apt-get install vim
 ```
