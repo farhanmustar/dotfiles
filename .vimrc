@@ -15,16 +15,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'farhanmustar/Vundle.vim'
 
-"Plugin 'SirVer/ultisnips'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'justmao945/vim-clang'
-"Plugin 'scrooloose/syntastic'
-"Plugin 'taketwo/vim-ros'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'djoshea/vim-autoread'
-Plugin 'erisian/rest_tools'
 Plugin 'ervandew/supertab'
 Plugin 'farhanmustar/gv.vim'
 Plugin 'fidian/hexmode'
@@ -35,6 +28,11 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-syntastic/syntastic'
+
+"Plugin 'dart-lang/dart-vim-plugin'
+"Plugin 'erisian/rest_tools'
+"Plugin 'taketwo/vim-ros'
 
 if executable('yarn')
   Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': '!cd app && yarn install', 'onupdate': '!cd app && yarn install' }
@@ -121,14 +119,6 @@ let g:formatters_json = ['jsbeautify_js']
 
 " Indentation config for html and htmldjango
 let g:html_indent_inctags = 'body,head,tbody,p'
-
-" YouCompleteMe config
-let g:ycm_always_populate_location_list = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_key_list_select_completion = ['<C-n>']		" Disable <Down> and <TAB> key
-let g:ycm_key_list_previous_completion = ['<C-p>']	" Disable <Up> and <S-TAB> key
 
 " Associates triggers with ROS filetypes
 let g:ycm_semantic_triggers = {
@@ -222,6 +212,9 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 
+" Syntastic config
+let g:syntastic_check_on_open = 1
+
 " ROS shortcuts
 noremap <F10> :make!<CR>
 
@@ -237,11 +230,7 @@ nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
-
-" YouCompleteMe shortcuts
-nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gt :YcmCompleter GetType<CR>
-nnoremap <leader>gr :YcmForceCompileAndDiagnostics<CR>
+command Gv vertical topleft G
 
 " Hard mode - disable arrow keys
 map <Up>	 :echo "no!"<cr>
@@ -257,4 +246,7 @@ inoremap <Right>	<NOP>
 nmap Q	<NOP>
 
 " Map visual block to ctrl shift v sometimes enable normal ctrl v ???
-map <c-s-v> <c-v>
+nnoremap <C-S-v> <C-v>
+
+" close pane using shortcut
+nnoremap gq :q<CR>
