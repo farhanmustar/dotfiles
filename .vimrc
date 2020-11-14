@@ -1,6 +1,8 @@
 " auto install vundle
 if empty(glob('~/.vim/bundle/Vundle.vim')) && executable('git')
-  execute '!git clone https://github.com/farhanmustar/Vundle.vim.git ' . glob('~') . '/.vim/bundle/Vundle.vim'
+  echom 'Installing Vundle...'
+  echom ''
+  silent execute '!git clone https://github.com/farhanmustar/Vundle.vim.git ' . glob('~') . '/.vim/bundle/Vundle.vim'
 endif
 
 set nocompatible              " be iMproved, required
@@ -244,9 +246,6 @@ inoremap <Right>	<NOP>
 
 " Disable Execute Mode
 nmap Q	<NOP>
-
-" Map visual block to ctrl shift v sometimes enable normal ctrl v ???
-nnoremap <C-S-v> <C-v>
 
 " close pane using shortcut
 nnoremap gq :q<CR>
