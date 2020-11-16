@@ -216,6 +216,7 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 
 " Syntastic config
 let g:syntastic_check_on_open = 1
+let g:syntastic_cpp_checkers = [] "disable cpp checker
 
 " ROS shortcuts
 noremap <F10> :make!<CR>
