@@ -128,11 +128,8 @@ let g:ycm_semantic_triggers = {
 \   'rosmsg,rossrv,rosaction': ['re!^'],
 \ }
 
-" SuperTab and UltiSnips config
+" SuperTab config
 let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:UltiSnipsExpandTrigger = '<TAB>'
-let g:UltiSnipsJumpForwardTrigger = '<TAB>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 
 " vim-table-mode config
 let g:table_mode_corner_corner='+'
