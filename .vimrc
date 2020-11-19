@@ -231,6 +231,7 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 command Gv vertical topleft G
+command Gt tab G
 
 " Hard mode - disable arrow keys
 map <Up>	 :echo "no!"<cr>
