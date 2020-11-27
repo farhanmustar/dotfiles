@@ -293,3 +293,10 @@ nnoremap <Leader>so :source %<CR>
 " tagbar config
 let g:tagbar_width = 60
 nnoremap <Leader>st :TagbarToggle<CR>
+
+" terminal mode config
+tnoremap <Esc> <C-\><C-n>
+tmap <C-w>h <Esc><C-w>h
+tmap <C-w>j <Esc><C-w>j
+tmap <C-w>k <Esc><C-w>k
+tmap <C-w>l <Esc><C-w>l
