@@ -34,7 +34,7 @@ Plugin 'dense-analysis/ale'
 
 "Plugin 'dart-lang/dart-vim-plugin'
 "Plugin 'erisian/rest_tools'
-"Plugin 'taketwo/vim-ros'
+"Plugin 'ompugao/ros.vim'
 
 if executable('yarn')
   Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': '!cd app && yarn install', 'onupdate': '!cd app && yarn install' }
