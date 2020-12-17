@@ -30,7 +30,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'dense-analysis/ale'
 
 "Plugin 'dart-lang/dart-vim-plugin'
 "Plugin 'erisian/rest_tools'
@@ -210,10 +210,6 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
-
-" Syntastic config
-let g:syntastic_check_on_open = 1
-let g:syntastic_cpp_checkers = [] "disable cpp checker
 
 " ROS shortcuts
 noremap <F10> :make!<CR>
