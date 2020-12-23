@@ -31,6 +31,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'dense-analysis/ale'
+Plugin 'farhanmustar/ale-python-linter'
 
 "Plugin 'dart-lang/dart-vim-plugin'
 "Plugin 'erisian/rest_tools'
@@ -244,3 +245,8 @@ nmap Q	<NOP>
 
 " close pane using shortcut
 nnoremap gq :q<CR>
+
+" Ale config
+let g:ale_linters = {
+\   'python': ['python'],
+\}
