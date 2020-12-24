@@ -298,3 +298,9 @@ nnoremap <Leader>st :TagbarToggle<CR>
 " set space as leader key
 nnoremap <Space> <Nop>
 map <Space> <Leader>
+
+" flake8 config
+" !pip install flake8
+" uncomment to enable flake8
+" let g:ale_linters['python'] = ['flake8', 'python']
+let g:ale_python_flake8_options = '--ignore W606,W605,W504,E128,F841,E501,E731'
