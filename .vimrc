@@ -154,11 +154,6 @@ iunmap <C-Y>
 "vnoremap <C-W><C-W>		<C-C>:q!<CR>
 "inoremap <C-W><C-W>		<C-O>:q!<CR>
 
-" Insert mode shortcuts
-inoremap II		<Esc>I
-inoremap AA		<Esc>A
-inoremap OO		<Esc>O
-
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
