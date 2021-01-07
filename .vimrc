@@ -200,6 +200,18 @@ function! DiffToggle()
   endif
 :endfunction
 
+" Toggle paste mode
+nnoremap <Leader>pp :call PasteToggle()<CR>
+function! PasteToggle()
+  if &paste
+		set nopaste
+		echo "Paste Mode Disabled"
+  else
+		set paste
+		echo "Paste Mode Enabled"
+  endif
+:endfunction
+
 " Smooth Scroll shortcuts
 noremap <silent> <c-y> :call smooth_scroll#up(3, 0, 3)<CR>
 noremap <silent> <c-e> :call smooth_scroll#down(3, 0, 3)<CR>
