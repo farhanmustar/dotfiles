@@ -230,13 +230,25 @@ noremap <leader>af :Autoformat<CR>
 " Remove trailing whitespaces
 noremap <leader>as :%s/\s\+$//e<CR>
 
-" Fugitive shortcuts
+" Quickfix shortcuts (grep)
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
+
+" Auto open quickfix window
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l* lwindow
+augroup END
+
+" Fugitive shortcuts
 command Gv vertical topleft G
 command Gt tab G
+command! -nargs=+ GG silent Ggrep! <args> | cwindow
+nnoremap <Leader>gg :GG <C-r><C-w><CR>
+vnoremap <Leader>gg y:GG "<C-r>""<CR>
 
 " Hard mode - disable arrow keys
 map <Up>	 :echo "no!"<cr>
