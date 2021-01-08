@@ -235,18 +235,19 @@ nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
+nnoremap <expr> <CR> &buftype is# 'quickfix' ? '<CR><C-w>p' : '<CR>'
 
 " Auto open quickfix window
 augroup quickfix
     autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost l* lwindow
+    autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!
+    autocmd QuickFixCmdPost l* nested bot lwindow 20 | redraw!
 augroup END
 
 " Fugitive shortcuts
 command Gv vertical topleft G
 command Gt tab G
-command! -nargs=+ GG silent Ggrep! <args> | cwindow | redraw!
+command! -nargs=+ GG silent Ggrep! <args>
 nnoremap <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <Leader>gg y:GG "<C-r>""<CR>
 
