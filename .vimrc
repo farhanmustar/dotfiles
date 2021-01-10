@@ -42,6 +42,10 @@ if executable('curl')
   Plugin 'farhanmustar/cs.vim'
 endif
 
+if executable('ctags') " universal-ctags
+  Plugin 'preservim/tagbar'
+endif
+
 if executable('yarn')
   Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': '!cd app && yarn install', 'onupdate': '!cd app && yarn install' }
 endif
