@@ -252,14 +252,20 @@ nnoremap <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <Leader>gg y:GG "<C-r>""<CR>
 
 " Hard mode - disable arrow keys
-map <Up>	 :echo "no!"<cr>
-map <Down>	 :echo "no!"<cr>
-map <Left>	 :echo "no!"<cr>
-map <Right>	 :echo "no!"<cr>
+map <Up>	 :echo "no!"<CR>
+map <Down>	 :echo "no!"<CR>
+map <Left>	 :echo "no!"<CR>
+map <Right>	 :echo "no!"<CR>
 inoremap <Up>		<NOP>
 inoremap <Down>		<NOP>
 inoremap <Left>		<NOP>
 inoremap <Right>	<NOP>
+
+" window resize
+nnoremap <RIGHT> :vertical resize +10<CR>
+nnoremap <LEFT> :vertical resize -10<CR>
+nnoremap <UP> :resize +10<CR>
+nnoremap <DOWN> :resize -10<CR>
 
 " Disable Execute Mode
 nmap Q	<NOP>
