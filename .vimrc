@@ -289,3 +289,7 @@ let g:ale_linters = {
 
 " vimscript dev mapping
 nnoremap <Leader>so :source %<CR>
+
+" tagbar config
+let g:tagbar_width = 60
+nnoremap <Leader>st :TagbarToggle<CR>
