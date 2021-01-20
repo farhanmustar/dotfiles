@@ -55,5 +55,5 @@
   renames = true
 
 [user]
-  #email = farhanmustar@gmail.com
-  #name = Farhan Mustar
+  ; email = farhanmustar@gmail.com
+  ; name = Farhan Mustar
