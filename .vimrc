@@ -278,3 +278,6 @@ nnoremap gq :q<CR>
 let g:ale_linters = {
 \   'python': ['python'],
 \}
+
+" vimscript dev mapping
+nnoremap <Leader>so :source %<CR>
