@@ -247,6 +247,7 @@ augroup END
 " Fugitive shortcuts
 command Gv vertical topleft G
 command Gt tab G
+command Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG silent Ggrep! <args>
 nnoremap <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <Leader>gg y:GG "<C-r>""<CR>
