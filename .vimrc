@@ -38,6 +38,10 @@ Plugin 'tpope/vim-surround'
 "Plugin 'erisian/rest_tools'
 "Plugin 'ompugao/ros.vim'
 
+if executable('curl')
+  Plugin 'farhanmustar/cs.vim'
+endif
+
 if executable('yarn')
   Plugin 'iamcco/markdown-preview.nvim', { 'oninstall': '!cd app && yarn install', 'onupdate': '!cd app && yarn install' }
 endif
