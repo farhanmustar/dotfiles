@@ -265,19 +265,19 @@ map <Up>	 :echo "no!"<CR>
 map <Down>	 :echo "no!"<CR>
 map <Left>	 :echo "no!"<CR>
 map <Right>	 :echo "no!"<CR>
-inoremap <Up>		<NOP>
-inoremap <Down>		<NOP>
-inoremap <Left>		<NOP>
-inoremap <Right>	<NOP>
+inoremap <Up>		<Nop>
+inoremap <Down>		<Nop>
+inoremap <Left>		<Nop>
+inoremap <Right>	<Nop>
 
 " window resize
-nnoremap <RIGHT> :vertical resize +10<CR>
-nnoremap <LEFT> :vertical resize -10<CR>
-nnoremap <UP> :resize +10<CR>
-nnoremap <DOWN> :resize -10<CR>
+nnoremap <Right> :vertical resize +10<CR>
+nnoremap <Left> :vertical resize -10<CR>
+nnoremap <Up> :resize +10<CR>
+nnoremap <Down> :resize -10<CR>
 
 " Disable Execute Mode
-nmap Q	<NOP>
+nmap Q	<Nop>
 
 " close pane using shortcut
 nnoremap gq :q<CR>
@@ -293,3 +293,7 @@ nnoremap <Leader>so :source %<CR>
 " tagbar config
 let g:tagbar_width = 60
 nnoremap <Leader>st :TagbarToggle<CR>
+
+" set space as leader key
+nnoremap <Space> <Nop>
+map <Space> <Leader>
