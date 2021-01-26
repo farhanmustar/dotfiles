@@ -298,3 +298,11 @@ nnoremap <Leader>st :TagbarToggle<CR>
 " set space as leader key
 nnoremap <Space> <Nop>
 map <Space> <Leader>
+
+" startify config
+command! S botright split | Startify
+command! Sv vertical botright split | Startify
+command! St tabnew | Startify
+let g:startify_bookmarks = [
+\   '~/.vimrc', 
+\]
