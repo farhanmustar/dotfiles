@@ -26,6 +26,7 @@ Plugin 'farhanmustar/ale-python-linter'
 Plugin 'farhanmustar/gv.vim'
 Plugin 'fidian/hexmode'
 Plugin 'ludovicchabant/vim-lawrencium'
+Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
 Plugin 'szw/vim-ctrlspace'
 Plugin 'terryma/vim-smooth-scroll'
@@ -306,3 +307,6 @@ command! St tabnew | Startify
 let g:startify_bookmarks = [
 \   '~/.vimrc', 
 \]
+
+" undotree config
+nnoremap <Leader>ut :UndotreeToggle<CR>
