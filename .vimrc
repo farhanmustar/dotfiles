@@ -18,6 +18,7 @@ call vundle#begin()
 Plugin 'farhanmustar/Vundle.vim'
 
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'dense-analysis/ale'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'djoshea/vim-autoread'
@@ -28,6 +29,7 @@ Plugin 'fidian/hexmode'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
+Plugin 'mkitt/tabline.vim'
 Plugin 'szw/vim-ctrlspace'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'tpope/vim-commentary'
@@ -60,17 +62,11 @@ filetype plugin indent on    " required
 " Inherit aliases from ~/.bash_aliases
 let $BASH_ENV = "~/.bash_aliases"
 
-
-" Switch to a color scheme for dark background
+" Colorscheme
+set t_Co=256
+set t_ut=
 set background=dark
-
-" Fix diff color scheme
-highlight DiffText term=reverse cterm=bold ctermbg=124 gui=bold guibg=Red3
-
-" Change auto-complete color scheme
-highlight Pmenu ctermbg=brown ctermfg=black
-highlight PmenuSel ctermbg=green
-
+silent! colorscheme PaperColor
 
 " Prevent auto-indenting of comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -106,6 +102,8 @@ set wildignore=*.o,*.class,*.swp,*.swo,*.pyc
 let g:netrw_liststyle=3
 
 " CtrlSpace config
+let g:CtrlSpaceUseUnicode = 0
+let g:CtrlSpaceSymbols = { "IV": "o" }
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
@@ -255,9 +253,9 @@ augroup quickfix
 augroup END
 
 " Fugitive shortcuts
-command Gv vertical topleft G
-command Gt tab G
-command Greload :e "<C-r>%"<CR>
+command! Gv vertical topleft G
+command! Gt tab G
+command! Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG silent Ggrep! <args>
 nnoremap <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <Leader>gg y:GG "<C-r>""<CR>
