@@ -18,7 +18,6 @@ call vundle#begin()
 Plugin 'farhanmustar/Vundle.vim'
 
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'dense-analysis/ale'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'djoshea/vim-autoread'
@@ -30,6 +29,7 @@ Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
 Plugin 'mkitt/tabline.vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'szw/vim-ctrlspace'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'tpope/vim-commentary'
@@ -66,7 +66,9 @@ let $BASH_ENV = "~/.bash_aliases"
 set t_Co=256
 set t_ut=
 set background=dark
-silent! colorscheme PaperColor
+set cursorline
+let g:gruvbox_contrast_dark='hard'
+silent! colorscheme gruvbox
 
 " Prevent auto-indenting of comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
