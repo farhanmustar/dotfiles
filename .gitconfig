@@ -27,6 +27,7 @@
   co = checkout
   fetchp = fetch --prune
   desc = describe --tags
+  cp = cherry-pick -x
 
   nevermind = !git reset --hard HEAD && git clean -d -f
   nvm = !git reset --hard HEAD && git clean -d -f
