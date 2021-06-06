@@ -40,7 +40,11 @@ Plugin 'tpope/vim-surround'
 
 "Plugin 'dart-lang/dart-vim-plugin'
 "Plugin 'erisian/rest_tools'
-"Plugin 'ompugao/ros.vim'
+
+if executable('roscore')
+  Plugin 'ompugao/ros.vim'
+  Plugin 'farhanmustar/ale-roslint'
+endif
 
 if executable('curl')
   Plugin 'farhanmustar/cs.vim'
@@ -267,8 +271,10 @@ nnoremap gq :q<CR>
 
 " Ale config
 let g:ale_linters = {
+\   'cpp': ['roslint_cpplint'],
 \   'python': ['python'],
 \}
+let g:ale_cpp_roslint_cpplint_options = '--filter=-build/include_what_you_use,-runtime/references,-whitespace/braces,-whitespace/line_length'
 
 " vimscript dev mapping
 nnoremap <Leader>so :source %<CR>
