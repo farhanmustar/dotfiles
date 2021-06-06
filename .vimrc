@@ -76,10 +76,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Let Vim jump to the last position when reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Open each buffer in its own tabpage
-"au BufAdd,BufNewFile * nested tab sball
-
-
 " Some tuning
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
@@ -114,11 +110,6 @@ let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|build|dist|env|node_modules|platforms
 if executable('rg')
   let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
 endif
-
-" ROS config
-let g:ros_make = "current"
-let g:ros_build_system = "catkin"
-"let g:ros_catkin_make_options = "-DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 
 " AutoFormat config
 let g:autoformat_verbosemode = 1
@@ -156,16 +147,6 @@ source $VIMRUNTIME/mswin.vim
 " Unmap CTRL-Y(redo) to its original scroll
 nunmap <C-Y>
 iunmap <C-Y>
-
-" Tap CTRL-S twice for save and exit, also in Insert mode
-"noremap <C-S><C-S>		:wq<CR>
-"vnoremap <C-S><C-S>		<C-C>:wq<CR>
-"inoremap <C-S><C-S>		<C-O>:wq<CR>
-
-" Tap CTRL-W twice for exit, also in Insert mode
-"noremap <C-W><C-W>		:q!<CR>
-"vnoremap <C-W><C-W>		<C-C>:q!<CR>
-"inoremap <C-W><C-W>		<C-O>:q!<CR>
 
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -232,9 +213,6 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
-
-" ROS shortcuts
-noremap <F10> :make!<CR>
 
 " AutoFormat shortcuts
 "noremap <F3> :Autoformat<CR><CR>
@@ -303,6 +281,9 @@ nnoremap <Leader>st :TagbarToggle<CR>
 nnoremap <Space> <Nop>
 map <Space> <Leader>
 
+" undotree config
+nnoremap <Leader>ut :UndotreeToggle<CR>
+
 " startify config
 command! S botright split | Startify
 command! Sv vertical botright split | Startify
@@ -310,6 +291,3 @@ command! St tabnew | Startify
 let g:startify_bookmarks = [
 \   '~/.vimrc', 
 \]
-
-" undotree config
-nnoremap <Leader>ut :UndotreeToggle<CR>
