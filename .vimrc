@@ -277,6 +277,11 @@ let g:ale_linters = {
 let g:ale_cpp_roslint_cpplint_options = '--filter=-build/include_what_you_use,-runtime/references,-whitespace/braces,-whitespace/line_length'
 let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
 
+" flake8 config !pip install flake8
+" let g:ale_linters['python'] += ['flake8']
+" let g:ale_python_flake8_options = '--max-line-length=199 --ignore W504,E128' " more strict mode
+let g:ale_python_flake8_options = '--max-line-length=199 --ignore W606,W605,W504,E128,F841,E731'
+
 " vimscript dev mapping
 nnoremap <Leader>so :source %<CR>
 
