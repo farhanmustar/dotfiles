@@ -73,6 +73,8 @@ set background=dark
 set cursorline
 let g:gruvbox_contrast_dark='hard'
 silent! colorscheme gruvbox
+highlight CursorLine ctermbg=235 guibg=#303030
+highlight CursorLineNR ctermbg=235 guibg=#303030
 
 " Prevent auto-indenting of comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
