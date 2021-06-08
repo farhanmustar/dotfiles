@@ -134,6 +134,11 @@ let g:formatters_json = ['jsbeautify_js']
 " Indentation config for html and htmldjango
 let g:html_indent_inctags = 'body,head,tbody,p'
 
+" Filetype config
+if executable('roscore')
+  au BufRead,BufNewFile *.launch setfiletype xml
+endif
+
 " Associates triggers with ROS filetypes
 let g:ycm_semantic_triggers = {
 \   'roslaunch': ['="', '$(', '/'],
