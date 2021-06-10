@@ -77,10 +77,16 @@ highlight CursorLine ctermbg=235 guibg=#303030
 highlight CursorLineNR ctermbg=235 guibg=#303030
 
 " Prevent auto-indenting of comments
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup commentindent
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
 
 " Let Vim jump to the last position when reopening a file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup cursorpos
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup END
 
 " Some tuning
 set showmatch		" Show matching brackets.
@@ -136,7 +142,10 @@ let g:html_indent_inctags = 'body,head,tbody,p'
 
 " Filetype config
 if executable('roscore')
-  au BufRead,BufNewFile *.launch setfiletype xml
+  augroup rosfiletype
+    autocmd!
+    autocmd BufRead,BufNewFile *.launch setfiletype xml
+  augroup END
 endif
 
 " Associates triggers with ROS filetypes
@@ -241,9 +250,9 @@ nnoremap <expr> <CR> &buftype is# 'quickfix' ? '<CR><C-w>p' : '<CR>'
 
 " Auto open quickfix window
 augroup quickfix
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!
-    autocmd QuickFixCmdPost l* nested bot lwindow 20 | redraw!
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!
+  autocmd QuickFixCmdPost l* nested bot lwindow 20 | redraw!
 augroup END
 
 " Fugitive shortcuts
