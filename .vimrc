@@ -23,11 +23,11 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'dense-analysis/ale'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'djoshea/vim-autoread'
-Plugin 'ervandew/supertab'
 Plugin 'farhanmustar/ale-python-linter'
 Plugin 'farhanmustar/gv.vim'
 Plugin 'fidian/hexmode'
 Plugin 'gruvbox-community/gruvbox'
+Plugin 'lifepillar/vim-mucomplete'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
@@ -187,15 +187,15 @@ let g:over#command_line#substitute#replace_pattern_visually = 1
 nnoremap <Leader>oo :OverCommandLine %s/<CR>
 vnoremap <Leader>oo :OverCommandLine s/<CR>
 
-" SuperTab config
-let g:SuperTabCrMapping = 1
-let g:SuperTabRetainCompletionDuration = 'completion'
-let g:SuperTabClosePreviewOnPopupClose = 1
-let g:SuperTabContextTextMemberPatterns = ['\.', '>\?::', '>\?:', '->']
-let g:SuperTabDefaultCompletionType = 'context'
-augroup supertabsetting
+" Mucomplete config
+set completeopt+=menuone,noselect
+set completeopt-=preview
+set shortmess+=c
+set belloff+=ctrlg
+let g:mucomplete#enable_auto_at_startup = 1
+augroup completion
   autocmd!
-  autocmd FileType * set omnifunc=ale#completion#OmniFunc | call SuperTabChain(&omnifunc, '<C-n>')
+  autocmd FileType * set omnifunc=ale#completion#OmniFunc
 augroup END
 
 " vim-table-mode config
