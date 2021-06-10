@@ -227,12 +227,12 @@ function! PasteToggle()
 :endfunction
 
 " Smooth Scroll shortcuts
-noremap <silent> <c-y> :call smooth_scroll#up(3, 0, 3)<CR>
-noremap <silent> <c-e> :call smooth_scroll#down(3, 0, 3)<CR>
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
+noremap <silent> <C-y> :call smooth_scroll#up(3, 0, 3)<CR>
+noremap <silent> <C-e> :call smooth_scroll#down(3, 0, 3)<CR>
+noremap <silent> <C-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
+noremap <silent> <C-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
+noremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
+noremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 
 " AutoFormat shortcuts
 "noremap <F3> :Autoformat<CR><CR>
