@@ -16,8 +16,25 @@ sudo apt-get install vim
 ```
 
 ## Vim-Ale linter list
+* In vim run `:ALEInfo` to find list of available linter.
 
-| Filetype | Linter                                                                 | Installation                            |
-| -------- | ---------------------------------------------------------------------- | --------------------------------------- |
-| vim      | [vimls](https://github.com/iamcco/vim-language-server)                 | npm install -g vim-language-server      |
-| python   | [ale-python-linter](https://github.com/farhanmustar/ale-python-linter) | Plugin 'farhanmustar/ale-python-linter' |
+### Vim
+* [vimls](https://github.com/iamcco/vim-language-server)
+  * npm install -g vim-language-server
+
+### Python
+* [ale-python-linter](https://github.com/farhanmustar/ale-python-linter)
+  * vimrc `Plugin 'farhanmustar/ale-python-linter'`
+
+### C++
+* clangd
+  * apt-get install clangd or clangd-##
+    * Create symlink to clangd
+  * for ROS development set env variable using shell or in vimrc
+    * `let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'`
+  * or run this command to generate the `compile_command.json`.
+    * `catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1`
+
+### Ros
+* [ale-roslint](https://github.com/farhanmustar/ale-roslint)
+  * vimrc `Plugin 'farhanmustar/ale-roslint'`
