@@ -73,7 +73,6 @@ set t_ut=
 set background=dark
 set cursorline
 let g:gruvbox_contrast_dark='hard'
-silent! colorscheme gruvbox
 function! ModifyColorScheme()
   highlight CursorLine ctermbg=235 guibg=#303030
   highlight CursorLineNR ctermbg=235 guibg=#303030
@@ -82,6 +81,7 @@ augroup modifycolorscheme
   autocmd!
   autocmd ColorScheme * exe 'call ModifyColorScheme()'
 augroup END
+silent! colorscheme gruvbox
 
 " Prevent auto-indenting of comments
 augroup commentindent
