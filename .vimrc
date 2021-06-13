@@ -294,11 +294,12 @@ nnoremap gq :q<CR>
 
 " Ale config
 let g:ale_linters = {
-\   'cpp': ['roslint_cpplint'],
+\   'cpp': ['clangd', 'roslint_cpplint'],
 \   'python': ['python', 'roslint_pep8'],
 \}
 let g:ale_cpp_roslint_cpplint_options = '--filter=-build/include_what_you_use,-runtime/references,-whitespace/braces,-whitespace/line_length'
 let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
+" let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'
 
 " flake8 config !pip install flake8
 " let g:ale_linters['python'] += ['flake8']
