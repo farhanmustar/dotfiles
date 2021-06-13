@@ -33,7 +33,6 @@ Plugin 'gruvbox-community/gruvbox'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
-Plugin 'mkitt/tabline.vim'
 Plugin 'powerman/vim-plugin-AnsiEsc'
 Plugin 'szw/vim-ctrlspace'
 Plugin 'terryma/vim-smooth-scroll'
@@ -80,6 +79,9 @@ let g:gruvbox_contrast_dark='hard'
 function! ModifyColorScheme()
   highlight CursorLine ctermbg=235 guibg=#303030
   highlight CursorLineNR ctermbg=235 guibg=#303030
+  highlight TabLine      ctermfg=Black  ctermbg=DarkGray  cterm=NONE
+  highlight TabLineFill  ctermfg=Black  ctermbg=DarkGray  cterm=NONE
+  highlight TabLineSel   ctermfg=172    ctermbg=234       cterm=NONE
 endfunction
 augroup modifycolorscheme
   autocmd!
