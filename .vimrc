@@ -15,8 +15,6 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'farhanmustar/Vundle.vim'
@@ -42,8 +40,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 
-"Plugin 'dart-lang/dart-vim-plugin'
-"Plugin 'erisian/rest_tools'
+" Plugin 'dart-lang/dart-vim-plugin'
+" Plugin 'erisian/rest_tools'
 
 if executable('roscore')
   Plugin 'ompugao/ros.vim'
@@ -103,7 +101,7 @@ augroup END
 
 " Some tuning
 set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
+set ignorecase	" Do case insensitive matching
 set smartcase		" Do smart case matching
 set mouse=a			" Enable mouse usage (all modes)
 set ruler
