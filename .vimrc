@@ -4,6 +4,10 @@ if empty(glob('~/.vim/bundle/Vundle.vim')) && executable('git')
   echom ''
   silent execute '!git clone https://github.com/farhanmustar/Vundle.vim.git ' . glob('~') . '/.vim/bundle/Vundle.vim'
 endif
+" auto create undodir file (manual delete if too big)
+if empty(glob('~/.vim/undodir'))
+  silent execute '!mkdir ' . glob('~/.vim/') . 'undodir'
+endif
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -114,6 +118,10 @@ set tabstop=2
 set wildmenu
 set wildmode=longest,list
 set wildignore=*.o,*.class,*.swp,*.swo,*.pyc
+" Undo behaviour
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
 
 " Use tree view for netrw directory browsing
 let g:netrw_liststyle=3
