@@ -135,6 +135,8 @@ set undofile
 set updatetime=1000
 " Completion option
 set completeopt+=menuone,noselect
+set belloff+=ctrlg
+set shortmess+=c
 
 " Use tree view for netrw directory browsing
 let g:netrw_liststyle=3
@@ -188,11 +190,14 @@ nnoremap <Leader>oo :OverCommandLine %s/<CR>
 vnoremap <Leader>oo :OverCommandLine s/<CR>
 
 " Mucomplete config
-set completeopt+=menuone,noselect
-set completeopt-=preview
-set shortmess+=c
-set belloff+=ctrlg
 let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
+let g:mucomplete#chains.default = {
+\   'default': ['path', 'omni', 'c-n', 'dict', 'uspl'],
+\   '.*comment.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
+\   '.*string.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
+\ }
 augroup completion
   autocmd!
   autocmd FileType * set omnifunc=ale#completion#OmniFunc
