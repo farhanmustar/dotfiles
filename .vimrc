@@ -32,9 +32,11 @@ Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
 Plugin 'powerman/vim-plugin-AnsiEsc'
+Plugin 'rstacruz/vim-closer'
 Plugin 'szw/vim-ctrlspace'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
@@ -298,7 +300,7 @@ nnoremap <Down> :resize -10<CR>
 nmap Q	<Nop>
 
 " close pane using shortcut
-nnoremap gq :q<CR>
+nnoremap gq <C-w>c
 
 " Ale config
 let g:ale_linters = {
