@@ -325,7 +325,7 @@ nnoremap gq <C-w>c
 " Ale config
 let g:ale_linters = {
 \   'cpp': ['clangd', 'roslint_cpplint'],
-\   'python': ['python', 'roslint_pep8'],
+\   'python': ['python', 'jedils', 'roslint_pep8'],
 \}
 
 " Ros linter
@@ -336,6 +336,7 @@ let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
 " let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'
 
 " Python linter
+" jedi language server !pip install jedi-language-server
 " bandit security linter !pip install bandit
 " let g:ale_linters['python'] += ['bandit']
 " flake8 config !pip install flake8
