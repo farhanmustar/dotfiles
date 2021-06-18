@@ -307,12 +307,16 @@ let g:ale_linters = {
 \   'cpp': ['clangd', 'roslint_cpplint'],
 \   'python': ['python', 'roslint_pep8'],
 \}
+
+" Ros linter
 let g:ale_cpp_roslint_cpplint_options = '--filter=-build/include_what_you_use,-runtime/references,-whitespace/braces,-whitespace/line_length'
 let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
+" Ros clangd
+" !catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 or manually add env var below
 " let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'
 
 " Python linter
-" bandit !pip install bandit (for security issue check)
+" bandit security linter !pip install bandit
 " let g:ale_linters['python'] += ['bandit']
 " flake8 config !pip install flake8
 " let g:ale_linters['python'] += ['flake8']
