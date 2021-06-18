@@ -31,6 +31,7 @@ Plugin 'gruvbox-community/gruvbox'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
+Plugin 'osyo-manga/vim-over'
 Plugin 'powerman/vim-plugin-AnsiEsc'
 Plugin 'rstacruz/vim-closer'
 Plugin 'szw/vim-ctrlspace'
@@ -170,6 +171,11 @@ let g:ycm_semantic_triggers = {
 \   'roslaunch': ['="', '$(', '/'],
 \   'rosmsg,rossrv,rosaction': ['re!^'],
 \ }
+
+" vim-over config 
+let g:over#command_line#substitute#replace_pattern_visually = 1
+nnoremap <Leader>oo :OverCommandLine %s/<CR>
+vnoremap <Leader>oo :OverCommandLine s/<CR>
 
 " SuperTab config
 set omnifunc=ale#completion#OmniFunc
