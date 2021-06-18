@@ -25,6 +25,12 @@ sudo apt-get install vim
 ### Python
 * [ale-python-linter](https://github.com/farhanmustar/ale-python-linter)
   * vimrc `Plugin 'farhanmustar/ale-python-linter'`
+* flake8
+  * pip install flake8
+  * more detail checker especially in code formatting.
+* bandit
+  * pip install bandit
+  * security issue checker.
 
 ### C++
 * clangd

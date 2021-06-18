@@ -311,6 +311,9 @@ let g:ale_cpp_roslint_cpplint_options = '--filter=-build/include_what_you_use,-r
 let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
 " let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'
 
+" Python linter
+" bandit !pip install bandit (for security issue check)
+" let g:ale_linters['python'] += ['bandit']
 " flake8 config !pip install flake8
 " let g:ale_linters['python'] += ['flake8']
 " let g:ale_python_flake8_options = '--max-line-length=199 --ignore W504,E128' " more strict mode
