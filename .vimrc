@@ -78,11 +78,15 @@ set background=dark
 set cursorline
 let g:gruvbox_contrast_dark='hard'
 function! ModifyColorScheme()
-  highlight CursorLine ctermbg=235 guibg=#303030
-  highlight CursorLineNR ctermbg=235 guibg=#303030
+  highlight CursorLine ctermbg=235
+  highlight CursorLineNR ctermbg=235
   highlight TabLine      ctermfg=Black  ctermbg=DarkGray  cterm=NONE
   highlight TabLineFill  ctermfg=Black  ctermbg=DarkGray  cterm=NONE
   highlight TabLineSel   ctermfg=172    ctermbg=234       cterm=NONE
+  highlight ALEError ctermbg=237
+  highlight ALEWarning ctermbg=237
+  highlight ALEStyleError ctermbg=237
+  highlight ALEStyleWarning ctermbg=237
 endfunction
 augroup modifycolorscheme
   autocmd!
@@ -125,6 +129,8 @@ set wildignore=*.o,*.class,*.swp,*.swo,*.pyc
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
+" CursorHold timer
+set updatetime=1000
 
 " Use tree view for netrw directory browsing
 let g:netrw_liststyle=3
