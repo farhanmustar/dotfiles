@@ -172,7 +172,15 @@ let g:ycm_semantic_triggers = {
 \ }
 
 " SuperTab config
-let g:SuperTabDefaultCompletionType = '<C-n>'
+set omnifunc=ale#completion#OmniFunc
+let g:SuperTabCrMapping = 1
+let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabContextTextMemberPatterns = ['\.', '>\?::', '>\?:', '->']
+let g:SuperTabDefaultCompletionType = 'context'
+augroup supertabsetting
+  autocmd!
+  autocmd FileType * call SuperTabChain(&omnifunc, "<C-n>")
+augroup END
 
 " vim-table-mode config
 let g:table_mode_corner_corner='+'
