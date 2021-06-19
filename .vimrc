@@ -186,6 +186,7 @@ vnoremap <Leader>oo :OverCommandLine s/<CR>
 " SuperTab config
 set omnifunc=ale#completion#OmniFunc
 let g:SuperTabCrMapping = 1
+let g:SuperTabRetainCompletionDuration = 'completion'
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabContextTextMemberPatterns = ['\.', '>\?::', '>\?:', '->']
 let g:SuperTabDefaultCompletionType = 'context'
@@ -204,6 +205,9 @@ source $VIMRUNTIME/mswin.vim
 " Unmap CTRL-Y(redo) to its original scroll
 nunmap <C-Y>
 iunmap <C-Y>
+
+" Open new tab remap
+nnoremap <C-w>t <C-w>s<C-w>T
 
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -249,7 +253,7 @@ function! DiffToggle()
   else
     windo diffthis
   endif
-:endfunction
+endfunction
 
 " Toggle paste mode
 nnoremap <Leader>pp :call PasteToggle()<CR>
@@ -261,7 +265,7 @@ function! PasteToggle()
 		set paste
 		echo "Paste Mode Enabled"
   endif
-:endfunction
+endfunction
 
 " Smooth Scroll shortcuts
 noremap <silent> <C-y> :call smooth_scroll#up(3, 0, 3)<CR>
@@ -336,7 +340,6 @@ let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
 " let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'
 
 " Python linter
-" jedi language server !pip install jedi-language-server
 " bandit security linter !pip install bandit
 " let g:ale_linters['python'] += ['bandit']
 " flake8 config !pip install flake8
