@@ -326,7 +326,25 @@ nmap Q	<Nop>
 " close pane using shortcut
 nnoremap gq <C-w>c
 
-" Ale config
+" Ale keymap
+nnoremap <Leader>ss :ALESymbolSearch -relative <C-r><C-w><CR>
+vnoremap <Leader>ss y:ALESymbolSearch -relative <C-r>"<CR>
+nnoremap <Leader>rr :ALEFindReferences -relative<CR>
+nnoremap <Leader>gd :ALEGoToDefinition<CR>
+nnoremap <Leader>k :ALEHover<CR>
+
+" Force Ale preview to open in quickfix
+augroup alequickfix
+  autocmd!
+  autocmd FileType ale-preview-selection exe 'call ReadtoQuickfix()'
+augroup END
+
+function! ReadtoQuickfix()
+  execute 'cgetexpr getline(1, "$")'
+  pclose
+endfunction
+
+" Ale config NOTE:(lopen) to show error list
 let g:ale_linters = {
 \   'cpp': ['clangd', 'roslint_cpplint'],
 \   'python': ['python', 'jedils', 'roslint_pep8'],
