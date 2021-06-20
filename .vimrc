@@ -202,6 +202,11 @@ augroup completion
   autocmd!
   autocmd FileType * set omnifunc=ale#completion#OmniFunc
 augroup END
+inoremap <plug>MyEnter <cr>
+imap <silent> <expr> <plug>MyCR pumvisible()
+    \ ? "\<c-y>"
+    \ : "\<plug>MyEnter"
+imap <cr> <plug>MyCR
 
 " vim-table-mode config
 let g:table_mode_corner_corner='+'
