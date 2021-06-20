@@ -1,0 +1,5 @@
+source $BYOBU_PREFIX/share/byobu/keybindings/f-keys.tmux.disable
+
+# patch to allow for F12 behave like S-F12
+bind-key -n S-F12 source $BYOBU_CONFIG_DIR/keybindings.tmux \; display-message "Byobu F-keys: ENABLED"
+bind-key -n F12 source $BYOBU_CONFIG_DIR/keybindings.tmux \; display-message "Byobu F-keys: ENABLED"
