@@ -69,7 +69,7 @@ filetype plugin indent on    " required
 
 
 " Inherit aliases from ~/.bash_aliases
-let $BASH_ENV = "~/.bash_aliases"
+let $BASH_ENV = '~/.bash_aliases'
 
 " Colorscheme
 set t_Co=256
@@ -131,13 +131,15 @@ set undodir=~/.vim/undodir
 set undofile
 " CursorHold timer
 set updatetime=1000
+" Completion option
+set completeopt+=menuone,noselect
 
 " Use tree view for netrw directory browsing
 let g:netrw_liststyle=3
 
 " CtrlSpace config
 let g:CtrlSpaceUseUnicode = 0
-let g:CtrlSpaceSymbols = { "IV": "o" }
+let g:CtrlSpaceSymbols = { 'IV': 'o' }
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
@@ -184,7 +186,6 @@ nnoremap <Leader>oo :OverCommandLine %s/<CR>
 vnoremap <Leader>oo :OverCommandLine s/<CR>
 
 " SuperTab config
-set omnifunc=ale#completion#OmniFunc
 let g:SuperTabCrMapping = 1
 let g:SuperTabRetainCompletionDuration = 'completion'
 let g:SuperTabClosePreviewOnPopupClose = 1
@@ -192,7 +193,7 @@ let g:SuperTabContextTextMemberPatterns = ['\.', '>\?::', '>\?:', '->']
 let g:SuperTabDefaultCompletionType = 'context'
 augroup supertabsetting
   autocmd!
-  autocmd FileType * call SuperTabChain(&omnifunc, "<C-n>")
+  autocmd FileType * set omnifunc=ale#completion#OmniFunc | call SuperTabChain(&omnifunc, '<C-n>')
 augroup END
 
 " vim-table-mode config
@@ -207,7 +208,7 @@ nunmap <C-Y>
 iunmap <C-Y>
 
 " Open new tab remap
-nnoremap <C-w>t <C-w>s<C-w>T
+nnoremap <C-w>t :tab sbuffer<CR>
 
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -260,10 +261,10 @@ nnoremap <Leader>pp :call PasteToggle()<CR>
 function! PasteToggle()
   if &paste
 		set nopaste
-		echo "Paste Mode Disabled"
+		echo 'Paste Mode Disabled'
   else
 		set paste
-		echo "Paste Mode Enabled"
+		echo 'Paste Mode Enabled'
   endif
 endfunction
 
