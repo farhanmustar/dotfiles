@@ -362,7 +362,7 @@ endfunction
 " Ale config NOTE:(lopen) to show error list
 let g:ale_linters = {
 \   'cpp': ['clangd', 'roslint_cpplint'],
-\   'python': ['python', 'jedils', 'roslint_pep8'],
+\   'python': ['python', 'jedils', 'pyls', 'roslint_pep8'],
 \}
 
 " Ros linter
@@ -375,6 +375,19 @@ let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
 " Python linter
 " bandit security linter !pip install bandit
 " let g:ale_linters['python'] += ['bandit']
+let g:ale_python_pyls_config = {
+\   'pyls': {
+\     'plugins': {
+\       'pycodestyle': {
+\         'maxLineLength': 199,
+\         'ignore': 'W605,W504,E128,F841,E731',
+\       },
+\       'mccabe': {
+\         'threshold': 30,
+\       },
+\     },
+\   },
+\}
 " flake8 config !pip install flake8
 " let g:ale_linters['python'] += ['flake8']
 " let g:ale_python_flake8_options = '--max-line-length=199 --ignore W504,E128' " more strict mode
