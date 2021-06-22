@@ -304,6 +304,8 @@ command! Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked '<args>'"
 nnoremap <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <Leader>gg y:GG <C-r>"<CR>
+nnoremap <Leader>gt :tab sbuffer<CR>:GG <C-r><C-w><CR>
+vnoremap <Leader>gt y:tab sbuffer<CR>:GG <C-r>"<CR>
 
 " Hard mode - disable arrow keys
 map <Up>	 :echo "no!"<CR>
