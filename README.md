@@ -25,9 +25,12 @@ sudo apt-get install vim
 ### Python
 * [ale-python-linter](https://github.com/farhanmustar/ale-python-linter)
   * vimrc `Plugin 'farhanmustar/ale-python-linter'`
-* jedi-language-server
+* jedi-language-server (jedils)
   * pip install jedi-language-server
   * language server for python.
+* python-language-server (pyls)
+  * pip install python-language-server
+  * language server for python. (available for python 2.7)
 * flake8
   * pip install flake8
   * more detail checker especially in code formatting.

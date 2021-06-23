@@ -23,11 +23,11 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'dense-analysis/ale'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'djoshea/vim-autoread'
-Plugin 'ervandew/supertab'
 Plugin 'farhanmustar/ale-python-linter'
 Plugin 'farhanmustar/gv.vim'
 Plugin 'fidian/hexmode'
 Plugin 'gruvbox-community/gruvbox'
+Plugin 'lifepillar/vim-mucomplete'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-startify'
@@ -135,6 +135,8 @@ set undofile
 set updatetime=1000
 " Completion option
 set completeopt+=menuone,noselect
+set belloff+=ctrlg
+set shortmess+=c
 
 " Use tree view for netrw directory browsing
 let g:netrw_liststyle=3
@@ -187,16 +189,24 @@ let g:over#command_line#substitute#replace_pattern_visually = 1
 nnoremap <Leader>oo :OverCommandLine %s/<CR>
 vnoremap <Leader>oo :OverCommandLine s/<CR>
 
-" SuperTab config
-let g:SuperTabCrMapping = 1
-let g:SuperTabRetainCompletionDuration = 'completion'
-let g:SuperTabClosePreviewOnPopupClose = 1
-let g:SuperTabContextTextMemberPatterns = ['\.', '>\?::', '>\?:', '->']
-let g:SuperTabDefaultCompletionType = 'context'
-augroup supertabsetting
+" Mucomplete config
+let g:mucomplete#enable_auto_at_startup = 1  " comment to disable auto suggestion
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
+let g:mucomplete#chains.default = {
+\   'default': ['path', 'omni', 'c-n', 'dict', 'uspl'],
+\   '.*comment.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
+\   '.*string.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
+\ }
+augroup completion
   autocmd!
-  autocmd FileType * set omnifunc=ale#completion#OmniFunc | call SuperTabChain(&omnifunc, '<C-n>')
+  autocmd FileType * set omnifunc=ale#completion#OmniFunc
 augroup END
+inoremap <plug>MyEnter <cr>
+imap <silent> <expr> <plug>MyCR pumvisible()
+    \ ? "\<c-y>"
+    \ : "\<plug>MyEnter"
+imap <cr> <plug>MyCR
 
 " vim-table-mode config
 let g:table_mode_corner_corner='+'
@@ -352,7 +362,7 @@ endfunction
 " Ale config NOTE:(lopen) to show error list
 let g:ale_linters = {
 \   'cpp': ['clangd', 'roslint_cpplint'],
-\   'python': ['python', 'jedils', 'roslint_pep8'],
+\   'python': ['python', 'jedils', 'pyls', 'roslint_pep8'],
 \}
 
 " Ros linter
@@ -365,6 +375,19 @@ let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
 " Python linter
 " bandit security linter !pip install bandit
 " let g:ale_linters['python'] += ['bandit']
+let g:ale_python_pyls_config = {
+\   'pyls': {
+\     'plugins': {
+\       'pycodestyle': {
+\         'maxLineLength': 199,
+\         'ignore': 'W605,W504,E128,F841,E731',
+\       },
+\       'mccabe': {
+\         'threshold': 30,
+\       },
+\     },
+\   },
+\}
 " flake8 config !pip install flake8
 " let g:ale_linters['python'] += ['flake8']
 " let g:ale_python_flake8_options = '--max-line-length=199 --ignore W504,E128' " more strict mode
