@@ -190,7 +190,7 @@ nnoremap <Leader>oo :OverCommandLine %s/<CR>
 vnoremap <Leader>oo :OverCommandLine s/<CR>
 
 " Mucomplete config
-let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#enable_auto_at_startup = 1  " comment to disable auto suggestion
 let g:mucomplete#chains = {}
 let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
 let g:mucomplete#chains.default = {
