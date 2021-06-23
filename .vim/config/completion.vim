@@ -9,10 +9,12 @@ let g:mucomplete#chains.default = {
 \   '.*comment.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
 \   '.*string.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
 \ }
+
 augroup completion
   autocmd!
   autocmd FileType * set omnifunc=ale#completion#OmniFunc
 augroup END
+
 inoremap <plug>MyEnter <cr>
 imap <silent> <expr> <plug>MyCR pumvisible()
     \ ? "\<c-y>"

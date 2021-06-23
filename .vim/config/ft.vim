@@ -15,7 +15,7 @@ augroup cursorpos
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 augroup END
 
-" launch filetype as xml format
+" .launch filetype as xml format
 augroup rosfiletype
   autocmd!
   autocmd BufRead,BufNewFile *.launch setfiletype xml
