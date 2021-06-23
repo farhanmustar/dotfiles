@@ -87,6 +87,8 @@ function! ModifyColorScheme()
   highlight ALEWarning ctermbg=237
   highlight ALEStyleError ctermbg=237
   highlight ALEStyleWarning ctermbg=237
+  highlight Search cterm=NONE ctermfg=NONE ctermbg=238
+  highlight QuickFixLine cterm=NONE ctermfg=NONE ctermbg=236
 endfunction
 augroup modifycolorscheme
   autocmd!
@@ -288,7 +290,7 @@ nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
-nnoremap <expr> <CR> &buftype is# 'quickfix' ? '<CR><C-w>p' : '<CR>'
+nnoremap <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
 
 " Auto open quickfix window
 augroup quickfix
