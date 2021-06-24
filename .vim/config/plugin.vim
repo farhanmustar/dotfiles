@@ -32,6 +32,8 @@ nnoremap <Leader>gt :tab sbuffer<CR>:GG <C-r><C-w><CR>
 vnoremap <Leader>gt y:tab sbuffer<CR>:GG <C-r>"<CR>
 
 " tagbar config
+let g:tagbar_map_preview = '<CR>'
+let g:tagbar_sort = 0
 let g:tagbar_width = 60
 nnoremap <Leader>st :TagbarToggle<CR>
 
