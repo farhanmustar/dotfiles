@@ -24,29 +24,34 @@ endfunction
 
 " NOTE: (lopen) to show error list
 let g:ale_linters = {
-\   'cpp': ['clangd', 'roslint_cpplint'],
-\   'python': ['python', 'jedils', 'pyls', 'roslint_pep8'],
+\   'cpp': ['roslint_cpplint'],
+\   'python': ['python', 'roslint_pep8'],
 \}
 
 " ##############
 " # Ros Linter #
 " ##############
 
+" let g:ale_linters['cpp'] += ['clangd']
+
 let g:ale_cpp_roslint_cpplint_options = '--filter=-build/include_what_you_use,-runtime/references,-whitespace/braces,-whitespace/line_length'
 let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
+
 " Ros clangd
-" !catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 or manually add env var below
+" run following catkin_make or set environment variable.
+" !catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 " let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'
 
 " #################
 " # Python Linter #
 " #################
 
-" bandit security linter !pip install bandit
-" flake8 linter !pip install flake8
-
 " let g:ale_linters['python'] += ['bandit']
 " let g:ale_linters['python'] += ['flake8']
+
+" python language server
+" let g:ale_linters['python'] += ['jedils']
+" let g:ale_linters['python'] += ['pyls']
 
 " let g:ale_python_flake8_options = '--max-line-length=199 --ignore W504,E128' " more strict mode
 let g:ale_python_flake8_options = '--max-line-length=199 --ignore W606,W605,W504,E128,F841,E731'

@@ -16,7 +16,7 @@ sudo apt-get install vim
 ```
 
 ## Vim-Ale linter list
-* In vim run `:ALEInfo` to find list of available linter.
+* In vim, run `:ALEInfo` to find list of available linter.
 
 ### Vim
 * [vimls](https://github.com/iamcco/vim-language-server)
@@ -45,6 +45,7 @@ sudo apt-get install vim
   * for ROS development set env variable using shell or in vimrc
     * `let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'`
   * or run this command to generate the `compile_command.json`.
+    * bash aliased to `catkin_make_compile_commands`
     * `catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1`
 
 ### Ros
