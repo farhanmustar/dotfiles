@@ -19,6 +19,7 @@ function! ModifyColorScheme()
   highlight ALEStyleWarning ctermbg=237
   highlight Search cterm=NONE ctermfg=NONE ctermbg=238
   highlight QuickFixLine cterm=NONE ctermfg=NONE ctermbg=236
+  highlight link CtrlSpaceSearch  IncSearch
 endfunction
 augroup modifycolorscheme
   autocmd!
