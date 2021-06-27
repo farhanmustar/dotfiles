@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "vscodevim.vim", 
+    "ms-iot.vscode-ros",
+    "ms-vscode-remote.vscode-remote-extensionpack"
+  ]
+}
