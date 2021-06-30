@@ -8,8 +8,13 @@ source ~/.vim/config/linter.vim
 source ~/.vim/config/formatter.vim
 source ~/.vim/config/plugin.vim
 source ~/.vim/config/shortcut.vim
+source ~/.vim/config/note.vim
+
+" Note Directory
+let g:SimpleNoteDir = '~/note'
 
 " Bookmarks
 let g:startify_bookmarks = [
 \   '~/.vimrc', 
+\   '~/note', 
 \]
