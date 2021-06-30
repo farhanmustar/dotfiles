@@ -25,7 +25,7 @@ function s:simple_note(ft, mods)
     return
   endif
 
-  execute a:mods.'split | edit '.s:simple_note_get_dir().'/'.(a:ft == '' ? '' : 'note.'.a:ft)
+  execute a:mods.' split | edit '.s:simple_note_get_dir().'/'.(a:ft == '' ? '' : 'note.'.fnameescape(a:ft))
 endfunction
 
 function s:simple_note_complete(arg, line, cur)
@@ -37,5 +37,5 @@ function s:simple_note_complete(arg, line, cur)
   return comp
 endfunction
 
-command! -complete=custom,s:simple_note_complete SN call s:simple_note(<q-args>, <q-mods>)
+command! -nargs=? -complete=custom,s:simple_note_complete SN call s:simple_note(<q-args>, <q-mods>)
 nnoremap <expr> <Leader>sn ":SN <C-r>=fnamemodify(expand('%'), ':e')<CR><CR>"
