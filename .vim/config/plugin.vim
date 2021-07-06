@@ -46,3 +46,17 @@ nnoremap <Leader>ut :UndotreeToggle<CR>
 command! S botright split | Startify
 command! Sv vertical botright split | Startify
 command! St tabnew | Startify
+
+" Dispatch config
+" TODO: focus on using job startergy and need to fix quickfix which clash with curr shortuct.
+" TODO: fix quickfix on top when finish (this due to it should be listing error list)
+" Use :Focus to set default
+let g:dispatch_no_maps = 1
+let g:dispatch_no_tmux_make = 1
+nnoremap <Leader>bb :call StartDispatch()<CR>
+function! StartDispatch()
+  let cursor_pos = getpos('.')
+  execute 'Dispatch'
+  vertical resize 20
+  call setpos('.', cursor_pos)
+endfunction
