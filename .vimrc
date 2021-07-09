@@ -11,10 +11,10 @@ source ~/.vim/config/shortcut.vim
 source ~/.vim/config/note.vim
 
 " Note Directory
-let g:SimpleNoteDir = '~/note'
+let g:SimpleNoteDir = '~/notes'
 
 " Bookmarks
 let g:startify_bookmarks = [
 \   '~/.vimrc', 
-\   '~/note', 
+\   '~/notes', 
 \]
