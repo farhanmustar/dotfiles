@@ -12,6 +12,7 @@ source ~/.vim/config/note.vim
 
 " Note Directory
 let g:SimpleNoteDir = '~/notes'
+let g:SimpleNoteTODOFile = '~/todo.md'
 
 " Bookmarks
 let g:startify_bookmarks = [
