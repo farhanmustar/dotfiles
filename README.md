@@ -51,3 +51,7 @@ sudo apt-get install vim
 ### Ros
 * [ale-roslint](https://github.com/farhanmustar/ale-roslint)
   * vimrc `Plugin 'farhanmustar/ale-roslint'`
+
+### Javascript
+* tsserver (language server for javascript and typescript)
+  * npm install typescript
