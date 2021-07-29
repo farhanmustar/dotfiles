@@ -8,6 +8,10 @@ map <Space> <Leader>
 nunmap <C-Y>
 iunmap <C-Y>
 
+" Unmap CTRL-A(select all) to its original add to number
+nunmap <C-A>
+iunmap <C-A>
+
 " Open new tab remap
 nnoremap <C-w>t :tab sbuffer<CR>
 
