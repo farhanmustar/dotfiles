@@ -2,66 +2,66 @@
 " Simple note will open note file based on file extension.
 
 " Plugin Start
-function s:simple_note_print_error(msg)
+function! s:SimpleNotePrintError(msg)
     execute 'normal! \<Esc>'
     echohl ErrorMsg
     echomsg a:msg
     echohl None
 endfunction
 
-function s:simple_note_is_enabled()
+function! s:SimpleNoteIsEnabled()
   let g:SimpleNoteDir = get(g:, 'SimpleNoteDir', '')
   if (g:SimpleNoteDir == '')
     return v:false
   endif
 
   if !isdirectory(expand(g:SimpleNoteDir))
-    call s:simple_note_print_error('SimpleNote: dir does not exist')
+    call s:SimpleNotePrintError('SimpleNote: dir does not exist')
     return v:false
   endif
 
   return v:true
 endfunction
 
-function s:simple_note_get_dir()
+function! s:SimpleNoteGetDir()
   return fnamemodify(expand(g:SimpleNoteDir), ':p:h')
 endfunction
 
-function s:simple_note_complete(arg, line, cur)
-  if s:simple_note_is_enabled() == v:false
+function! s:SimpleNoteComplete(arg, line, cur)
+  if s:SimpleNoteIsEnabled() == v:false
     return ''
   endif
-  let comp = globpath(s:simple_note_get_dir(), 'note.*')
+  let comp = globpath(s:SimpleNoteGetDir(), 'note.*')
   let comp = substitute(comp, '[^\n]*note.', '', '')
   return comp
 endfunction
 
-function s:simple_note_open_buffer(mods, buff)
+function! s:SimpleNoteOpenBuffer(mods, buff)
   execute a:mods.' split | edit '.a:buff.' | setlocal bufhidden=delete'
 endfunction
 
-function s:simple_note_open_todo(mods)
+function! s:SimpleNoteOpenTodo(mods)
   let g:SimpleNoteTODOFile = get(g:, 'SimpleNoteTODOFile', '')
   if (g:SimpleNoteTODOFile == '')
-    call s:simple_note_print_error('SimpleNote: todo dir does not exist')
+    call s:SimpleNotePrintError('SimpleNote: todo dir does not exist')
     return
   endif
-  call s:simple_note_open_buffer(a:mods, g:SimpleNoteTODOFile)
+  call s:SimpleNoteOpenBuffer(a:mods, g:SimpleNoteTODOFile)
 endfunction
 
-function s:simple_note(ft, mods)
+function! s:SimpleNote(ft, mods)
   if a:ft == 'todo'
-    call s:simple_note_open_todo(a:mods)
+    call s:SimpleNoteOpenTodo(a:mods)
     return
   endif
 
-  if s:simple_note_is_enabled() == v:false
+  if s:SimpleNoteIsEnabled() == v:false
     return
   endif
 
-  call s:simple_note_open_buffer(a:mods, s:simple_note_get_dir().'/'.(a:ft == '' ? '' : 'note.'.fnameescape(a:ft)))
+  call s:SimpleNoteOpenBuffer(a:mods, s:SimpleNoteGetDir().'/'.(a:ft == '' ? '' : 'note.'.fnameescape(a:ft)))
 endfunction
 
-command! -nargs=? -complete=custom,s:simple_note_complete SN call s:simple_note(<q-args>, <q-mods>)
+command! -nargs=? -complete=custom,s:SimpleNoteComplete SN call s:SimpleNote(<q-args>, <q-mods>)
 nnoremap <expr> <Leader>sn ":SN <C-r>=fnamemodify(expand('%'), ':e')<CR><CR>"
 nnoremap <expr> <Leader>nn ":SN todo<CR>"

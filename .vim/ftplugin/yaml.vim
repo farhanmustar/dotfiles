@@ -5,17 +5,18 @@ setlocal expandtab
 
 
 if exists("b:did_indent")
-      finish
-  endif
-  "runtime! indent/ruby.vim
-  "unlet! b:did_indent
-  let b:did_indent = 1
+  finish
+endif
 
-  setlocal autoindent sw=2 et
-  setlocal indentexpr=GetYamlIndent()
-  setlocal indentkeys=o,O,*<Return>,!^F
+"runtime! indent/ruby.vim
+"unlet! b:did_indent
+let b:did_indent = 1
 
-  function! GetYamlIndent()
+setlocal autoindent sw=2 et
+setlocal indentexpr=s:GetYamlIndent()
+setlocal indentkeys=o,O,*<Return>,!^F
+
+function! s:GetYamlIndent()
   let lnum = v:lnum - 1
   if lnum == 0
     return 0
@@ -31,4 +32,3 @@ if exists("b:did_indent")
 endfunction
 
 " vim:set sw=2:
-

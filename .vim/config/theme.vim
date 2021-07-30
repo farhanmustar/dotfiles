@@ -7,7 +7,7 @@ set background=dark
 set cursorline
 let g:gruvbox_contrast_dark='hard'
 
-function! ModifyColorScheme()
+function! s:ModifyColorScheme()
   highlight CursorLine ctermbg=235
   highlight CursorLineNR ctermbg=235
   highlight TabLine      ctermfg=Black  ctermbg=DarkGray  cterm=NONE
@@ -23,7 +23,7 @@ function! ModifyColorScheme()
 endfunction
 augroup modifycolorscheme
   autocmd!
-  autocmd ColorScheme * exe 'call ModifyColorScheme()'
+  autocmd ColorScheme * exe 'call s:ModifyColorScheme()'
 augroup END
 
 silent! colorscheme gruvbox

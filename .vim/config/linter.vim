@@ -10,10 +10,10 @@ nnoremap <Leader>k :ALEHover<CR>
 " Force Ale preview to open in quickfix
 augroup alequickfix
   autocmd!
-  autocmd FileType ale-preview-selection exe 'call ReadtoQuickfix()'
+  autocmd FileType ale-preview-selection exe 'call s:ReadtoQuickfix()'
 augroup END
 
-function! ReadtoQuickfix()
+function! s:ReadtoQuickfix()
   execute 'cgetexpr getline(1, "$")'
   pclose
 endfunction
