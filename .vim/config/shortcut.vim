@@ -5,12 +5,12 @@ nnoremap <Space> <Nop>
 map <Space> <Leader>
 
 " Unmap CTRL-Y(redo) to its original scroll
-nunmap <C-Y>
-iunmap <C-Y>
+silent! nunmap <C-Y>
+silent! iunmap <C-Y>
 
 " Unmap CTRL-A(select all) to its original add to number
-nunmap <C-A>
-iunmap <C-A>
+silent! nunmap <C-A>
+silent! iunmap <C-A>
 
 " Open new tab remap
 nnoremap <C-w>t :tab sbuffer<CR>
@@ -129,3 +129,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" move text in visual mode
+vnoremap J :m '>+1<CR>gvgv
+vnoremap K :m '<-2<CR>gvgv
