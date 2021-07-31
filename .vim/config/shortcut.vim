@@ -28,6 +28,18 @@ noremap gV `[v`]
 vnoremap < <gv
 vnoremap > >gv
 
+" move text in visual mode
+vnoremap K :<C-u>call MoveSelectionUp(v:count1)<CR>
+vnoremap J :<C-u>call MoveSelectionDown(v:count1)<CR>
+function! MoveSelectionUp(count)
+  execute "'<,'>move '<--".a:count
+  normal gv
+endfunction
+function! MoveSelectionDown(count)
+  execute "'<,'>move '>+".a:count
+  normal gv
+endfunction
+
 " Make Y yank everything from the cursor to the end of the line. This makes Y
 " act more like C or D because by default, Y yanks the current line (i.e. the
 " same as yy).
@@ -129,7 +141,3 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" move text in visual mode
-vnoremap J :m '>+1<CR>gvgv
-vnoremap K :m '<-2<CR>gvgv
