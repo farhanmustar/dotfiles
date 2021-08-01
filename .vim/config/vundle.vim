@@ -10,10 +10,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'farhanmustar/Vundle.vim'
 
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'dense-analysis/ale'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'djoshea/vim-autoread'
+Plugin 'farhanmustar/ale'
 Plugin 'farhanmustar/ale-python-linter'
 Plugin 'farhanmustar/gv.vim'
 Plugin 'fidian/hexmode'
