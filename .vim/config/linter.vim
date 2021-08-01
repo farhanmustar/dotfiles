@@ -1,31 +1,26 @@
 " Vim Linter Config
 
+let g:ale_close_preview_on_insert = 1
+let g:ale_lsp_readfile_preview = 1
+let g:ale_selection_in_quickfix = 1
+
 " Ale keymap
 nnoremap <Leader>ss :ALESymbolSearch -relative <C-r><C-w><CR>
 vnoremap <Leader>ss y:ALESymbolSearch -relative <C-r>"<CR>
 nnoremap <Leader>rr :ALEFindReferences -relative<CR>
 nnoremap <Leader>gd :ALEGoToDefinition<CR>
 nnoremap <Leader>k :ALEHover<CR>
+nnoremap <Leader>af :ALEFix<CR>
 
-" Force Ale preview to open in quickfix
-augroup alequickfix
-  autocmd!
-  autocmd FileType ale-preview-selection exe 'call s:ReadtoQuickfix()'
-augroup END
-
-function! s:ReadtoQuickfix()
-  execute 'cgetexpr getline(1, "$")'
-  pclose
-endfunction
-
-" #################
-" # Linter Config #
-" #################
+" #############################################################################
+" #                              Linter Config                                #
+" #############################################################################
 
 " NOTE: (lopen) to show error list
 let g:ale_linters = {
 \   'cpp': ['roslint_cpplint'],
 \   'python': ['python', 'roslint_pep8'],
+\   'javascript': ['jshint'],
 \}
 
 " ##############
@@ -68,3 +63,37 @@ let g:ale_python_pyls_config = {
 \     },
 \   },
 \}
+
+" #####################
+" # Javascript Linter #
+" #####################
+
+" let g:ale_linters['javascript'] += ['tsserver']
+
+" #############################################################################
+" #                              Fixer Config                                 #
+" #############################################################################
+
+let g:ale_fixers = {
+\   'cpp': ['astyle'],
+\   'python': ['autopep8'],
+\   'javascript': ['js-beautify'],
+\}
+
+" #############
+" # Cpp Fixer #
+" #############
+
+let g:ale_cpp_astyle_options = '--mode=c --style=allman --indent=spaces=2 --pad-oper --unpad-paren --pad-header --convert-tabs'
+
+" ################
+" # Python Fixer #
+" ################
+
+let g:ale_python_flake8_options = '-aa --max-line-length=199 --ignore=E128,E722"'
+
+" ####################
+" # Javascript Fixer #
+" ####################
+
+let g:ale_javascript_js_beautify_options = '--jslint-happy -s 2 -n'
