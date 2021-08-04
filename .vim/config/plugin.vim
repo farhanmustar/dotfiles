@@ -28,6 +28,10 @@ vnoremap <Leader>gg y:GG <C-r>"<CR>
 nnoremap <Leader>gt :tab sbuffer<CR>:GG <C-r><C-w><CR>
 vnoremap <Leader>gt y:tab sbuffer<CR>:GG <C-r>"<CR>
 
+" Git Gutter disable by default
+let g:gitgutter_map_keys = 0
+let g:gitgutter_enabled = 0
+
 " tagbar config
 let g:tagbar_map_close = 'gq'
 let g:tagbar_map_closefold = '<'
