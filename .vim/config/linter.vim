@@ -91,7 +91,7 @@ let g:ale_cpp_astyle_options = '--mode=c --style=allman --indent=spaces=2 --pad-
 " # Python Fixer #
 " ################
 
-let g:ale_python_flake8_options = '-aa --max-line-length=199 --ignore=E128,E722"'
+let g:ale_python_autopep8_options = '-aa --max-line-length=199 --ignore=E128,E722"'
 
 " ####################
 " # Javascript Fixer #
