@@ -37,7 +37,7 @@ function! s:SimpleNoteComplete(arg, line, cur)
 endfunction
 
 function! s:SimpleNoteOpenBuffer(mods, buff)
-  execute a:mods.' split | edit '.a:buff.' | setlocal bufhidden=delete'
+  execute a:mods.' split | edit '.a:buff.' | setlocal bufhidden=delete nobuflisted'
 endfunction
 
 function! s:SimpleNoteOpenTodo(mods)
