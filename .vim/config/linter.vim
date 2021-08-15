@@ -3,6 +3,9 @@
 let g:ale_close_preview_on_insert = 1
 let g:ale_lsp_readfile_preview = 1
 let g:ale_selection_in_quickfix = 1
+let g:ale_cursor_detail = 1
+let g:ale_detail_to_floating_preview = 1
+let g:ale_floating_preview = 1
 
 " Ale keymap
 nnoremap <Leader>ss :ALESymbolSearch -relative <C-r><C-w><CR>
