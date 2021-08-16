@@ -32,7 +32,8 @@ set undofile
 " CursorHold timer
 set updatetime=1000
 " Completion option
-set completeopt+=menuone,noselect
+set completeopt+=menuone,noselect,popup
+set completepopup=highlight:Pmenu
 set belloff+=ctrlg
 set shortmess+=c
 
