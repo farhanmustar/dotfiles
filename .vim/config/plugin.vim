@@ -9,7 +9,7 @@ if executable('rg')
   let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
 endif
 
-" vim-over config 
+" vim-over config
 let g:over#command_line#substitute#replace_pattern_visually = 1
 nnoremap <Leader>oo :OverCommandLine %s/<CR>
 vnoremap <Leader>oo :OverCommandLine s/<CR>
@@ -50,3 +50,8 @@ nnoremap <Leader>ut :UndotreeToggle<CR>
 command! S botright split | Startify
 command! Sv vertical botright split | Startify
 command! St tabnew | Startify
+
+" easymotion config
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+map <leader>j <Plug>(easymotion-s)
