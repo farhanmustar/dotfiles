@@ -12,7 +12,7 @@ This configuration require vim 8.0. Older ubuntu system need to update vim using
 ```bash
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt-get update
-sudo apt-get install vim
+sudo apt-get install vim -y
 ```
 
 ## Vim-Ale linter list
@@ -20,28 +20,39 @@ sudo apt-get install vim
 
 ### Vim
 * [vimls](https://github.com/iamcco/vim-language-server)
-  * npm install -g vim-language-server
+```bash
+npm install -g vim-language-server
+```
 
 ### Python
 * [ale-python-linter](https://github.com/farhanmustar/ale-python-linter)
   * vimrc `Plugin 'farhanmustar/ale-python-linter'`
 * jedi-language-server (jedils)
-  * pip install jedi-language-server
   * language server for python.
+```bash
+pip install jedi-language-server
+```
+
 * python-language-server (pyls)
-  * pip install python-language-server
   * language server for python. (available for python 2.7)
+```bash
+pip install python-language-server
+```
 * flake8
-  * pip install flake8
   * more detail checker especially in code formatting.
+```bash
+pip install flake8
+```
 * bandit
-  * pip install bandit
   * security issue checker.
+```bash
+pip install bandit
+```
 
 ### C++
 * clangd
-  * apt-get install clangd or clangd-##
-    * Create symlink to clangd
+  * Download binary file from [clangd github](https://github.com/clangd/clangd/releases/) release page.
+    * Copy to bin dir.
   * for ROS development set env variable using shell or in vimrc
     * `let $CPLUS_INCLUDE_PATH='/home/user/ws/devel/include/:/opt/ros/melodic/include/'`
   * or run this command to generate the `compile_command.json`.
@@ -54,4 +65,6 @@ sudo apt-get install vim
 
 ### Javascript
 * tsserver (language server for javascript and typescript)
-  * npm install typescript
+```bash
+npm install -g typescript
+```
