@@ -8,6 +8,7 @@ source ~/.vim/config/linter.vim
 source ~/.vim/config/plugin.vim
 source ~/.vim/config/shortcut.vim
 source ~/.vim/config/note.vim
+source ~/.vim/config/curl.vim
 
 " Note Directory
 let g:SimpleNoteDir = '~/notes'
