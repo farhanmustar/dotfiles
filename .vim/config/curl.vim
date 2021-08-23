@@ -37,35 +37,39 @@ command! -nargs=+ Dictionary silent execute '!curl dict.org/d:<args>' | echo ' '
 command! DictionaryList silent execute '!curl dict://dict.org/show:db' | echo ' ' | echo ' ' | execute '!' | redraw!
 
 " Waktu Solat
-" API from https://waktu-solat-api.herokuapp.com/api/v1/prayer_times
-" by Zaim Ramlan (https://github.com/zaimramlan/waktu-solat-api)
-let s:WaktuSolatDefaultZone = 'johor bharu'
+" API from https://api.azanpro.com
+let s:WaktuSolatDefaultZone = 'JHR02'
 command! -nargs=? WaktuSolat call WaktuSolatGet(<q-args>)
 command! WaktuSolatZon call WaktuSolatGetZone()
 
 function! WaktuSolatGet (zon) abort
   let zon = empty(a:zon) ? s:WaktuSolatDefaultZone : a:zon
-  let response = system('curl -s -G "waktu-solat-api.herokuapp.com/api/v1/prayer_times" --data-urlencode "zon='.zon.'"')
+  let response = system('curl -s -G -L "api.azanpro.com/times/today.json" --data-urlencode "format=12-hour" --data-urlencode "zone='.zon.'"')
   let data = json_decode(response)
   echo ' '
   echo ' '
-  echo 'Waktu Solat ('.data['about']['source'].')'
-  echo 'Negeri : '.data['data'][0]['negeri'].'    Zon : '.data['data'][0]['zon']
+  echo 'Waktu Solat (api.azanpro.com)'
+  echo 'Kawasan : ['.data['zone'].'] '.join(data['locations'], ', ')
+  echo 'Tarikh  : '.data['prayer_times']['date']
   echo ' '
-  for entry in data['data'][0]['waktu_solat']
-    echo entry['name'].'    '.entry['time']
-  endfor
+  echo 'Imsak   : '.data['prayer_times']['imsak']
+  echo 'Subuh   : '.data['prayer_times']['subuh']
+  echo 'Syuruk  : '.data['prayer_times']['syuruk']
+  echo 'Zohor   : '.data['prayer_times']['zohor']
+  echo 'Asar    : '.data['prayer_times']['asar']
+  echo 'Maghrib : '.data['prayer_times']['maghrib']
+  echo 'Isyak   : '.data['prayer_times']['isyak']
   echo ' '
 endfunction
 function! WaktuSolatGetZone () abort
-  let response = system('curl -s "waktu-solat-api.herokuapp.com/api/v1/zones"')
+  let response = system('curl -s -L "api.azanpro.com/zone/grouped.json"')
   let data = json_decode(response)
   echo ' '
   echo ' '
   echo 'Senarai Zon'
   echo ' '
-  for entry in data['data']['zon']
-    echo entry
+  for entry in data['results']
+    echo entry['zone'].'    '.entry['negeri'].'    '.entry['lokasi']
   endfor
   echo ' '
   echo ' '
