@@ -23,6 +23,9 @@ command! Gv vertical topleft G
 command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked '<args>'"
+command! -nargs=* Gpush execute "Git push <args>"
+command! -nargs=* Gpull execute "Git pull <args>"
+command! -nargs=* Gfetch execute "Git fetch <args>"
 nnoremap <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <Leader>gg y:GG <C-r>"<CR>
 nnoremap <Leader>gt :tab sbuffer<CR>:GG <C-r><C-w><CR>
