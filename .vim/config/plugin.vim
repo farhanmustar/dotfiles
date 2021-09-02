@@ -9,6 +9,22 @@ if executable('rg')
   let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
 endif
 
+" Allow C-p as C-Space alternative
+function! CallCtrlSpace(k)
+  execute 'CtrlSpace'
+endfunction
+map <silent> <C-p> :CtrlSpace<CR>
+let g:CtrlSpaceKeys = {
+\    "Search": { "C-p": "CallCtrlSpace" },
+\    "Help": { "C-p": "CallCtrlSpace" },
+\    "Nop": { "C-p": "CallCtrlSpace" },
+\    "Buffer": { "C-p": "CallCtrlSpace" },
+\    "File": { "C-p": "CallCtrlSpace" },
+\    "Tab": { "C-p": "CallCtrlSpace" },
+\    "Workspace": { "C-p": "CallCtrlSpace" },
+\    "Bookmark": { "C-p": "CallCtrlSpace" },
+\}
+
 " vim-over config
 let g:over#command_line#substitute#replace_pattern_visually = 1
 nnoremap <Leader>oo :OverCommandLine %s/<CR>
