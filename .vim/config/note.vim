@@ -63,5 +63,5 @@ function! s:SimpleNote(ft, mods)
 endfunction
 
 command! -nargs=? -complete=custom,s:SimpleNoteComplete SN call s:SimpleNote(<q-args>, <q-mods>)
-nnoremap <expr> <Leader>sn ":SN <C-r>=fnamemodify(expand('%'), ':e')<CR><CR>"
-nnoremap <expr> <Leader>nn ":SN todo<CR>"
+nnoremap <silent> <expr> <Leader>sn ":SN <C-r>=fnamemodify(expand('%'), ':e')<CR><CR>"
+nnoremap <silent> <expr> <Leader>nn ":SN todo<CR>"

@@ -13,7 +13,7 @@ silent! nunmap <C-A>
 silent! iunmap <C-A>
 
 " Open new tab remap
-nnoremap <C-w>t :tab sbuffer<CR>
+nnoremap <silent> <C-w>t :tab sbuffer<CR>
 
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -29,8 +29,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " move text in visual mode
-vnoremap K :<C-u>call MoveSelectionUp(v:count1)<CR>
-vnoremap J :<C-u>call MoveSelectionDown(v:count1)<CR>
+vnoremap <silent> K :<C-u>call MoveSelectionUp(v:count1)<CR>
+vnoremap <silent> J :<C-u>call MoveSelectionDown(v:count1)<CR>
 function! MoveSelectionUp(count)
   execute "'<,'>move '<--".a:count
   normal gv
@@ -63,7 +63,7 @@ nnoremap <Leader>ff /\<<C-r><C-w>\><CR>
 vnoremap <Leader>ff y/<C-r>"<CR>
 
 " Diff shortcuts
-noremap <leader>df :call DiffToggle()<CR>
+noremap <silent> <leader>df :call DiffToggle()<CR>
 function! DiffToggle()
   if &diff
     diffoff!
@@ -74,7 +74,7 @@ function! DiffToggle()
 endfunction
 
 " Toggle paste mode
-nnoremap <Leader>pp :call PasteToggle()<CR>
+nnoremap <silent> <Leader>pp :call PasteToggle()<CR>
 function! PasteToggle()
   if &paste
 		set nopaste
@@ -94,15 +94,15 @@ noremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
 noremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 
 " Remove trailing whitespaces
-noremap <leader>as :%s/\s\+$//e<CR>
+noremap <silent> <leader>as :%s/\s\+$//e<CR>
 
 " Quickfix shortcuts (grep)
-nnoremap [q :cprev<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
-nnoremap <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
-nnoremap <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
+nnoremap <silent> [q :cprev<CR>
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [Q :cfirst<CR>
+nnoremap <silent> ]Q :clast<CR>
+nnoremap <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
+nnoremap <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
 
 " Auto open quickfix window
 augroup quickfix
@@ -122,10 +122,10 @@ inoremap <Left>		<Nop>
 inoremap <Right>	<Nop>
 
 " window resize
-nnoremap <Right> :vertical resize +10<CR>
-nnoremap <Left> :vertical resize -10<CR>
-nnoremap <Up> :resize +10<CR>
-nnoremap <Down> :resize -10<CR>
+nnoremap <silent> <Right> :vertical resize +10<CR>
+nnoremap <silent> <Left> :vertical resize -10<CR>
+nnoremap <silent> <Up> :resize +10<CR>
+nnoremap <silent> <Down> :resize -10<CR>
 
 " Disable Execute Mode
 nmap Q	<Nop>
@@ -134,7 +134,7 @@ nmap Q	<Nop>
 nnoremap gq <C-w>c
 
 " vimscript dev mapping
-nnoremap <Leader>so :source %<CR>
+nnoremap <silent> <Leader>so :source %<CR>
 
 " pane navigation
 nnoremap <C-h> <C-w>h
@@ -144,5 +144,5 @@ nnoremap <C-l> <C-w>l
 
 " grep in current file
 command! -nargs=+ FG silent execute "vimgrep /<args>/j %"
-nnoremap <Leader>fg :FG <C-r><C-w><CR>
-vnoremap <Leader>fg y:FG <C-r>"<CR>
+nnoremap <silent> <Leader>fg :FG <C-r><C-w><CR>
+vnoremap <silent> <Leader>fg y:FG <C-r>"<CR>

@@ -8,12 +8,12 @@ let g:ale_detail_to_floating_preview = 1
 let g:ale_floating_preview = 1
 
 " Ale keymap
-nnoremap <Leader>ss :ALESymbolSearch -relative <C-r><C-w><CR>
-vnoremap <Leader>ss y:ALESymbolSearch -relative <C-r>"<CR>
-nnoremap <Leader>rr :ALEFindReferences -relative<CR>
-nnoremap <Leader>gd :ALEGoToDefinition<CR>
-nnoremap <Leader>k :ALEHover<CR>
-nnoremap <Leader>af :ALEFix<CR>
+nnoremap <silent> <Leader>ss :ALESymbolSearch -relative <C-r><C-w><CR>
+vnoremap <silent> <Leader>ss y:ALESymbolSearch -relative <C-r>"<CR>
+nnoremap <silent> <Leader>rr :ALEFindReferences -relative<CR>
+nnoremap <silent> <Leader>gd :ALEGoToDefinition<CR>
+nnoremap <silent> <Leader>k :ALEHover<CR>
+nnoremap <silent> <Leader>af :ALEFix<CR>
 
 " #############################################################################
 " #                              Linter Config                                #

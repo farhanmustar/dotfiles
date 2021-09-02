@@ -27,8 +27,8 @@ let g:CtrlSpaceKeys = {
 
 " vim-over config
 let g:over#command_line#substitute#replace_pattern_visually = 1
-nnoremap <Leader>oo :OverCommandLine %s/<CR>
-vnoremap <Leader>oo :OverCommandLine s/<CR>
+nnoremap <silent> <Leader>oo :OverCommandLine %s/<CR>
+vnoremap <silent> <Leader>oo :OverCommandLine s/<CR>
 
 " vim-table-mode config
 let g:table_mode_corner_corner='+'
@@ -42,10 +42,10 @@ command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked 
 command! -nargs=* Gpush execute "Git push <args>"
 command! -nargs=* Gpull execute "Git pull <args>"
 command! -nargs=* Gfetch execute "Git fetch <args>"
-nnoremap <Leader>gg :GG <C-r><C-w><CR>
-vnoremap <Leader>gg y:GG <C-r>"<CR>
-nnoremap <Leader>gt :tab sbuffer<CR>:GG <C-r><C-w><CR>
-vnoremap <Leader>gt y:tab sbuffer<CR>:GG <C-r>"<CR>
+nnoremap <silent> <Leader>gg :GG <C-r><C-w><CR>
+vnoremap <silent> <Leader>gg y:GG <C-r>"<CR>
+nnoremap <silent> <Leader>gt :tab sbuffer<CR>:GG <C-r><C-w><CR>
+vnoremap <silent> <Leader>gt y:tab sbuffer<CR>:GG <C-r>"<CR>
 
 " Git Gutter disable by default
 let g:gitgutter_map_keys = 0
@@ -60,10 +60,10 @@ let g:tagbar_map_preview = '<CR>'
 let g:tagbar_map_togglefold = ''
 let g:tagbar_sort = 0
 let g:tagbar_width = 60
-nnoremap <Leader>st :TagbarToggle<CR>
+nnoremap <silent> <Leader>st :TagbarToggle<CR>
 
 " undotree config
-nnoremap <Leader>ut :UndotreeToggle<CR>
+nnoremap <silent> <Leader>ut :UndotreeToggle<CR>
 
 " startify config
 command! S botright split | Startify
