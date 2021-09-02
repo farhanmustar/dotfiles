@@ -1,0 +1,43 @@
+{
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "workbench.sideBar.location": "right",
+  "editor.tabCompletion": "on",
+  "vim.cursorStylePerMode.insert": "block",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.replace": "block",
+  "vim.cursorStylePerMode.visual": "block",
+  "vim.cursorStylePerMode.visualblock": "block",
+  "vim.cursorStylePerMode.visualline": "block",
+  "vim.normalModeKeyBindingsNonRecursive": [{
+      "before": ["g", "q"],
+      "after": [":", "q", "<CR>"]
+    },
+    {
+      "before": ["g", "r"],
+      "after": ["g", "T"]
+    },
+    {
+      "before": ["g", "k"],
+      "after": ["g", "h"]
+    },
+    {
+      "before": ["<C-h>"],
+      "after": ["<C-w>", "h"]
+    },
+    {
+      "before": ["<C-j>"],
+      "after": ["<C-w>", "j"]
+    },
+    {
+      "before": ["<C-k>"],
+      "after": ["<C-w>", "k"]
+    },
+    {
+      "before": ["<C-l>"],
+      "after": ["<C-w>", "l"]
+    }
+  ],
+  "editor.minimap.enabled": false
+}
