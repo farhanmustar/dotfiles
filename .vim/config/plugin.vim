@@ -74,3 +74,4 @@ command! St tabnew | Startify
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 map <leader>j <Plug>(easymotion-s)
+map <leader>J <Plug>(easymotion-bd-jk)
