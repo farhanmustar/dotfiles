@@ -36,6 +36,8 @@ set completeopt+=menuone,noselect,popup
 set completepopup=highlight:Pmenu
 set belloff+=ctrlg
 set shortmess+=c
+" Force encoding (windows default to latin)
+set encoding=utf-8
 
 " Use tree view for netrw directory browsing
 let g:netrw_liststyle=3

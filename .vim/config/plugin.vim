@@ -1,8 +1,6 @@
 " Vim Plugin Config
 
 " CtrlSpace config
-let g:CtrlSpaceUseUnicode = 0
-let g:CtrlSpaceSymbols = { 'IV': 'o' }
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|build|dist|env|node_modules|platforms|plugins|www\/lib)[\/]'
 if executable('rg')
