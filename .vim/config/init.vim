@@ -1,10 +1,10 @@
 " Vim Init Config
 
-" auto install vundle
-if empty(glob('~/.vim/bundle/Vundle.vim')) && executable('git')
-  echom 'Installing Vundle...'
+" auto install vim plug
+if empty(glob('~/.vim/autoload/plug.vim')) && executable('curl')
+  echom 'Installing Vim-Plug...'
   echom ''
-  silent execute '!git clone https://github.com/farhanmustar/Vundle.vim.git ' . glob('~') . '/.vim/bundle/Vundle.vim'
+  silent execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 " auto create undodir file (manual delete if too big)

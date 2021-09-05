@@ -7,6 +7,7 @@ let $BASH_ENV = '~/.bash_aliases'
 source $VIMRUNTIME/mswin.vim
 
 " Some tuning
+set nocompatible              " be iMproved
 set showmatch		" Show matching brackets.
 set ignorecase	" Do case insensitive matching
 set smartcase		" Do smart case matching
