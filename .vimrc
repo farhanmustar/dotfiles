@@ -1,5 +1,5 @@
 source ~/.vim/config/init.vim
-source ~/.vim/config/vundle.vim
+source ~/.vim/config/plugged.vim
 source ~/.vim/config/setting.vim
 source ~/.vim/config/theme.vim
 source ~/.vim/config/ft.vim
