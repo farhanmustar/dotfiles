@@ -79,3 +79,13 @@ map <leader>J <Plug>(easymotion-bd-jk)
 " easyalign config
 vmap <leader>aa <Plug>(EasyAlign)
 nmap <leader>aa <Plug>(EasyAlign)
+
+" Vimspector config
+map <leader>dc <Plug>VimspectorContinue
+map <leader>ds <Plug>VimspectorStop
+map <leader>dp <Plug>VimspectorPause
+map <leader>dr <Plug>VimspectorRestart
+map <leader>db <Plug>VimspectorToggleBreakpoint
+map <leader>d> <Plug>VimspectorStepOver
+map <leader>di <Plug>VimspectorStepInto
+map <leader>do <Plug>VimspectorStepOut
