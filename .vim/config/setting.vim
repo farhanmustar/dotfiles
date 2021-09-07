@@ -17,6 +17,7 @@ set number
 set splitbelow
 set splitright
 set hidden
+set belloff=all
 " Tabs settings
 set expandtab
 set softtabstop=0
@@ -35,7 +36,6 @@ set updatetime=1000
 " Completion option
 set completeopt+=menuone,noselect,popup
 set completepopup=highlight:Pmenu
-set belloff+=ctrlg
 set shortmess+=c
 " Force encoding (windows default to latin)
 set encoding=utf-8
