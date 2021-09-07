@@ -40,6 +40,8 @@ command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked 
 command! -nargs=* Gpush execute "Git push <args>"
 command! -nargs=* Gpull execute "Git pull <args>"
 command! -nargs=* Gfetch execute "Git fetch <args>"
+command! -nargs=* Gblame execute "Git blame <args>"
+command! -nargs=* Gstash execute "Git stash <args>"
 nnoremap <silent> <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <silent> <Leader>gg y:GG <C-r>"<CR>
 nnoremap <silent> <Leader>gt :tab sbuffer<CR>:GG <C-r><C-w><CR>
