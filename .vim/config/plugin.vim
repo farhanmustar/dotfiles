@@ -6,6 +6,9 @@ let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|build|dist|env|node_modules|platforms
 if executable('rg')
   let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
 endif
+command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O<args>\<CR>")
+nnoremap <expr> <Leader>fn ':CtrlSpaceSearch ' . expand('<cword>') . '<CR>'
+vnoremap <silent> <Leader>fn y:CtrlSpaceSearch <C-r>"<CR>
 
 " Allow C-p as C-Space alternative
 function! CallCtrlSpace(k)
