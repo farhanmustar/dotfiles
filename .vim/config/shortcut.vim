@@ -146,3 +146,11 @@ nnoremap <C-l> <C-w>l
 command! -nargs=+ FG silent execute "vimgrep /<args>/j %"
 nnoremap <silent> <Leader>fg :FG <C-r><C-w><CR>
 vnoremap <silent> <Leader>fg y:FG <C-r>"<CR>
+
+" copy current buffer filename
+nnoremap <silent> yn :call CopyFileName()<CR>
+nnoremap <silent> yN :call CopyFileName(':p')<CR>
+function! CopyFileName(...) abort
+  let @0 = fnamemodify(@%, get(a:, '1', ':t'))
+  let @" = @0
+endfunction
