@@ -7,10 +7,12 @@ map <Space> <Leader>
 " Unmap CTRL-Y(redo) to its original scroll
 silent! nunmap <C-Y>
 silent! iunmap <C-Y>
+silent! xunmap <C-Y>
 
 " Unmap CTRL-A(select all) to its original add to number
 silent! nunmap <C-A>
 silent! iunmap <C-A>
+silent! xunmap <C-Y>
 
 " Open new tab remap
 nnoremap <silent> <C-w>t :tab sbuffer<CR>
