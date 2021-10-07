@@ -3,7 +3,7 @@
 " Mucomplete config
 function! s:DisableOmniComplete()
   let g:mucomplete#chains.default = {
-  \   'default': ['path', 'snip', 'c-n', 'dict', 'uspl'],
+  \   'default': ['path', 'c-n', 'dict', 'uspl'],
   \   '.*comment.*': ['path', 'c-n', 'dict', 'uspl'],
   \   '.*string.*': ['path', 'c-n', 'dict', 'uspl'],
   \ }
@@ -11,7 +11,7 @@ endfunction
 
 function! s:EnableOmniComplete()
   let g:mucomplete#chains.default = {
-  \   'default': ['path', 'snip', 'omni', 'c-n', 'dict', 'uspl'],
+  \   'default': ['path', 'omni', 'c-n', 'dict', 'uspl'],
   \   '.*comment.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
   \   '.*string.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
   \ }
@@ -30,26 +30,8 @@ augroup END
 command! DisableOmniComplete call s:DisableOmniComplete()
 command! EnableOmniComplete call s:EnableOmniComplete()
 
-" snipmate config
-let g:snips_no_mappings = 1
-let g:snipMate = { 
-\  'snippet_version' : 1, 
-\  'no_match_completion_feedkeys_chars': '',
-\}
-
 inoremap <plug>MyEnter <cr>
 imap <silent> <expr> <plug>MyCR pumvisible()
-	  \ ? "\<c-y>\<plug>snipMateTrigger"
+    \ ? "\<c-y>"
     \ : "\<plug>MyEnter"
 imap <cr> <plug>MyCR
-smap <unique> <tab> <Plug>snipMateNextOrTrigger
-xmap <unique> <tab> <Plug>snipMateNextOrTrigger
-function! MyTabAction()
-  if !pumvisible()
-    return "\<plug>snipMateNextOrTrigger"
-  else
-    return "\<plug>(MyFwd)"
-  endif
-endfunction
-imap <plug>(MyFwd) <plug>(MUcompleteFwd)
-imap <expr> <silent> <tab> MyTabAction()
