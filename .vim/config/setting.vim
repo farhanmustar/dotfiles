@@ -37,6 +37,7 @@ set updatetime=1000
 set completeopt+=menuone,noselect,popup
 set completepopup=highlight:Pmenu
 set shortmess+=c
+set complete-=t
 " Force encoding (windows default to latin)
 set encoding=utf-8
 
