@@ -44,7 +44,7 @@ command! WaktuSolatZon call WaktuSolatGetZone()
 
 function! WaktuSolatGet (zon) abort
   let zon = empty(a:zon) ? s:WaktuSolatDefaultZone : a:zon
-  let response = system('curl -s -G -L "api.azanpro.com/times/today.json" --data-urlencode "format=12-hour" --data-urlencode "zone='.zon.'"')
+  let response = system('curl -sk -G -L "api.azanpro.com/times/today.json" --data-urlencode "format=12-hour" --data-urlencode "zone='.zon.'"')
   let data = json_decode(response)
   echo ' '
   echo ' '
