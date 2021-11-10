@@ -20,6 +20,7 @@
   slog = log --oneline
   mlog = log --format=format:'%C(yellow)%h %C(white)%s %Cgreen(%ar by %an) %Cred%d'
 
+  cloneempty = clone --filter=blob:none --no-checkout
   unstage = reset -q HEAD --
   discard = checkout --
   uncommit = reset --mixed HEAD~
@@ -33,6 +34,8 @@
   nvm = !git reset --hard HEAD && git clean -d -f
 
   graph = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
+  graphd = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d' --date-order
+  graphb = log --graph -100 --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
 
   precommit = diff --cached --diff-algorithm=minimal -w
 
