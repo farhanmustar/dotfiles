@@ -58,6 +58,8 @@ pip install bandit
   * or run this command to generate the `compile_command.json`.
     * bash aliased to `catkin_make_compile_commands`
     * `catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1`
+    * then link the generated `compile_command.json` file to outside the build folder for ale to find.
+      * `ln -sT /home/user/ws/build/compile_command.json /home/user/ws/compile_command.json`
 
 ### Ros
 * [ale-roslint](https://github.com/farhanmustar/ale-roslint)
