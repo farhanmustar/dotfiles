@@ -9,6 +9,9 @@ set scrolloff=5
 " Do incremental searching.
 set incsearch
 
+set ignorecase	" Do case insensitive matching
+set smartcase		" Do smart case matching
+
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
@@ -27,7 +30,7 @@ map <leader>af <Action>(ReformatCode)
 " Find more examples here: https://jb.gg/share-ideavimrc
 
 map <Space> <Leader>
-nnoremap gq <C-w>c
+nnoremap gq :tabc<CR>
 
 " Allow you to easily search the current word.
 nnoremap <Leader>ff yiw/<C-r>"<CR>
@@ -41,3 +44,12 @@ nnoremap <C-l> <C-w>l
 
 " Avoid pressing shift key to switch to previous tab
 noremap gr gT
+
+vmap gc <Action>(CommentByLineComment)
+nmap gcc <Action>(CommentByLineComment)
+
+nmap <C-Space> <Action>(FileChooser.TogglePathShowing)
+
+" Stay in visual mode when indenting. You will never have to run gv after performing an indentation.
+vnoremap < <gv
+vnoremap > >gv
