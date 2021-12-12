@@ -70,3 +70,10 @@ pip install bandit
 ```bash
 npm install -g typescript
 ```
+
+### Dart
+* Tagbar support
+  * Instal dart ctags.
+```bash
+dart pub global activate dart_ctags
+```
