@@ -10,8 +10,7 @@ rm -rf ~/dotfiles
 
 This configuration require vim 8.0. Older ubuntu system need to update vim using third party source.
 ```bash
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt-get update
+sudo add-apt-repository ppa:jonathonf/vim -yu
 sudo apt-get install vim -y
 ```
 
