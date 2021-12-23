@@ -10,6 +10,7 @@
   "vim.cursorStylePerMode.visual": "block",
   "vim.cursorStylePerMode.visualblock": "block",
   "vim.cursorStylePerMode.visualline": "block",
+  "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [{
       "before": ["g", "q"],
       "after": [":", "q", "<CR>"]
@@ -17,6 +18,14 @@
     {
       "before": ["g", "r"],
       "after": ["g", "T"]
+    },
+    {
+      "before": ["<F3>"],
+      "after": ["g", "T"]
+    },
+    {
+      "before": ["<F4>"],
+      "after": ["g", "t"]
     },
     {
       "before": ["g", "k"],
@@ -37,6 +46,24 @@
     {
       "before": ["<C-l>"],
       "after": ["<C-w>", "l"]
+    },
+    {
+      "before": ["<space>", "f", "f"],
+      "after": ["/", "<C-r>", "<C-w>", "<CR>"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [">"],
+      "after": [">", "g", "v"]
+    },
+    {
+      "before": ["<"],
+      "after": ["<", "g", "v"]
+    },
+    {
+      "before": ["<space>", "f", "f"],
+      "after": ["y", "/", "<C-r>", "\"", "<CR>"]
     }
   ],
   "editor.minimap.enabled": false
