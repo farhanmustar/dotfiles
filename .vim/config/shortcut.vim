@@ -12,7 +12,7 @@ silent! xunmap <C-Y>
 " Unmap CTRL-A(select all) to its original add to number
 silent! nunmap <C-A>
 silent! iunmap <C-A>
-silent! xunmap <C-Y>
+silent! xunmap <C-A>
 
 " Open new tab remap
 nnoremap <silent> <C-w>t :tab sbuffer<CR>
