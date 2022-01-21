@@ -40,6 +40,7 @@ command! Gv vertical topleft G
 command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked '<args>'"
+command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked '<args>'"
 command! -nargs=* -complete=customlist,fugitive#PushComplete Gpush execute "Git push <args>"
 command! -nargs=* -complete=customlist,fugitive#PullComplete Gpull execute "Git pull <args>"
 command! -nargs=* -complete=customlist,fugitive#FetchComplete Gfetch execute "Git fetch <args>"
