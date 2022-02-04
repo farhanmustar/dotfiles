@@ -136,7 +136,7 @@ nmap Q	<Nop>
 nnoremap gq <C-w>c
 
 " vimscript dev mapping
-nnoremap <silent> <Leader>so :source %<CR>
+nnoremap <silent> <Leader>so :source % \| echo "sourced!"<CR>
 
 " pane navigation
 nnoremap <C-h> <C-w>h
@@ -156,3 +156,7 @@ function! CopyFileName(...) abort
   let @0 = fnamemodify(@%, get(a:, '1', ':t'))
   let @" = @0
 endfunction
+
+" duplicate line without using register
+nnoremap <silent> <leader>yp :copy.<CR>
+vnoremap <silent> <leader>yp :copy'><CR>
