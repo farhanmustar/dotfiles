@@ -160,3 +160,20 @@ endfunction
 " duplicate line without using register
 nnoremap <silent> <leader>yp :copy.<CR>
 vnoremap <silent> <leader>yp :copy'><CR>
+
+" copy paste buffer using bufnr
+nnoremap <silent> <leader>yw :call CopyBuffer()<CR>
+nnoremap <silent> <leader>pw :call PasteBuffer()<CR>
+function! CopyBuffer() abort
+  let s:copy_buffer = bufnr('%')
+  echom 'Buffer copied'
+endfunction
+function! PasteBuffer() abort
+  if !exists('s:copy_buffer')
+    echohl WarningMsg
+    echom 'No buffer in clipboard'
+    echohl None
+    return
+  endif
+  execute 'buffer '.s:copy_buffer
+endfunction
