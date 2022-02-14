@@ -177,3 +177,9 @@ function! PasteBuffer() abort
   endif
   execute 'buffer '.s:copy_buffer
 endfunction
+
+" close all tabs to the right or to the left
+command! -nargs=0 Tcr silent execute '.+1,$tabdo :tabc'
+command! -nargs=0 Tcl silent execute '0,.-1tabdo :tabc'
+cnoreabbrev tabcloser Tcr
+cnoreabbrev tabclosel Tcl
