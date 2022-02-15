@@ -6,7 +6,7 @@ let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|build|dist|env|node_modules|platforms
 if executable('rg')
   let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
 endif
-command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O<args>\<CR>")
+command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O".<q-args>."\<CR>")
 nnoremap <expr> <Leader>fn ':CtrlSpaceSearch ' . expand('<cword>') . '<CR>'
 vnoremap <silent> <Leader>fn y:CtrlSpaceSearch <C-r>"<CR>
 
@@ -39,10 +39,10 @@ let g:table_mode_header_fillchar='='
 command! Gv vertical topleft G
 command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
-command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked '<args>'"
-command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked '<args>'"
-command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked '<args>' -- %:p:h"
-command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked '<args>' -- %:p:h"
+command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".<q-args>
+command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".<q-args>
+command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked ".<q-args>." -- %:p:h"
+command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".<q-args>." -- %:p:h"
 command! -nargs=* -complete=customlist,fugitive#PushComplete Gpush execute "Git push <args>"
 command! -nargs=* -complete=customlist,fugitive#PullComplete Gpull execute "Git pull <args>"
 command! -nargs=* -complete=customlist,fugitive#FetchComplete Gfetch execute "Git fetch <args>"

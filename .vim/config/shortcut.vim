@@ -145,7 +145,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " grep in current file
-command! -nargs=+ FG silent execute "vimgrep /<args>/j %"
+command! -nargs=+ FG silent execute "vimgrep /".<q-args>."/j %"
 nnoremap <silent> <Leader>fg :FG <C-r><C-w><CR>
 vnoremap <silent> <Leader>fg y:FG <C-r>"<CR>
 
