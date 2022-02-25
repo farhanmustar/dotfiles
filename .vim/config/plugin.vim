@@ -89,3 +89,7 @@ map <leader>J <Plug>(easymotion-bd-jk)
 " easyalign config
 vmap <leader>aa <Plug>(EasyAlign)
 nmap <leader>aa <Plug>(EasyAlign)
+
+" bufsurf config
+nmap gi <Plug>(buf-surf-forward)
+nmap go <Plug>(buf-surf-back)
