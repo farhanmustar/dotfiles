@@ -183,3 +183,6 @@ command! -nargs=0 Tcr silent execute '.+1,$tabdo :tabc'
 command! -nargs=0 Tcl silent execute '0,.-1tabdo :tabc'
 cnoreabbrev tabcloser Tcr
 cnoreabbrev tabclosel Tcl
+
+" refresh syntax
+command! -nargs=0 Refresh silent execute 'do Syntax'
