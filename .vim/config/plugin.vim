@@ -43,11 +43,6 @@ command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked 
 command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".<q-args>
 command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked ".<q-args>." -- %:p:h"
 command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".<q-args>." -- %:p:h"
-command! -nargs=* -complete=customlist,fugitive#PushComplete Gpush execute "Git push <args>"
-command! -nargs=* -complete=customlist,fugitive#PullComplete Gpull execute "Git pull <args>"
-command! -nargs=* -complete=customlist,fugitive#FetchComplete Gfetch execute "Git fetch <args>"
-command! -nargs=* Gblame execute "Git blame <args>"
-command! -nargs=* Gstash execute "Git stash <args>"
 nnoremap <silent> <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <silent> <Leader>gg y:GG <C-r>"<CR>
 nnoremap <silent> <Leader>gt :GT <C-r><C-w><CR>
@@ -56,6 +51,16 @@ nnoremap <silent> <Leader>ll :LL <C-r><C-w><CR>
 vnoremap <silent> <Leader>ll y:LL <C-r>"<CR>
 nnoremap <silent> <Leader>lt :LT <C-r><C-w><CR>
 vnoremap <silent> <Leader>lt y:LT <C-r>"<CR>
+cnoreabbrev Gpush G push
+cnoreabbrev Gpull G pull
+cnoreabbrev Gfetch G fetch
+cnoreabbrev Gblame G blame
+cnoreabbrev Gstash G stash
+cnoreabbrev GPush G push
+cnoreabbrev GPull G pull
+cnoreabbrev GFetch G fetch
+cnoreabbrev GBlame G blame
+cnoreabbrev GStash G stash
 
 " Git Gutter disable by default
 let g:gitgutter_map_keys = 0
