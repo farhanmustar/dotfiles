@@ -51,16 +51,18 @@ nnoremap <silent> <Leader>ll :LL <C-r><C-w><CR>
 vnoremap <silent> <Leader>ll y:LL <C-r>"<CR>
 nnoremap <silent> <Leader>lt :LT <C-r><C-w><CR>
 vnoremap <silent> <Leader>lt y:LT <C-r>"<CR>
-cnoreabbrev Gpush G push
-cnoreabbrev Gpull G pull
-cnoreabbrev Gfetch G fetch
-cnoreabbrev Gblame G blame
-cnoreabbrev Gstash G stash
-cnoreabbrev GPush G push
-cnoreabbrev GPull G pull
-cnoreabbrev GFetch G fetch
 cnoreabbrev GBlame G blame
+cnoreabbrev GFetch G fetch
+cnoreabbrev GPull G pull
+cnoreabbrev GPush G push
+cnoreabbrev GRebase G rebase
 cnoreabbrev GStash G stash
+cnoreabbrev Gblame G blame
+cnoreabbrev Gfetch G fetch
+cnoreabbrev Gpull G pull
+cnoreabbrev Gpush G push
+cnoreabbrev Grebase G rebase
+cnoreabbrev Gstash G stash
 
 " Git Gutter disable by default
 let g:gitgutter_map_keys = 0
