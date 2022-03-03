@@ -43,3 +43,6 @@ set encoding=utf-8
 
 " Use tree view for netrw directory browsing
 let g:netrw_liststyle=3
+
+" Enable build-in plugin
+packadd cfilter
