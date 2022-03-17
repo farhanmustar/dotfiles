@@ -39,10 +39,10 @@ let g:table_mode_header_fillchar='='
 command! Gv vertical topleft G
 command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
-command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".<q-args>
-command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".<q-args>
-command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked ".<q-args>." -- %:p:h"
-command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".<q-args>." -- %:p:h"
+command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
+command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
+command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)." -- %:p:h"
+command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)." -- %:p:h"
 nnoremap <silent> <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <silent> <Leader>gg y:GG <C-r>"<CR>
 nnoremap <silent> <Leader>gt :GT <C-r><C-w><CR>
