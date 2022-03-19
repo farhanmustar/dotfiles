@@ -145,7 +145,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " grep in current file
-command! -nargs=+ FG silent execute "vimgrep /<args>/j %"
+command! -nargs=+ FG silent execute "vimgrep /".<q-args>."/j %"
 nnoremap <silent> <Leader>fg :FG <C-r><C-w><CR>
 vnoremap <silent> <Leader>fg y:FG <C-r>"<CR>
 
@@ -160,3 +160,29 @@ endfunction
 " duplicate line without using register
 nnoremap <silent> <leader>yp :copy.<CR>
 vnoremap <silent> <leader>yp :copy'><CR>
+
+" copy paste buffer using bufnr
+nnoremap <silent> <leader>yw :call CopyBuffer()<CR>
+nnoremap <silent> <leader>pw :call PasteBuffer()<CR>
+function! CopyBuffer() abort
+  let s:copy_buffer = bufnr('%')
+  echom 'Buffer copied'
+endfunction
+function! PasteBuffer() abort
+  if !exists('s:copy_buffer')
+    echohl WarningMsg
+    echom 'No buffer in clipboard'
+    echohl None
+    return
+  endif
+  execute 'buffer '.s:copy_buffer
+endfunction
+
+" close all tabs to the right or to the left
+command! -nargs=0 Tcr silent execute '.+1,$tabdo :tabc'
+command! -nargs=0 Tcl silent execute '0,.-1tabdo :tabc'
+cnoreabbrev tabcloser Tcr
+cnoreabbrev tabclosel Tcl
+
+" refresh syntax
+command! -nargs=0 Refresh silent execute 'do Syntax'

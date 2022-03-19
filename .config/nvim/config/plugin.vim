@@ -6,7 +6,7 @@ let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|build|dist|env|node_modules|platforms
 if executable('rg')
   let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
 endif
-command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O<args>\<CR>")
+command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O".<q-args>."\<CR>")
 nnoremap <expr> <Leader>fn ':CtrlSpaceSearch ' . expand('<cword>') . '<CR>'
 vnoremap <silent> <Leader>fn y:CtrlSpaceSearch <C-r>"<CR>
 
@@ -40,15 +40,10 @@ let g:table_mode_header_fillchar='='
 command! Gv vertical topleft G
 command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
-command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked '<args>'"
-command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked '<args>'"
-command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked '<args>' -- %:p:h"
-command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked '<args>' -- %:p:h"
-command! -nargs=* -complete=customlist,fugitive#PushComplete Gpush execute "Git push <args>"
-command! -nargs=* -complete=customlist,fugitive#PullComplete Gpull execute "Git pull <args>"
-command! -nargs=* -complete=customlist,fugitive#FetchComplete Gfetch execute "Git fetch <args>"
-command! -nargs=* Gblame execute "Git blame <args>"
-command! -nargs=* Gstash execute "Git stash <args>"
+command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
+command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
+command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)." -- %:p:h"
+command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)." -- %:p:h"
 nnoremap <silent> <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <silent> <Leader>gg y:GG <C-r>"<CR>
 nnoremap <silent> <Leader>gt :GT <C-r><C-w><CR>
@@ -57,6 +52,18 @@ nnoremap <silent> <Leader>ll :LL <C-r><C-w><CR>
 vnoremap <silent> <Leader>ll y:LL <C-r>"<CR>
 nnoremap <silent> <Leader>lt :LT <C-r><C-w><CR>
 vnoremap <silent> <Leader>lt y:LT <C-r>"<CR>
+cnoreabbrev GBlame G blame
+cnoreabbrev GFetch G fetch
+cnoreabbrev GPull G pull
+cnoreabbrev GPush G push
+cnoreabbrev GRebase G rebase
+cnoreabbrev GStash G stash
+cnoreabbrev Gblame G blame
+cnoreabbrev Gfetch G fetch
+cnoreabbrev Gpull G pull
+cnoreabbrev Gpush G push
+cnoreabbrev Grebase G rebase
+cnoreabbrev Gstash G stash
 
 " Git Gutter disable by default
 let g:gitgutter_map_keys = 0
@@ -90,3 +97,7 @@ map <leader>J <Plug>(easymotion-bd-jk)
 " easyalign config
 vmap <leader>aa <Plug>(EasyAlign)
 nmap <leader>aa <Plug>(EasyAlign)
+
+" bufsurf config
+nmap gi <Plug>(buf-surf-forward)
+nmap go <Plug>(buf-surf-back)
