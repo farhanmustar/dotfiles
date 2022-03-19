@@ -14,6 +14,12 @@ sudo add-apt-repository ppa:jonathonf/vim -yu
 sudo apt-get install vim -y
 ```
 
+PPA for neovim build and install command
+```bash
+sudo add-apt-repository ppa:neovim-ppa/unstable -yu
+sudo apt-get install neovim -y
+```
+
 ## Vim-Ale linter list
 * In vim, run `:ALEInfo` to find list of available linter.
 
