@@ -20,6 +20,12 @@ sudo add-apt-repository ppa:neovim-ppa/unstable -yu
 sudo apt-get install neovim -y
 ```
 
+PPA for universal-ctags
+```bash
+sudo add-apt-repository ppa:hnakamur/universal-ctags -yu
+sudo apt-get install universal-ctags
+```
+
 ## Vim-Ale linter list
 * In vim, run `:ALEInfo` to find list of available linter.
 
