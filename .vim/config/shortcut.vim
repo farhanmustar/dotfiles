@@ -136,7 +136,7 @@ nmap Q	<Nop>
 nnoremap gq <C-w>c
 
 " vimscript dev mapping
-nnoremap <silent> <Leader>so :source % \| echo "sourced!"<CR>
+nnoremap <silent> <Leader>so :source % \| echo "Sourced!"<CR>
 
 " pane navigation
 nnoremap <C-h> <C-w>h
@@ -186,3 +186,6 @@ cnoreabbrev tabclosel Tcl
 
 " refresh syntax
 command! -nargs=0 Refresh silent execute 'do Syntax'
+
+"tmux integration
+nnoremap <silent> yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
