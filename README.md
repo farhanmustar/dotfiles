@@ -26,6 +26,12 @@ sudo add-apt-repository ppa:hnakamur/universal-ctags -yu
 sudo apt-get install universal-ctags
 ```
 
+PPA for ripgrep
+```bash
+sudo add-apt-repository ppa:x4121/ripgrep -yu
+sudo apt-get install ripgrep
+```
+
 ## Vim-Ale linter list
 * In vim, run `:ALEInfo` to find list of available linter.
 
