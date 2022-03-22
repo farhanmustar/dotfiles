@@ -188,4 +188,4 @@ cnoreabbrev tabclosel Tcl
 command! -nargs=0 Refresh silent execute 'do Syntax'
 
 "tmux integration
-nnoremap <silent> yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
+nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
