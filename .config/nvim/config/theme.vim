@@ -20,7 +20,9 @@ function! s:ModifyColorScheme()
   highlight ALEStyleWarning ctermbg=237   guibg=#3a3a3a
   highlight Search          cterm=NONE    ctermfg=NONE     ctermbg=238 gui=NONE      guifg=NONE    guibg=#444444
   highlight QuickFixLine    cterm=NONE    ctermfg=NONE     ctermbg=236 gui=NONE      guifg=NONE    guibg=#303030
-  highlight link CtrlSpaceSearch  IncSearch
+  highlight link CtrlSpaceSearch IncSearch
+  highlight link TSFunction GruvboxYellow
+  highlight link TSMethod GruvboxYellow
 endfunction
 augroup modifycolorscheme
   autocmd!
