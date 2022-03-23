@@ -100,3 +100,6 @@ nmap <leader>aa <Plug>(EasyAlign)
 " bufsurf config
 nmap gi <Plug>(buf-surf-forward)
 nmap go <Plug>(buf-surf-back)
+
+" highlighted yank config
+let g:highlightedyank_highlight_duration = 100

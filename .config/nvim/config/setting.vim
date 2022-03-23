@@ -46,3 +46,6 @@ let g:netrw_liststyle=3
 
 " Enable build-in plugin
 packadd cfilter
+
+" Highlight yank
+au TextYankPost * silent! lua vim.highlight.on_yank()
