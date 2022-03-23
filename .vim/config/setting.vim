@@ -18,6 +18,7 @@ set splitbelow
 set splitright
 set hidden
 set belloff=all
+set scrolloff=5
 " Tabs settings
 set expandtab
 set softtabstop=0

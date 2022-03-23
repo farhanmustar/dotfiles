@@ -16,7 +16,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'osyo-manga/vim-over'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'romgrk/nvim-treesitter-context'
