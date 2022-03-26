@@ -129,3 +129,14 @@ function! <SID>rerun()
   call asyncrun#run(p['a'], p['b'], p['c'], p['d'], p['e'], p['f'])
 endfunction
 nnoremap <silent> <leader>bb :RunAgain<CR>
+
+" nvim-dap config
+noremap <silent> <leader>dp :lua require'dap'.toggle_breakpoint()<CR>
+noremap <silent> <leader>d; :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+noremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+noremap <silent> <leader>dc :lua require'dap'.clear_breakpoints()<CR>
+noremap <silent> <leader>dd :lua require'dap'.continue()<CR>
+noremap <silent> <leader>dj :lua require'dap'.step_over()<CR>
+noremap <silent> <leader>di :lua require'dap'.step_into()<CR>
+noremap <silent> <leader>do :lua require'dap'.step_out()<CR>
+noremap <silent> <leader>dv :lua require("dapui").toggle()<CR>
