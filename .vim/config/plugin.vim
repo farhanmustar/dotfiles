@@ -103,3 +103,31 @@ nmap go <Plug>(buf-surf-back)
 
 " highlighted yank config
 let g:highlightedyank_highlight_duration = 100
+
+" Asyncrun setting
+let g:asyncrun_open = 20
+let g:asyncrun_qfid = 'asyncrun'
+command! -bang -nargs=+ -range=0 -complete=file Run
+		\ call <SID>run('<bang>', '', <q-args>, <count>, <line1>, <line2>)
+command! -bar -bang -nargs=0 RunStop call asyncrun#stop('<bang>')
+command! -bar -bang -nargs=0 RunAgain call <SID>rerun()
+function! <SID>run(a, b, c, d, e, f)
+  let s:run_func = {
+  \ 'a': a:a,
+  \ 'b': a:b,
+  \ 'c': a:c,
+  \ 'd': a:d,
+  \ 'e': a:e,
+  \ 'f': a:f,
+  \}
+  call asyncrun#run(a:a, a:b, a:c, a:d, a:e, a:f)
+endfunction
+function! <SID>rerun()
+  if !has_key(s:, 'run_func')
+    echom 'No previous run cmd.'
+    return
+  endif
+  let p = s:run_func
+  call asyncrun#run(p['a'], p['b'], p['c'], p['d'], p['e'], p['f'])
+endfunction
+nnoremap <silent> <leader>bb :RunAgain<CR>
