@@ -1,3 +1,9 @@
+-- use first plugin to check for installed plugin
+local ok, _ = pcall(require, 'scrollbar')
+if not ok then
+  return
+end
+
 require("scrollbar").setup({
   marks = {
     Search = { color = '#1d2021'},
