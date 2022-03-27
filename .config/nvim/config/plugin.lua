@@ -19,7 +19,11 @@ require("scrollbar.handlers.search").setup({
 
 -- nvim-dap config
 local venv = os.getenv("VIRTUAL_ENV")
-command = string.format("%s/bin/python",venv)
+if vim.fn.has('win32') == 1 then
+  command = string.format("%s/Scripts/python",venv)
+else
+  command = string.format("%s/bin/python",venv)
+end
 require('dap-python').setup(command)
 require("dapui").setup()
 require("nvim-dap-virtual-text").setup()
