@@ -15,7 +15,7 @@ silent! iunmap <C-A>
 silent! xunmap <C-A>
 
 " Open new tab remap
-nnoremap <silent> <expr> <C-w>t (@% == '' ? ':tab sbuffer<CR>' : ':tabnew %<CR>')
+nnoremap <silent> <C-w>t :tab sbuffer % \| doautocmd BufEnter<CR>
 
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -150,8 +150,8 @@ nnoremap <silent> <Leader>fg :FG <C-r><C-w><CR>
 vnoremap <silent> <Leader>fg y:FG <C-r>"<CR>
 
 " copy current buffer filename
-nnoremap <silent> yn :call CopyFileName()<CR>
-nnoremap <silent> yN :call CopyFileName(':p')<CR>
+nnoremap <silent> yn :call CopyFileName() \| echo "Copy Filename!"<CR>
+nnoremap <silent> yN :call CopyFileName(':p') \| echo "Copy Filepath!"<CR>
 function! CopyFileName(...) abort
   let @0 = fnamemodify(@%, get(a:, '1', ':t'))
   let @" = @0
