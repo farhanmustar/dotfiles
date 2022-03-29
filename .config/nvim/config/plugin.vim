@@ -65,10 +65,6 @@ cnoreabbrev Gpush G push
 cnoreabbrev Grebase G rebase
 cnoreabbrev Gstash G stash
 
-" Git Gutter disable by default
-let g:gitgutter_map_keys = 0
-let g:gitgutter_enabled = 0
-
 " tagbar config
 let g:tagbar_map_close = 'gq'
 let g:tagbar_map_closefold = '<'

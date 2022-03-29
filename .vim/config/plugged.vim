@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'djoshea/vim-autoread'
 Plug 'easymotion/vim-easymotion'
