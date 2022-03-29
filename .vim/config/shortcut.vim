@@ -15,7 +15,7 @@ silent! iunmap <C-A>
 silent! xunmap <C-A>
 
 " Open new tab remap
-nnoremap <silent> <C-w>t :tab sbuffer<CR>
+nnoremap <silent> <expr> <C-w>t (@% == '' ? ':tab sbuffer<CR>' : ':tabnew %<CR>')
 
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
