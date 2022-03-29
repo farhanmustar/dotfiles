@@ -14,7 +14,7 @@ vnoremap <silent> <Leader>fn y:CtrlSpaceSearch <C-r>"<CR>
 function! CallCtrlSpace(k)
   execute 'CtrlSpace'
 endfunction
-map <silent> <C-p> :CtrlSpace<CR>
+noremap <silent> <C-p> :CtrlSpace<CR>
 let g:CtrlSpaceKeys = {
 \    "Search": { "C-p": "CallCtrlSpace" },
 \    "Help": { "C-p": "CallCtrlSpace" },
@@ -63,6 +63,9 @@ cnoreabbrev Gpull G pull
 cnoreabbrev Gpush G push
 cnoreabbrev Grebase G rebase
 cnoreabbrev Gstash G stash
+let g:nremap = {'gr': 'gR'}
+let g:oremap = {'gr': 'gR'}
+let g:xremap = {'gr': 'gR'}
 
 " tagbar config
 let g:tagbar_map_close = 'gq'

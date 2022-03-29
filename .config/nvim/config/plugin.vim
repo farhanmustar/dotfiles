@@ -64,6 +64,9 @@ cnoreabbrev Gpull G pull
 cnoreabbrev Gpush G push
 cnoreabbrev Grebase G rebase
 cnoreabbrev Gstash G stash
+let g:nremap = {'gr': 'gR'}
+let g:oremap = {'gr': 'gR'}
+let g:xremap = {'gr': 'gR'}
 
 " tagbar config
 let g:tagbar_map_close = 'gq'
