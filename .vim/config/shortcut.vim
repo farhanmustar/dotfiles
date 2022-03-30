@@ -201,6 +201,7 @@ tmap <C-h> <Esc><C-w>h
 tmap <C-j> <Esc><C-w>j
 tmap <C-k> <Esc><C-w>k
 tmap <C-l> <Esc><C-w>l
+tnoremap <silent> <expr> <C-r> '<C-\><C-n>"'.nr2char(getchar()).'pi'
 nnoremap <Leader>wt :Terminal<CR>
 
 " terminal selection
