@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'L3MON4D3/LuaSnip'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'djoshea/vim-autoread'
 Plug 'easymotion/vim-easymotion'
@@ -18,10 +19,12 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'ncm2/float-preview.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'osyo-manga/vim-over'
 Plug 'petertriho/nvim-scrollbar'
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'rafamadriz/friendly-snippets'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'rstacruz/vim-closer'

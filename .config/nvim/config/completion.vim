@@ -3,17 +3,17 @@
 " Mucomplete config
 function! s:DisableOmniComplete()
   let g:mucomplete#chains.default = {
-  \   'default': ['path', 'c-n', 'dict', 'uspl'],
-  \   '.*comment.*': ['path', 'c-n', 'dict', 'uspl'],
-  \   '.*string.*': ['path', 'c-n', 'dict', 'uspl'],
+  \   'default': ['path', 'user', 'c-n', 'dict', 'uspl'],
+  \   '.*comment.*': ['path', 'user', 'c-n', 'dict', 'uspl'],
+  \   '.*string.*': ['path', 'user', 'c-n', 'dict', 'uspl'],
   \ }
 endfunction
 
 function! s:EnableOmniComplete()
   let g:mucomplete#chains.default = {
-  \   'default': ['path', 'omni', 'c-n', 'dict', 'uspl'],
-  \   '.*comment.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
-  \   '.*string.*': ['path', 'c-n', 'omni', 'dict', 'uspl'],
+  \   'default': ['path', 'user', 'omni', 'c-n', 'dict', 'uspl'],
+  \   '.*comment.*': ['path', 'c-n', 'user', 'omni', 'dict', 'uspl'],
+  \   '.*string.*': ['path', 'c-n', 'user', 'omni', 'dict', 'uspl'],
   \ }
 endfunction
 
@@ -25,13 +25,52 @@ call s:EnableOmniComplete()
 augroup completion
   autocmd!
   autocmd FileType * set omnifunc=ale#completion#OmniFunc
+  autocmd FileType * set completefunc=v:lua.vim.luasnip.completefunc
 augroup END
 
 command! DisableOmniComplete call s:DisableOmniComplete()
 command! EnableOmniComplete call s:EnableOmniComplete()
 
+" mapping for luasnip and Mucomplete
 inoremap <plug>MyEnter <cr>
-imap <silent> <expr> <plug>MyCR pumvisible()
-    \ ? "\<c-y>"
-    \ : "\<plug>MyEnter"
+function! MyCRAction()
+  if (pumvisible() && luasnip#expandable())
+    return "\<Plug>luasnip-expand-snippet"
+  elseif pumvisible()
+    return "\<c-y>"
+  else
+    return "\<plug>MyEnter"
+  endif
+endfunction
+imap <silent> <expr> <plug>MyCR MyCRAction()
 imap <cr> <plug>MyCR
+
+smap <unique> <tab> <Plug>luasnip-jump-next
+xmap <unique> <tab> <Plug>luasnip-jump-next
+inoremap <plug>MyTab <tab>
+function! MyTabAction()
+  if pumvisible()
+    return "\<plug>(MyFwd)"
+  elseif luasnip#jumpable(1)
+    return "\<plug>luasnip-jump-next"
+  else
+    return "\<plug>MyTab"
+  endif
+endfunction
+imap <plug>(MyFwd) <plug>(MUcompleteFwd)
+imap <expr> <silent> <tab> MyTabAction()
+
+smap <unique> <S-tab> <Plug>luasnip-jump-prev
+xmap <unique> <S-tab> <Plug>luasnip-jump-prev
+inoremap <plug>MySTab <S-tab>
+function! MySTabAction()
+  if pumvisible()
+    return "\<plug>(MyBwd)"
+  elseif luasnip#jumpable(0)
+    return "\<plug>luasnip-jump-prev"
+  else
+    return "\<plug>MySTab"
+  endif
+endfunction
+imap <plug>(MyBwd) <plug>(MUcompleteBwd)
+imap <expr> <silent> <S-tab> MySTabAction()

@@ -139,3 +139,6 @@ noremap <silent> <leader>dj :lua require'dap'.step_over()<CR>
 noremap <silent> <leader>di :lua require'dap'.step_into()<CR>
 noremap <silent> <leader>do :lua require'dap'.step_out()<CR>
 noremap <silent> <leader>dv :lua require("dapui").toggle()<CR>
+
+" float_preview config
+let g:float_preview#docked = 0

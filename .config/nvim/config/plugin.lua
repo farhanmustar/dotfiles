@@ -17,6 +17,9 @@ require("scrollbar.handlers.search").setup({
   enable_incsearch = false,
 })
 
+-- LuaSnip config
+require("luasnip.loaders.from_vscode").lazy_load()
+
 -- nvim-dap config
 local venv = os.getenv("VIRTUAL_ENV")
 if vim.fn.has('win32') == 1 then
