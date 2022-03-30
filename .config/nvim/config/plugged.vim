@@ -20,7 +20,7 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ncm2/float-preview.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'osyo-manga/vim-over'
 Plug 'petertriho/nvim-scrollbar'
 Plug 'powerman/vim-plugin-AnsiEsc'
