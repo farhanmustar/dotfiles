@@ -14,7 +14,9 @@ sudo add-apt-repository ppa:jonathonf/vim -yu
 sudo apt-get install vim -y
 ```
 
-PPA for neovim build and install command
+## PPA list for Ubuntu
+
+PPA for neovim
 ```bash
 sudo add-apt-repository ppa:neovim-ppa/unstable -yu
 sudo apt-get install neovim -y
