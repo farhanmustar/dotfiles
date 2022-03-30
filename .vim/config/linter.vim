@@ -46,7 +46,7 @@ let g:ale_python_roslint_pep8_options = '--max-line-length=199 --ignore=E128'
 " #################
 
 " let g:ale_linters['python'] += ['bandit']
-" let g:ale_linters['python'] += ['flake8']
+let g:ale_linters['python'] += ['flake8']
 
 " python language server
 " let g:ale_linters['python'] += ['jedils']
