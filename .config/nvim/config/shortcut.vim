@@ -210,3 +210,6 @@ if has('win32')
 else
   command! Terminal execute 'bot new | terminal'
 endif
+
+" command window shortcut
+nnoremap <leader>; :<C-f>
