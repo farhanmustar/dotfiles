@@ -22,6 +22,7 @@ function! s:ModifyColorScheme()
   highlight QuickFixLine          cterm=NONE    ctermfg=NONE     ctermbg=236 gui=NONE      guifg=NONE    guibg=#303030
   highlight ScrollbarSearch       ctermfg=224   guifg=#fe8019
   highlight ScrollbarSearchHandle ctermfg=224   guifg=#fe8019
+  highlight TreesitterContext     ctermbg=239   guibg=#303030
   highlight link CtrlSpaceSearch IncSearch
   highlight link TSFunction GruvboxYellow
   highlight link TSMethod GruvboxYellow
