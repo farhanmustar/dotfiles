@@ -65,8 +65,8 @@ nnoremap <Leader>ff /\<<C-r><C-w>\><CR>
 vnoremap <Leader>ff y/<C-r>"<CR>
 
 " Diff shortcuts
-noremap <silent> <leader>df :call DiffToggle()<CR>
-function! DiffToggle()
+noremap <silent> <leader>df :call <SID>diffToggle()<CR>
+function! <SID>diffToggle()
   if &diff
     diffoff!
     windo setlocal nocursorbind
@@ -76,8 +76,8 @@ function! DiffToggle()
 endfunction
 
 " Toggle paste mode
-nnoremap <silent> <Leader>pp :call PasteToggle()<CR>
-function! PasteToggle()
+nnoremap <silent> <Leader>pm :call <SID>pasteToggle()<CR>
+function! <SID>pasteToggle()
   if &paste
 		set nopaste
 		echo 'Paste Mode Disabled'
@@ -86,6 +86,10 @@ function! PasteToggle()
 		echo 'Paste Mode Enabled'
   endif
 endfunction
+
+" Paste yank register
+nnoremap <silent> <Leader>pp "0p
+vnoremap <silent> <Leader>pp "0p
 
 " Smooth Scroll shortcuts
 noremap <silent> <C-y> :call smooth_scroll#up(3, 0, 3)<CR>
