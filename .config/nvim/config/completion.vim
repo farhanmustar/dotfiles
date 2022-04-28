@@ -74,3 +74,10 @@ function! MySTabAction()
 endfunction
 imap <plug>(MyBwd) <plug>(MUcompleteBwd)
 imap <expr> <silent> <S-tab> MySTabAction()
+
+inoremap <plug>MyEsc <Esc>
+function! MyEscAction()
+  silent LuaSnipUnlinkCurrent
+  return "\<plug>MyEsc"
+endfunction
+imap <expr> <silent> <Esc> MyEscAction()
