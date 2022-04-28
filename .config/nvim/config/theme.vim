@@ -23,9 +23,11 @@ function! s:ModifyColorScheme()
   highlight ScrollbarSearch       ctermfg=224   guifg=#fe8019
   highlight ScrollbarSearchHandle ctermfg=224   guifg=#fe8019
   highlight TreesitterContext     ctermbg=239   guibg=#303030
+  highlight GruvboxAquaDark       guifg=#689d6a
   highlight link CtrlSpaceSearch IncSearch
-  highlight link TSFunction GruvboxYellow
-  highlight link TSMethod GruvboxYellow
+  highlight link TSFunction      GruvboxAqua
+  highlight link TSMethod        GruvboxAqua
+  highlight link TSInclude       GruvboxAquaDark
 endfunction
 augroup modifycolorscheme
   autocmd!
