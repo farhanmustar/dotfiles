@@ -94,5 +94,7 @@ npm install -g typescript
 * Tagbar support
   * Instal dart ctags.
 ```bash
-dart pub global activate dart_ctags
+git clone https://github.com/yoehwan/dart-ctags.git
+cd dart_ctags
+dart pub global activate -s path .
 ```
