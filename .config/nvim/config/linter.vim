@@ -24,6 +24,7 @@ let g:ale_linters = {
 \   'cpp': ['roslint_cpplint'],
 \   'python': ['python', 'roslint_pep8'],
 \   'javascript': ['jshint'],
+\   'dart': ['dart_analyze'],
 \}
 
 " ##############
@@ -74,6 +75,12 @@ let g:ale_python_pyls_config = {
 
 " let g:ale_linters['javascript'] += ['tsserver']
 
+" ###############
+" # Dart Linter #
+" ###############
+
+" let g:ale_linters['dart'] += ['analysis_server']
+
 " #############################################################################
 " #                              Fixer Config                                 #
 " #############################################################################
@@ -82,6 +89,7 @@ let g:ale_fixers = {
 \   'cpp': ['astyle'],
 \   'python': ['autopep8'],
 \   'javascript': ['js-beautify'],
+\   'dart': ['dart-format'],
 \}
 
 " #############
