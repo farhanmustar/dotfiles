@@ -97,4 +97,7 @@ npm install -g typescript
 git clone https://github.com/yoehwan/dart-ctags.git
 cd dart_ctags
 dart pub global activate -s path .
+// or convert to native (exp for win)
+cd dart_ctags
+dart compile exe ./bin/dart_ctags.dart
 ```
