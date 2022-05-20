@@ -32,6 +32,7 @@ let g:ale_linters = {
 " ##############
 
 " let g:ale_linters['cpp'] += ['clangd']
+" let g:ale_linters['cpp'] += ['ccls']
 
 let g:ale_cpp_clangd_options = '--pch-storage=memory --background-index -j=5 --limit-results=30'
 let g:ale_cpp_roslint_cpplint_options = '--filter=-build/include_what_you_use,-runtime/references,-whitespace/braces,-whitespace/line_length'

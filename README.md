@@ -79,6 +79,16 @@ pip install bandit
     * `catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1`
     * then link the generated `compile_command.json` file to outside the build folder for ale to find.
       * `ln -sT /home/user/ws/build/compile_command.json /home/user/ws/compile_command.json`
+* ccls
+  * seems to be faster then clangd.
+  ```bash
+  git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+  cd ccls
+  wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+  tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+  cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04
+  cmake --build Release
+  ```
 
 ### Ros
 * [ale-roslint](https://github.com/farhanmustar/ale-roslint)
