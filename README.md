@@ -37,6 +37,8 @@ sudo apt-get install ripgrep
 ## Vim-Ale linter list
 * In vim, run `:ALEInfo` to find list of available linter.
 
+## Language Config
+
 ### Vim
 * [vimls](https://github.com/iamcco/vim-language-server)
 ```bash
@@ -88,6 +90,16 @@ pip install bandit
   tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
   cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04
   cmake --build Release
+  ```
+<!-- debugger -->
+* codelldb
+  * get download url from [vscode-lldb](https://github.com/vadimcn/vscode-lldb/releases) release page.
+  * download and extract using unzip.
+  * then link to bin path.
+  ```bash
+  wget https://github.com/vadimcn/vscode-lldb/releases/download/v1.7.0/codelldb-x86_64-linux.vsix
+  unzip codelldb-x86_64-linux.vsix
+  ln -sT <codelldb>/extension/adapter/codelldb /usr/bin/codelldb
   ```
 
 ### Ros
