@@ -69,6 +69,12 @@ pip install flake8
 ```bash
 pip install bandit
 ```
+<!-- debugger -->
+* debugpy
+  * debugger for python app by simply prefix with `python -m debugpy`.
+```bash
+pip install debugpy
+```
 
 ### C++
 * clangd
