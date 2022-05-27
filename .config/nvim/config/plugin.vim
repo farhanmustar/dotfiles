@@ -142,3 +142,6 @@ noremap <silent> <leader>dv :lua require("dapui").toggle()<CR>
 
 " float_preview config
 let g:float_preview#docked = 0
+
+" CamelCaseMotion config
+call camelcasemotion#CreateMotionMappings(',')

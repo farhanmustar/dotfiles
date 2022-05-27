@@ -130,3 +130,6 @@ function! <SID>rerun()
   call asyncrun#run(p['a'], p['b'], p['c'], p['d'], p['e'], p['f'])
 endfunction
 nnoremap <silent> <leader>bb :RunAgain<CR>
+
+" CamelCaseMotion config
+call camelcasemotion#CreateMotionMappings(',')

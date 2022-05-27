@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'bkad/CamelCaseMotion'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'djoshea/vim-autoread'
 Plug 'easymotion/vim-easymotion'
