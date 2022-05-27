@@ -36,6 +36,7 @@
   graph = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
   graphd = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d' --date-order
   graphb = log --graph -100 --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
+  graphs = log --graph -100 --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d' --first-parent
 
   precommit = diff --cached --diff-algorithm=minimal -w
 
