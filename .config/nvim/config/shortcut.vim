@@ -191,8 +191,13 @@ cnoreabbrev tabclosel Tcl
 " refresh syntax
 command! -nargs=0 Refresh silent execute 'do Syntax'
 
-"tmux integration
-nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
+" system clipboard integration
+if exists('$TMUX')
+  nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
+else
+  nnoremap <silent> <leader>yt :let @*=@0<CR> :echo "Copy to * register"<CR>
+  inoremap <C-q>p <C-r>*
+endif
 
 " Vim Terminal Config
 " terminal shortcut
