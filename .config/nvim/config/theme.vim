@@ -9,6 +9,7 @@ let g:gruvbox_contrast_dark='hard'
 
 function! s:ModifyColorScheme()
   highlight Normal                guibg=#1c1c1c
+  highlight IncSearch             term=reverse  cterm=reverse    ctermfg=208 ctermbg=234   gui=reverse   guifg=#fe8019 guibg=#1d2021
   highlight CursorLine            ctermbg=235   guibg=#262626
   highlight CursorLineNR          ctermbg=235   guibg=#262626
   highlight TabLine               ctermfg=Black ctermbg=DarkGray cterm=NONE  guifg=#1e1e1e guibg=#6c6c6c gui=NONE
