@@ -30,8 +30,9 @@
   desc = describe --tags
   cp = cherry-pick -x
 
-  nevermind = !git reset --hard HEAD && git clean -d -f
-  nvm = !git reset --hard HEAD && git clean -d -f
+  nevermind = !git reset --hard HEAD && git clean -d -f :/
+  nvm = !git reset --hard HEAD && git clean -d -f :/
+  superclean = !git reset --hard HEAD && git clean -xdf -f :/
 
   graph = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
   graphd = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d' --date-order
