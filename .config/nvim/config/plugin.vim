@@ -145,4 +145,4 @@ noremap <silent> <leader>da :lua require('dap.ext.vscode').load_launchjs()<CR>
 let g:float_preview#docked = 0
 
 " CamelCaseMotion config
-call camelcasemotion#CreateMotionMappings(',')
+silent! call camelcasemotion#CreateMotionMappings(',')
