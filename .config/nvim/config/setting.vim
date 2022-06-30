@@ -31,7 +31,7 @@ set wildmode=longest,list
 set wildignore=*.o,*.class,*.swp,*.swo,*.pyc
 " Undo behaviour
 set nobackup
-set undodir=~/.config/nvim/undodir
+set undodir=~/.cache/nvim/undodir
 set undofile
 " CursorHold timer
 set updatetime=1000
