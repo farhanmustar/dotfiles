@@ -11,6 +11,7 @@ source ~/.config/nvim/config/shortcut.vim
 source ~/.config/nvim/config/note.vim
 source ~/.config/nvim/config/curl.vim
 source ~/.config/nvim/config/treesitter.lua
+source ~/.config/nvim/config/lsp.lua
 source ~/.config/nvim/config/util.lua
 
 " Note Directory
