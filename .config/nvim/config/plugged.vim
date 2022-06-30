@@ -6,8 +6,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'djoshea/vim-autoread'
 Plug 'easymotion/vim-easymotion'
 Plug 'ellisonleao/gruvbox.nvim', { 'tag': '0.1.0' }
-Plug 'farhanmustar/ale'
-Plug 'farhanmustar/ale-python-linter'
 Plug 'farhanmustar/gv.vim'
 Plug 'farhanmustar/nvim-scrollbar'
 Plug 'fidian/hexmode'
@@ -47,7 +45,6 @@ Plug 'tpope/vim-surround'
 
 if executable('roscore')
   Plug 'ompugao/ros.vim'
-  Plug 'farhanmustar/ale-roslint'
 endif
 
 if executable('curl')

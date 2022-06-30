@@ -4,7 +4,6 @@ source ~/.config/nvim/config/setting.vim
 source ~/.config/nvim/config/theme.vim
 source ~/.config/nvim/config/ft.vim
 source ~/.config/nvim/config/completion.vim
-source ~/.config/nvim/config/linter.vim
 source ~/.config/nvim/config/plugin.lua
 source ~/.config/nvim/config/plugin.vim
 source ~/.config/nvim/config/luasnipcomp.lua
