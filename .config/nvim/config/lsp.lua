@@ -31,8 +31,8 @@ local roslint_pep8 = {
 		end,
     on_output = helpers.diagnostics.from_patterns({
       {
-        pattern = [[[^:]:(%d+):(%d+): [%w-/]+ (.*)]],
-        groups = { "row", "col", "message" },
+        pattern = [[[^:]:(%d+):(%d+): ([%w-/]+) (.*)]],
+        groups = { "row", "col", "code", "message" },
       },
     }),
   }),
@@ -48,3 +48,31 @@ end
 
 -- Keyboard Shortcut
 vim.keymap.set('n', '<leader>af', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>ej', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>ek', vim.diagnostic.goto_prev)
+
+-- Configs
+vim.cmd([[
+augroup luabehaviour
+  autocmd!
+  autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({open = false })
+augroup END
+]])
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	float = {
+		border = "single",
+		format = function(diagnostic)
+      print(type(diagnostic))
+      print_table(diagnostic)
+			return string.format(
+				"%s: %s (%s)",
+				diagnostic.code or diagnostic.user_data.lsp.code,
+				diagnostic.message,
+				diagnostic.source
+			)
+		end,
+	},
+})

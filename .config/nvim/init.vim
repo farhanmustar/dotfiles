@@ -1,4 +1,5 @@
 source ~/.config/nvim/config/init.vim
+source ~/.config/nvim/config/util.lua
 source ~/.config/nvim/config/plugged.vim
 source ~/.config/nvim/config/setting.vim
 source ~/.config/nvim/config/theme.vim
@@ -12,7 +13,6 @@ source ~/.config/nvim/config/note.vim
 source ~/.config/nvim/config/curl.vim
 source ~/.config/nvim/config/treesitter.lua
 source ~/.config/nvim/config/lsp.lua
-source ~/.config/nvim/config/util.lua
 
 " Note Directory
 let g:SimpleNoteDir = '~/notes'
