@@ -80,7 +80,18 @@ local jshint = {
     }),
   }),
 }
+local js_beautify = {
+  name = 'js-beautify',
+  method = null_ls.methods.FORMATTING,
+  filetypes = {'javascript',},
+  generator = null_ls.formatter({
+    command = 'js-beautify',
+    args = {'--jslint-happy', '-s', '2', '-n', '-f', '-'},
+    to_stdin = true,
+  }),
+}
 null_ls.register(jshint)
+null_ls.register(js_beautify)
 
 -- Html
 -- local djlint = null_ls.builtins.formatting.djlint, -- python 3
