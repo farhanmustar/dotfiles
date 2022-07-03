@@ -6,7 +6,10 @@ end
 
 local null_ls = require('null-ls')
 local helpers = require('null-ls.helpers')
-null_ls.setup({})
+local plenary_path = require('plenary.path')
+null_ls.setup({
+  -- debug = true,
+})
 
 -- Python
 local flake8 = null_ls.builtins.diagnostics.flake8.with({
@@ -26,7 +29,6 @@ local roslint_pep8 = {
     to_stdin = true,
     format = 'line',
 		check_exit_code = function(code, stderr)
-			print(stderr)
 			return code <= 1
 		end,
     on_output = helpers.diagnostics.from_patterns({
@@ -42,6 +44,43 @@ null_ls.register(autopep8)
 if vim.fn.executable('rosrun') ~= 0 then
   null_ls.register(roslint_pep8)
 end
+
+-- Javascript
+local jshint = {
+  name = 'jshint',
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = {'javascript',},
+  generator = null_ls.generator({
+    dynamic_command = function()
+      local p = '%:p:h'
+      local path = vim.fn.expand(p)
+      local root = plenary_path.path.root(path)
+      while path ~= root do
+        local jshintrc = path..'/.jshintrc'
+        if vim.fn.glob(jshintrc) ~= '' then
+          return {'jshint', '--config', jshintrc}
+        end
+        p = p..':h'
+        path = vim.fn.expand(p)
+      end
+      return 'jshint'
+    end,
+    args = {'$FILENAME'},
+    to_stdin = false,
+    to_temp_file = true,
+    format = 'line',
+		check_exit_code = function(code, stderr)
+			return code > 0
+		end,
+    on_output = helpers.diagnostics.from_patterns({
+      {
+        pattern = [[[^:]: line (%d+), col (%d+), (.*)]],
+        groups = { "row", "col", "message" },
+      },
+    }),
+  }),
+}
+null_ls.register(jshint)
 
 -- Html
 -- local djlint = null_ls.builtins.formatting.djlint, -- python 3
@@ -65,8 +104,6 @@ vim.diagnostic.config({
 	float = {
 		border = "single",
 		format = function(diagnostic)
-      print(type(diagnostic))
-      print_table(diagnostic)
 			return string.format(
 				"%s: %s (%s)",
 				(diagnostic.code or diagnostic.user_data and diagnostic.user_data.lsp and diagnostic.user_data.lsp.code) or '#',
