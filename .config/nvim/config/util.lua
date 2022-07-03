@@ -78,3 +78,30 @@ function print_table(node)
 
     print(output_str)
 end
+
+function packn(...)
+ return {n = select('#', ...), ...}
+end
+
+function unpackn(t)
+ return (table.unpack or unpack)(t, 1, t.n)
+end
+
+function mergen(...)
+ local res = {n=0}
+ for i = 1, select('#', ...) do
+   local t = select(i, ...)
+   for j = 1, t.n do
+     res.n = res.n + 1
+     res[res.n] = t[j]
+   end
+ end
+ return res
+end
+
+function bind(func, ...)
+ local args = packn(...)
+ return function (...)
+   return func(unpackn(mergen(args, packn(...))))
+ end
+end

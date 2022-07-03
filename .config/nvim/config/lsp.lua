@@ -47,7 +47,7 @@ end
 -- local djlint = null_ls.builtins.formatting.djlint, -- python 3
 
 -- Keyboard Shortcut
-vim.keymap.set('n', '<leader>af', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>af', bind(vim.lsp.buf.format, {timeout_ms = 3000}))
 vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>ej', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>ek', vim.diagnostic.goto_prev)
@@ -69,7 +69,7 @@ vim.diagnostic.config({
       print_table(diagnostic)
 			return string.format(
 				"%s: %s (%s)",
-				diagnostic.code or diagnostic.user_data.lsp.code,
+				(diagnostic.code or diagnostic.user_data and diagnostic.user_data.lsp and diagnostic.user_data.lsp.code) or '#',
 				diagnostic.message,
 				diagnostic.source
 			)
