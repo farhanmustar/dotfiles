@@ -222,6 +222,7 @@ endif
 
 " command window shortcut
 nnoremap <leader>; :<C-f>
+vnoremap <leader>; :<C-f>
 
 " run macro on multiple selected line
 xnoremap @ :<C-u>call <SID>executeMacroOverVisualRange()<CR>
@@ -229,3 +230,7 @@ function! <SID>executeMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+" Repeat macro shortcut.
+nnoremap <Leader>. @@
+vnoremap <Leader>. @@
