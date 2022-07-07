@@ -110,6 +110,10 @@ nnoremap <silent> ]Q :clast<CR>
 nnoremap <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
 nnoremap <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
 
+" Quickfix custom command
+command! -nargs=0 Creload silent call setqflist(map(getqflist(), 'extend(v:val, {"text":get(getbufline(v:val.bufnr, v:val.lnum),0,"(buf not load)")})'))
+command! -nargs=0 Cbufopen silent cfdo p
+
 " Auto open quickfix window
 augroup quickfix
   autocmd!
@@ -191,8 +195,13 @@ cnoreabbrev tabclosel Tcl
 " refresh syntax
 command! -nargs=0 Refresh silent execute 'do Syntax'
 
-"tmux integration
-nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
+" system clipboard integration
+if exists('$TMUX')
+  nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
+else
+  nnoremap <silent> <leader>yt :let @*=@0<CR> :echo "Copy to * register"<CR>
+  inoremap <C-q>p <C-r>*
+endif
 
 " Vim Terminal Config
 " terminal shortcut
