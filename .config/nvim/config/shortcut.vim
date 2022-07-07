@@ -110,6 +110,10 @@ nnoremap <silent> ]Q :clast<CR>
 nnoremap <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
 nnoremap <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
 
+" Quickfix custom command
+command! -nargs=0 Creload silent call setqflist(map(getqflist(), 'extend(v:val, {"text":get(getbufline(v:val.bufnr, v:val.lnum),0,"(buf not load)")})'))
+command! -nargs=0 Cbufopen silent cfdo p
+
 " Auto open quickfix window
 augroup quickfix
   autocmd!
