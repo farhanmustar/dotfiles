@@ -10,4 +10,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable = { "c", "rust" },
     additional_vim_regex_highlighting = false,
   },
+  playground = {
+    enable = false,
+  }
 }
