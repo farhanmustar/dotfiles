@@ -5,7 +5,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'djoshea/vim-autoread'
 Plug 'easymotion/vim-easymotion'
-Plug 'ellisonleao/gruvbox.nvim'
+Plug 'ellisonleao/gruvbox.nvim', { 'tag': '0.1.0' }
 Plug 'farhanmustar/ale'
 Plug 'farhanmustar/ale-python-linter'
 Plug 'farhanmustar/gv.vim'
