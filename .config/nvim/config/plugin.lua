@@ -23,11 +23,13 @@ require("luasnip.loaders.from_vscode").lazy_load()
 -- nvim-dap config
 local venv = os.getenv("VIRTUAL_ENV")
 if vim.fn.has('win32') == 1 then
-  command = string.format("%s/Scripts/python",venv)
+  command = string.format("%s/Scripts/pythonw",venv)
 else
   command = string.format("%s/bin/python",venv)
 end
-require('dap-python').setup(command)
+require('dap-python').setup(command, {
+  console = 'integratedTerminal',
+})
 require("dapui").setup()
 require("nvim-dap-virtual-text").setup()
 
