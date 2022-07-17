@@ -51,17 +51,21 @@ local jshint = {
   method = null_ls.methods.DIAGNOSTICS,
   filetypes = {'javascript',},
   generator = null_ls.generator({
-    dynamic_command = function()
-      local p = '%:p:h'
-      local path = vim.fn.expand(p)
+    dynamic_command = function(params)
+      if vim.b.null_ls_js_jshintrc ~= nil then
+        return {'jshint', '--config', vim.b.null_ls_js_jshintrc}
+      end
+      local mod = ':p:h'
+      local path = vim.fn.fnamemodify(params.bufname, mod)
       local root = plenary_path.path.root(path)
       while path ~= root do
         local jshintrc = path..'/.jshintrc'
         if vim.fn.glob(jshintrc) ~= '' then
+          vim.b.null_ls_js_jshintrc = jshintrc
           return {'jshint', '--config', jshintrc}
         end
-        p = p..':h'
-        path = vim.fn.expand(p)
+        mod = mod..':h'
+        path = vim.fn.fnamemodify(params.bufname, mod)
       end
       return 'jshint'
     end,
