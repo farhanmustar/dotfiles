@@ -108,9 +108,10 @@ vim.keymap.set('n', '<leader>ek', vim.diagnostic.goto_prev)
 
 -- Configs
 vim.cmd([[
-augroup luabehaviour
+augroup lspbehaviour
   autocmd!
-  autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({open = false })
+  autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({open = false})
+  autocmd CursorMoved,CursorHold * lua vim.diagnostic.open_float({focus = false})
 augroup END
 ]])
 vim.diagnostic.config({

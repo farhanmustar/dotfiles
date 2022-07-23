@@ -33,7 +33,7 @@ set nobackup
 set undodir=~/.cache/nvim/undodir
 set undofile
 " CursorHold timer
-set updatetime=1000
+set updatetime=500
 " Completion option
 set completeopt+=menuone,noselect
 set completeopt-=preview
