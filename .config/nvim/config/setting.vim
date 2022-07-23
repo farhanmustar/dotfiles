@@ -19,7 +19,6 @@ set splitright
 set hidden
 set belloff=all
 set scrolloff=5
-set signcolumn=auto:2
 " Tabs settings
 set expandtab
 set softtabstop=0

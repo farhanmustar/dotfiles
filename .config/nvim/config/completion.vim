@@ -24,7 +24,6 @@ call s:EnableOmniComplete()
 
 augroup completion
   autocmd!
-  autocmd FileType * set omnifunc=ale#completion#OmniFunc
   autocmd FileType * set completefunc=v:lua.vim.luasnip.completefunc
 augroup END
 

@@ -6,11 +6,10 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'djoshea/vim-autoread'
 Plug 'easymotion/vim-easymotion'
 Plug 'ellisonleao/gruvbox.nvim', { 'tag': '0.1.0' }
-Plug 'farhanmustar/ale'
-Plug 'farhanmustar/ale-python-linter'
 Plug 'farhanmustar/gv.vim'
 Plug 'farhanmustar/nvim-scrollbar'
 Plug 'fidian/hexmode'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kevinhwang91/nvim-hlslens'
 Plug 'lifepillar/vim-mucomplete'
@@ -22,7 +21,9 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ncm2/float-preview.nvim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
 Plug 'osyo-manga/vim-over'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'rafamadriz/friendly-snippets'
@@ -47,7 +48,6 @@ Plug 'tpope/vim-surround'
 
 if executable('roscore')
   Plug 'ompugao/ros.vim'
-  Plug 'farhanmustar/ale-roslint'
 endif
 
 if executable('curl')

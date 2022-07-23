@@ -130,16 +130,17 @@ endfunction
 nnoremap <silent> <leader>bb :RunAgain<CR>
 
 " nvim-dap config
-noremap <silent> <leader>dp :lua require('dap').toggle_breakpoint()<CR>
-noremap <silent> <leader>d; :lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-noremap <silent> <leader>dl :lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-noremap <silent> <leader>dc :lua require('dap').clear_breakpoints()<CR>
-noremap <silent> <leader>dd :lua require('dap').continue()<CR>
-noremap <silent> <leader>dj :lua require('dap').step_over()<CR>
-noremap <silent> <leader>di :lua require('dap').step_into()<CR>
-noremap <silent> <leader>do :lua require('dap').step_out()<CR>
-noremap <silent> <leader>dv :lua require('dapui').toggle()<CR>
-noremap <silent> <leader>da :lua require('dap.ext.vscode').load_launchjs()<CR>
+nnoremap <silent> <leader>dp <Cmd>lua require('dap').toggle_breakpoint()<CR>
+nnoremap <silent> <leader>d; <Cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>dl <Cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dc <Cmd>lua require('dap').clear_breakpoints()<CR>
+nnoremap <silent> <leader>dd <Cmd>lua require('dap').continue()<CR>
+nnoremap <silent> <leader>dj <Cmd>lua require('dap').step_over()<CR>
+nnoremap <silent> <leader>di <Cmd>lua require('dap').step_into()<CR>
+nnoremap <silent> <leader>do <Cmd>lua require('dap').step_out()<CR>
+nnoremap <silent> <leader>dv <Cmd>lua require('dapui').toggle()<CR>
+nnoremap <silent> <leader>da <Cmd>lua require('dap.ext.vscode').load_launchjs()<CR>
+nnoremap <silent> <leader>dk <Cmd>lua require('dap.ui.widgets').hover()<CR>
 
 " float_preview config
 let g:float_preview#docked = 0
