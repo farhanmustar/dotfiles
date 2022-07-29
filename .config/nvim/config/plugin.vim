@@ -42,8 +42,8 @@ command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
 command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
-command! -nargs=+ LL silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)." -- %:p:h"
-command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)." -- %:p:h"
+command! -nargs=+ LL silent execute "Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- ".expand("%:p:h")
+command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- ".expand("%:p:h")
 nnoremap <silent> <Leader>gg :GG <C-r><C-w><CR>
 vnoremap <silent> <Leader>gg y:GG <C-r>"<CR>
 nnoremap <silent> <Leader>gt :GT <C-r><C-w><CR>
@@ -67,6 +67,9 @@ cnoreabbrev Gstash G stash
 let g:nremap = {'gr': 'gR'}
 let g:oremap = {'gr': 'gR'}
 let g:xremap = {'gr': 'gR'}
+
+" GV.vim shortcuts
+command! -nargs=0 GVBB silent execute "GVB --branches"
 
 " tagbar config
 let g:tagbar_map_close = 'gq'
