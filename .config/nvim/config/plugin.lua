@@ -93,3 +93,8 @@ dap.configurations.cpp = {
       args = {},
     },
 }
+
+-- aerial config
+require("aerial").setup({
+  backends = { "treesitter" },
+})
