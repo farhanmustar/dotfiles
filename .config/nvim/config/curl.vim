@@ -38,8 +38,12 @@ command! DictionaryList silent execute '!curl dict://dict.org/show:db' | echo ' 
 
 " Waktu Solat
 " API from https://e-solat.gov.my
-let s:WaktuSolatDefaultZone = 'JHR02'
-command! -nargs=? WaktuSolat call WaktuSolatGet(<q-args>)
+let s:WaktuSolatDefaultZone = 'SGR01'
+let s:WaktuSolatZoneList = ['JHR02', 'SGR01']
+function <SID>WaktuSolatComplete(A,L,P)
+    return get(s:, 'WaktuSolatZoneList', [])
+endfun
+command! -nargs=? -complete=customlist,<SID>WaktuSolatComplete WaktuSolat call WaktuSolatGet(<q-args>)
 " command! WaktuSolatZon call WaktuSolatGetZone()
 
 function! WaktuSolatGet (zon) abort
