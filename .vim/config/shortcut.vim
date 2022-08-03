@@ -240,3 +240,6 @@ endfunction
 " Repeat macro shortcut.
 nnoremap <Leader>. @@
 vnoremap <Leader>. @@
+
+" sudo write shortcut
+cnoreabbrev w!! silent! write !sudo tee % >/dev/null
