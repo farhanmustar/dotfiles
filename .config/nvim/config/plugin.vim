@@ -9,6 +9,7 @@ endif
 command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O".toupper(<q-args>)."\<CR>")
 nnoremap <expr> <Leader>fn ':CtrlSpaceSearch ' . expand('<cword>') . '<CR>'
 vnoremap <silent> <Leader>fn y:CtrlSpaceSearch <C-r>"<CR>
+nnoremap <silent> <leader>rt :CtrlSpaceTabLabel<CR> \| :redrawtabline<CR>
 
 " Allow C-p as C-Space alternative
 function! CallCtrlSpace(k)
