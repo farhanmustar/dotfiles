@@ -14,8 +14,19 @@ silent! nunmap <C-A>
 silent! iunmap <C-A>
 silent! xunmap <C-A>
 
+" Tab Shortcut
 " Open new tab remap
 nnoremap <silent> <C-w>t :tab sbuffer % \| doautocmd BufEnter<CR>
+" Avoid pressing shift key to switch to previous tab
+noremap gr gT
+" close all tabs to the right or to the left
+command! -nargs=0 Tcr silent execute '.+1,$tabdo :tabc'
+command! -nargs=0 Tcl silent execute '0,.-1tabdo :tabc'
+cnoreabbrev tabcloser Tcr
+cnoreabbrev tabclosel Tcl
+" move tab shortcut
+nnoremap <leader><left> :-tabmove<CR>
+nnoremap <leader><right> :+tabmove<CR>
 
 " Move by virtual lines when used without a count
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -46,9 +57,6 @@ endfunction
 " act more like C or D because by default, Y yanks the current line (i.e. the
 " same as yy).
 noremap Y y$
-
-" Avoid pressing shift key to switch to previous tab
-noremap gr gT
 
 " Allows you to easily replace the current word and all its occurrences.
 nnoremap <Leader>rc :%s/\<<C-r><C-w>\>/
@@ -185,12 +193,6 @@ function! PasteBuffer() abort
   endif
   execute 'buffer '.s:copy_buffer
 endfunction
-
-" close all tabs to the right or to the left
-command! -nargs=0 Tcr silent execute '.+1,$tabdo :tabc'
-command! -nargs=0 Tcl silent execute '0,.-1tabdo :tabc'
-cnoreabbrev tabcloser Tcr
-cnoreabbrev tabclosel Tcl
 
 " refresh syntax
 command! -nargs=0 Refresh silent execute 'do Syntax'
