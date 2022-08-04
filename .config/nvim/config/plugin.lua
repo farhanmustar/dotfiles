@@ -93,3 +93,10 @@ dap.configurations.cpp = {
       args = {},
     },
 }
+
+-- aerial config
+require("aerial").setup({
+  backends = { "treesitter" },
+})
+
+vim.keymap.set('n', '<leader>sr', '<Cmd>AerialToggle<CR>')
