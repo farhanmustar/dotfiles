@@ -182,6 +182,7 @@ nnoremap <silent> <leader>yw :call CopyBuffer()<CR>
 nnoremap <silent> <leader>pw :call PasteBuffer()<CR>
 function! CopyBuffer() abort
   let s:copy_buffer = bufnr('%')
+  let s:copy_buffer_state = winsaveview()
   echom 'Buffer copied'
 endfunction
 function! PasteBuffer() abort
@@ -192,6 +193,7 @@ function! PasteBuffer() abort
     return
   endif
   execute 'buffer '.s:copy_buffer
+  call winrestview(s:copy_buffer_state)
 endfunction
 
 " refresh syntax
