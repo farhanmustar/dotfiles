@@ -111,7 +111,7 @@ vim.cmd([[
 augroup lspbehaviour
   autocmd!
   autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({open = false})
-  autocmd CursorMoved,CursorHold * lua vim.diagnostic.open_float({focus = false})
+  autocmd CursorMoved,CursorHold * lua if vim.fn.mode() == "n" then vim.diagnostic.open_float({focus = false}) end
 augroup END
 ]])
 vim.diagnostic.config({
