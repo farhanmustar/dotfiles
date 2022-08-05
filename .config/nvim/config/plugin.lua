@@ -97,6 +97,34 @@ dap.configurations.cpp = {
 -- aerial config
 require("aerial").setup({
   backends = { "treesitter" },
+  default_bindings = false,
+  width = 60,
+  min_width = 60,
+  max_width = 60,
+  icons = {
+    Method = ' ƒ',
+    Function = ' ƒ',
+    Constructor = ' ƒ',
+    Enum = ' E',
+    Interface = ' I',
+    Struct = ' S',
+    Class = ' 𝓒',
+    ClassCollapsed = '▸𝓒',
+  }
 })
-
-vim.keymap.set('n', '<leader>sr', '<Cmd>AerialToggle<CR>')
+local aerial_map_group = vim.api.nvim_create_augroup("aerialmap", { clear = true })
+function aerial_map()
+  vim.keymap.set('n', '<CR>', function() require('aerial').select({jump=false}) end, {buffer = true})
+  vim.keymap.set('n', 'o', require('aerial').select, {buffer = true})
+  vim.keymap.set('n', '<2-LeftMouse>', require('aerial').select, {buffer = true})
+  vim.keymap.set('n', 'zR', '<cmd>AerialTreeOpenAll<CR>', {buffer = true})
+  vim.keymap.set('n', 'zM', '<cmd>AerialTreeCloseAll<CR>', {buffer = true})
+  vim.keymap.set('n', '>', '<cmd>AerialTreeOpen<CR>', {buffer = true})
+  vim.keymap.set('n', '<', '<cmd>AerialTreeClose<CR>', {buffer = true})
+end
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "aerial",
+  callback = aerial_map,
+  group = aerial_map_group,
+})
+vim.keymap.set('n', '<leader>sr', '<Cmd>AerialToggle!<CR>')
