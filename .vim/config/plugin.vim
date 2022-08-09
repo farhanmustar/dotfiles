@@ -4,7 +4,7 @@
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|build|dist|env|node_modules|platforms|plugins|www\/lib)[\/]'
 if executable('rg')
-  let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
+  let g:CtrlSpaceGlobCommand = "rg --color=never --files --hidden -g '!.git'"
 endif
 command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O".toupper(<q-args>)."\<CR>")
 nnoremap <expr> <Leader>fn ':CtrlSpaceSearch ' . expand('<cword>') . '<CR>'

@@ -3,7 +3,6 @@
 .bloom*
 .cache
 .compiz
-.config
 .cordova
 .dbus
 .debug
@@ -27,3 +26,7 @@
 .w3m
 .Xauthority
 .*history
+.config/*
+!.config/nvim
+.config/nvim/plugged
+.config/nvim/autoload
