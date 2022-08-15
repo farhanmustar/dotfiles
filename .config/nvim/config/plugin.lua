@@ -4,6 +4,7 @@ if not ok then
   return
 end
 
+-- scrollbar config
 require("scrollbar").setup({
   marks = {
     Search = { color = '#1d2021'},
@@ -128,3 +129,19 @@ vim.api.nvim_create_autocmd("FileType", {
   group = aerial_map_group,
 })
 vim.keymap.set('n', '<leader>sr', '<Cmd>AerialToggle!<CR>')
+
+-- gitsigns config
+require('gitsigns').setup({
+  signs = {
+    add          = {hl = '', text = '', numhl='GitSignsAddNr'    },
+    change       = {hl = '', text = '', numhl='GitSignsChangeNr' },
+    delete       = {hl = '', text = '', numhl='GitSignsDeleteNr' },
+    topdelete    = {hl = '', text = '', numhl='GitSignsDeleteNr' },
+    changedelete = {hl = '', text = '', numhl='GitSignsChangeNr' },
+  },
+  numhl = true,
+  -- base  = 'HEAD',  -- use :Gitsigns change_base HEAD -> to display all including staged
+})
+vim.keymap.set('n', 'gj', '<Cmd>Gitsigns next_hunk<CR>')
+vim.keymap.set('n', 'gk', '<Cmd>Gitsigns prev_hunk<CR>')
+vim.keymap.set('n', 'gp', '<Cmd>Gitsigns preview_hunk<CR>')
