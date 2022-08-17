@@ -131,13 +131,14 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set('n', '<leader>sr', '<Cmd>AerialToggle!<CR>')
 
 -- gitsigns config
+-- NOTE: culnumhl is a patch currently not supported in neovim and gitsigns.
 require('gitsigns').setup({
   signs = {
-    add          = {hl = '', text = '', numhl='GitSignsAddNr'    },
-    change       = {hl = '', text = '', numhl='GitSignsChangeNr' },
-    delete       = {hl = '', text = '', numhl='GitSignsDeleteNr' },
-    topdelete    = {hl = '', text = '', numhl='GitSignsDeleteNr' },
-    changedelete = {hl = '', text = '', numhl='GitSignsChangeNr' },
+    add          = {hl = '', text = '', numhl = 'GitSignsAddNr',    culnumhl = 'GitSignsAddCLNr'    },
+    change       = {hl = '', text = '', numhl = 'GitSignsChangeNr', culnumhl = 'GitSignsChangeCLNr' },
+    delete       = {hl = '', text = '', numhl = 'GitSignsDeleteNr', culnumhl = 'GitSignsDeleteCLNr' },
+    topdelete    = {hl = '', text = '', numhl = 'GitSignsDeleteNr', culnumhl = 'GitSignsDeleteCLNr' },
+    changedelete = {hl = '', text = '', numhl = 'GitSignsChangeNr', culnumhl = 'GitSignsChangeCLNr' },
   },
   numhl = true,
   -- base  = 'HEAD',  -- use :Gitsigns change_base HEAD -> to display all including staged
