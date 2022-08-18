@@ -137,3 +137,6 @@ let g:float_preview#docked = 0
 
 " CamelCaseMotion config
 silent! call camelcasemotion#CreateMotionMappings(',')
+
+" cs.vim config
+let g:cs_curl_max_time = 30
