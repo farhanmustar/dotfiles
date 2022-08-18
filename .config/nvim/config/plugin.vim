@@ -13,6 +13,7 @@ nnoremap <silent> <leader>rt :CtrlSpaceTabLabel<CR> \| :redrawtabline<CR>
 
 " Allow ɀ(\u0240) as C-Space alternative used by term emulator for issue with powershell/cmd shell
 noremap <silent> ɀ :CtrlSpace<CR>
+noremap <silent> <C-space> :CtrlSpace<CR>
 
 " vim-over config
 let g:over#command_line#substitute#replace_pattern_visually = 1
