@@ -7,7 +7,6 @@ return {
   text_background_opacity = 0.7,
   tab_bar_at_bottom = true,
   use_fancy_tab_bar = false,
-  hide_tab_bar_if_only_one_tab = true,
   font = wezterm.font('Comic Code Ligatures', { weight = 'Medium' }),
   font_size = 9.0,
   harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
