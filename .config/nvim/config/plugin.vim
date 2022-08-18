@@ -11,22 +11,8 @@ nnoremap <expr> <Leader>fn ':CtrlSpaceSearch ' . expand('<cword>') . '<CR>'
 vnoremap <silent> <Leader>fn y:CtrlSpaceSearch <C-r>"<CR>
 nnoremap <silent> <leader>rt :CtrlSpaceTabLabel<CR> \| :redrawtabline<CR>
 
-" Allow C-p as C-Space alternative
-function! CallCtrlSpace(k)
-  execute 'CtrlSpace'
-endfunction
-noremap <silent> <C-p> :CtrlSpace<CR>
-noremap <silent> <C-space> :CtrlSpace<CR>
-let g:CtrlSpaceKeys = {
-\    "Search": { "C-p": "CallCtrlSpace" },
-\    "Help": { "C-p": "CallCtrlSpace" },
-\    "Nop": { "C-p": "CallCtrlSpace" },
-\    "Buffer": { "C-p": "CallCtrlSpace" },
-\    "File": { "C-p": "CallCtrlSpace" },
-\    "Tab": { "C-p": "CallCtrlSpace" },
-\    "Workspace": { "C-p": "CallCtrlSpace" },
-\    "Bookmark": { "C-p": "CallCtrlSpace" },
-\}
+" Allow ɀ(\u0240) as C-Space alternative used by term emulator for issue with powershell/cmd shell
+noremap <silent> ɀ :CtrlSpace<CR>
 
 " vim-over config
 let g:over#command_line#substitute#replace_pattern_visually = 1
