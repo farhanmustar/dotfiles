@@ -81,8 +81,8 @@ command! St tabnew | Startify
 " easymotion config
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-map <leader>j <Plug>(easymotion-s)
-map <leader>J <Plug>(easymotion-bd-jk)
+map <leader>j <Plug>(easymotion-overwin-f)
+map <leader>J <Plug>(easymotion-overwin-line)
 
 " easyalign config
 vmap <leader>aa <Plug>(EasyAlign)
