@@ -178,8 +178,8 @@ nnoremap <silent> <leader>yp :copy.<CR>
 vnoremap <silent> <leader>yp :copy'><CR>
 
 " copy paste buffer using bufnr
-nnoremap <silent> <leader>yw :call CopyBuffer()<CR>
-nnoremap <silent> <leader>pw :call PasteBuffer()<CR>
+nnoremap <silent> <C-w>y :call CopyBuffer()<CR>
+nnoremap <silent> <C-w>p :call PasteBuffer()<CR>
 function! CopyBuffer() abort
   let s:copy_buffer = bufnr('%')
   let s:copy_buffer_state = winsaveview()
