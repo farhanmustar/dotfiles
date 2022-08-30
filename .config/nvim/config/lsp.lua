@@ -11,6 +11,10 @@ null_ls.setup({
   -- debug = true,
 })
 
+-- Misc
+local refactoring = null_ls.builtins.code_actions.refactoring
+null_ls.register(refactoring)
+
 -- Python
 local flake8 = null_ls.builtins.diagnostics.flake8.with({
   -- extra_args = {'--max-line-length=199', '--ignore=W504,E128'}, -- more strict mode
@@ -105,6 +109,7 @@ vim.keymap.set('n', '<leader>af', bind(vim.lsp.buf.format, {timeout_ms = 3000}))
 vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>ej', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>ek', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>e;', vim.lsp.buf.code_action)
 
 -- Configs
 vim.cmd([[
