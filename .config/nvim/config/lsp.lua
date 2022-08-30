@@ -23,6 +23,27 @@ local flake8 = null_ls.builtins.diagnostics.flake8.with({
 local autopep8 = null_ls.builtins.formatting.autopep8.with({
   extra_args = {'-aa', '--max-line-length=199', '--ignore=E128,E722'},
 })
+local compile_path = vim.fn.expand('<sfile>:p:h')..'/compile.py'
+local python_compile = {
+  name = 'python_compile',
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = {'python',},
+  generator = null_ls.generator({
+    command = 'python',
+    args = { compile_path, '-' },
+    to_stdin = true,
+    format = 'line',
+		check_exit_code = function(code, stderr)
+			return code <= 1
+		end,
+    on_output = helpers.diagnostics.from_patterns({
+      {
+        pattern = [[[^:]:(%d+):(%d+): (.*)]],
+        groups = { "row", "col", "message" },
+      },
+    }),
+  }),
+}
 local roslint_pep8 = {
   name = 'roslint_pep8',
   method = null_ls.methods.DIAGNOSTICS,
@@ -45,6 +66,7 @@ local roslint_pep8 = {
 }
 null_ls.register(flake8)
 null_ls.register(autopep8)
+null_ls.register(python_compile)
 if vim.fn.executable('rosrun') ~= 0 then
   null_ls.register(roslint_pep8)
 end
