@@ -245,3 +245,57 @@ vnoremap <Leader>. @@
 
 " sudo write shortcut
 cnoreabbrev w!! silent! write !sudo tee % >/dev/null
+
+" Search in selection shortcut
+xnoremap <Leader>/ <Esc>/<C-R><C-R>=<SID>CachedVisualRangeSearchTerm()<CR>
+xnoremap <Leader>? <Esc>?<C-R><C-R>=<SID>CachedVisualRangeSearchTerm()<CR>
+function! s:CachedVisualRangeSearchTerm()
+    let l:line0 = line("'<")
+    let l:line1 = line("'>")
+    let l:col0 = virtcol("'<")
+    let l:col1 = virtcol("'>")
+
+    if visualmode() == ''
+        " visual block mode
+        if l:col0 > l:col1
+            let l:col0 = l:col1
+            let l:col1 = virtcol("'<")
+        endif
+        if l:line0 == l:line1
+            let l:lineconstraints = '\%' . (l:line0) . 'l'
+        else
+            let l:lineconstraints = '\%>' . (l:line0-1) . 'l' . '\%<' . (line("'>")+1) . 'l' . '\%<' . (l:line1+1) . 'l'
+        endif
+        if l:col0 == l:col1
+            let l:colconstraints = '\%' . (l:col0) . 'v'
+        else
+            let l:colconstraints = '\%>' . (l:col0-1) . 'v' . '\%<' . (line("'>")+1) . 'l' . '\%<' . (l:col1+1) . 'v'
+        endif
+        return l:lineconstraints . l:colconstraints
+    elseif visualmode() ==# 'v'
+        " visual character-wise
+        if l:line0 == l:line1
+            return '\%' . l:line0 . 'l' . '\%>' . (l:col0-1) . 'v' . '\%<' . (l:col1+1) . 'v'
+        elseif l:line1 - l:line0 == 1
+            return '\%(' .
+                \ '\%' . l:line0 . 'l' . '\%>' . (l:col0-1) . 'v' . '\|' .
+                \ '\%' . l:line1 . 'l' . '\%<' . (l:col1+1) . 'v' .
+                \ '\)'
+        else
+            return '\%(' .
+                \ '\%' . l:line0 . 'l' . '\%>' . (l:col0-1) . 'v' . '\|' .
+                \ '\%' . l:line1 . 'l' . '\%<' . (l:col1+1) . 'v' . '\|' .
+                \ '\%>' . l:line0 . 'l' . '\%<' . l:line1 . 'l' .
+                \ '\)'
+        endif
+    else
+        " visual line-wise
+        if l:line0 == l:line1
+            return '\%' . l:line0 . 'l'
+        else
+            return '\%>' . (l:line0-1) . 'l\%<' . (l:line1+1) . 'l'
+        endif
+    endif
+endfunction
+nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
+nnoremap <Leader>? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
