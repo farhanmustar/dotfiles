@@ -299,3 +299,4 @@ function! s:CachedVisualRangeSearchTerm()
 endfunction
 nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
 nnoremap <Leader>? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
+nnoremap <Leader>f/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>

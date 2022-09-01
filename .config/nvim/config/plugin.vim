@@ -77,6 +77,8 @@ nnoremap <silent> <Leader>ut :UndotreeToggle<CR>
 command! S botright split | Startify
 command! Sv vertical botright split | Startify
 command! St tabnew | Startify
+" by default st is for :stop cmd which is so anoying.
+cnoreabbrev st St
 
 " easymotion config
 let g:EasyMotion_do_mapping = 0
