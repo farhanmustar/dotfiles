@@ -129,3 +129,9 @@ dart pub global activate -s path .
 cd dart_ctags
 dart compile exe ./bin/dart_ctags.dart
 ```
+
+### Golang
+* gopls language server
+```bash
+go install golang.org/x/tools/gopls@latest
+```

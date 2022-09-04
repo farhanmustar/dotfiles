@@ -11,6 +11,42 @@ null_ls.setup({
   -- debug = true,
 })
 
+-- Keyboard Shortcut
+vim.keymap.set('n', '<leader>af', bind(vim.lsp.buf.format, {timeout_ms = 3000}))
+vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>ej', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>ek', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>e;', vim.lsp.buf.code_action)
+vim.keymap.set('n', '<leader>ed', vim.lsp.buf.definition)
+vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
+local on_attach = function(client, bufnr)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = true})
+end
+
+-- Configs
+vim.cmd([[
+augroup lspbehaviour
+  autocmd!
+  autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({open = false})
+  autocmd CursorMoved,CursorHold * lua if vim.fn.mode() == "n" then vim.diagnostic.open_float({focus = false}) end
+augroup END
+]])
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	float = {
+		border = "single",
+		format = function(diagnostic)
+			return string.format(
+				"%s: %s (%s)",
+				(diagnostic.code or diagnostic.user_data and diagnostic.user_data.lsp and diagnostic.user_data.lsp.code) or '#',
+				diagnostic.message,
+				diagnostic.source
+			)
+		end,
+	},
+})
+
 -- Misc
 local refactoring = null_ls.builtins.code_actions.refactoring
 null_ls.register(refactoring)
@@ -126,33 +162,7 @@ null_ls.register(js_beautify)
 -- Html
 -- local djlint = null_ls.builtins.formatting.djlint, -- python 3
 
--- Keyboard Shortcut
-vim.keymap.set('n', '<leader>af', bind(vim.lsp.buf.format, {timeout_ms = 3000}))
-vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>ej', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>ek', vim.diagnostic.goto_prev)
-vim.keymap.set('n', '<leader>e;', vim.lsp.buf.code_action)
-
--- Configs
-vim.cmd([[
-augroup lspbehaviour
-  autocmd!
-  autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({open = false})
-  autocmd CursorMoved,CursorHold * lua if vim.fn.mode() == "n" then vim.diagnostic.open_float({focus = false}) end
-augroup END
-]])
-vim.diagnostic.config({
-	virtual_text = false,
-	signs = true,
-	float = {
-		border = "single",
-		format = function(diagnostic)
-			return string.format(
-				"%s: %s (%s)",
-				(diagnostic.code or diagnostic.user_data and diagnostic.user_data.lsp and diagnostic.user_data.lsp.code) or '#',
-				diagnostic.message,
-				diagnostic.source
-			)
-		end,
-	},
+-- Golang
+require('lspconfig').gopls.setup({
+  on_attach = on_attach,
 })
