@@ -115,16 +115,17 @@ nnoremap <silent> [q :cprev<CR>
 nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> [Q :cfirst<CR>
 nnoremap <silent> ]Q :clast<CR>
-nnoremap <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
-nnoremap <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
 
 " Quickfix custom command
 command! -nargs=0 Creload silent call setqflist(map(getqflist(), 'extend(v:val, {"text":get(getbufline(v:val.bufnr, v:val.lnum),0,"(buf not load)")})'))
 command! -nargs=0 Cbufopen silent cfdo p
 
-" Auto open quickfix window
 augroup quickfix
   autocmd!
+  autocmd Filetype qf nnoremap <buffer> <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
+  autocmd Filetype qf nnoremap <buffer> <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
+
+  " Auto open quickfix window
   autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!
   autocmd QuickFixCmdPost l* nested bot lwindow 20 | redraw!
 augroup END
@@ -152,7 +153,7 @@ nmap Q	<Nop>
 nnoremap gq <C-w>c
 
 " vimscript dev mapping
-nnoremap <silent> <Leader>so :source % \| echo "Sourced!"<CR>
+nnoremap <silent> <expr> <Leader>so (&filetype is# 'lua' \|\| &filetype is# 'vim') ? ':source % \| echo "Sourced!"<CR>' : ':echo "Not vim config"<CR>'
 
 " pane navigation
 nnoremap <C-h> <C-w>h
