@@ -166,3 +166,32 @@ null_ls.register(js_beautify)
 require('lspconfig').gopls.setup({
   on_attach = on_attach,
 })
+
+-- c/c++
+local cpplint = {
+  name = 'cpplint',
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = {'c', 'cpp', 'h',},
+  generator = null_ls.generator({
+    command = 'cpplint',
+    args = { '--filter=-legal/copyright,-readability/todo,-readability/casting,-whitespace/braces,-whitespace/newline,whitespace/comments,readability/multiline_comment', '-' },
+    to_stdin = true,
+    from_stderr = true,
+    format = 'line',
+		check_exit_code = function(code, stderr)
+			return code <= 1
+		end,
+    on_output = helpers.diagnostics.from_patterns({
+      {
+        pattern = [[[^:]:(%d+):  (.*)]],
+        groups = { "row", "message" },
+      },
+    }),
+  }),
+}
+null_ls.register(cpplint)
+
+local astyle = null_ls.builtins.formatting.astyle.with({
+  extra_args = {'--mode=c', '--style=allman', '--indent=spaces=2', '--pad-oper', '--unpad-paren', '--pad-header', '--convert-tabs'}
+})
+null_ls.register(astyle)
