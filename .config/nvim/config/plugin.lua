@@ -85,6 +85,25 @@ dap.adapters.codelldb = function(on_adapter)
   vim.defer_fn(function() on_adapter(adapter) end, 500)
 end
 
+local pick_cur_dir_file = function() 
+  local label_fn = function(p)
+    return string.format("%s", vim.fn.fnamemodify(p, ':~:.'))
+  end
+  local co = coroutine.running()
+  if co then
+    return coroutine.create(function()
+      local files = require('plenary.scandir').scan_dir(vim.fn.expand('%:p:h'), {hidden=false, depth=1})
+      require('dap.ui').pick_one(files, "Select file", label_fn, function(result)
+        coroutine.resume(co, result)
+      end)
+    end)
+  else
+    local files = require('plenary.scandir').scan_dir(vim.fn.expand('%:p:h'), {hidden=false, depth=1})
+    local result = require('dap.ui').pick_one_sync(files, "Select file", label_fn)
+    return result or nil
+  end
+end
+
 dap.configurations.cpp = {
     {
       name = "Attach to process",
@@ -92,6 +111,28 @@ dap.configurations.cpp = {
       request = 'attach',
       pid = require('dap.utils').pick_process,
       args = {},
+    },
+    {
+      name = "Run python test",
+      type = 'codelldb',
+      request = 'launch',
+      program = 'python',
+      args = {'./runtests.py'},
+      cwd = '${workspaceFolder}',
+    },
+    {
+      name = "Run file in folder",
+      type = 'codelldb',
+      request = 'launch',
+      program = pick_cur_dir_file,
+      cwd = '${workspaceFolder}',
+    },
+    {
+      name = "Run a.out",
+      type = 'codelldb',
+      request = 'launch',
+      program = '${workspaceFolder}/a.out',
+      cwd = '${workspaceFolder}',
     },
 }
 
