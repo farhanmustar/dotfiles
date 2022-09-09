@@ -89,6 +89,8 @@ map <leader>J <Plug>(easymotion-overwin-line)
 " easyalign config
 vmap <leader>aa <Plug>(EasyAlign)
 nmap <leader>aa <Plug>(EasyAlign)
+vmap <leader>ai <Plug>(LiveEasyAlign)
+nmap <leader>ai <Plug>(LiveEasyAlign)
 
 " bufsurf config
 nmap gi <Plug>(buf-surf-forward)

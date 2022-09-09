@@ -96,7 +96,8 @@ dap.configurations.cpp = {
 }
 
 -- aerial config
-require("aerial").setup({
+local aerial = require('aerial')
+aerial.setup({
   backends = { "treesitter" },
   default_bindings = false,
   width = 60,
@@ -115,9 +116,9 @@ require("aerial").setup({
 })
 local aerial_map_group = vim.api.nvim_create_augroup("aerialmap", { clear = true })
 function aerial_map()
-  vim.keymap.set('n', '<CR>', function() require('aerial').select({jump=false}) end, {buffer = true})
-  vim.keymap.set('n', 'o', require('aerial').select, {buffer = true})
-  vim.keymap.set('n', '<2-LeftMouse>', require('aerial').select, {buffer = true})
+  vim.keymap.set('n', '<CR>', function() aerial.select({jump=false}) end, {buffer = true})
+  vim.keymap.set('n', 'o', aerial.select, {buffer = true})
+  vim.keymap.set('n', '<2-LeftMouse>', aerial.select, {buffer = true})
   vim.keymap.set('n', 'zR', '<cmd>AerialTreeOpenAll<CR>', {buffer = true})
   vim.keymap.set('n', 'zM', '<cmd>AerialTreeCloseAll<CR>', {buffer = true})
   vim.keymap.set('n', '>', '<cmd>AerialTreeOpen<CR>', {buffer = true})
@@ -146,3 +147,16 @@ require('gitsigns').setup({
 vim.keymap.set('n', 'gj', '<Cmd>Gitsigns next_hunk<CR>')
 vim.keymap.set('n', 'gk', '<Cmd>Gitsigns prev_hunk<CR>')
 vim.keymap.set('n', 'gp', '<Cmd>Gitsigns preview_hunk<CR>')
+
+-- dressing config
+require('dressing').setup({
+  input = {
+    enabled = true,
+    start_in_insert = true,
+  },
+  select = {
+    enabled = true,
+    -- backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+    backend = { "builtin", "nui" },
+  },
+});
