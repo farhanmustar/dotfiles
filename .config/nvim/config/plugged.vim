@@ -50,6 +50,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'uga-rosa/ccc.nvim'
 
 " Plug 'dart-lang/dart-vim-plugin'
 " Plug 'erisian/rest_tools'
