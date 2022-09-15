@@ -30,3 +30,6 @@
 !.config/nvim
 .config/nvim/plugged
 .config/nvim/autoload
+.vim/plugged
+.vim/autoload
+.vim/undodir
