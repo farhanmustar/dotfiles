@@ -124,6 +124,9 @@ augroup quickfix
   autocmd!
   autocmd Filetype qf nnoremap <buffer> <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
   autocmd Filetype qf nnoremap <buffer> <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
+  autocmd Filetype qf nnoremap <buffer> <silent> < :colder<CR>
+  autocmd Filetype qf nnoremap <buffer> <silent> > :cnewer<CR>
+  autocmd Filetype qf nnoremap <buffer> <silent> r :Creload<CR>
 
   " Auto open quickfix window
   autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!

@@ -39,7 +39,7 @@ command! DictionaryList silent execute '!curl dict://dict.org/show:db' | echo ' 
 " Waktu Solat
 " API from https://e-solat.gov.my
 let s:WaktuSolatDefaultZone = 'SGR01'
-let s:WaktuSolatZoneList = ['JHR02', 'SGR01']
+let s:WaktuSolatZoneList = ['JHR02', 'SGR01', 'NGS03']
 function <SID>WaktuSolatComplete(A,L,P)
     return get(s:, 'WaktuSolatZoneList', [])
 endfun

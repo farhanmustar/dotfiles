@@ -133,6 +133,8 @@ nnoremap <silent> <leader>dd <Cmd>lua require('dap').continue()<CR>
 nnoremap <silent> <leader>dj <Cmd>lua require('dap').step_over()<CR>
 nnoremap <silent> <leader>di <Cmd>lua require('dap').step_into()<CR>
 nnoremap <silent> <leader>do <Cmd>lua require('dap').step_out()<CR>
+nnoremap <silent> <leader>du <Cmd>lua require('dap').run_to_cursor()<CR>
+nnoremap <silent> <leader>ds <Cmd>lua require('dap').terminate()<CR>
 nnoremap <silent> <leader>dv <Cmd>lua require('dapui').toggle()<CR>
 nnoremap <silent> <leader>da <Cmd>lua require('dap.ext.vscode').load_launchjs()<CR><Cmd>echo "launch.json loaded" <CR>
 nnoremap <silent> <leader>dk <Cmd>lua require('dap.ui.widgets').hover()<CR>

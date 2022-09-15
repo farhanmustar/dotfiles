@@ -20,7 +20,7 @@ Plug 'ludovicchabant/vim-lawrencium'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'mfussenegger/nvim-dap'
-Plug 'mfussenegger/nvim-dap-python'
+Plug 'mfussenegger/nvim-dap-python', { 'branch': 'multi-session' }
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mong8se/actually.nvim'

@@ -136,6 +136,16 @@ dap.configurations.cpp = {
     },
 }
 
+dap.configurations.c = dap.configurations.cpp
+
+table.insert(dap.configurations.python, {
+  name = "Python debug runtests",
+  type = 'python',
+  request = 'launch',
+  program = '${workspaceFolder}/runtests.py',
+  cwd = '${workspaceFolder}',
+})
+
 -- aerial config
 local aerial = require('aerial')
 aerial.setup({
