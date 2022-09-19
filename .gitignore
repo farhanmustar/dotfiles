@@ -33,3 +33,4 @@
 .vim/plugged
 .vim/autoload
 .vim/undodir
+.byobu/*

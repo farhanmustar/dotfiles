@@ -1,3 +1,9 @@
+-- use first plugin to check for installed plugin
+local ok, _ = pcall(require, 'dap')
+if not ok then
+  return
+end
+
 -- nvim-dap config
 local venv = os.getenv("VIRTUAL_ENV")
 if vim.fn.has('win32') == 1 then
