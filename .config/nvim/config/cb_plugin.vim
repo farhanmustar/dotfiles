@@ -47,7 +47,7 @@ function! s:get_stack_completion() abort
     \   'menu': '[cb]',
     \   'word': '',
     \   'abbr': abr,
-    \   'info': c,
+    \   'info': "|".substitute(c, "\n", "\n|", 'g'),
     \   'dup': 1,
     \   'empty': 1,
     \ },
@@ -67,7 +67,7 @@ function! s:expand() abort
   if get(v:completed_item, 'menu', '') != '[cb]'
     return
   endif
-  let @" = get(v:completed_item, 'info', '')
+  let @" = substitute(get(v:completed_item, 'info', ' ')[1:], "\n|", "\n", 'g')
 
   call feedkeys(
         \"\<C-o>:set paste\<CR>".
