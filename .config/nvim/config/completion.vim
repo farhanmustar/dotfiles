@@ -35,6 +35,8 @@ inoremap <plug>MyEnter <cr>
 function! MyCRAction()
   if (pumvisible() && luasnip#expandable())
     return "\<Plug>luasnip-expand-snippet"
+  elseif (pumvisible() && CB_can_expand())
+    return "\<Plug>CBExpand"
   elseif pumvisible()
     return "\<c-y>"
   else

@@ -1,4 +1,5 @@
 source ~/.config/nvim/config/init.vim
+source ~/.config/nvim/config/cb_plugin.vim
 source ~/.config/nvim/config/util.lua
 source ~/.config/nvim/config/plugged.vim
 source ~/.config/nvim/config/setting.vim
