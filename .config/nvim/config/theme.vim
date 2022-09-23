@@ -20,8 +20,8 @@ function! s:ModifyColorScheme()
   highlight ScrollbarSearch       ctermfg=224   guifg=#fe8019
   highlight ScrollbarSearchHandle ctermfg=224   guifg=#fe8019
   highlight TreesitterContext     ctermbg=239   guibg=#303030
-  highlight TSDefinition          guibg=#303030
-  highlight TSDefinitionUsage     guibg=#262626
+  highlight TSDefinition          guibg=#597636
+  highlight TSDefinitionUsage     guibg=#7d6336
   highlight GruvboxAquaDark       guifg=#689d6a
   highlight GitSignsAddNr         guifg=#999b46
   highlight GitSignsChangeNr      guifg=#8b98ad
