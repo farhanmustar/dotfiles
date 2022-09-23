@@ -248,7 +248,7 @@ nnoremap <Leader>. @@
 vnoremap <Leader>. @@
 
 " sudo write shortcut
-cnoreabbrev w!! silent! write !sudo tee % >/dev/null
+cnoreabbrev w!! SudaWrite
 
 " Search in selection shortcut
 xnoremap <Leader>/ <Esc>/<C-R><C-R>=<SID>CachedVisualRangeSearchTerm()<CR>
