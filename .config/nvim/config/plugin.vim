@@ -124,21 +124,6 @@ function! <SID>rerun()
 endfunction
 nnoremap <silent> <leader>bb :RunAgain<CR>
 
-" nvim-dap config
-nnoremap <silent> <leader>dp <Cmd>lua require('dap').toggle_breakpoint()<CR>
-nnoremap <silent> <leader>d; <Cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-nnoremap <silent> <leader>dl <Cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-nnoremap <silent> <leader>dc <Cmd>lua require('dap').clear_breakpoints()<CR>
-nnoremap <silent> <leader>dd <Cmd>lua require('dap').continue()<CR>
-nnoremap <silent> <leader>dj <Cmd>lua require('dap').step_over()<CR>
-nnoremap <silent> <leader>di <Cmd>lua require('dap').step_into()<CR>
-nnoremap <silent> <leader>do <Cmd>lua require('dap').step_out()<CR>
-nnoremap <silent> <leader>du <Cmd>lua require('dap').run_to_cursor()<CR>
-nnoremap <silent> <leader>ds <Cmd>lua require('dap').terminate()<CR>
-nnoremap <silent> <leader>dv <Cmd>lua require('dapui').toggle()<CR>
-nnoremap <silent> <leader>da <Cmd>lua require('dap.ext.vscode').load_launchjs()<CR><Cmd>echo "launch.json loaded" <CR>
-nnoremap <silent> <leader>dk <Cmd>lua require('dap.ui.widgets').hover()<CR>
-
 " float_preview config
 let g:float_preview#docked = 0
 

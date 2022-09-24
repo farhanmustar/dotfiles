@@ -5,6 +5,14 @@ if not ok then
 end
 
 -- nvim-dap config
+local dap = require('dap')
+local dapui = require("dapui")
+local dapWidget = require('dap.ui.widgets')
+
+dapui.setup()
+require("nvim-dap-virtual-text").setup()
+
+-- python config
 local venv = os.getenv("VIRTUAL_ENV")
 if vim.fn.has('win32') == 1 then
   command = string.format("%s/Scripts/pythonw",venv)
@@ -14,10 +22,28 @@ end
 require('dap-python').setup(command, {
   console = 'integratedTerminal',
 })
-require("dapui").setup()
-require("nvim-dap-virtual-text").setup()
 
-local dap = require('dap')
+-- nvim-dap shortcuts
+vim.keymap.set('n', '<leader>dp', dap.toggle_breakpoint, {silent = true})
+vim.keymap.set('n', '<leader>d;', function()
+  vim.ui.input({prompt = 'Breakpoint condition: '}, function(input) dap.set_breakpoint(input) end)
+end, {silent=true})
+vim.keymap.set('n', '<leader>dl', function()
+  vim.ui.input({prompt = 'Log point message: '}, function(input) dap.set_breakpoint(nil, nil, input) end)
+end, {silent = true})
+vim.keymap.set('n', '<leader>dc', dap.clear_breakpoints, {silent = true})
+vim.keymap.set('n', '<leader>dd', dap.continue, {silent = true})
+vim.keymap.set('n', '<leader>dj', dap.step_over, {silent = true})
+vim.keymap.set('n', '<leader>di', dap.step_into, {silent = true})
+vim.keymap.set('n', '<leader>do', dap.step_out, {silent = true})
+vim.keymap.set('n', '<leader>du', dap.run_to_cursor, {silent = true})
+vim.keymap.set('n', '<leader>ds', dap.terminate, {silent = true})
+vim.keymap.set('n', '<leader>dv', dapui.toggle, {silent = true})
+vim.keymap.set('n', '<leader>da', function()
+  require('dap.ext.vscode').load_launchjs()
+  print('launch.json loaded')
+end, {silent = true})
+vim.keymap.set('n', '<leader>dk', dapWidget.hover, {silent = true})
 
 local codelldb_command = '/usr/bin/codelldb'
 dap.adapters.codelldb = function(on_adapter)
