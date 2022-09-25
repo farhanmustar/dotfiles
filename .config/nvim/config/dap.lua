@@ -7,7 +7,7 @@ end
 -- nvim-dap config
 local dap = require('dap')
 local dapui = require("dapui")
-local dapWidget = require('dap.ui.widgets')
+local widgets = require('dap.ui.widgets')
 
 dapui.setup()
 require("nvim-dap-virtual-text").setup()
@@ -26,10 +26,20 @@ require('dap-python').setup(command, {
 -- nvim-dap shortcuts
 vim.keymap.set('n', '<leader>dp', dap.toggle_breakpoint, {silent = true})
 vim.keymap.set('n', '<leader>d;', function()
-  vim.ui.input({prompt = 'Breakpoint condition: '}, function(input) dap.set_breakpoint(input) end)
+  vim.ui.input({prompt = 'Breakpoint condition: '}, function(input) 
+    if not input then
+      return
+    end
+    dap.set_breakpoint(input)
+  end)
 end, {silent=true})
 vim.keymap.set('n', '<leader>dl', function()
-  vim.ui.input({prompt = 'Log point message: '}, function(input) dap.set_breakpoint(nil, nil, input) end)
+  vim.ui.input({prompt = 'Log point message: '}, function(input)
+    if not input then
+      return
+    end
+    dap.set_breakpoint(nil, nil, input)
+  end)
 end, {silent = true})
 vim.keymap.set('n', '<leader>dc', dap.clear_breakpoints, {silent = true})
 vim.keymap.set('n', '<leader>dd', dap.continue, {silent = true})
@@ -38,12 +48,55 @@ vim.keymap.set('n', '<leader>di', dap.step_into, {silent = true})
 vim.keymap.set('n', '<leader>do', dap.step_out, {silent = true})
 vim.keymap.set('n', '<leader>du', dap.run_to_cursor, {silent = true})
 vim.keymap.set('n', '<leader>ds', dap.terminate, {silent = true})
-vim.keymap.set('n', '<leader>dv', dapui.toggle, {silent = true})
+vim.keymap.set('n', '<leader>dv', function() dapui.toggle({reset = true}) end, {silent = true})
 vim.keymap.set('n', '<leader>da', function()
   require('dap.ext.vscode').load_launchjs()
   print('launch.json loaded')
 end, {silent = true})
-vim.keymap.set('n', '<leader>dk', dapWidget.hover, {silent = true})
+vim.keymap.set('n', '<leader>dk', widgets.hover, {silent = true})
+
+local dapMenu = {
+  { 'Scopes', function() dapui.float_element('scopes', {enter=true}) end },
+  { 'Console', function() dapui.float_element('console', {enter=true}) end },
+  { 'Repl', function() dapui.float_element('repl', {enter=true}) end },
+  { 'Stacks', function() dapui.float_element('stacks', {enter=true}) end },
+  { 'More', showExtraMenu },
+}
+
+local dapMenuExtra = {
+  { 'Watches', function() dapui.float_element('watches', {enter=true}) end },
+  { 'Breakpoints', function() dapui.float_element('breakpoints', {enter=true}) end },
+  { 'Threads', function() widgets.cursor_float(widgets.threads) end },
+  { 'Frames', function() widgets.cursor_float(widgets.frames) end },
+}
+
+vim.keymap.set('n', '<leader>dh', function()
+  vim.ui.select(dapMenu, {
+    prompt = 'Select Debugger Window:',
+    format_item = function(item) 
+      return item[1]
+    end,
+  }, function(choice)
+    if not choice then
+      return
+    end
+    choice[2]()
+  end)
+end, {silent = true})
+
+function showExtraMenu()
+  vim.ui.select(dapMenuExtra, {
+    prompt = 'Select Debugger Window:',
+    format_item = function(item) 
+      return item[1]
+    end,
+  }, function(choice)
+    if not choice then
+      return
+    end
+    choice[2]()
+  end)
+end
 
 local codelldb_command = '/usr/bin/codelldb'
 dap.adapters.codelldb = function(on_adapter)
