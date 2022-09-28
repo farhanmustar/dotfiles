@@ -71,6 +71,8 @@ vnoremap <Leader>cc y:%s/<C-r>"/<C-r>"
 " Allow you to easily search the current word.
 nnoremap <Leader>ff /\<<C-r><C-w>\><CR>
 vnoremap <Leader>ff y/<C-r>"<CR>
+nnoremap <Leader>fF ?\<<C-r><C-w>\><CR>
+vnoremap <Leader>fF y?<C-r>"<CR>
 
 " Diff shortcuts
 noremap <silent> <leader>df :call <SID>diffToggle()<CR>
@@ -304,3 +306,4 @@ endfunction
 nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
 nnoremap <Leader>? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
 nnoremap <Leader>f/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>
+nnoremap <Leader>f? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>
