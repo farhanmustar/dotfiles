@@ -1,4 +1,5 @@
 inoremap <C-f> <C-r>=<SID>clipboard_completion()<CR>
+inoremap <C-e> <C-r>=<SID>register_completion()<CR>
 
 let g:clipboard_limit = get(g:, 'clipboard_limit', 10)
 let g:clipboard_menu_len = get(g:, 'clipboard_menu_len', 40)
@@ -9,6 +10,10 @@ function! s:clipboard_completion() abort
   return ''
 endfunction
 
+function! s:register_completion() abort
+  call complete(col('.'), s:get_register_completion())
+  return ''
+endfunction
 
 function! s:on_yank() abort
   call s:save_stack(getreg('0'))
@@ -56,6 +61,35 @@ function! s:get_stack_completion() abort
     \)
   endfor
   return reverse(options)
+endfunction
+
+function! s:get_register_completion() abort
+  let options = []
+
+  let i = 1
+  while i < 10
+    let c = getreg(i)
+    let abr = trim(c)
+    if abr == ''
+      let i += 1
+      continue
+    endif
+    if len(abr) > g:clipboard_menu_len
+      let abr = abr[:g:clipboard_menu_len-3].'...'
+    endif
+    call add(options,
+    \ {
+    \   'menu': '[cb]',
+    \   'word': '',
+    \   'abbr': abr,
+    \   'info': "|".substitute(c, "\n", "\n|", 'g'),
+    \   'dup': 1,
+    \   'empty': 1,
+    \ },
+    \)
+    let i += 1
+  endwhile
+  return options
 endfunction
 
 function! CB_can_expand() abort
