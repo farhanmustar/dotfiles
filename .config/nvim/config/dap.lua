@@ -55,19 +55,33 @@ vim.keymap.set('n', '<leader>da', function()
 end, {silent = true})
 vim.keymap.set('n', '<leader>dk', widgets.hover, {silent = true})
 
+local dapMenuExtra = {
+  { 'Watches', function() dapui.float_element('watches', {enter=true}) end },
+  { 'Breakpoints', function() dapui.float_element('breakpoints', {enter=true}) end },
+  { 'Threads', function() widgets.cursor_float(widgets.threads) end },
+  { 'Frames', function() widgets.cursor_float(widgets.frames) end },
+}
+
+function showExtraMenu()
+  vim.ui.select(dapMenuExtra, {
+    prompt = 'Select Debugger Window:',
+    format_item = function(item) 
+      return item[1]
+    end,
+  }, function(choice)
+    if not choice then
+      return
+    end
+    choice[2]()
+  end)
+end
+
 local dapMenu = {
   { 'Scopes', function() dapui.float_element('scopes', {enter=true}) end },
   { 'Console', function() dapui.float_element('console', {enter=true}) end },
   { 'Repl', function() dapui.float_element('repl', {enter=true}) end },
   { 'Stacks', function() dapui.float_element('stacks', {enter=true}) end },
   { 'More', showExtraMenu },
-}
-
-local dapMenuExtra = {
-  { 'Watches', function() dapui.float_element('watches', {enter=true}) end },
-  { 'Breakpoints', function() dapui.float_element('breakpoints', {enter=true}) end },
-  { 'Threads', function() widgets.cursor_float(widgets.threads) end },
-  { 'Frames', function() widgets.cursor_float(widgets.frames) end },
 }
 
 vim.keymap.set('n', '<leader>dh', function()
@@ -83,20 +97,6 @@ vim.keymap.set('n', '<leader>dh', function()
     choice[2]()
   end)
 end, {silent = true})
-
-function showExtraMenu()
-  vim.ui.select(dapMenuExtra, {
-    prompt = 'Select Debugger Window:',
-    format_item = function(item) 
-      return item[1]
-    end,
-  }, function(choice)
-    if not choice then
-      return
-    end
-    choice[2]()
-  end)
-end
 
 local codelldb_command = '/usr/bin/codelldb'
 dap.adapters.codelldb = function(on_adapter)
