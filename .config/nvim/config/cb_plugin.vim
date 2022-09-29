@@ -1,12 +1,14 @@
 inoremap <C-f> <C-r>=<SID>clipboard_completion()<CR>
 
 let g:clipboard_limit = get(g:, 'clipboard_limit', 10)
+let g:clipboard_menu_len = get(g:, 'clipboard_menu_len', 40)
 let s:clipboard_stack = get(s:, 'clipboard_stack', [])
 
 function! s:clipboard_completion() abort
   call complete(col('.'), s:get_stack_completion())
   return ''
 endfunction
+
 
 function! s:on_yank() abort
   call s:save_stack(getreg('0'))
@@ -39,8 +41,8 @@ function! s:get_stack_completion() abort
   let options = []
   for c in s:clipboard_stack
     let abr = trim(c)
-    if len(abr) > 20
-      let abr = abr[:20-3].'...'
+    if len(abr) > g:clipboard_menu_len
+      let abr = abr[:g:clipboard_menu_len-3].'...'
     endif
     call add(options,
     \ {
