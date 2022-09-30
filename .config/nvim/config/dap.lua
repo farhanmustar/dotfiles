@@ -9,7 +9,36 @@ local dap = require('dap')
 local dapui = require("dapui")
 local widgets = require('dap.ui.widgets')
 
-dapui.setup()
+dapui.setup({
+  layouts = {
+    {
+      elements = {
+      -- Elements can be strings or table with id and size keys.
+        { id = "scopes", size = 0.25 },
+        "breakpoints",
+        "stacks",
+        "watches",
+      },
+      size = 40, -- 40 columns
+      position = "left",
+    },
+    {
+      elements = {
+        "repl",
+        "console",
+      },
+      size = 0.25, -- 25% of total lines
+      position = "bottom",
+    },
+    {
+      elements = {
+        "console",
+      },
+      size = 0.5, -- 25% of total lines
+      position = "right",
+    },
+  },
+})
 require("nvim-dap-virtual-text").setup()
 
 -- python config
@@ -49,6 +78,7 @@ vim.keymap.set('n', '<leader>do', dap.step_out, {silent = true})
 vim.keymap.set('n', '<leader>du', dap.run_to_cursor, {silent = true})
 vim.keymap.set('n', '<leader>ds', dap.terminate, {silent = true})
 vim.keymap.set('n', '<leader>dv', function() dapui.toggle({reset = true}) end, {silent = true})
+vim.keymap.set('n', '<leader>db', function() dapui.toggle({reset = true, layout = 3}) end, {silent = true})
 vim.keymap.set('n', '<leader>da', function()
   require('dap.ext.vscode').load_launchjs()
   print('launch.json loaded')
@@ -77,8 +107,9 @@ function showExtraMenu()
 end
 
 local dapMenu = {
-  { 'Scopes', function() dapui.float_element('scopes', {enter=true}) end },
   { 'Console', function() dapui.float_element('console', {enter=true}) end },
+  { 'Scopes', function() dapui.float_element('scopes', {enter=true}) end },
+  { 'Console Fullscreen', function() dapui.float_element('console', {enter=true, width=vim.opt.columns:get(), height=vim.opt.lines:get()}) end },
   { 'Repl', function() dapui.float_element('repl', {enter=true}) end },
   { 'Stacks', function() dapui.float_element('stacks', {enter=true}) end },
   { 'More', showExtraMenu },
