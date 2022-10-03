@@ -77,7 +77,19 @@ vim.keymap.set('n', '<leader>di', dap.step_into, {silent = true})
 vim.keymap.set('n', '<leader>do', dap.step_out, {silent = true})
 vim.keymap.set('n', '<leader>du', dap.run_to_cursor, {silent = true})
 vim.keymap.set('n', '<leader>ds', dap.terminate, {silent = true})
-vim.keymap.set('n', '<leader>dv', function() dapui.toggle({reset = true}) end, {silent = true})
+local isOpen = false
+vim.keymap.set('n', '<leader>dv', function()
+  print(isOpen)
+  if not isOpen then
+    dapui.open({reset = true, layout = 1})
+    dapui.open({reset = true, layout = 2})
+    isOpen = true
+  else
+    dapui.close({layout = 1})
+    dapui.close({layout = 2})
+    isOpen = false
+  end
+end, {silent = true})
 vim.keymap.set('n', '<leader>db', function() dapui.toggle({reset = true, layout = 3}) end, {silent = true})
 vim.keymap.set('n', '<leader>da', function()
   require('dap.ext.vscode').load_launchjs()
