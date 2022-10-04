@@ -259,6 +259,14 @@ table.insert(dap.configurations.python, {
   cwd = '${workspaceFolder}',
   args = function()
     local args_string = vim.fn.input('Arguments: ')
+    table.insert(dap.configurations.python, {
+      name = "Python debug runtests ("..args_string..")",
+      type = 'python',
+      request = 'launch',
+      program = '${workspaceFolder}/runtests.py',
+      cwd = '${workspaceFolder}',
+      args = vim.split(args_string, " +")
+    })
     return vim.split(args_string, " +")
   end;
 })
