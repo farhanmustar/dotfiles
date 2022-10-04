@@ -37,6 +37,13 @@ dapui.setup({
       size = 0.5, -- 25% of total lines
       position = "right",
     },
+    {
+      elements = {
+        "repl",
+      },
+      size = 0.5, -- 25% of total lines
+      position = "right",
+    },
   },
 })
 require("nvim-dap-virtual-text").setup()
@@ -91,6 +98,7 @@ vim.keymap.set('n', '<leader>dv', function()
   end
 end, {silent = true})
 vim.keymap.set('n', '<leader>db', function() dapui.toggle({reset = true, layout = 3}) end, {silent = true})
+vim.keymap.set('n', '<leader>dr', function() dapui.toggle({reset = true, layout = 4}) end, {silent = true})
 vim.keymap.set('n', '<leader>da', function()
   require('dap.ext.vscode').load_launchjs()
   print('launch.json loaded')
@@ -249,4 +257,8 @@ table.insert(dap.configurations.python, {
   request = 'launch',
   program = '${workspaceFolder}/runtests.py',
   cwd = '${workspaceFolder}',
+  args = function()
+    local args_string = vim.fn.input('Arguments: ')
+    return vim.split(args_string, " +")
+  end;
 })
