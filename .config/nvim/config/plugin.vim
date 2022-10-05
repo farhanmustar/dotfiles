@@ -78,7 +78,9 @@ command! S botright split | Startify
 command! Sv vertical botright split | Startify
 command! St tabnew | Startify
 " by default st is for :stop cmd which is so anoying.
-cnoreabbrev st St
+" this actually suspend the process and can be resume by executing "fg"
+" so we can remove this curse, yay!
+" cnoreabbrev st St
 
 " easymotion config
 let g:EasyMotion_do_mapping = 0
