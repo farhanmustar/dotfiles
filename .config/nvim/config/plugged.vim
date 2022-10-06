@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'L3MON4D3/LuaSnip'
+Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'dhruvasagar/vim-table-mode'
