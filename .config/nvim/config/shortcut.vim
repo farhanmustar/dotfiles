@@ -14,6 +14,9 @@ silent! nunmap <C-A>
 silent! iunmap <C-A>
 silent! xunmap <C-A>
 
+" Unmap CTRL-A(cut) to its original add to number
+silent! vunmap <C-x>
+
 " Tab Shortcut
 " Open new tab remap
 nnoremap <silent> <C-w>t :tab sbuffer % \| doautocmd BufEnter<CR>
@@ -122,6 +125,14 @@ nnoremap <silent> ]Q :clast<CR>
 command! -nargs=0 Creload silent call setqflist(map(getqflist(), 'extend(v:val, {"text":get(getbufline(v:val.bufnr, v:val.lnum),0,"(buf not load)")})'))
 command! -nargs=0 Cbufopen silent cfdo p
 
+function! s:RemoveQFItem() range
+  let win_state = winsaveview()
+  let qfall = getqflist()
+  call remove(qfall, a:firstline - 1, a:lastline - 1)
+  call setqflist(qfall)
+  call winrestview(win_state)
+endfunction
+
 augroup quickfix
   autocmd!
   autocmd Filetype qf nnoremap <buffer> <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
@@ -129,6 +140,8 @@ augroup quickfix
   autocmd Filetype qf nnoremap <buffer> <silent> < :colder<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> > :cnewer<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> r :Creload<CR>
+  autocmd Filetype qf nnoremap <buffer> <silent> dd :call <SID>RemoveQFItem()<CR>
+  autocmd Filetype qf vnoremap <buffer> <silent> d :call <SID>RemoveQFItem()<CR>
 
   " Auto open quickfix window
   autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!
