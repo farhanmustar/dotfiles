@@ -105,6 +105,9 @@ command! -bang -nargs=+ -range=0 -complete=file Run
 		\ call <SID>run('<bang>', '', <q-args>, <count>, <line1>, <line2>)
 command! -bar -bang -nargs=0 RunStop call asyncrun#stop('<bang>')
 command! -bar -bang -nargs=0 RunAgain call <SID>rerun()
+" TODO: add compiler option after the command or auto mapping based on buffer filetype..?. investigate if this good feature.
+" NOTE: for python we use compiler plugin to add quickfix error format helper.
+" run the following command to enable the plugin ':compiler! python'
 function! <SID>run(a, b, c, d, e, f)
   let s:run_func = {
   \ 'a': a:a,
