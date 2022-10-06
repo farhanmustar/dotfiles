@@ -133,12 +133,24 @@ function! s:RemoveQFItem() range
   call winrestview(win_state)
 endfunction
 
+function! s:OlderQF() range
+  let win_state = winsaveview()
+  colder
+  call winrestview(win_state)
+endfunction
+
+function! s:NewerQF() range
+  let win_state = winsaveview()
+  cnewer
+  call winrestview(win_state)
+endfunction
+
 augroup quickfix
   autocmd!
   autocmd Filetype qf nnoremap <buffer> <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
   autocmd Filetype qf nnoremap <buffer> <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
-  autocmd Filetype qf nnoremap <buffer> <silent> < :colder<CR>
-  autocmd Filetype qf nnoremap <buffer> <silent> > :cnewer<CR>
+  autocmd Filetype qf nnoremap <buffer> <silent> < :call <SID>OlderQF()<CR>
+  autocmd Filetype qf nnoremap <buffer> <silent> > :call <SID>NewerQF()<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> r :Creload<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> dd :call <SID>RemoveQFItem()<CR>
   autocmd Filetype qf vnoremap <buffer> <silent> d :call <SID>RemoveQFItem()<CR>
