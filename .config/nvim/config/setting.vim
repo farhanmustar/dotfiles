@@ -43,8 +43,8 @@ set complete-=t
 set encoding=utf-8
 set nohlsearch
 
-" Use tree view for netrw directory browsing
-let g:netrw_liststyle=3
+" Disable netrw plugin
+let g:loaded_netrwPlugin=1
 
 " Enable build-in plugin
 packadd cfilter
