@@ -26,7 +26,7 @@ return {
     { key = 'F2', mods = 'LEADER', action = wezterm.action.SpawnTab('CurrentPaneDomain') },
     { key = 'F3', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(-1) },
     { key = 'F4', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(1) },
-    { key = 'p', mods = 'LEADER', action = wezterm.action.PasteFrom('PrimarySelection') },
+    { key = 'p', mods = 'LEADER', action = wezterm.action.PasteFrom('Clipboard') },
     { key = 'm', mods = 'LEADER', action = wezterm.action.ToggleFullScreen },
     { key = 'Enter', mods = 'ALT', action = wezterm.action.ToggleFullScreen },
   },

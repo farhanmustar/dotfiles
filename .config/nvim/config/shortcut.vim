@@ -233,6 +233,8 @@ command! -nargs=0 Refresh silent execute 'do Syntax'
 " system clipboard integration
 if exists('$TMUX')
   nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
+elseif has('unix')
+  nnoremap <silent> <leader>yt :let @+=@0<CR> :echo "Copy to + register"<CR>
 else
   nnoremap <silent> <leader>yt :let @*=@0<CR> :echo "Copy to * register"<CR>
   inoremap <C-q>p <C-r>*
