@@ -41,6 +41,8 @@
 
   precommit = diff --cached --diff-algorithm=minimal -w
 
+  please = push --force-with-lease
+
 [merge]
   tool = vimdiff
   conflictstyle = diff3
