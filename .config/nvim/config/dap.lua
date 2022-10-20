@@ -269,6 +269,10 @@ table.insert(dap.configurations.python, {
   cwd = '${workspaceFolder}',
   args = function()
     local args_string = vim.fn.input('Arguments: ')
+    if args_string == nil or args_string == '' then
+      print('dap cancelled.')
+      return
+    end
     table.insert(dap.configurations.python, {
       name = "Python debug runtests ("..args_string..")",
       type = 'python',
