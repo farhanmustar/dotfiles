@@ -20,6 +20,8 @@ PPA for neovim
 ```bash
 sudo add-apt-repository ppa:neovim-ppa/unstable -yu
 sudo apt-get install neovim -y
+sudo update-alternatives --install $(which vim) vim $(which nvim) 50
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
 ```
 
 PPA for universal-ctags
