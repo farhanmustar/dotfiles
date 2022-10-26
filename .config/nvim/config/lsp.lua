@@ -118,8 +118,11 @@ local jshint = {
   filetypes = {'javascript',},
   generator = null_ls.generator({
     dynamic_command = function(params)
-      if vim.b.null_ls_js_jshintrc ~= nil then
-        return {'jshint', '--config', vim.b.null_ls_js_jshintrc}
+      if params.bufname:startswith('fugitive') then
+        return nil
+      end
+      if vim.b.null_ls_js_jshint ~= nil then
+        return vim.b.null_ls_js_jshint
       end
       local mod = ':p:h'
       local path = vim.fn.fnamemodify(params.bufname, mod)
@@ -128,8 +131,8 @@ local jshint = {
       while path ~= root and max > 0 do
         local jshintrc = path..'/.jshintrc'
         if vim.fn.glob(jshintrc) ~= '' then
-          vim.b.null_ls_js_jshintrc = jshintrc
-          return {'jshint', '--config', jshintrc}
+          vim.b.null_ls_js_jshint = {'jshint', '--config', jshintrc}
+          return vim.b.null_ls_js_jshint
         end
         mod = mod..':h'
         local old_path = path
@@ -139,7 +142,8 @@ local jshint = {
         end
         max = max - 1
       end
-      return 'jshint'
+      vim.b.null_ls_js_jshint = 'jshint'
+      return vim.b.null_ls_js_jshint
     end,
     args = {'$FILENAME'},
     to_stdin = false,

@@ -1,3 +1,8 @@
+-- string extensions
+function string.startswith(String,Start)
+  return string.sub(String,1,string.len(Start))==Start
+end
+
 -- Util function to print "table type" content
 -- Example: :lua print_table(require('dap').configurations)
 function print_table(node)
