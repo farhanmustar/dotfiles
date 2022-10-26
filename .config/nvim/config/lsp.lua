@@ -124,14 +124,20 @@ local jshint = {
       local mod = ':p:h'
       local path = vim.fn.fnamemodify(params.bufname, mod)
       local root = plenary_path.path.root(path)
-      while path ~= root do
+      local max = 100
+      while path ~= root and max > 0 do
         local jshintrc = path..'/.jshintrc'
         if vim.fn.glob(jshintrc) ~= '' then
           vim.b.null_ls_js_jshintrc = jshintrc
           return {'jshint', '--config', jshintrc}
         end
         mod = mod..':h'
+        local old_path = path
         path = vim.fn.fnamemodify(params.bufname, mod)
+        if old_path == path then
+          break
+        end
+        max = max - 1
       end
       return 'jshint'
     end,
