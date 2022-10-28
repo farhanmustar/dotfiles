@@ -43,3 +43,16 @@ require('nvim-treesitter.configs').setup({
     },
   },
 })
+
+vim.o.fillchars     = "fold: "
+vim.o.foldmethod = "expr"
+vim.o.foldlevel     = 99
+vim.o.foldexpr    = 'nvim_treesitter#foldexpr()'
+vim.o.foldtext    = [[
+substitute(getline(v:foldstart),'\\\\t',repeat('\\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)'
+]]
+
+vim.keymap.set('n', '>', 'zo', {silent = true})
+vim.keymap.set('n', '<', 'zc', {silent = true})
+vim.keymap.set('n', '<leader>>', 'zO', {silent = true})
+vim.keymap.set('n', '<leader><', 'zC', {silent = true})
