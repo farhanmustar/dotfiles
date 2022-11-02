@@ -72,7 +72,7 @@ require('gitsigns').setup({
 })
 vim.keymap.set('n', 'gj', '<Cmd>Gitsigns next_hunk<CR>')
 vim.keymap.set('n', 'gk', '<Cmd>Gitsigns prev_hunk<CR>')
-vim.keymap.set('n', 'gp', '<Cmd>Gitsigns preview_hunk<CR>')
+vim.keymap.set('n', 'gp', '<Cmd>Gitsigns preview_hunk<CR><Cmd>Gitsigns preview_hunk<CR>')
 
 -- dressing config
 require('dressing').setup({
