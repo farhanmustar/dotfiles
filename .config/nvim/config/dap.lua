@@ -105,7 +105,7 @@ vim.keymap.set('n', '<leader>da', function()
   require('dap.ext.vscode').load_launchjs()
   print('launch.json loaded')
 end, {silent = true})
-vim.keymap.set('n', '<leader>dk', widgets.hover, {silent = true})
+vim.keymap.set('n', '<leader>dk', function() dapui.eval(nil, {enter = true}) end, {silent = true})
 
 local dapMenuExtra = {
   { 'Watches', function() dapui.float_element('watches', {enter=true}) end },
@@ -267,6 +267,7 @@ table.insert(dap.configurations.python, {
   request = 'launch',
   program = '${workspaceFolder}/runtests.py',
   cwd = '${workspaceFolder}',
+  -- justMyCode = false,
   args = function()
     local args_string = vim.fn.input('Arguments: ')
     if args_string == nil or args_string == '' then
@@ -279,6 +280,7 @@ table.insert(dap.configurations.python, {
       request = 'launch',
       program = '${workspaceFolder}/runtests.py',
       cwd = '${workspaceFolder}',
+      -- justMyCode = false,
       args = vim.split(args_string, " +")
     })
     return vim.split(args_string, " +")
