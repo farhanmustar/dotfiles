@@ -56,3 +56,16 @@ vim.keymap.set('n', '>', 'zo', {silent = true})
 vim.keymap.set('n', '<', 'zc', {silent = true})
 vim.keymap.set('n', '<leader>>', 'zO', {silent = true})
 vim.keymap.set('n', '<leader><', 'zC', {silent = true})
+
+-- ssr config
+require("ssr").setup({
+  min_width = 50,
+  min_height = 5,
+  keymaps = {
+    close = "q",
+    next_match = "n",
+    prev_match = "N",
+    replace_all = "<leader><cr>",
+  },
+})
+vim.keymap.set({ "n", "x" }, "<leader>rs", function() require("ssr").open() end)
