@@ -134,6 +134,7 @@ local dapMenu = {
   { 'Console Fullscreen', function() dapui.float_element('console', {enter=true, width=vim.opt.columns:get(), height=vim.opt.lines:get()}) end },
   { 'Repl', function() dapui.float_element('repl', {enter=true}) end },
   { 'Stacks', function() dapui.float_element('stacks', {enter=true}) end },
+  { 'Alt Hover', widgets.hover},
   { 'More', showExtraMenu },
 }
 
