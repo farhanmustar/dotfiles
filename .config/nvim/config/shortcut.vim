@@ -196,6 +196,11 @@ command! -nargs=+ FG silent execute "vimgrep /".<q-args>."/j %"
 nnoremap <silent> <Leader>fg :FG <C-r><C-w><CR>
 vnoremap <silent> <Leader>fg y:FG <C-r>"<CR>
 
+" grep in current path
+command! -nargs=+ GP silent execute "grep! -ri '".<q-args>."' %:p:h/*"
+nnoremap <silent> <Leader>gp :GP <C-r><C-w><CR>
+vnoremap <silent> <Leader>gp y:GP <C-r>"<CR>
+
 " copy current buffer filename
 nnoremap <silent> yn :call CopyFileName() \| echo "Copy Filename!"<CR>
 nnoremap <silent> yN :call CopyFileName(':p') \| echo "Copy Filepath!"<CR>
