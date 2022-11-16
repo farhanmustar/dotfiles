@@ -117,6 +117,7 @@ function! <SID>run(a, b, c, d, e, f)
   \ 'e': a:e,
   \ 'f': a:f,
   \}
+  call <SID>updateCompiler()
   call asyncrun#run(a:a, a:b, a:c, a:d, a:e, a:f)
 endfunction
 function! <SID>rerun()
@@ -124,8 +125,17 @@ function! <SID>rerun()
     echom 'No previous run cmd.'
     return
   endif
+  call <SID>updateCompiler()
   let p = s:run_func
   call asyncrun#run(p['a'], p['b'], p['c'], p['d'], p['e'], p['f'])
+endfunction
+function! <SID>updateCompiler()
+  " to ensure error highlight correctly
+  if &filetype == 'python'
+    compiler! python
+  elseif &filetype == 'cpp'
+    compiler! gcc
+  endif
 endfunction
 nnoremap <silent> <leader>bb :RunAgain<CR>
 
