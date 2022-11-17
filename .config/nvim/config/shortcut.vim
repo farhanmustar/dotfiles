@@ -239,6 +239,27 @@ command! -nargs=0 Refresh silent execute 'do Syntax'
 if exists('$TMUX')
   nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
 elseif has('unix')
+
+  if !exists('s:wsl')
+    let n = system('uname -a')
+    let s:wsl = stridx(n, 'microsoft') >= 0
+  endif
+  " refer help wsl
+  if s:wsl && !exists('g:clipboard')
+    let g:clipboard = {
+    \   'name': 'WslClipboard',
+    \   'copy': {
+    \     '+': 'clip',
+    \     '*': 'clip',
+    \   },
+    \   'paste': {
+    \     '+': 'powershell -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    \     '*': 'powershell -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    \   },
+    \   'cache_enabled': 0,
+    \ }
+  endif
+
   nnoremap <silent> <leader>yt :let @+=@0<CR> :echo "Copy to + register"<CR>
 else
   nnoremap <silent> <leader>yt :let @*=@0<CR> :echo "Copy to * register"<CR>

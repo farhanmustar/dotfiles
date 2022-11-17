@@ -18,3 +18,6 @@ alias vimg='vim -c GV -c "silent! G" -c "silent! tabonly"'
 alias catkin_make_compile_commands='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias watchexec='f(){ watch -n1 "watch -t -g ls --full-time \"$1\" >/dev/null && $2"; unset -f f;}; f'
 alias ssh-agent-start='eval "$(ssh-agent)"'
+
+# windows (wsl) specific
+alias pwsh='powershell -Command'
