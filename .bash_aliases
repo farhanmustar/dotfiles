@@ -1,3 +1,17 @@
+ssh-agent-start() {
+  if [[ -z "$SSH_AGENT_PID" ]]; then
+      if [[ $(pgrep ssh-agent) ]]; then
+          export SSH_AGENT_PID=$(pgrep ssh-agent)
+          echo "Found existing ssh-agent PID, SSH_AGENT_PID=${SSH_AGENT_PID}"
+      else
+        echo "Starting fresh ssh agent"
+        eval `ssh-agent`
+      fi
+  else
+    echo "Existing ssh-agent PID, SSH_AGENT_PID=${SSH_AGENT_PID}"
+  fi
+}
+
 shopt -s expand_aliases
 alias ls='ls --color=auto'
 alias sl='ls'
@@ -17,7 +31,6 @@ alias ssh='ssh -X -A'
 alias vimg='vim -c GV -c "silent! G" -c "silent! tabonly"'
 alias catkin_make_compile_commands='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias watchexec='f(){ watch -n1 "watch -t -g ls --full-time \"$1\" >/dev/null && $2"; unset -f f;}; f'
-alias ssh-agent-start='eval "$(ssh-agent)"'
 
 # windows (wsl) specific
 alias pwsh='powershell -Command'
