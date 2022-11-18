@@ -236,10 +236,7 @@ endfunction
 command! -nargs=0 Refresh silent execute 'do Syntax'
 
 " system clipboard integration
-if exists('$TMUX')
-  nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
-elseif has('unix')
-
+if has('unix')
   if !exists('s:wsl')
     let n = system('uname -a')
     let s:wsl = stridx(n, 'microsoft') >= 0
@@ -259,7 +256,11 @@ elseif has('unix')
     \   'cache_enabled': 0,
     \ }
   endif
+endif
 
+if exists('$TMUX')
+  nnoremap <silent> <leader>yt :call system("tmux load-buffer -", @0)<CR> :echo "Copy to tmux"<CR>
+elseif has('unix')
   nnoremap <silent> <leader>yt :let @+=@0<CR> :echo "Copy to + register"<CR>
 else
   nnoremap <silent> <leader>yt :let @*=@0<CR> :echo "Copy to * register"<CR>
