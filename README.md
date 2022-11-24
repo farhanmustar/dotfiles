@@ -27,13 +27,13 @@ sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
 PPA for universal-ctags
 ```bash
 sudo add-apt-repository ppa:hnakamur/universal-ctags -yu
-sudo apt-get install universal-ctags
+sudo apt-get install universal-ctags -y
 ```
 
 PPA for ripgrep
 ```bash
 sudo add-apt-repository ppa:x4121/ripgrep -yu
-sudo apt-get install ripgrep
+sudo apt-get install ripgrep -y
 ```
 
 ## Vim-Ale linter list

@@ -6,8 +6,12 @@ mkdir ~/.config
 ln -sT $SCRIPTPATH/.bash_aliases ~/.bash_aliases
 ln -sT $SCRIPTPATH/.config/nvim/ ~/.config/nvim
 ln -sT $SCRIPTPATH/.gitconfig ~/.gitconfig
-ln -sT $SCRIPTPATH/.byobu/ ~/.byobu
 ln -sT $SCRIPTPATH/.gitignore_global ~/.gitignore_global
+
+read -p "Setup byobu? (y/n) : " yn
+if [ "$yn" = "y" ]; then
+  rm -rf ~/.byobu && ln -sT $SCRIPTPATH/.byobu/ ~/.byobu
+fi
 
 read -p "Install neovim? (y/n) : " yn
 if [ "$yn" = "y" ]; then
