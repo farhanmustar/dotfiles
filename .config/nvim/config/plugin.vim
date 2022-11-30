@@ -138,6 +138,7 @@ function! <SID>updateCompiler()
   endif
 endfunction
 nnoremap <silent> <leader>bb :RunAgain<CR>
+nnoremap <silent> <leader>bs :RunStop<CR>
 
 " float_preview config
 let g:float_preview#docked = 0

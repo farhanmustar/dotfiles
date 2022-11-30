@@ -20,7 +20,8 @@ endfunction
 let g:mucomplete#enable_auto_at_startup = 1  " comment to disable auto suggestion
 let g:mucomplete#chains = {}
 let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
-call s:EnableOmniComplete()
+" call s:EnableOmniComplete()
+call s:DisableOmniComplete()
 
 augroup completion
   autocmd!

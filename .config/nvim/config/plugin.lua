@@ -25,10 +25,12 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local aerial = require('aerial')
 aerial.setup({
   backends = { "treesitter" },
-  default_bindings = false,
-  width = 60,
-  min_width = 60,
-  max_width = 60,
+  keymaps = {},
+  layout = {
+    width = 60,
+    min_width = 60,
+    max_width = 60,
+  },
   icons = {
     Method = ' ƒ',
     Function = ' ƒ',

@@ -52,9 +52,10 @@ local refactoring = null_ls.builtins.code_actions.refactoring
 null_ls.register(refactoring)
 
 -- Python
-require('lspconfig').pyright.setup({
-  on_attach = on_attach,
-})
+
+-- require('lspconfig').pyright.setup({
+--   on_attach = on_attach,
+-- })
 
 local flake8 = null_ls.builtins.diagnostics.flake8.with({
   -- extra_args = {'--max-line-length=199', '--ignore=W504,E128'}, -- more strict mode
