@@ -5,8 +5,11 @@ if not ok then
 end
 
 require('nvim-treesitter.configs').setup({
+  yati = {
+    enable = true,
+  },
   indent = {
-    enable = true
+    enable = false,
   },
   highlight = {
     enable = true,
