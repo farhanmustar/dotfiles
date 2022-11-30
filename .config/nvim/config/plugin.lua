@@ -9,6 +9,10 @@ require("scrollbar").setup({
   marks = {
     Search = { color = '#1d2021'},
   },
+  handlers = {
+    cursor = false,
+    search = true,
+  },
 })
 
 require("scrollbar.handlers.search").setup({
