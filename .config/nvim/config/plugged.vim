@@ -12,7 +12,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ellisonleao/gruvbox.nvim', { 'tag': '0.1.0' }
 Plug 'farhanmustar/gv.vim'
 Plug 'farhanmustar/nvim-scrollbar'
-Plug 'farhanmustar/vim-ctrlspace', { 'branch': 'resize-issue-nvim-treesitter-context' }
 Plug 'fidian/hexmode'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'junegunn/vim-easy-align'
@@ -58,6 +57,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'uga-rosa/ccc.nvim'
+Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'yioneko/nvim-yati'
 
 " Plug 'dart-lang/dart-vim-plugin'
