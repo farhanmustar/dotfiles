@@ -135,12 +135,21 @@ endfunction
 
 function! s:OlderQF() range
   let win_state = winsaveview()
+  let cur_qf = getqflist({'nr' : 0}).nr
+  if cur_qf <= 1
+    return
+  endif
   colder
   call winrestview(win_state)
 endfunction
 
 function! s:NewerQF() range
   let win_state = winsaveview()
+  let cur_qf = getqflist({'nr' : 0}).nr
+  let num_qf = getqflist({'nr' : '$'}).nr
+  if cur_qf >= num_qf
+    return
+  endif
   cnewer
   call winrestview(win_state)
 endfunction
@@ -361,3 +370,6 @@ nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
 nnoremap <Leader>? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
 nnoremap <Leader>f/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>
 nnoremap <Leader>f? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>
+
+" Shortcut to close all popup
+command! -nargs=0 CloseAllPopup silent execute "lua for _, win in ipairs(vim.api.nvim_list_wins()) do local config = vim.api.nvim_win_get_config(win); if config.relative ~= '' then vim.api.nvim_win_close(win, false); print('Closing window', win) end end"
