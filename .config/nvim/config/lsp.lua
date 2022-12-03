@@ -189,7 +189,7 @@ local cpplint = {
   filetypes = {'c', 'cpp', 'h',},
   generator = null_ls.generator({
     command = 'cpplint',
-    args = { '--filter=-legal/copyright,-readability/todo,-readability/casting,-whitespace/braces,-whitespace/newline,whitespace/comments,readability/multiline_comment', '-' },
+    args = { '--filter=-legal/copyright,-readability/todo,-readability/casting,-whitespace/braces,-whitespace/newline,-whitespace/comments,-readability/multiline_comment', '-' },
     to_stdin = true,
     from_stderr = true,
     format = 'line',
