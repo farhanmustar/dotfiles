@@ -73,6 +73,7 @@ require('gitsigns').setup({
     topdelete    = {hl = '', text = '', numhl = 'GitSignsDeleteNr', culnumhl = 'GitSignsDeleteCLNr' },
     changedelete = {hl = '', text = '', numhl = 'GitSignsChangeNr', culnumhl = 'GitSignsChangeCLNr' },
   },
+  signcolumn = false,
   numhl = true,
   -- base  = 'HEAD',  -- use :Gitsigns change_base HEAD -> to display all including staged
 })
