@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'AndrewRadev/linediff.vim'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/refactoring.nvim'
