@@ -51,10 +51,10 @@ function aerial_map()
   vim.keymap.set('n', '<CR>', function() aerial.select({jump=false}) end, {buffer = true})
   vim.keymap.set('n', 'o', aerial.select, {buffer = true})
   vim.keymap.set('n', '<2-LeftMouse>', aerial.select, {buffer = true})
-  vim.keymap.set('n', 'zR', '<cmd>AerialTreeOpenAll<CR>', {buffer = true})
-  vim.keymap.set('n', 'zM', '<cmd>AerialTreeCloseAll<CR>', {buffer = true})
-  vim.keymap.set('n', '>', '<cmd>AerialTreeOpen<CR>', {buffer = true})
-  vim.keymap.set('n', '<', '<cmd>AerialTreeClose<CR>', {buffer = true})
+  vim.keymap.set('n', 'zR', aerial.tree_open_all, {buffer = true})
+  vim.keymap.set('n', 'zM', aerial.tree_close_all, {buffer = true})
+  vim.keymap.set('n', '>', aerial.tree_open, {buffer = true})
+  vim.keymap.set('n', '<', aerial.tree_close, {buffer = true})
 end
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "aerial",
