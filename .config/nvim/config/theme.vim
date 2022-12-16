@@ -34,6 +34,7 @@ function! s:ModifyColorScheme()
   highlight link TSFunction      GruvboxAqua
   highlight link TSMethod        GruvboxAqua
   highlight link TSInclude       GruvboxAquaDark
+  highlight link Function        TSFunction
 endfunction
 augroup modifycolorscheme
   autocmd!
