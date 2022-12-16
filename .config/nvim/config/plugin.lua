@@ -102,5 +102,20 @@ vim.keymap.set('n', '<leader>hh', require("harpoon.ui").toggle_quick_menu)
 vim.keymap.set('n', '<leader>hm', require("harpoon.mark").add_file)
 
 -- nvim-tree config
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+  view = {
+    mappings = {
+      custom_only = true,
+      list = {
+        { key = "<CR>", action = "preview" },
+        { key = "o", action = "edit" },
+        { key = "O", action = "tabnew" },
+        { key = "s", action = "split" },
+        { key = "V", action = "vsplit" },
+        { key = "I", action = "cd" },
+        { key = ".", action = "run_file_command" },
+      },
+    },
+  },
+})
 vim.keymap.set('n', '<leader>ft', function() require("nvim-tree.api").tree.toggle(true, true, vim.fn.expand('%:p:h')) end)
