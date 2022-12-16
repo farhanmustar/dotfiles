@@ -8,7 +8,7 @@ set cursorline
 let g:gruvbox_contrast_dark='hard'
 
 function! s:ModifyColorScheme()
-  highlight Normal                guibg=#1c1c1c
+  highlight Normal                guibg=NONE
   highlight IncSearch             term=reverse  cterm=reverse    ctermfg=208 ctermbg=234   gui=reverse   guifg=#fe8019 guibg=#1d2021
   highlight CursorLine            ctermbg=235   guibg=#262626
   highlight CursorLineNR          ctermbg=235   guibg=#262626
