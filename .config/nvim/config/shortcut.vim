@@ -122,8 +122,16 @@ nnoremap <silent> [Q :cfirst<CR>
 nnoremap <silent> ]Q :clast<CR>
 
 " Quickfix custom command
-command! -nargs=0 Creload silent call setqflist(map(getqflist(), 'extend(v:val, {"text":get(getbufline(v:val.bufnr, v:val.lnum),0,"(buf not load)")})'))
+command! -nargs=0 Creload silent call <SID>ReloadQFItem()
 command! -nargs=0 Cbufopen silent cfdo p
+
+function! s:ReloadQFItem() range
+  let win_state = winsaveview()
+
+  call setqflist(map(getqflist(), 'extend(v:val, {"text":get(getbufline(v:val.bufnr, v:val.lnum),0,"(buf not load)")})'))
+
+  call winrestview(win_state)
+endfunction
 
 function! s:RemoveQFItem() range
   let win_state = winsaveview()
