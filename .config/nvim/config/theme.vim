@@ -31,10 +31,8 @@ function! s:ModifyColorScheme()
   highlight GitSignsChangeCLNr    guifg=#668fd1 guibg=#262626
   highlight GitSignsDeleteCLNr    guifg=#fb4934 guibg=#262626
   highlight link CtrlSpaceSearch IncSearch
-  highlight link TSFunction      GruvboxAqua
-  highlight link TSMethod        GruvboxAqua
-  highlight link TSInclude       GruvboxAquaDark
-  highlight link Function        TSFunction
+  highlight link Include         GruvboxAquaDark
+  highlight link Function        GruvboxAqua
 endfunction
 augroup modifycolorscheme
   autocmd!

@@ -10,7 +10,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'djoshea/vim-autoread'
 Plug 'eandrju/cellular-automaton.nvim'
 Plug 'easymotion/vim-easymotion'
-Plug 'ellisonleao/gruvbox.nvim', { 'tag': '0.1.0' }
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'farhanmustar/gv.vim'
 Plug 'farhanmustar/nvim-scrollbar'
 Plug 'fidian/hexmode'
