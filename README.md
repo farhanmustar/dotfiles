@@ -138,6 +138,13 @@ dart compile exe ./bin/dart_ctags.dart
 go install golang.org/x/tools/gopls@latest
 ```
 
+### Terminal Apps
+* tldr
+```bash
+sudo apt install tldr
+tldr -u
+```
+
 ### Things to explore
 Push x11 session over vnc (mirror exisiting display).
 ```bash

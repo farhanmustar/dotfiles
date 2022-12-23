@@ -52,3 +52,9 @@ packadd cfilter
 
 " Highlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank()
+
+" Auto close terminal buffer if no error.
+augroup terminalbehaviour
+  autocmd!
+  autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
+augroup END

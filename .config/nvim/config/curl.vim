@@ -8,33 +8,26 @@ endif
 " Weather forcast
 " Exp:
 " :Weather johor
-command! -nargs=* Weather silent execute '!curl -s "wttr.in/<args>"'| echo ' ' | echo ' ' | execute '!' | redraw!
+command! -nargs=* Weather silent execute 'tabnew | term curl -s "wttr.in/<args>" && exit 1'
 
 " QRcode
 " Exp:
 " :QREncode message in qr
-command! -nargs=+ QREncode silent execute '!curl -s "qrenco.de/<args>"' | echo ' ' | echo ' ' | execute '!' | redraw!
+command! -nargs=+ QREncode silent execute 'tabnew | term curl -s "qrenco.de/<args>" && exit 1'
 
 " Gif
 " Exp:
 " :Gif noooo
-command! -nargs=+ Gif silent execute '!curl -s "e.xec.sh/<args>"' | redraw!
-command! GifMagic silent execute '!curl -s "e.xec.sh/spongebobrainbowmagic"' | redraw!
-command! GifStarwarsMovie silent execute '!curl -s "https://asciitv.fr"' | redraw!
-
-" Covid
-" Exp:
-" :Covid
-" :Covid malaysia
-command! -nargs=? Covid silent execute '!curl -s -L covid19.trackercli.com/<args>' | echo ' ' | echo ' ' | execute '!' | redraw!
+command! -nargs=+ Gif silent execute 'tabnew | term curl -s "gif.xyzzy.run/<args>"'
+command! GifMagic silent execute 'tabnew | term curl -s "gif.xyzzy.run/spongebobrainbowmagic"'
 
 " Dictionary search
 " Exp:
 " :Dictionary food
 " :Dictionary food:all
 " :Dictionary food:fd-eng-afr
-command! -nargs=+ Dictionary silent execute '!curl dict.org/d:<args>' | echo ' ' | echo ' ' | execute '!' | redraw!
-command! DictionaryList silent execute '!curl dict://dict.org/show:db' | echo ' ' | echo ' ' | execute '!' | redraw!
+command! -nargs=+ Dictionary silent execute 'tabnew | term curl -s dict.org/d:<args> && exit 1'
+command! DictionaryList silent execute 'tabnew | term curl -s dict://dict.org/show:db && exit 1'
 
 " Waktu Solat
 " API from https://e-solat.gov.my
@@ -61,7 +54,6 @@ function! WaktuSolatGet (zon) abort
   let asr = split(data['prayerTime']['0']['asr'], ':')
   let maghrib = split(data['prayerTime']['0']['maghrib'], ':')
   let isha = split(data['prayerTime']['0']['isha'], ':')
-  echo ' '.(imsak[1] > '20')
 
   echo ' '
   echo ' '
@@ -88,17 +80,3 @@ function! s:FormatTime(time) abort
 
   return h.':'.m.' '.p
 endfunction
-
-" function! WaktuSolatGetZone () abort
-"   let response = system('curl -s -L "api.azanpro.com/zone/grouped.json"')
-"   let data = json_decode(response)
-"   echo ' '
-"   echo ' '
-"   echo 'Senarai Zon'
-"   echo ' '
-"   for entry in data['results']
-"     echo entry['zone'].'    '.entry['negeri'].'    '.entry['lokasi']
-"   endfor
-"   echo ' '
-"   echo ' '
-" endfunction
