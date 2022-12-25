@@ -5,11 +5,12 @@ if not ok then
 end
 
 local cmp = require('cmp')
+local ls = require('luasnip')
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      ls.lsp_expand(args.body)
     end,
   },
   window = {
@@ -22,18 +23,24 @@ cmp.setup({
           if cmp.visible() then
             cmp.select_next_item()
             return
-          end
-          fallback()
-        end
-      , { 'i', 'c' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
+          elseif ls.jumpable(1) then
+            ls.jump(1)
             return
           end
           fallback()
         end
-      , { 'i', 'c' }),
+      , { 'i' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+            return
+          elseif ls.jumpable(0) then
+            ls.jump(-1)
+            return
+          end
+          fallback()
+        end
+      , { 'i' }),
   }),
   sources = cmp.config.sources({
     { name = 'path' },
@@ -45,15 +52,10 @@ cmp.setup({
   })
 })
 
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    -- { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    { name = 'buffer' },
-  }, {
-    { name = 'buffer' },
-  })
-})
+vim.keymap.set('s', '<Tab>', function() ls.jump(1) end)
+vim.keymap.set('x', '<Tab>', function() ls.jump(1) end)
+vim.keymap.set('s', '<S-Tab>', function() ls.jump(-1) end)
+vim.keymap.set('x', '<S-Tab>', function() ls.jump(-1) end)
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
@@ -63,12 +65,9 @@ cmp.setup.cmdline({ '/', '?' }, {
   }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = {
+    { name = 'buffer' }
+  }
 })
