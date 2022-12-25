@@ -18,7 +18,20 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    ['<CR>'] = cmp.mapping(function(fallback)
+          if cmp.visible() and (cmp.get_selected_entry() ~= nil or vim.api.nvim_eval('v:completed_item')) then
+            cmp.confirm()
+            return
+          elseif cmp.visible() then
+            cmp.close()
+            return
+          end
+          fallback()
+        end, { 'i' }),
+    ['<Esc>'] = cmp.mapping(function(fallback)
+          ls.unlink_current()
+          fallback()
+        end, { 'i' }),
     ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -28,8 +41,7 @@ cmp.setup({
             return
           end
           fallback()
-        end
-      , { 'i' }),
+        end, { 'i' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -39,16 +51,29 @@ cmp.setup({
             return
           end
           fallback()
-        end
-      , { 'i' }),
+        end, { 'i' }),
   }),
   sources = cmp.config.sources({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'buffer' },
+    { 
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
   }, {
-    { name = 'buffer' },
+    { 
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
   })
 })
 
@@ -57,17 +82,46 @@ vim.keymap.set('x', '<Tab>', function() ls.jump(1) end)
 vim.keymap.set('s', '<S-Tab>', function() ls.jump(-1) end)
 vim.keymap.set('x', '<S-Tab>', function() ls.jump(-1) end)
 
+vim.cmd([[
+  snoremap <plug>MyEsc <Esc>
+  function! MyEscAction()
+    silent LuaSnipUnlinkCurrent
+    return "\<plug>MyEsc"
+  endfunction
+  smap <expr> <silent> <Esc> MyEscAction()
+  xnoremap <plug>MyEsc <Esc>
+  function! MyEscAction()
+    silent LuaSnipUnlinkCurrent
+    return "\<plug>MyEsc"
+  endfunction
+  xmap <expr> <silent> <Esc> MyEscAction()
+]])
+
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
+    { 
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
   }
 })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = {
-    { name = 'buffer' }
+    { 
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
   }
 })
