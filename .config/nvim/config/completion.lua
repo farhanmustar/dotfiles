@@ -19,10 +19,13 @@ cmp.setup({
   },
   mapping = cmp.mapping.preset.insert({
     ['<CR>'] = cmp.mapping(function(fallback)
-          if cmp.visible() and (cmp.get_selected_entry() ~= nil or vim.api.nvim_eval('v:completed_item')) then
+          if cmp.visible() and cmp.get_selected_entry() ~= nil then
             cmp.confirm()
             return
-          elseif cmp.visible() then
+          elseif vim.fn.pumvisible() == 1 and vim.fn.CB_can_expand() == 1 then
+            vim.fn.CB_expand()
+            return
+          elseif cmp.visible() then 
             cmp.close()
             return
           end
