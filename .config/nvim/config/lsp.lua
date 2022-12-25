@@ -59,7 +59,7 @@ null_ls.register(refactoring)
 
 local flake8 = null_ls.builtins.diagnostics.flake8.with({
   -- extra_args = {'--max-line-length=199', '--ignore=W504,E128'}, -- more strict mode
-  extra_args = {'--max-line-length=199', '--ignore=W606,W605,W504,E128,F841,E731'},
+  extra_args = {'--max-line-length=199', '--ignore=W606,W605,W504,E128,F841,E731,E741'},
 })
 local autopep8 = null_ls.builtins.formatting.autopep8.with({
   extra_args = {'-aa', '--max-line-length=199', '--ignore=E128,E722'},
