@@ -118,7 +118,7 @@ require('dressing').setup({
   select = {
     enabled = true,
     -- backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
-    backend = { 'builtin' },
+    backend = { 'telescope', 'builtin' },
     builtin = {
       relative = 'cursor',
     },
