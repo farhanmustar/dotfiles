@@ -26,7 +26,7 @@ function! s:ModifyColorScheme()
   highlight GitSignsAddCLNr       guifg=#b8bb26 guibg=#262626
   highlight GitSignsChangeCLNr    guifg=#668fd1 guibg=#262626
   highlight GitSignsDeleteCLNr    guifg=#fb4934 guibg=#262626
-  highlight Variable              guifg=#bed1d9
+  highlight Variable              guifg=#507481
   highlight! link IncSearch       Search
   highlight link Include         GruvboxAquaDark
   highlight link Function        GruvboxAqua
