@@ -77,9 +77,13 @@ endfunction
 imap <plug>(MyBwd) <plug>(MUcompleteBwd)
 imap <expr> <silent> <S-tab> MySTabAction()
 
-inoremap <plug>MyEsc <Esc>
 function! MyEscAction()
   silent LuaSnipUnlinkCurrent
   return "\<plug>MyEsc"
 endfunction
+inoremap <plug>MyEsc <Esc>
 imap <expr> <silent> <Esc> MyEscAction()
+xnoremap <plug>MyEsc <Esc>
+xmap <expr> <silent> <Esc> MyEscAction()
+snoremap <plug>MyEsc <Esc>
+smap <expr> <silent> <Esc> MyEscAction()
