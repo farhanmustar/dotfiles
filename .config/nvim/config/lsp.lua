@@ -51,6 +51,13 @@ vim.diagnostic.config({
 local refactoring = null_ls.builtins.code_actions.refactoring
 null_ls.register(refactoring)
 
+-- Html
+
+local tidy_diagnostic = null_ls.builtins.diagnostics.tidy 
+local tidy_formatter = null_ls.builtins.formatting.tidy 
+null_ls.register(tidy_diagnostic)
+null_ls.register(tidy_formatter)
+
 -- Python
 
 -- require('lspconfig').pyright.setup({
