@@ -230,6 +230,9 @@ endfunction
 nnoremap <silent> <leader>yp :copy.<CR>
 vnoremap <silent> <leader>yp :copy'><CR>
 
+" yank and put cursor at the end of selection
+vnoremap <silent> <leader>yy y`]
+
 " copy paste buffer using bufnr
 nnoremap <silent> <C-w>y :call CopyBuffer()<CR>
 nnoremap <silent> <C-w>p :call PasteBuffer()<CR>
