@@ -15,6 +15,10 @@ nnoremap <silent> <leader>rt :CtrlSpaceTabLabel<CR> \| :redrawtabline<CR>
 noremap <silent> ɀ :CtrlSpace<CR>
 noremap <silent> <C-space> :CtrlSpace<CR>
 
+if has('termux')
+  let g:CtrlSpaceFileEngine = "file_engine_termux"
+endif
+
 " vim-over config
 let g:over#command_line#substitute#replace_pattern_visually = 1
 nnoremap <silent> <Leader>oo :OverCommandLine %s/<CR>
