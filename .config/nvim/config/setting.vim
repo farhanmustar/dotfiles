@@ -43,6 +43,8 @@ set complete-=t
 " Force encoding (windows default to latin)
 set encoding=utf-8
 set nohlsearch
+" Treat - as part of word.
+set iskeyword+=-
 
 " Disable netrw plugin
 let g:loaded_netrwPlugin=1
