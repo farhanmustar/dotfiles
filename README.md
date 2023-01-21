@@ -138,6 +138,12 @@ dart compile exe ./bin/dart_ctags.dart
 go install golang.org/x/tools/gopls@latest
 ```
 
+### Lua
+* luacheck linter
+```bash
+sudo apt install lua-check
+```
+
 ### Terminal Apps
 * tldr
 ```bash

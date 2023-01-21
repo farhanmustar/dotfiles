@@ -58,6 +58,10 @@ local tidy_formatter = null_ls.builtins.formatting.tidy
 null_ls.register(tidy_diagnostic)
 null_ls.register(tidy_formatter)
 
+-- Lua
+local luacheck = null_ls.builtins.diagnostics.luacheck
+null_ls.register(luacheck)
+
 -- Python
 
 -- require('lspconfig').pyright.setup({
