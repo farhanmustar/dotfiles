@@ -4,6 +4,8 @@ if not ok then
   return
 end
 
+local M = {}
+
 -- scrollbar config
 require("scrollbar").setup({
   marks = {
@@ -47,7 +49,7 @@ aerial.setup({
   }
 })
 local aerial_map_group = vim.api.nvim_create_augroup("aerialmap", { clear = true })
-function aerial_map()
+M.aerial_map = function ()
   vim.keymap.set('n', '<CR>', function() aerial.select({jump=false}) end, {buffer = true})
   vim.keymap.set('n', 'o', aerial.select, {buffer = true})
   vim.keymap.set('n', '<2-LeftMouse>', aerial.select, {buffer = true})
@@ -58,7 +60,7 @@ function aerial_map()
 end
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "aerial",
-  callback = aerial_map,
+  callback = M.aerial_map,
   group = aerial_map_group,
 })
 vim.keymap.set('n', '<leader>sr', '<Cmd>AerialToggle!<CR>')
@@ -118,7 +120,9 @@ require("nvim-tree").setup({
     },
   },
 })
-vim.keymap.set('n', '<leader>ft', function() require("nvim-tree.api").tree.toggle(true, true, vim.fn.expand('%:p:h')) end)
+vim.keymap.set('n', '<leader>ft', function()
+  require("nvim-tree.api").tree.toggle(true, true, vim.fn.expand('%:p:h'))
+end)
 
 -- rest.nvim config
 require("rest-nvim").setup({
@@ -158,27 +162,13 @@ require("rest-nvim").setup({
   yank_dry_run = true,
 })
 local rest_map_group = vim.api.nvim_create_augroup("restMap", { clear = true })
-function rest_map()
+M.rest_map = function ()
   vim.keymap.set('n', '<leader>bu', '<Plug>RestNvim', {buffer = true})
   vim.keymap.set('n', '<leader>bp', '<Plug>RestNvimPreview', {buffer = true})
   vim.keymap.set('n', '<leader>bb', '<Plug>RestNvimLast', {buffer = true})
 end
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "http",
-  callback = rest_map,
+  callback = M.rest_map,
   group = rest_map_group,
 })
-
--- treesj config
-local tsj = require('treesj')
-tsj.setup({
-  use_default_keymaps = false,
-  check_syntax_error = true,
-  max_join_length = 1200,
-  cursor_behavior = 'hold',
-  notify = true,
-  langs = {
-  },
-})
-vim.keymap.set('n', '<leader>sj', tsj.split)
-vim.keymap.set('n', '<leader>sk', tsj.join)

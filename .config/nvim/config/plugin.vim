@@ -153,3 +153,6 @@ silent! call camelcasemotion#CreateMotionMappings(',')
 " cs.vim config
 nmap <leader>cs <Plug>(CS-Promp)
 vmap <leader>cs <Plug>(CS-Promp)
+
+" vim-fuzzysearch config
+nnoremap <Leader>/ :FuzzySearch<CR>

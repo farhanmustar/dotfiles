@@ -72,3 +72,17 @@ require("ssr").setup({
   },
 })
 vim.keymap.set({ "n", "x" }, "<leader>rs", function() require("ssr").open() end)
+
+-- treesj config
+local tsj = require('treesj')
+tsj.setup({
+  use_default_keymaps = false,
+  check_syntax_error = true,
+  max_join_length = 1200,
+  cursor_behavior = 'hold',
+  notify = true,
+  langs = {
+  },
+})
+vim.keymap.set('n', '<leader>sj', tsj.split)
+vim.keymap.set('n', '<leader>sk', tsj.join)

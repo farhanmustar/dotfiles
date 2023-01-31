@@ -379,13 +379,21 @@ function! s:CachedVisualRangeSearchTerm()
         endif
     endif
 endfunction
-nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
-nnoremap <Leader>? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
-nnoremap <Leader>f/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>
-nnoremap <Leader>f? ?\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>
+nnoremap <Leader>f/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
+nnoremap <Leader>fs /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l\<<C-r><C-w>\><CR>
 
 " Shortcut to close all popup
 command! -nargs=0 CloseAllPopup silent execute "lua for _, win in ipairs(vim.api.nvim_list_wins()) do local config = vim.api.nvim_win_get_config(win); if config.relative ~= '' then vim.api.nvim_win_close(win, false); print('Closing window', win) end end"
+
+" Shortcut change tab width
+command! -nargs=1 SetTab silent call <SID>SetTab(<args>)
+
+function! s:SetTab(w) abort
+  execute 'setlocal tabstop='.a:w
+  execute 'setlocal shiftwidth='.a:w
+  setlocal expandtab
+  setlocal smarttab
+endfunction
 
 command! TabDuplicate silent call <SID>TabDuplicate()
 function! s:TabDuplicate() abort
