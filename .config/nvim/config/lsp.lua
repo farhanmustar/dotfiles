@@ -102,7 +102,7 @@ local roslint_pep8 = {
   filetypes = {'python',},
   generator = null_ls.generator({
     command = 'rosrun',
-    args = {'roslint', 'pep8', '-'},
+    args = {'roslint', 'pep8', '--max-line-length=199', '--ignore=E128', '-'},
     to_stdin = true,
     format = 'line',
 		check_exit_code = function(code, stderr)

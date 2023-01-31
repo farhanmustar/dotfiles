@@ -20,3 +20,12 @@ augroup rosfiletype
   autocmd!
   autocmd BufRead,BufNewFile *.launch setfiletype xml
 augroup END
+
+" python filetype
+augroup pythonfiletype
+  autocmd!
+  autocmd BufEnter *.py setlocal tabstop=4
+  autocmd BufEnter *.py setlocal shiftwidth=4
+  autocmd BufEnter *.py setlocal expandtab
+  autocmd BufEnter *.py setlocal smarttab
+augroup END
