@@ -21,3 +21,4 @@ alias ssh-start-agent='eval $(keychain --eval ~/.ssh/<your_key>)'
 
 # windows (wsl) specific
 alias pwsh='powershell -Command'
+complete -W "get-vm start-vm pause-vm suspend-vm resume-vm choco sudo" pwsh
