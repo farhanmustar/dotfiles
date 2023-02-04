@@ -52,6 +52,23 @@ _pwsh()
         resume-vm)
           COMPREPLY=($(compgen -W "$(_get_vm_status paused)" -- ${cur}))
           ;;
+        sudo)
+          COMPREPLY=($(compgen -W "choco" -- ${cur}))
+          ;;
+        choco)
+          COMPREPLY=($(compgen -W "search find info" -- ${cur}))
+          ;;
+      esac
+      ;;
+    3)
+      case ${COMP_WORDS[1]} in
+        sudo)
+          case ${prev} in
+            choco)
+              COMPREPLY=($(compgen -W "search find info install uninstall upgrade" -- ${cur}))
+              ;;
+          esac
+          ;;
       esac
       ;;
     *)
