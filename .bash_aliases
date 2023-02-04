@@ -21,4 +21,43 @@ alias ssh-start-agent='eval $(keychain --eval ~/.ssh/<your_key>)'
 
 # windows (wsl) specific
 alias pwsh='powershell -Command'
-complete -W "get-vm start-vm pause-vm suspend-vm resume-vm choco sudo" pwsh
+
+_get_vm_status()
+{
+  echo "$(pwsh get-vm \| where-object\{\$_.state -eq \"$1\"\} \| select-object -expand name | tr -d "\r")"
+}
+
+_pwsh()
+{
+  local cur prev
+
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev=${COMP_WORDS[COMP_CWORD-1]}
+
+  case ${COMP_CWORD} in
+    1)
+      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm resume-vm choco sudo" -- ${cur}))
+      ;;
+    2)
+      case ${prev} in
+        start-vm)
+          COMPREPLY=($(compgen -W "$(_get_vm_status off)" -- ${cur}))
+          ;;
+        stop-vm)
+          COMPREPLY=($(compgen -W "$(_get_vm_status running)" -- ${cur}))
+          ;;
+        suspend-vm)
+          COMPREPLY=($(compgen -W "$(_get_vm_status running)" -- ${cur}))
+          ;;
+        resume-vm)
+          COMPREPLY=($(compgen -W "$(_get_vm_status paused)" -- ${cur}))
+          ;;
+      esac
+      ;;
+    *)
+      COMPREPLY=()
+      ;;
+  esac
+}
+
+complete -F _pwsh pwsh
