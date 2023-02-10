@@ -34,7 +34,9 @@ command! DictionaryList silent execute 'tabnew | term curl -s dict://dict.org/sh
 let s:WaktuSolatDefaultZone = 'SGR01'
 let s:WaktuSolatZoneList = ['JHR02', 'SGR01', 'NGS03']
 function <SID>WaktuSolatComplete(A,L,P)
-    return get(s:, 'WaktuSolatZoneList', [])
+    let l = copy(get(s:, 'WaktuSolatZoneList', []))
+    call filter(l, 'v:val =~ "^'.a:A.'"')
+    return l
 endfun
 command! -nargs=? -complete=customlist,<SID>WaktuSolatComplete WaktuSolat call WaktuSolatGet(<q-args>)
 " command! WaktuSolatZon call WaktuSolatGetZone()
