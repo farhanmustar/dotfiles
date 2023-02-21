@@ -2,14 +2,35 @@
 let g:textobj_diff_no_default_key_mappings = 1
 augroup difffttextobj
   autocmd!
-  autocmd FileType diff,git xmap <buffer> gj <Plug>(textobj-diff-hunk-n)
-  autocmd FileType diff,git omap <buffer> gj <Plug>(textobj-diff-hunk-n)
-  autocmd FileType diff,git nmap <buffer> gj <Plug>(textobj-diff-hunk-n)
-  autocmd FileType diff,git xmap <buffer> gk <Plug>(textobj-diff-hunk-p)
-  autocmd FileType diff,git omap <buffer> gk <Plug>(textobj-diff-hunk-p)
-  autocmd FileType diff,git nmap <buffer> gk <Plug>(textobj-diff-hunk-p)
+  autocmd FileType diff,git call <SID>difftextobjMap()
 augroup END
 
+function! s:difftextobjMap()
+  xmap <buffer> gj <Plug>(textobj-diff-hunk-n)
+  omap <buffer> gj <Plug>(textobj-diff-hunk-n)
+  nmap <buffer> gj <Plug>(textobj-diff-hunk-n)
+  xmap <buffer> gk <Plug>(textobj-diff-hunk-p)
+  omap <buffer> gk <Plug>(textobj-diff-hunk-p)
+  nmap <buffer> gk <Plug>(textobj-diff-hunk-p)
+  xmap <buffer> gJ <Plug>(textobj-diff-file-n)
+  omap <buffer> gJ <Plug>(textobj-diff-file-n)
+  nmap <buffer> gJ <Plug>(textobj-diff-file-n)
+  xmap <buffer> gK <Plug>(textobj-diff-file-p)
+  omap <buffer> gK <Plug>(textobj-diff-file-p)
+  nmap <buffer> gK <Plug>(textobj-diff-file-p)
+endfunction
+
+augroup fugitivetextobj
+  autocmd!
+  autocmd FileType fugitive call <SID>fugitivetextobjMap()
+augroup END
+
+function! s:fugitivetextobjMap()
+  nmap <buffer> gj ]c
+  nmap <buffer> gk [c
+  nmap <buffer> gJ ]m
+  nmap <buffer> gK [m
+endfunction
 
 call textobj#user#plugin('customdiff', {
 \   'diffchanges': {
