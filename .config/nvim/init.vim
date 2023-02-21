@@ -10,6 +10,7 @@ source ~/.config/nvim/config/plugin.lua
 source ~/.config/nvim/config/plugin.vim
 source ~/.config/nvim/config/luasnipcomp.lua
 source ~/.config/nvim/config/shortcut.vim
+source ~/.config/nvim/config/textobject.vim
 source ~/.config/nvim/config/note.vim
 source ~/.config/nvim/config/curl.vim
 source ~/.config/nvim/config/treesitter.lua
