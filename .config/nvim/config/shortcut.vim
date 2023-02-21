@@ -44,6 +44,10 @@ noremap gV `[v`]
 vnoremap < <gv
 vnoremap > >gv
 
+" remove single character or add single space shortcut
+vnoremap <leader>< :s/^.//<CR>gv
+vnoremap <leader>> :s/^/ /<CR>gv
+
 " move text in visual mode
 vnoremap <silent> K :<C-u>call MoveSelectionUp(v:count1)<CR>
 vnoremap <silent> J :<C-u>call MoveSelectionDown(v:count1)<CR>
