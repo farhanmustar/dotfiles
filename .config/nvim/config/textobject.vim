@@ -91,5 +91,5 @@ function! s:difftextobj()
   normal! $
   let tail_pos = getpos('.')
 
-  return ['v', head_pos, tail_pos]
+  return ['V', head_pos, tail_pos]
 endfunction
