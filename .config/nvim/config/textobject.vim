@@ -46,13 +46,13 @@ function! s:difftextobj()
 	let end = line('$')
 	let cur = line('.')
 
-	let mInside = getbufline('%', cur)->match('^[+-]') != -1
+	let mInside = getbufline('%', cur)->match('^+') != -1
 	let cur = cur + 1
   let start = 0
 
   " find tail_pos
 	while cur <= end
-		let curMatched = getbufline('%', cur)->match('^[+-]') != -1
+		let curMatched = getbufline('%', cur)->match('^+') != -1
     if !mInside && curMatched
       let start = cur
       let mInside = 1
@@ -74,7 +74,7 @@ function! s:difftextobj()
   if !start
     let cur = line('.') - 1
     while cur > 0
-      let curMatched = getbufline('%', cur)->match('^[+-]')!= -1
+      let curMatched = getbufline('%', cur)->match('^+')!= -1
       if !curMatched
         break
       endif
