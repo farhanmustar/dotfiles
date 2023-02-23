@@ -45,20 +45,7 @@ endfunction
 function! s:get_stack_completion() abort
   let options = []
   for c in s:clipboard_stack
-    let abr = trim(c)
-    if len(abr) > g:clipboard_menu_len
-      let abr = abr[:g:clipboard_menu_len-3].'...'
-    endif
-    call add(options,
-    \ {
-    \   'menu': '[cb]',
-    \   'word': '',
-    \   'abbr': abr,
-    \   'info': "|".substitute(c, "\n", "\n|", 'g'),
-    \   'dup': 1,
-    \   'empty': 1,
-    \ },
-    \)
+    call s:add_options(options, c)
   endfor
   return reverse(options)
 endfunction
@@ -66,30 +53,36 @@ endfunction
 function! s:get_register_completion() abort
   let options = []
 
+  let c = getreg('"')
+  call s:add_options(options, c)
+
   let i = 1
   while i < 10
     let c = getreg(i)
-    let abr = trim(c)
-    if abr == ''
-      let i += 1
-      continue
-    endif
-    if len(abr) > g:clipboard_menu_len
-      let abr = abr[:g:clipboard_menu_len-3].'...'
-    endif
-    call add(options,
-    \ {
-    \   'menu': '[cb]',
-    \   'word': '',
-    \   'abbr': abr,
-    \   'info': "|".substitute(c, "\n", "\n|", 'g'),
-    \   'dup': 1,
-    \   'empty': 1,
-    \ },
-    \)
+    call s:add_options(options, c)
     let i += 1
   endwhile
   return options
+endfunction
+
+function! s:add_options(options, t) abort
+  let abr = trim(a:t)
+  if abr == ''
+    return
+  endif
+  if len(abr) > g:clipboard_menu_len
+    let abr = abr[:g:clipboard_menu_len-3].'...'
+  endif
+  call add(a:options,
+  \ {
+  \   'menu': '[cb]',
+  \   'word': '',
+  \   'abbr': abr,
+  \   'info': "|".substitute(a:t, "\n", "\n|", 'g'),
+  \   'dup': 1,
+  \   'empty': 1,
+  \ },
+  \)
 endfunction
 
 function! CB_can_expand() abort
