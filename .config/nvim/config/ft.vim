@@ -21,6 +21,12 @@ augroup rosfiletype
   autocmd BufRead,BufNewFile *.launch setfiletype xml
 augroup END
 
+" git filetype config
+augroup gitfiletype
+  autocmd!
+  autocmd FileType git setlocal foldmethod=syntax
+augroup END
+
 " python filetype
 augroup pythonfiletype
   autocmd!
