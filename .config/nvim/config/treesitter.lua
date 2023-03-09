@@ -6,7 +6,10 @@ end
 
 require('nvim-treesitter.configs').setup({
   context_commentstring = {
-    enable = true
+    enable = true,
+    config = {
+      http = '# %s',
+    }
   },
   yati = {
     enable = true,
