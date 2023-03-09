@@ -110,6 +110,17 @@ pip install debugpy
   ln -sT <codelldb>/extension/adapter/codelldb /usr/bin/codelldb
   ```
 
+### Node
+<!-- debugger -->
+* node-debug2
+  * need to clone and build on the same path since nvim config use that path.
+  ```bash
+  git clone https://github.com/microsoft/vscode-node-debug2.git ~/.bin/vscode-node-debug2
+  cd ~/.bin/vscode-node-debug2
+  npm install
+  npm run build
+  ```
+
 ### Ros
 * [ale-roslint](https://github.com/farhanmustar/ale-roslint)
   * vimrc `Plugin 'farhanmustar/ale-roslint'`
