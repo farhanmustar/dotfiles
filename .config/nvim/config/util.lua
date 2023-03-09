@@ -3,6 +3,14 @@ function string.startswith(String,Start)
   return string.sub(String,1,string.len(Start))==Start
 end
 
+-- readfile
+function readfile(name)
+    local f = assert(io.open(name))
+    local content = f:read("*all")
+    f:close()
+    return content
+end
+
 -- Util function to print "table type" content
 -- Example: :lua print_table(require('dap').configurations)
 function print_table(node)

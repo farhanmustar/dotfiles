@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'AndrewRadev/linediff.vim'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'Julian/vim-textobj-brace'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'ThePrimeagen/harpoon'
@@ -67,6 +68,8 @@ Plug 'tpope/vim-surround'
 Plug 'uga-rosa/ccc.nvim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'yioneko/nvim-yati'
+
+Plug 'msva/lua-htmlparser', {'do':'ln -sT ./src lua'}
 
 " Plug 'dart-lang/dart-vim-plugin'
 " Plug 'erisian/rest_tools'

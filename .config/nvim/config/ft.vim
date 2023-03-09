@@ -35,3 +35,9 @@ augroup pythonfiletype
   autocmd BufEnter *.py setlocal expandtab
   autocmd BufEnter *.py setlocal smarttab
 augroup END
+
+" http filetype
+augroup httpfiletype
+  autocmd!
+  autocmd FileType http setlocal commentstring=#\ %s
+augroup END
