@@ -172,3 +172,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = M.rest_map,
   group = rest_map_group,
 })
+
+-- oil.nvim config
+require("oil").setup()
+vim.keymap.set("n", "-", require("oil").open)
