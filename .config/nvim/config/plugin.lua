@@ -176,3 +176,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- oil.nvim config
 require("oil").setup()
 vim.keymap.set("n", "-", require("oil").open)
+
+-- neoscroll config
+require('neoscroll').setup()

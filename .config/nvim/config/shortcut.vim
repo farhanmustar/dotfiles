@@ -110,14 +110,6 @@ endfunction
 nnoremap <silent> <Leader>pp "0p
 vnoremap <silent> <Leader>pp "0p
 
-" Smooth Scroll shortcuts
-noremap <silent> <C-y> :call smooth_scroll#up(3, 0, 3)<CR>
-noremap <silent> <C-e> :call smooth_scroll#down(3, 0, 3)<CR>
-noremap <silent> <C-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
-noremap <silent> <C-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
-noremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
-noremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
-
 " Remove trailing whitespaces
 noremap <silent> <leader>as :%s/\s\+$//e<CR>
 
