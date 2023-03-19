@@ -158,3 +158,6 @@ vmap <leader>cs <Plug>(CS-Promp)
 
 " vim-fuzzysearch config
 nnoremap <Leader>/ :FuzzySearch<CR>
+
+" cg.vim config
+let g:cg_api_key = getenv('OPENAPI_KEY')

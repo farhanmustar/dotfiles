@@ -81,6 +81,7 @@ endif
 
 if executable('curl')
   Plug 'farhanmustar/cs.vim'
+  Plug 'farhanmustar/cg.vim'
 endif
 
 if executable('ctags') " universal-ctags
