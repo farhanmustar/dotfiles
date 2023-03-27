@@ -9,6 +9,7 @@ require('nvim-treesitter.configs').setup({
     enable = true,
     config = {
       http = '# %s',
+      bash = '# %s',
     }
   },
   yati = {
