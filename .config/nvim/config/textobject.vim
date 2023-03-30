@@ -1,3 +1,8 @@
+let plugin_dir = expand('<sfile>:p:h') . '/../plugged/vim-textobj-user'
+if empty(glob(plugin_dir))
+  finish
+endif
+
 " diff text object
 let g:textobj_diff_no_default_key_mappings = 1
 augroup difffttextobj
