@@ -406,3 +406,6 @@ function! s:TabDuplicate() abort
   endtry
 endfunction
 cnoreabbrev tabduplicate TabDuplicate
+
+command! -nargs=0 DiagnosticDisable silent lua vim.diagnostic.disable(0, nil); vim.diagnostic.reset(nil, 0)
+command! -nargs=0 DiagnosticEnable silent lua vim.diagnostic.enable(0, nil)
