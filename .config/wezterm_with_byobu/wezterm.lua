@@ -1,7 +1,9 @@
 local wezterm = require('wezterm')
 
 return {
-  color_scheme = "Gruvbox Dark",
+  default_prog = { '/usr/bin/bash' },
+  -- default_prog = { 'wsl.exe', '--cd', '/home/devo' },
+  color_scheme = 'GruvboxDarkHard',
   window_background_opacity = 0.95,
   text_background_opacity = 0.7,
   tab_bar_at_bottom = true,
@@ -12,7 +14,6 @@ return {
   line_height = 1.4,
   font_size = 10.0,
   harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
-  default_prog = { '/usr/bin/bash' },
   use_ime = false,
   leader = { key = 'Q', mods = 'CTRL', timeout_milliseconds = 1000 },
   keys = {

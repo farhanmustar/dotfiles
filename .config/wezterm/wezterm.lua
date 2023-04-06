@@ -1,7 +1,8 @@
 local wezterm = require('wezterm')
 
 return {
-  color_scheme = "Gruvbox Dark",
+  default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' },
+  color_scheme = 'GruvboxDarkHard',
   window_background_opacity = 0.95,
   text_background_opacity = 0.7,
   tab_bar_at_bottom = true,
@@ -10,7 +11,6 @@ return {
   cell_width = 0.85,
   font_size = 9.0,
   harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
-  default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' },
   use_ime = false,
   leader = { key = 'Q', mods = 'CTRL', timeout_milliseconds = 1000 },
   keys = {
