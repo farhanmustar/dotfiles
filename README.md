@@ -130,6 +130,15 @@ pip install debugpy
 ```bash
 npm install -g typescript
 ```
+* chrome debugger client
+```bash
+git clone https://github.com/Microsoft/vscode-chrome-debug ~/.bin/vscode-chrome-debug
+cd ~/.bin/vscode-chrome-debug
+npm install
+npm run build
+# run chrome/chromium-browser in debug mode.
+google-chrome-stable --remote-debugging-port=9222
+```
 
 ### Dart
 * Tagbar support

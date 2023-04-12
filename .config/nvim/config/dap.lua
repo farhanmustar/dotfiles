@@ -102,7 +102,9 @@ end, {silent = true})
 vim.keymap.set('n', '<leader>db', function() dapui.toggle({reset = true, layout = 3}) end, {silent = true})
 vim.keymap.set('n', '<leader>dr', function() dapui.toggle({reset = true, layout = 4}) end, {silent = true})
 vim.keymap.set('n', '<leader>da', function()
-  require('dap.ext.vscode').load_launchjs()
+  require('dap.ext.vscode').load_launchjs(nil, {
+    chrome = {'javascript'},
+  })
   print('launch.json loaded')
 end, {silent = true})
 vim.keymap.set('n', '<leader>dk', function() dapui.eval(nil, {enter = true}) end, {silent = true})
@@ -293,6 +295,11 @@ dap.adapters.node2 = {
   command = 'node',
   args = {os.getenv('HOME') .. '/.bin/vscode-node-debug2/out/src/nodeDebug.js'},
 }
+dap.adapters.chrome = {
+  type = "executable",
+  command = "node",
+  args = {os.getenv("HOME") .. "/.bin/vscode-chrome-debug/out/src/chromeDebug.js"},
+}
 dap.configurations.javascript = {
   {
     name = 'Launch',
@@ -311,4 +318,16 @@ dap.configurations.javascript = {
     request = 'attach',
     processId = require('dap.utils').pick_process,
   },
+	{
+		-- For this to work you need to start chrome with `--remote-debugging-port=9222` flag.
+    name = 'Attach to chrome',
+		type = "chrome",
+		request = "attach",
+		program = "${file}",
+		cwd = vim.fn.getcwd(),
+		sourceMaps = true,
+		protocol = "inspector",
+		port = 9222,
+		webRoot = "${workspaceFolder}"
+	}
 }
