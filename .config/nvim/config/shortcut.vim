@@ -409,3 +409,19 @@ cnoreabbrev tabduplicate TabDuplicate
 
 command! -nargs=0 DiagnosticDisable silent lua vim.diagnostic.disable(0, nil); vim.diagnostic.reset(nil, 0)
 command! -nargs=0 DiagnosticEnable silent lua vim.diagnostic.enable(0, nil)
+
+" Shortcut split and join lines
+command! -nargs=1 -range Split silent call <SID>Split(<line1>, <line2>, <q-args>)
+function! s:Split(start, end, split) abort
+  let l:split = substitute(a:split, '%', '\\%', 'g')
+  execute a:start.",".a:end."s%".l:split."%\r%g"
+endfunction
+command! -nargs=1 -range Join silent call <SID>Join(<line1>, <line2>, <q-args>)
+function! s:Join(start, end, join) abort
+  if a:start == a:end
+    return
+  endif
+
+  let l:join = substitute(a:join, '%', '\\%', 'g')
+  execute a:start.",".a:end."s%\\n\\($\\)\\@!%".l:join."%g"
+endfunction
