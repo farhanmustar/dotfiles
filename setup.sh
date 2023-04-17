@@ -2,11 +2,15 @@
 
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-mkdir ~/.config
-ln -sT $SCRIPTPATH/.bash_aliases ~/.bash_aliases
-ln -sT $SCRIPTPATH/.config/nvim/ ~/.config/nvim
-ln -sT $SCRIPTPATH/.gitconfig ~/.gitconfig
-ln -sT $SCRIPTPATH/.gitignore_global ~/.gitignore_global
+read -p "Remove existing dotfiles and replace with link to repo? (y/n) : " yn
+if [ "$yn" = "y" ]; then
+  rm -rf ~/.bash_aliases
+  ln -sT $SCRIPTPATH/.bash_aliases ~/.bash_aliases
+  rm -rf ~/.gitconfig
+  ln -sT $SCRIPTPATH/.gitconfig ~/.gitconfig
+  rm -rf ~/.gitignore_global
+  ln -sT $SCRIPTPATH/.gitignore_global ~/.gitignore_global
+fi
 
 read -p "Setup byobu? (y/n) : " yn
 if [ "$yn" = "y" ]; then
@@ -15,8 +19,12 @@ fi
 
 read -p "Install neovim? (y/n) : " yn
 if [ "$yn" = "y" ]; then
+  mkdir ~/.config > /dev/null 2>&1
+  rm -rf ~/.config/nvim
+  ln -sT $SCRIPTPATH/.config/nvim/ ~/.config/nvim
   sudo add-apt-repository ppa:neovim-ppa/unstable -yu
   sudo apt-get install neovim -y
   sudo update-alternatives --install $(which vim) vim $(which nvim) 50
   sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
+  vim -c PlugInstall -c "qa"
 fi
