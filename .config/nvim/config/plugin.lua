@@ -179,3 +179,8 @@ vim.keymap.set("n", "-", require("oil").open)
 
 -- neoscroll config
 require('neoscroll').setup()
+
+-- edit-code-block config
+require('ecb').setup {
+  wincmd = 'tabnew',
+}
