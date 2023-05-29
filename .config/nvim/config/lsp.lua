@@ -25,10 +25,28 @@ end
 
 -- Configs
 vim.cmd([[
-augroup lspbehaviour
+function! s:EnableDiagnosticPopup() abort
+  augroup diagnosticpopbehaviour
+    autocmd!
+    autocmd CursorMoved,CursorHold * lua if vim.fn.mode() == "n" then vim.diagnostic.open_float({focus = false}) end
+  augroup END
+endfunction
+
+function! s:DisableDiagnosticPopup() abort
+  augroup diagnosticpopbehaviour
+    autocmd!
+  augroup END
+endfunction
+
+call s:EnableDiagnosticPopup()
+command! -nargs=0 DisableDiagnosticPopup silent call <SID>DisableDiagnosticPopup()
+command! -nargs=0 EnableDiagnosticPopup silent call <SID>EnableDiagnosticPopup()
+command! -nargs=0 DisableDiagnostic silent lua vim.diagnostic.disable(0, nil); vim.diagnostic.reset(nil, 0)
+command! -nargs=0 EnableDiagnostic silent lua vim.diagnostic.enable(0, nil)
+
+augroup diagnosticbehaviour
   autocmd!
   autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({open = false})
-  autocmd CursorMoved,CursorHold * lua if vim.fn.mode() == "n" then vim.diagnostic.open_float({focus = false}) end
 augroup END
 ]])
 vim.diagnostic.config({
