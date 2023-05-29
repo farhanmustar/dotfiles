@@ -163,4 +163,4 @@ nnoremap <Leader>/ :FuzzySearch<CR>
 let g:cg_api_key = getenv('OPENAPI_KEY')
 
 " linediff.vim config
-vnoremap gp :Linediff<CR>
+vnoremap <leader>df :Linediff<CR>
