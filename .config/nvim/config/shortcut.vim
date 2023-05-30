@@ -84,7 +84,7 @@ nnoremap <Leader>fF ?\<<C-r><C-w>\><CR>
 vnoremap <Leader>fF y?<C-r>"<CR>
 
 " Diff shortcuts
-noremap <silent> <leader>df :call <SID>diffToggle()<CR>
+nnoremap <silent> <leader>df :call <SID>diffToggle()<CR>
 function! <SID>diffToggle()
   if &diff
     diffoff!
