@@ -413,7 +413,7 @@ function! s:Split(start, end, split) abort
   let l:split = substitute(a:split, '%', '\\%', 'g')
   execute a:start.",".a:end."s%".l:split."%\r%g"
 endfunction
-command! -nargs=1 -range Join silent call <SID>Join(<line1>, <line2>, <q-args>)
+command! -nargs=? -range Join silent call <SID>Join(<line1>, <line2>, <q-args>)
 function! s:Join(start, end, join) abort
   if a:start == a:end
     return
