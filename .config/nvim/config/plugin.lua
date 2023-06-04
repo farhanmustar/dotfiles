@@ -184,3 +184,21 @@ require('neoscroll').setup()
 require('ecb').setup {
   wincmd = 'tabnew',
 }
+
+-- telescope configs
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-h>'] = 'which_key'
+      },
+      n = {
+        ['<C-h>'] = 'which_key',
+        ['v'] = 'file_vsplit',
+        ['O'] = 'file_tab',
+        ['o'] = 'file_split',
+      }
+    }
+  },
+}
+vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').git_files() end)
