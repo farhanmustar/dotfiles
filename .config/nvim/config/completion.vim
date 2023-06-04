@@ -87,3 +87,9 @@ xnoremap <plug>MyEsc <Esc>
 xmap <expr> <silent> <Esc> MyEscAction()
 snoremap <plug>MyEsc <Esc>
 smap <expr> <silent> <Esc> MyEscAction()
+
+" Mucomplete fix for telescope promp
+augroup mucompletefix
+  autocmd!
+  autocmd ModeChanged * if &ft == "TelescopePrompt" | MUcompleteAutoOff | else | MUcompleteAutoOn | endif
+augroup END
