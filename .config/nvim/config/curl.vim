@@ -29,7 +29,7 @@ command! -nargs=+ QREncode tabnew | call <SID>TempTerm('curl -s "qrenco.de/<args
 " Exp:
 " :Gif noooo
 command! -nargs=+ Gif silent execute 'tabnew | term curl -s "gif.xyzzy.run/<args>"'
-command! GifMagic silent execute 'tabnew | term curl -s "gif.xyzzy.run/spongebobrainbowmagic"'
+command! GifMagic silent execute 'tabnew | term curl -s "gif.xyzzy.run/spongebobmagical"'
 
 " Dictionary search
 " Exp:
