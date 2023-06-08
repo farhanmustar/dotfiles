@@ -5,6 +5,11 @@ endif
 " Refer this list for more...
 " https://github.com/chubin/awesome-console-services
 
+" Vim Tips
+" Exp:
+" :Vimtip
+command! -nargs=* Vimtip silent execute 'new | term curl -s "https://vtip.43z.one/" && exit 1'
+
 " Weather forcast
 " Exp:
 " :Weather johor
