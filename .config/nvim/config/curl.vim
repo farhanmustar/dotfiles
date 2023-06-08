@@ -5,20 +5,25 @@ endif
 " Refer this list for more...
 " https://github.com/chubin/awesome-console-services
 
+function! s:TempTerm(cmd)
+  silent execute 'term ' . a:cmd . ' && exit 1'
+  setlocal bufhidden=delete nobuflisted
+endfunction
+
 " Vim Tips
 " Exp:
 " :Vimtip
-command! -nargs=* Vimtip silent execute 'new | term curl -s "https://vtip.43z.one/" && exit 1'
+command! -nargs=0 Vimtip split | call <SID>TempTerm('curl -s "https://vtip.43z.one/"')
 
 " Weather forcast
 " Exp:
 " :Weather johor
-command! -nargs=* Weather silent execute 'tabnew | term curl -s "wttr.in/<args>" && exit 1'
+command! -nargs=* Weather tabnew | call <SID>TempTerm('curl -s "wttr.in/<args>"')
 
 " QRcode
 " Exp:
 " :QREncode message in qr
-command! -nargs=+ QREncode silent execute 'tabnew | term curl -s "qrenco.de/<args>" && exit 1'
+command! -nargs=+ QREncode tabnew | call <SID>TempTerm('curl -s "qrenco.de/<args>"')
 
 " Gif
 " Exp:
@@ -31,8 +36,8 @@ command! GifMagic silent execute 'tabnew | term curl -s "gif.xyzzy.run/spongebob
 " :Dictionary food
 " :Dictionary food:all
 " :Dictionary food:fd-eng-afr
-command! -nargs=+ Dictionary silent execute 'tabnew | term curl -s dict.org/d:<args> && exit 1'
-command! DictionaryList silent execute 'tabnew | term curl -s dict://dict.org/show:db && exit 1'
+command! -nargs=+ Dictionary tabnew | call <SID>TempTerm('curl -s dict.org/d:<args>')
+command! DictionaryList tabnew | call <SID>TempTerm('curl -s dict://dict.org/show:db')
 
 " Waktu Solat
 " API from https://e-solat.gov.my
