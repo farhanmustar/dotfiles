@@ -202,3 +202,20 @@ require('telescope').setup{
   },
 }
 vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').git_files() end)
+
+-- nvim-ufo config
+vim.o.foldlevel  = 99
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set('n', '>', 'zo', {silent = true})
+vim.keymap.set('n', '<', 'zc', {silent = true})
+vim.keymap.set('n', '<leader>>', 'zO', {silent = true})
+vim.keymap.set('n', '<leader><', 'zC', {silent = true})
+require('ufo').setup({
+  provider_selector = function(bufnr, filetype, buftype) -- luacheck: ignore 212
+    if filetype == 'git' then
+      return ''
+    end
+    return {'treesitter', 'indent'}
+  end
+})
