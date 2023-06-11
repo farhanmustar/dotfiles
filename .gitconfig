@@ -52,6 +52,7 @@
 
 [pull]
   rebase = preserve
+  ; rebase = true  ; for newer git.
 
 [push]
   default = simple
