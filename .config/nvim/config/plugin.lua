@@ -105,20 +105,16 @@ vim.keymap.set('n', '<leader>hm', require("harpoon.mark").add_file)
 
 -- nvim-tree config
 require("nvim-tree").setup({
-  view = {
-    mappings = {
-      custom_only = true,
-      list = {
-        { key = "<CR>", action = "preview" },
-        { key = "o", action = "edit" },
-        { key = "O", action = "tabnew" },
-        { key = "s", action = "split" },
-        { key = "V", action = "vsplit" },
-        { key = "I", action = "cd" },
-        { key = ".", action = "run_file_command" },
-      },
-    },
-  },
+  on_attach = function(bufnr)
+    local api = require('nvim-tree.api')
+    vim.keymap.set('n', '<CR>', api.node.open.preview)
+    vim.keymap.set('n', 'o', api.node.open.edit)
+    vim.keymap.set('n', 'O', api.node.open.tab)
+    vim.keymap.set('n', 's', api.node.open.horizontal)
+    vim.keymap.set('n', 'V', api.node.open.vertical)
+    vim.keymap.set('n', 'I', api.tree.change_root_to_node)
+    vim.keymap.set('n', '.', api.node.run.cmd)
+  end
 })
 vim.keymap.set('n', '<leader>ft', function()
   require("nvim-tree.api").tree.toggle(true, true, vim.fn.expand('%:p:h'))
