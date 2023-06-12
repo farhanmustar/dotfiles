@@ -17,13 +17,13 @@ if [ "$yn" = "y" ]; then
   rm -rf ~/.byobu && ln -sT $SCRIPTPATH/.byobu/ ~/.byobu
 fi
 
-read -p "Install neovim? (y/n) : " yn
+read -p "Install neovim and its companion? (y/n) : " yn
 if [ "$yn" = "y" ]; then
   mkdir ~/.config > /dev/null 2>&1
   rm -rf ~/.config/nvim
   ln -sT $SCRIPTPATH/.config/nvim/ ~/.config/nvim
   sudo add-apt-repository ppa:neovim-ppa/unstable -yu
-  sudo apt-get install neovim -y
+  sudo apt-get install neovim ripgrep -y
   sudo update-alternatives --install $(which vim) vim $(which nvim) 50
   sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
   vim -c PlugInstall -c "qa"
