@@ -47,7 +47,7 @@ _pwsh()
 
   case ${COMP_CWORD} in
     1)
-      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm choco sudo" -- ${cur}))
+      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm choco sudo winget" -- ${cur}))
       ;;
     2)
       case ${prev} in
@@ -71,6 +71,9 @@ _pwsh()
           ;;
         choco)
           COMPREPLY=($(compgen -W "search find info" -- ${cur}))
+          ;;
+        winget)
+          COMPREPLY=($(compgen -W "install show search upgrade uninstall import export" -- ${cur}))
           ;;
       esac
       ;;
