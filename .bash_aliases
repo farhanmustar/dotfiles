@@ -26,7 +26,16 @@ alias pwsh='powershell -Command'
 
 _get_vm_status()
 {
-  echo "$(pwsh get-vm \| where-object\{\$_.state -eq \"$1\"\} \| select-object -expand name | tr -d "\r")"
+  params=''
+  for arg in "$@"
+  do
+    if [ -n "$params" ]
+    then
+      params="$params,"
+    fi
+    params="$params\"$arg\""
+  done
+  echo "$(pwsh get-vm \| where-object\{\$_.state -in \@\($params\)\} \| select-object -expand name | tr -d "\r")"
 }
 
 _pwsh()
@@ -38,17 +47,20 @@ _pwsh()
 
   case ${COMP_CWORD} in
     1)
-      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm resume-vm choco sudo" -- ${cur}))
+      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm choco sudo" -- ${cur}))
       ;;
     2)
       case ${prev} in
         start-vm)
-          COMPREPLY=($(compgen -W "$(_get_vm_status off)" -- ${cur}))
+          COMPREPLY=($(compgen -W "$(_get_vm_status off saved)" -- ${cur}))
           ;;
         stop-vm)
           COMPREPLY=($(compgen -W "$(_get_vm_status running)" -- ${cur}))
           ;;
         suspend-vm)
+          COMPREPLY=($(compgen -W "$(_get_vm_status running)" -- ${cur}))
+          ;;
+        save-vm)
           COMPREPLY=($(compgen -W "$(_get_vm_status running)" -- ${cur}))
           ;;
         resume-vm)
