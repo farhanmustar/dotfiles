@@ -406,6 +406,7 @@ function! s:TabDuplicate() abort
   endtry
 endfunction
 cnoreabbrev tabduplicate TabDuplicate
+nnorem <C-w><C-t> :TabDuplicate<CR>
 
 " Shortcut split and join lines
 command! -nargs=1 -range Split silent call <SID>Split(<line1>, <line2>, <q-args>)
