@@ -62,7 +62,7 @@ let g:xremap = {'gr': 'gR'}
 
 " GV.vim shortcuts
 command! -nargs=* GVBB silent execute "GVB --branches ".<q-args>
-command! -nargs=* GVBBD silent execute "GVB --branches --date-order ".<q-args>
+command! -nargs=* GVDB silent execute "GVB --branches --date-order ".<q-args>
 
 " tagbar config
 let g:tagbar_map_close = 'gq'
