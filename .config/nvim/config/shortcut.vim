@@ -208,13 +208,13 @@ nnoremap <C-l> <C-w>l
 
 " grep in current file
 command! -nargs=+ -range FG silent execute "vimgrep /".(<range>? "\\%(\\%'<\\|\\%>'<\\%<'>\\|\\%'>\\)" : "").<q-args>."/j %"
-nnoremap <silent> <Leader>fg :FG <C-r><C-w><CR>
-vnoremap <silent> <Leader>fg y:FG <C-r>"<CR>
+nnoremap <silent> <Leader>fg :call CMD('FG <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>fg y:call CMD('FG <C-r>"')<CR>
 
 " grep in current path
 command! -nargs=+ GP silent execute "grep! -ri '".<q-args>."' %:p:h/*"
-nnoremap <silent> <Leader>gp :GP <C-r><C-w><CR>
-vnoremap <silent> <Leader>gp y:GP <C-r>"<CR>
+nnoremap <silent> <Leader>gp :call CMD('GP <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>gp y:call CMD('GP <C-r>"')<CR>
 
 " copy current buffer filename
 nnoremap <silent> yn :call CopyFileName() \| echo "Copy Filename!"<CR>

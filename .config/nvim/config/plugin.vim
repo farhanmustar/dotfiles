@@ -7,8 +7,8 @@ if executable('rg')
   let g:CtrlSpaceGlobCommand = 'rg --color=never --files --hidden -g "!.git"'
 endif
 command! -nargs=* -range CtrlSpaceSearch :call ctrlspace#window#Toggle(0) | :call feedkeys("O".toupper(<q-args>)."\<CR>")
-nnoremap <expr> <Leader>fn ':CtrlSpaceSearch ' . expand('<cword>') . '<CR>'
-vnoremap <silent> <Leader>fn y:CtrlSpaceSearch <C-r>"<CR>
+nnoremap <silent> <Leader>fn :call CMD('CtrlSpaceSearch <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>fn y:call CMD('CtrlSpaceSearch <C-r>"')<CR>
 nnoremap <silent> <leader>rt :CtrlSpaceTabLabel<CR> \| :redrawtabline<CR>
 
 " Allow ɀ(\u0240) as C-Space alternative used by term emulator for issue with powershell/cmd shell
@@ -36,14 +36,14 @@ command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked 
 command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
 command! -nargs=+ LL silent execute "Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- ".expand("%:p:h")
 command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- ".expand("%:p:h")
-nnoremap <silent> <Leader>gg :GG <C-r><C-w><CR>
-vnoremap <silent> <Leader>gg y:GG <C-r>"<CR>
-nnoremap <silent> <Leader>gt :GT <C-r><C-w><CR>
-vnoremap <silent> <Leader>gt y:GT <C-r>"<CR>
-nnoremap <silent> <Leader>ll :LL <C-r><C-w><CR>
-vnoremap <silent> <Leader>ll y:LL <C-r>"<CR>
-nnoremap <silent> <Leader>lt :LT <C-r><C-w><CR>
-vnoremap <silent> <Leader>lt y:LT <C-r>"<CR>
+nnoremap <silent> <Leader>gg :call CMD('GG <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>gg y:call CMD('GG <C-r>"')<CR>
+nnoremap <silent> <Leader>gt :call CMD('GT <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>gt y:call CMD('GT <C-r>"')<CR>
+nnoremap <silent> <Leader>ll :call CMD('LL <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>ll y:call CMD('LL <C-r>"')<CR>
+nnoremap <silent> <Leader>lt :call CMD('LT <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>lt y:call CMD('LT <C-r>"')<CR>
 cnoreabbrev GBlame G blame
 cnoreabbrev GFetch G fetch
 cnoreabbrev GPull G pull
