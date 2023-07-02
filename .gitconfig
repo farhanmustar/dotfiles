@@ -52,7 +52,7 @@
 
 [pull]
   rebase = preserve
-  ; rebase = true  ; for newer git.
+  ; rebase = merges  ; for newer git.
 
 [push]
   default = simple
