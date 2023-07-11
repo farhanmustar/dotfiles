@@ -19,7 +19,9 @@ set splitright
 set hidden
 set belloff=all
 set scrolloff=5
-set diffopt+=linematch:60
+set diffopt+=linematch:1000
+" set diffopt+=algorithm:histogram
+" set diffopt+=algorithm:patience
 " Tabs settings
 set expandtab
 set softtabstop=0
