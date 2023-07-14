@@ -1,22 +1,28 @@
-source ~/.config/nvim/config/init.vim
-source ~/.config/nvim/config/cb_plugin.vim
-source ~/.config/nvim/config/util.vim
-source ~/.config/nvim/config/util.lua
-source ~/.config/nvim/config/plugged.vim
-source ~/.config/nvim/config/setting.vim
-source ~/.config/nvim/config/theme.vim
-source ~/.config/nvim/config/ft.vim
-source ~/.config/nvim/config/completion.vim
-source ~/.config/nvim/config/plugin.lua
-source ~/.config/nvim/config/plugin.vim
-source ~/.config/nvim/config/luasnipcomp.lua
-source ~/.config/nvim/config/shortcut.vim
-source ~/.config/nvim/config/textobject.vim
-source ~/.config/nvim/config/note.vim
-source ~/.config/nvim/config/curl.vim
-source ~/.config/nvim/config/treesitter.lua
-source ~/.config/nvim/config/lsp.lua
-source ~/.config/nvim/config/dap.lua
+let g:NVIM_APPNAME = getenv('NVIM_APPNAME')
+if g:NVIM_APPNAME == v:null
+  let g:NVIM_APPNAME = 'nvim'
+endif
+command! -nargs=1 Source execute 'source '.substitute(<args>, '^.', '~/.config/'.g:NVIM_APPNAME, '')
+
+Source './config/init.vim'
+Source './config/cb_plugin.vim'
+Source './config/util.vim'
+Source './config/util.lua'
+Source './config/plugged.vim'
+Source './config/setting.vim'
+Source './config/theme.vim'
+Source './config/ft.vim'
+Source './config/completion.vim'
+Source './config/plugin.lua'
+Source './config/plugin.vim'
+Source './config/luasnipcomp.lua'
+Source './config/shortcut.vim'
+Source './config/textobject.vim'
+Source './config/note.vim'
+Source './config/curl.vim'
+Source './config/treesitter.lua'
+Source './config/lsp.lua'
+Source './config/dap.lua'
 
 " Note Directory
 let g:SimpleNoteDir = '~/notes'
@@ -24,6 +30,6 @@ let g:SimpleNoteTODOFile = '~/.todo.md'
 
 " Bookmarks
 let g:startify_bookmarks = [
-\   '~/.config/nvim/init.vim', 
+\   '~/.config/'.g:NVIM_APPNAME.'/init.vim', 
 \   '~/notes', 
 \]

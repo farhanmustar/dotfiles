@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/'.g:NVIM_APPNAME.'/plugged')
 
 Plug 'AndrewRadev/linediff.vim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
