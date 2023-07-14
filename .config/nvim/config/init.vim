@@ -1,9 +1,11 @@
 " Vim Init Config
 
+
 " auto install vim plug
-if empty(glob('~/.config/nvim/autoload/plug.vim')) && executable('curl')
+let s:plug_path = expand('<sfile>:p:h:h').'/autoload/plug.vim'
+if empty(s:plug_path) && executable('curl')
   echom 'Installing Vim-Plug...'
   echom ''
-  silent execute '!curl -fLo '.glob('~').'/.config/nvim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent execute '!curl -fLo '.s:plug_path.' --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 set rtp+=~/.vim  "  fix windows support for .vim file

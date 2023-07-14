@@ -1,4 +1,5 @@
-call plug#begin('~/.config/nvim/plugged')
+let s:plug_path = expand('<sfile>:p:h:h').'/plugged'
+call plug#begin(s:plug_path)
 
 Plug 'AndrewRadev/linediff.vim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'

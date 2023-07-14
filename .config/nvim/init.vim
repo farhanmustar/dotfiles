@@ -1,9 +1,4 @@
-let s:p = expand('<sfile>:p:h')
-function! s:Source(file)
-  let l:file = substitute(a:file, '^.', s:p, '')
-  exec 'source' l:file
-endfunction
-command! -nargs=1 SourceRoot execute 'source '.substitute(<args>, '^.', s:p, '')
+command! -nargs=1 SourceRoot execute 'source '.substitute(<args>, '^.', expand('<sfile>:p:h'), '')
 
 SourceRoot './config/init.vim'
 SourceRoot './config/cb_plugin.vim'
