@@ -1,22 +1,29 @@
-source ~/.config/nvim/config/init.vim
-source ~/.config/nvim/config/cb_plugin.vim
-source ~/.config/nvim/config/util.vim
-source ~/.config/nvim/config/util.lua
-source ~/.config/nvim/config/plugged.vim
-source ~/.config/nvim/config/setting.vim
-source ~/.config/nvim/config/theme.vim
-source ~/.config/nvim/config/ft.vim
-source ~/.config/nvim/config/completion.vim
-source ~/.config/nvim/config/plugin.lua
-source ~/.config/nvim/config/plugin.vim
-source ~/.config/nvim/config/luasnipcomp.lua
-source ~/.config/nvim/config/shortcut.vim
-source ~/.config/nvim/config/textobject.vim
-source ~/.config/nvim/config/note.vim
-source ~/.config/nvim/config/curl.vim
-source ~/.config/nvim/config/treesitter.lua
-source ~/.config/nvim/config/lsp.lua
-source ~/.config/nvim/config/dap.lua
+let s:p = expand('<sfile>:p:h')
+function! s:Source(file)
+  let l:file = substitute(a:file, '^.', s:p, '')
+  exec 'source' l:file
+endfunction
+command! -nargs=1 SourceRoot execute 'source '.substitute(<args>, '^.', s:p, '')
+
+SourceRoot './config/init.vim'
+SourceRoot './config/cb_plugin.vim'
+SourceRoot './config/util.vim'
+SourceRoot './config/util.lua'
+SourceRoot './config/plugged.vim'
+SourceRoot './config/setting.vim'
+SourceRoot './config/theme.vim'
+SourceRoot './config/ft.vim'
+SourceRoot './config/completion.vim'
+SourceRoot './config/plugin.lua'
+SourceRoot './config/plugin.vim'
+SourceRoot './config/luasnipcomp.lua'
+SourceRoot './config/shortcut.vim'
+SourceRoot './config/textobject.vim'
+SourceRoot './config/note.vim'
+SourceRoot './config/curl.vim'
+SourceRoot './config/treesitter.lua'
+SourceRoot './config/lsp.lua'
+SourceRoot './config/dap.lua'
 
 " Note Directory
 let g:SimpleNoteDir = '~/notes'
