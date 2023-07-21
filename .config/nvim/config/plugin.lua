@@ -215,3 +215,14 @@ require('ufo').setup({
     return {'treesitter', 'indent'}
   end
 })
+
+-- nvim-notify
+-- list all notification using :Notifications cmd
+local notify = require('notify')
+notify.setup({
+  background_colour = "#00000000",
+  render = 'compact',
+  stages = 'fade',
+  timeout = 100,
+})
+vim.notify = notify
