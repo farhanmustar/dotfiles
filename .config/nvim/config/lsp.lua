@@ -239,3 +239,6 @@ local astyle = null_ls.builtins.formatting.astyle.with({
   extra_args = {'--mode=c', '--style=allman', '--indent=spaces=2', '--pad-oper', '--unpad-paren', '--pad-header', '--convert-tabs'}
 })
 null_ls.register(astyle)
+
+-- c_sharp
+require('lspconfig').csharp_ls.setup({})

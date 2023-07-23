@@ -164,6 +164,18 @@ go install golang.org/x/tools/gopls@latest
 sudo apt install lua-check
 ```
 
+### CSharp
+* dotnet sdk
+```bash
+sudo apt install dotnet-sdk-6.0
+```
+* cs-language-server
+    * need to install dotnet sdk first.
+    * for .net 6 (lts) need to specify older version
+```bash
+dotnet tool install --global csharp-ls --version 0.5.7
+```
+
 ### Terminal Apps
 * tldr
 ```bash
