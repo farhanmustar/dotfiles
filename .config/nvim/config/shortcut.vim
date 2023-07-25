@@ -423,3 +423,9 @@ function! s:Join(start, end, join) abort
   let l:join = substitute(a:join, '%', '\\%', 'g')
   execute a:start.",".a:end."s%\\n\\($\\)\\@!%".l:join."%g"
 endfunction
+
+" horizontal navigation
+nnoremap gh _
+nnoremap gl g_
+vnoremap gh _
+vnoremap gl g_
