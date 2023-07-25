@@ -110,6 +110,8 @@ let g:asyncrun_open = 20
 let g:asyncrun_qfid = 'asyncrun'
 command! -bang -nargs=+ -range=0 -complete=file Run
 		\ call <SID>run('<bang>', '', <q-args>, <count>, <line1>, <line2>)
+command! -bang -nargs=+ -range=0 -complete=file RunTerm
+    \ call <SID>run('<bang>', {'mode':'term'}, <q-args>, <count>, <line1>, <line2>)
 command! -bar -bang -nargs=0 RunStop call asyncrun#stop('<bang>')
 command! -bar -bang -nargs=0 RunAgain call <SID>rerun()
 " TODO: add compiler option after the command or auto mapping based on buffer filetype..?. investigate if this good feature.
