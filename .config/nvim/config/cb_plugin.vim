@@ -1,7 +1,7 @@
 inoremap <C-f> <C-r>=<SID>clipboard_completion()<CR>
 inoremap <C-e> <C-r>=<SID>register_completion()<CR>
 
-let g:clipboard_limit = get(g:, 'clipboard_limit', 10)
+let g:clipboard_limit = get(g:, 'clipboard_limit', 15)
 let g:clipboard_menu_len = get(g:, 'clipboard_menu_len', 40)
 let s:clipboard_stack = get(s:, 'clipboard_stack', [])
 
@@ -16,7 +16,7 @@ function! s:register_completion() abort
 endfunction
 
 function! s:on_yank() abort
-  call s:save_stack(getreg('0'))
+  call s:save_stack(trim(getreg('0')))
 endfunction
 
 augroup ClipboardCompletion
@@ -96,7 +96,8 @@ function! s:expand() abort
   if get(v:completed_item, 'menu', '') != '[cb]'
     return
   endif
-  let @" = substitute(get(v:completed_item, 'info', ' ')[1:], "\n|", "\n", 'g')
+  let @" = trim(substitute(get(v:completed_item, 'info', ' ')[1:], "\n|", "\n", 'g'))
+  call s:save_stack(@")
 
   call feedkeys(
         \"\<C-o>:set paste\<CR>".
