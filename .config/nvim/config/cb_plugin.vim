@@ -5,6 +5,10 @@ let g:clipboard_limit = get(g:, 'clipboard_limit', 15)
 let g:clipboard_menu_len = get(g:, 'clipboard_menu_len', 40)
 let s:clipboard_stack = get(s:, 'clipboard_stack', [])
 
+function! s:trim_end(str) abort
+  return substitute(a:str, '[\u00-\u20\ua0]\+$', '', '')
+endfunction
+
 function! s:clipboard_completion() abort
   call complete(col('.'), s:get_stack_completion())
   return ''
@@ -16,7 +20,7 @@ function! s:register_completion() abort
 endfunction
 
 function! s:on_yank() abort
-  call s:save_stack(trim(getreg('0')))
+  call s:save_stack(s:trim_end(getreg('0')))
 endfunction
 
 augroup ClipboardCompletion
@@ -96,7 +100,7 @@ function! s:expand() abort
   if get(v:completed_item, 'menu', '') != '[cb]'
     return
   endif
-  let @" = trim(substitute(get(v:completed_item, 'info', ' ')[1:], "\n|", "\n", 'g'))
+  let @" = s:trim_end(substitute(get(v:completed_item, 'info', ' ')[1:], "\n|", "\n", 'g'))
   call s:save_stack(@")
 
   call feedkeys(
