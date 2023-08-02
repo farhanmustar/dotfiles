@@ -9,6 +9,9 @@ local helpers = require('null-ls.helpers')
 local plenary_path = require('plenary.path')
 null_ls.setup({
   -- debug = true,
+  sources = {
+    null_ls.builtins.code_actions.gitsigns,
+  }
 })
 
 -- Keyboard Shortcut
