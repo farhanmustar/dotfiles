@@ -34,16 +34,16 @@ command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
 command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
-command! -nargs=+ LL silent execute "Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- ".expand("%:p:h")
-command! -nargs=+ LT silent execute "tab sbuffer | Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- ".expand("%:p:h")
+command! -nargs=+ -count LL silent execute "Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- %:h".RepeatStr(<count>,":h")
+command! -nargs=+ -count LT silent execute "tab sbuffer | Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- %:h".RepeatStr(<count>,":h")
 nnoremap <silent> <Leader>gg :call CMD('GG <C-r><C-w>')<CR>
 vnoremap <silent> <Leader>gg y:call CMD('GG <C-r>"')<CR>
 nnoremap <silent> <Leader>gt :call CMD('GT <C-r><C-w>')<CR>
 vnoremap <silent> <Leader>gt y:call CMD('GT <C-r>"')<CR>
-nnoremap <silent> <Leader>ll :call CMD('LL <C-r><C-w>')<CR>
-vnoremap <silent> <Leader>ll y:call CMD('LL <C-r>"')<CR>
-nnoremap <silent> <Leader>lt :call CMD('LT <C-r><C-w>')<CR>
-vnoremap <silent> <Leader>lt y:call CMD('LT <C-r>"')<CR>
+nnoremap <silent> <Leader>ll :call CMD(VCountStr().'LL <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>ll y:call CMD(VCountStr().'LL <C-r>"')<CR>
+nnoremap <silent> <Leader>lt :call CMD(VCountStr().'LT <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>lt y:call CMD(VCountStr().'LT <C-r>"')<CR>
 cnoreabbrev GBlame G blame
 cnoreabbrev GFetch G fetch
 cnoreabbrev GPull G pull

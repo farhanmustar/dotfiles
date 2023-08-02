@@ -212,9 +212,9 @@ nnoremap <silent> <Leader>fg :call CMD('FG <C-r><C-w>')<CR>
 vnoremap <silent> <Leader>fg y:call CMD('FG <C-r>"')<CR>
 
 " grep in current path
-command! -nargs=+ GP silent execute "grep! -ri '".<q-args>."' %:p:h/*"
-nnoremap <silent> <Leader>gp :call CMD('GP <C-r><C-w>')<CR>
-vnoremap <silent> <Leader>gp y:call CMD('GP <C-r>"')<CR>
+command! -nargs=+ -count GP silent execute "grep! -ri '".<q-args>."' %:p:h".RepeatStr(<count>,":h")."/*"
+nnoremap <silent> <Leader>gp :call CMD(VCountStr().'GP <C-r><C-w>')<CR>
+vnoremap <silent> <Leader>gp y:call CMD(VCountStr().'GP <C-r>"')<CR>
 
 " copy current buffer filename
 nnoremap <silent> yn :call CopyFileName() \| echo "Copy Filename!"<CR>
