@@ -31,8 +31,11 @@ augroup END
 command! DisableOmniComplete call s:DisableOmniComplete()
 command! EnableOmniComplete call s:EnableOmniComplete()
 
-" mapping for luasnip and Mucomplete
-inoremap <plug>MyEnter <cr>
+" lexima config
+let g:lexima_no_default_rules = 1
+call lexima#set_default_rules()
+
+" mapping for luasnip, Mucomplete and lexima
 function! MyCRAction()
   if (pumvisible() && luasnip#expandable())
     return "\<Plug>luasnip-expand-snippet"
@@ -41,11 +44,11 @@ function! MyCRAction()
   elseif pumvisible()
     return "\<c-y>"
   else
-    return "\<plug>MyEnter"
+    return lexima#expand('<CR>', 'i')
   endif
 endfunction
 imap <silent> <expr> <plug>MyCR MyCRAction()
-imap <cr> <plug>MyCR
+imap <CR> <plug>MyCR
 
 smap <unique> <tab> <Plug>luasnip-jump-next
 xmap <unique> <tab> <Plug>luasnip-jump-next
