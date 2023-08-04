@@ -11,7 +11,14 @@ null_ls.setup({
   -- debug = true,
   sources = {
     null_ls.builtins.code_actions.gitsigns,
-  }
+  },
+  should_attach = function(bufnr)
+    -- perf issue with large file.
+    if vim.api.nvim_buf_line_count(bufnr) > 10000 then
+      return false
+    end
+    return true
+  end,
 })
 
 -- Keyboard Shortcut

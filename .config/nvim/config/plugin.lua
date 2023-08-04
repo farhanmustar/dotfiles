@@ -212,6 +212,10 @@ require('ufo').setup({
     if filetype == 'git' then
       return ''
     end
+    if vim.api.nvim_buf_line_count(bufnr) > 10000 then
+      -- perf issue with indent fold type
+      return {'treesitter'}
+    end
     return {'treesitter', 'indent'}
   end
 })
