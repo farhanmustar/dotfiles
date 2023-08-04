@@ -9,11 +9,14 @@ local M = {}
 -- scrollbar config
 require("scrollbar").setup({
   marks = {
-    Search = { color = '#1d2021'},
+    Search = { color = '#c5b107'},
   },
   handlers = {
     cursor = false,
     search = true,
+  },
+  handle = {
+    color = '#39454b',
   },
 })
 

@@ -16,8 +16,6 @@ function! s:ModifyColorScheme()
   highlight TabLineFill           ctermfg=Black ctermbg=DarkGray cterm=NONE  guifg=#1e1e1e guibg=#6c6c6c gui=NONE
   highlight TabLineSel            ctermfg=172   ctermbg=234      cterm=NONE  guifg=#d78700 guibg=None    gui=NONE
   highlight QuickFixLine          cterm=NONE    ctermfg=NONE     ctermbg=236 gui=NONE      guifg=NONE    guibg=#303030
-  highlight ScrollbarSearch       ctermfg=224   guifg=#fe8019
-  highlight ScrollbarSearchHandle ctermfg=224   guifg=#fe8019
   highlight TreesitterContext     ctermbg=239   guibg=#303030
   highlight GruvboxAquaDark       guifg=#689d6a
   highlight GitSignsAddNr         guifg=#999b46
