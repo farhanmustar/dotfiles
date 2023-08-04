@@ -230,3 +230,31 @@ notify.setup({
   timeout = 100,
 })
 vim.notify = notify
+
+-- nvim-hlslens config
+require('hlslens').setup({
+  -- calm_down = true,
+  nearest_only = true,
+  nearest_float_when = 'always',
+})
+
+local start_hlslens = '<Cmd>set hlsearch<CR><Cmd>lua require("hlslens").start()<CR>'
+vim.keymap.set( 'n', 'n',
+  '<Cmd>execute("normal! " . v:count1 . "n")<CR>'..start_hlslens,
+  {silent = true})
+vim.keymap.set('n', 'N',
+  '<Cmd>execute("normal! " . v:count1 . "N")<CR>'..start_hlslens,
+  {silent = true})
+vim.keymap.set('n', '*', '*'..start_hlslens, { silent = true })
+vim.keymap.set('n', '#', '#'..start_hlslens, { silent = true })
+vim.keymap.set( 'n', 'g*', 'g*'..start_hlslens, {silent = true})
+vim.keymap.set('n', 'g#', 'g#'..start_hlslens, {silent = true})
+vim.cmd([[
+  function! MyEscAction()
+    lua require("hlslens").stop()
+    set nohlsearch
+    return "\<plug>MyEsc"
+  endfunction
+  nnoremap <plug>MyEsc <Esc>
+  nmap <expr> <silent> <Esc> MyEscAction()
+]])
