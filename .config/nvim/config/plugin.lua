@@ -13,7 +13,7 @@ require("scrollbar").setup({
   },
   handlers = {
     cursor = false,
-    search = true,
+    search = false,
   },
   handle = {
     color = '#39454b',
@@ -24,7 +24,12 @@ require("scrollbar").setup({
 require("scrollbar.handlers.search").setup({
   calm_down = true,
   nearest_only = true,
-  nearest_float_when = 'always',
+  nearest_float_when = 'never',
+})
+require("scrollbar.config").set({
+  handlers = {
+    search = true,
+  },
 })
 
 local start_hlslens = '<Cmd>set hlsearch<CR><Cmd>lua require("hlslens").start()<CR>'
