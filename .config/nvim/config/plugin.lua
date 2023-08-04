@@ -9,20 +9,49 @@ local M = {}
 -- scrollbar config
 require("scrollbar").setup({
   marks = {
-    Search = { color = '#1d2021'},
+    Search = { color = '#c5b107'},
   },
   handlers = {
     cursor = false,
+    search = false,
+  },
+  handle = {
+    color = '#39454b',
+  },
+})
+
+-- nvim-hlslens config
+require("scrollbar.handlers.search").setup({
+  calm_down = true,
+  nearest_only = true,
+  nearest_float_when = 'never',
+})
+require("scrollbar.config").set({
+  handlers = {
     search = true,
   },
 })
 
-require("scrollbar.handlers.search").setup({
-  calm_down = true,
-  nearest_only = true,
-  nearest_float_when = 'always',
-  enable_incsearch = false,
-})
+local start_hlslens = '<Cmd>set hlsearch<CR><Cmd>lua require("hlslens").start()<CR>'
+vim.keymap.set( 'n', 'n',
+  '<Cmd>execute("normal! " . v:count1 . "n")<CR>'..start_hlslens,
+  {silent = true})
+vim.keymap.set('n', 'N',
+  '<Cmd>execute("normal! " . v:count1 . "N")<CR>'..start_hlslens,
+  {silent = true})
+vim.keymap.set('n', '*', '*'..start_hlslens, { silent = true })
+vim.keymap.set('n', '#', '#'..start_hlslens, { silent = true })
+vim.keymap.set( 'n', 'g*', 'g*'..start_hlslens, {silent = true})
+vim.keymap.set('n', 'g#', 'g#'..start_hlslens, {silent = true})
+vim.cmd([[
+  function! MyEscAction()
+    lua require("hlslens").stop()
+    set nohlsearch
+    return "\<plug>MyEsc"
+  endfunction
+  nnoremap <plug>MyEsc <Esc>
+  nmap <expr> <silent> <Esc> MyEscAction()
+]])
 
 -- LuaSnip config
 require("luasnip.loaders.from_vscode").lazy_load()

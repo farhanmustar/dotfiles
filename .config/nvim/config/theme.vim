@@ -16,8 +16,6 @@ function! s:ModifyColorScheme()
   highlight TabLineFill           ctermfg=Black ctermbg=DarkGray cterm=NONE  guifg=#1e1e1e guibg=#6c6c6c gui=NONE
   highlight TabLineSel            ctermfg=172   ctermbg=234      cterm=NONE  guifg=#d78700 guibg=None    gui=NONE
   highlight QuickFixLine          cterm=NONE    ctermfg=NONE     ctermbg=236 gui=NONE      guifg=NONE    guibg=#303030
-  highlight ScrollbarSearch       ctermfg=224   guifg=#fe8019
-  highlight ScrollbarSearchHandle ctermfg=224   guifg=#fe8019
   highlight TreesitterContext     ctermbg=239   guibg=#303030
   highlight GruvboxAquaDark       guifg=#689d6a
   highlight GitSignsAddNr         guifg=#999b46
@@ -27,11 +25,15 @@ function! s:ModifyColorScheme()
   highlight GitSignsChangeCLNr    guifg=#668fd1 guibg=#262626
   highlight GitSignsDeleteCLNr    guifg=#fb4934 guibg=#262626
   highlight Variable              guifg=#507481
-  highlight! link IncSearch       Search
-  highlight link Include         GruvboxAquaDark
-  highlight link Function        GruvboxAqua
-  highlight link @variable       Variable
+  highlight CurSearch             cterm=reverse gui=reverse guifg=#fabd2f guibg=#282828
+  highlight Search                gui=reverse guifg=#685e0d guibg=#c9c9c9
+  highlight link HlSearchLensNear Search
+  highlight link Include          GruvboxAquaDark
+  highlight link Function         GruvboxAqua
+  highlight link @variable        Variable
   highlight link @text.todo.unchecked GruvboxRed
+
+  highlight! clear IncSearch
 endfunction
 augroup modifycolorscheme
   autocmd!
