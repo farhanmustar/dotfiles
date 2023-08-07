@@ -78,10 +78,10 @@ nnoremap <Leader>cc :%s/\<<C-r><C-w>\>/<C-r><C-w>
 vnoremap <Leader>cc y:%s/<C-r>"/<C-r>"
 
 " Allow you to easily search the current word.
-nnoremap <Leader>ff /\<<C-r><C-w>\><CR>
-vnoremap <Leader>ff y/<C-r>"<CR>
-nnoremap <Leader>fF ?\<<C-r><C-w>\><CR>
-vnoremap <Leader>fF y?<C-r>"<CR>
+nnoremap <Leader>ff /\<<C-r><C-w>\><CR>:set hlsearch<CR>:lua require("hlslens").start()<CR>
+vnoremap <Leader>ff y/<C-r>"<CR>:set hlsearch<CR>:lua require("hlslens").start()<CR>
+nnoremap <Leader>fF ?\<<C-r><C-w>\><CR>:set hlsearch<CR>:lua require("hlslens").start()<CR>
+vnoremap <Leader>fF y?<C-r>"<CR>:set hlsearch<CR>:lua require("hlslens").start()<CR>
 
 " Diff shortcuts
 nnoremap <silent> <leader>df :call <SID>diffToggle()<CR>
