@@ -27,13 +27,12 @@ function! s:ModifyColorScheme()
   highlight Variable              guifg=#507481
   highlight CurSearch             cterm=reverse gui=reverse guifg=#fabd2f guibg=#282828
   highlight Search                gui=reverse guifg=#685e0d guibg=#c9c9c9
+  highlight! link IncSearch        CurSearch
   highlight link HlSearchLensNear Search
   highlight link Include          GruvboxAquaDark
   highlight link Function         GruvboxAqua
   highlight link @variable        Variable
   highlight link @text.todo.unchecked GruvboxRed
-
-  highlight! clear IncSearch
 endfunction
 augroup modifycolorscheme
   autocmd!
