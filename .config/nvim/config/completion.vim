@@ -42,13 +42,14 @@ function! MyCRAction()
   elseif (pumvisible() && CB_can_expand())
     return "\<Plug>CBExpand"
   elseif pumvisible()
-    return "\<c-y>"
+    return "\<plug>MyCY"
   else
     return lexima#expand('<CR>', 'i')
   endif
 endfunction
 imap <silent> <expr> <plug>MyCR MyCRAction()
 imap <CR> <plug>MyCR
+inoremap <plug>MyCY <c-y>
 
 smap <unique> <tab> <Plug>luasnip-jump-next
 xmap <unique> <tab> <Plug>luasnip-jump-next
