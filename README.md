@@ -105,7 +105,7 @@ pip install debugpy
   * download and extract using unzip.
   * then link to bin path.
   ```bash
-  wget https://github.com/vadimcn/vscode-lldb/releases/download/v1.7.0/codelldb-x86_64-linux.vsix
+  wget -c https://github.com/vadimcn/vscode-lldb/releases/download/v1.7.0/codelldb-x86_64-linux.vsix
   unzip codelldb-x86_64-linux.vsix
   ln -sT <codelldb>/extension/adapter/codelldb /usr/bin/codelldb
   ```
@@ -174,6 +174,13 @@ sudo apt install dotnet-sdk-6.0
     * for .net 6 (lts) need to specify older version
 ```bash
 dotnet tool install --global csharp-ls --version 0.5.7
+```
+
+## HTML
+* tidy linter and formatter
+```bash
+wget -c https://github.com/htacg/tidy-html5/releases/download/5.9.14-next/tidy-5.9.14-Linux-64bit.deb
+sudo dpkg -i tidy-5.9.14-Linux-64bit.deb
 ```
 
 ### Terminal Apps
