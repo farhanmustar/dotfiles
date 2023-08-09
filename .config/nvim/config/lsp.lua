@@ -81,8 +81,21 @@ null_ls.register(refactoring)
 
 -- Html
 
-local tidy_diagnostic = null_ls.builtins.diagnostics.tidy 
-local tidy_formatter = null_ls.builtins.formatting.tidy 
+local tidy_diagnostic = null_ls.builtins.diagnostics.tidy.with({
+  extra_args = {
+    '--mute-id', 'yes',
+    '--mute', 'TRIM_EMPTY_ELEMENT',
+  },
+})
+local tidy_formatter = null_ls.builtins.formatting.tidy.with({
+  extra_args = {
+    '--drop-empty-elements', 'no',
+    '--drop-empty-paras', 'no',
+    '--merge-divs', 'no',
+    '--merge-spans', 'no',
+    '--preserve-entities', 'yes',
+  },
+})
 null_ls.register(tidy_diagnostic)
 null_ls.register(tidy_formatter)
 
