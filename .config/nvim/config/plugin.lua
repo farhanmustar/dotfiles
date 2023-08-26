@@ -44,13 +44,13 @@ vim.keymap.set('n', '#', '#'..start_hlslens, { silent = true })
 vim.keymap.set( 'n', 'g*', 'g*'..start_hlslens, {silent = true})
 vim.keymap.set('n', 'g#', 'g#'..start_hlslens, {silent = true})
 vim.cmd([[
-  function! MyEscAction()
+  function! s:MyEscAction()
     lua require("hlslens").stop()
     set nohlsearch
     return "\<plug>MyEsc"
   endfunction
   nnoremap <plug>MyEsc <Esc>
-  nmap <expr> <silent> <Esc> MyEscAction()
+  nmap <expr> <silent> <Esc> <SID>MyEscAction()
 ]])
 
 -- LuaSnip config

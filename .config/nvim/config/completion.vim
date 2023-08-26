@@ -36,7 +36,7 @@ let g:lexima_no_default_rules = 1
 call lexima#set_default_rules()
 
 " mapping for luasnip, Mucomplete and lexima
-function! MyCRAction()
+function! s:MyCRAction()
   if (pumvisible() && luasnip#expandable())
     return "\<Plug>luasnip-expand-snippet"
   elseif (pumvisible() && CB_can_expand())
@@ -47,14 +47,14 @@ function! MyCRAction()
     return lexima#expand('<CR>', 'i')
   endif
 endfunction
-imap <silent> <expr> <plug>MyCR MyCRAction()
+imap <silent> <expr> <plug>MyCR <SID>MyCRAction()
 imap <CR> <plug>MyCR
 inoremap <plug>MyCY <c-y>
 
 smap <unique> <tab> <Plug>luasnip-jump-next
 xmap <unique> <tab> <Plug>luasnip-jump-next
 inoremap <plug>MyTab <tab>
-function! MyTabAction()
+function! s:MyTabAction()
   if pumvisible()
     return "\<plug>(MyFwd)"
   elseif luasnip#jumpable(1)
@@ -64,12 +64,12 @@ function! MyTabAction()
   endif
 endfunction
 imap <plug>(MyFwd) <plug>(MUcompleteFwd)
-imap <expr> <silent> <tab> MyTabAction()
+imap <expr> <silent> <tab> <SID>MyTabAction()
 
 smap <unique> <S-tab> <Plug>luasnip-jump-prev
 xmap <unique> <S-tab> <Plug>luasnip-jump-prev
 inoremap <plug>MySTab <S-tab>
-function! MySTabAction()
+function! s:MySTabAction()
   if pumvisible()
     return "\<plug>(MyBwd)"
   elseif luasnip#jumpable(0)
@@ -79,18 +79,20 @@ function! MySTabAction()
   endif
 endfunction
 imap <plug>(MyBwd) <plug>(MUcompleteBwd)
-imap <expr> <silent> <S-tab> MySTabAction()
+imap <expr> <silent> <S-tab> <SID>MySTabAction()
 
-function! MyEscAction()
+let g:lexima_map_escape = ''
+function! s:MyEscAction()
+  call lexima#insmode#escape()
   silent LuaSnipUnlinkCurrent
   return "\<plug>MyEsc"
 endfunction
 inoremap <plug>MyEsc <Esc>
-imap <expr> <silent> <Esc> MyEscAction()
+imap <expr> <silent> <Esc> <SID>MyEscAction()
 xnoremap <plug>MyEsc <Esc>
-xmap <expr> <silent> <Esc> MyEscAction()
+xmap <expr> <silent> <Esc> <SID>MyEscAction()
 snoremap <plug>MyEsc <Esc>
-smap <expr> <silent> <Esc> MyEscAction()
+smap <expr> <silent> <Esc> <SID>MyEscAction()
 
 " Mucomplete fix for telescope promp
 augroup mucompletefix
