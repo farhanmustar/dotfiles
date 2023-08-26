@@ -122,7 +122,7 @@ local python_compile = {
   method = null_ls.methods.DIAGNOSTICS,
   filetypes = {'python',},
   generator = null_ls.generator({
-    command = 'python',
+    command = vim.fn.executable('python') == 1 and 'python' or 'python3',
     args = { compile_path, '-' },
     to_stdin = true,
     format = 'line',
