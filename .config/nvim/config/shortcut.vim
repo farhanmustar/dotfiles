@@ -164,6 +164,7 @@ augroup quickfix
   autocmd!
   autocmd Filetype qf nnoremap <buffer> <silent> <expr> <CR> &buftype is# 'quickfix' ? '<CR>zz<C-w>p' : '<CR>'
   autocmd Filetype qf nnoremap <buffer> <silent> <expr> o &buftype is# 'quickfix' ? '<CR>' : 'o'
+  autocmd Filetype qf nnoremap <buffer> <silent> <expr> O &buftype is# 'quickfix' ? ':tab sbuffer % \| doautocmd BufEnter<CR><CR>' : 'o'
   autocmd Filetype qf nnoremap <buffer> <silent> < :call <SID>OlderQF()<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> > :call <SID>NewerQF()<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> r :Creload<CR>
