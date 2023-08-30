@@ -161,7 +161,11 @@ null_ls.register(flake8)
 null_ls.register(autopep8)
 null_ls.register(python_compile)
 if vim.fn.executable('rosrun') ~= 0 then
-  null_ls.register(roslint_pep8)
+  -- tmp disable for noetic
+  local output = vim.fn.system('rosrun roslint pep8')
+  if output == 0 then
+    -- null_ls.register(roslint_pep8)
+  end
 end
 
 -- Javascript

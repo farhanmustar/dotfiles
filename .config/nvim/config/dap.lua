@@ -51,7 +51,7 @@ require("nvim-dap-virtual-text").setup()
 -- python config
 local venv = os.getenv("VIRTUAL_ENV")
 if venv == nil then
-  command = 'python'
+  command = vim.fn.executable('python') == 1 and 'python' or 'python3'
 elseif vim.fn.has('win32') == 1 then
   command = string.format("%s/Scripts/pythonw",venv)
 else
