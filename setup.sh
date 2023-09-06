@@ -1,5 +1,7 @@
 #!/bin/bash
 
+UBUNTU_YEAR=$(lsb_release -sr | cut -d '.' -f1)
+
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 read -p "Remove existing dotfiles and replace with link to repo? (y/n) : " yn
@@ -22,7 +24,9 @@ if [ "$yn" = "y" ]; then
   mkdir ~/.config > /dev/null 2>&1
   rm -rf ~/.config/nvim
   ln -sT $SCRIPTPATH/.config/nvim/ ~/.config/nvim
-  sudo add-apt-repository ppa:x4121/ripgrep -yu
+  if [ "$UBUNTU_YEAR" -lt 20 ]; then
+    sudo add-apt-repository ppa:x4121/ripgrep -yu
+  fi
   sudo add-apt-repository ppa:neovim-ppa/unstable -yu
   sudo apt-get install neovim ripgrep xclip -y
   sudo update-alternatives --install $(which vim) vim $(which nvim) 50
