@@ -83,3 +83,6 @@ vim.keymap.set('n', '<leader>sk', tsj.join)
 
 -- ts-node-action config
 vim.keymap.set('n', '<leader>ss', require("ts-node-action").node_action)
+
+-- template-string.nvim config
+require('template-string').setup()
