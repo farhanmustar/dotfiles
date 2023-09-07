@@ -80,3 +80,6 @@ tsj.setup({
 })
 vim.keymap.set('n', '<leader>sj', tsj.split)
 vim.keymap.set('n', '<leader>sk', tsj.join)
+
+-- ts-node-action config
+vim.keymap.set('n', '<leader>ss', require("ts-node-action").node_action)
