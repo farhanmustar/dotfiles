@@ -134,7 +134,7 @@ vim.keymap.set('n', '<leader>hm', require("harpoon.mark").add_file)
 
 -- nvim-tree config
 require("nvim-tree").setup({
-  on_attach = function(bufnr)
+  on_attach = function()
     local api = require('nvim-tree.api')
     vim.keymap.set('n', '<CR>', api.node.open.preview)
     vim.keymap.set('n', 'o', api.node.open.edit)
@@ -259,3 +259,6 @@ notify.setup({
   timeout = 100,
 })
 vim.notify = notify
+
+-- highlight-undo.nvim config
+require('highlight-undo').setup()
