@@ -262,3 +262,9 @@ vim.notify = notify
 
 -- highlight-undo.nvim config
 require('highlight-undo').setup()
+
+-- term-edit.nvim config
+-- TODO: change config base of type of terminal
+require('term-edit').setup({
+  prompt_end = '%$ ',
+})

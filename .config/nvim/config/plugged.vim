@@ -10,6 +10,7 @@ Plug 'Wansmer/treesj'
 Plug 'axelvc/template-string.nvim'
 Plug 'beloglazov/vim-textobj-quotes'
 Plug 'bkad/CamelCaseMotion'
+Plug 'chomosuke/term-edit.nvim', {'tag': 'v1.*'}
 Plug 'ckolkey/ts-node-action'
 Plug 'cohama/lexima.vim'
 Plug 'cshuaimin/ssr.nvim'
