@@ -1,3 +1,8 @@
+let plugin_dir = expand('<sfile>:p:h') . '/../plugged/lexima.vim'
+if empty(glob(plugin_dir))
+  finish
+endif
+
 " Vim Completion Config
 
 " Mucomplete config
