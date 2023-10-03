@@ -48,7 +48,7 @@ _pwsh()
 
   case ${COMP_CWORD} in
     1)
-      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm choco sudo winget" -- ${cur}))
+      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm choco sudo winget ipconfig" -- ${cur}))
       ;;
     2)
       case ${prev} in
