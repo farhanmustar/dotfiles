@@ -25,10 +25,16 @@ if [ "$yn" = "y" ]; then
   rm -rf ~/.config/nvim
   ln -sT $SCRIPTPATH/.config/nvim/ ~/.config/nvim
   if [ "$UBUNTU_YEAR" -lt 20 ]; then
-    sudo add-apt-repository ppa:x4121/ripgrep -yu
+    sudo add-apt-repository ppa:x4121/ripgrep -y
   fi
-  sudo add-apt-repository ppa:neovim-ppa/unstable -yu
-  sudo apt-get install neovim ripgrep xclip -y
+  sudo apt-get update
+  sudo apt-get install ripgrep xclip -y
+  # build neovim
+  sudo apt-get install ninja-build gettext cmake unzip curl -y
+  git clone https://github.com/neovim/neovim.git -b v0.9.2 --depth 1 /tmp/neovim
+  (cd /tmp/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install)
+  rm -rf /tmp/neovim
+  # setup neovim
   sudo update-alternatives --install $(which vim) vim $(which nvim) 50
   sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
   vim -c PlugInstall -c "qa"
