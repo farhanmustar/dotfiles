@@ -35,7 +35,7 @@ if [ "$yn" = "y" ]; then
   (cd /tmp/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install)
   rm -rf /tmp/neovim
   # setup neovim
-  sudo update-alternatives --install $(which vim) vim $(which nvim) 50
+  sudo update-alternatives --install $(which vim || echo "/usr/bin/vim") vim $(which nvim) 50
   sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
   vim -c PlugInstall -c "qa"
 fi
