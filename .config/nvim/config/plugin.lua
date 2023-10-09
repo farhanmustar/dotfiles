@@ -199,7 +199,24 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- oil.nvim config
-require("oil").setup()
+require("oil").setup({
+  use_default_keymaps = false,
+  keymaps = {
+    ["g?"] = "actions.show_help",
+    ["<CR>"] = "actions.select",
+    ["<C-s>"] = "actions.select_vsplit",
+    ["<C-v>"] = "actions.select_split",
+    ["<C-r>"] = "actions.refresh",
+    ["<C-t>"] = "actions.select_tab",
+    ["<C-p>"] = "actions.preview",
+    ["<C-c>"] = "actions.close",
+    ["-"] = "actions.parent",
+    ["_"] = "actions.open_cwd",
+    ["`"] = "actions.cd",
+    ["~"] = "actions.tcd",
+    ["g."] = "actions.toggle_hidden",
+  }
+})
 vim.keymap.set("n", "-", require("oil").open)
 
 -- neoscroll config
