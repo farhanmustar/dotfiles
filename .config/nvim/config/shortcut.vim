@@ -118,6 +118,9 @@ nnoremap <silent> [q :cprev<CR>
 nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> [Q :cfirst<CR>
 nnoremap <silent> ]Q :clast<CR>
+" (this overwrite gn - to go next and select matching search)
+nnoremap gn :cnext<CR>
+nnoremap gN :cprev<CR>
 
 " Quickfix custom command
 command! -nargs=0 Creload silent call <SID>ReloadQFItem()
