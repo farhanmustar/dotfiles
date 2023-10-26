@@ -4,6 +4,11 @@ UBUNTU_YEAR=$(lsb_release -sr | cut -d '.' -f1)
 
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+read -p "Set timezone in ~/.profile to 'Asia/Kuala_Lumpur' ? (y/n) : " yn
+if [ "$yn" = "y" ]; then
+  echo "TZ='Asia/Kuala_Lumpur'; export TZ" >> ~/.profile
+fi
+
 read -p "Remove existing dotfiles and replace with link to repo? (y/n) : " yn
 if [ "$yn" = "y" ]; then
   rm -rf ~/.bash_aliases
