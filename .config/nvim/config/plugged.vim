@@ -59,7 +59,7 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'rcarriga/nvim-notify'
 Plug 'rest-nvim/rest.nvim'
-Plug 'romgrk/nvim-treesitter-context'
+Plug 'romgrk/nvim-treesitter-context', { 'commit': 'dc45b3e' }
 Plug 'samjwill/nvim-unception'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'stevearc/aerial.nvim'
