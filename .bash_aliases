@@ -48,7 +48,7 @@ _pwsh()
 
   case ${COMP_CWORD} in
     1)
-      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm choco sudo winget ipconfig" -- ${cur}))
+      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm vmconnect choco sudo winget ipconfig" -- ${cur}))
       ;;
     2)
       case ${prev} in
@@ -67,6 +67,9 @@ _pwsh()
         resume-vm)
           COMPREPLY=($(compgen -W "$(_get_vm_status paused)" -- ${cur}))
           ;;
+        vmconnect)
+          COMPREPLY=($(compgen -W "localhost" -- ${cur}))
+          ;;
         sudo)
           COMPREPLY=($(compgen -W "choco" -- ${cur}))
           ;;
@@ -84,6 +87,13 @@ _pwsh()
           case ${prev} in
             choco)
               COMPREPLY=($(compgen -W "search find info install uninstall upgrade" -- ${cur}))
+              ;;
+          esac
+          ;;
+        vmconnect)
+          case ${prev} in
+            localhost)
+              COMPREPLY=($(compgen -W "$(pwsh get-vm \| select-object -expand name | tr -d "\r")" -- ${cur}))
               ;;
           esac
           ;;
