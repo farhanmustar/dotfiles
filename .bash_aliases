@@ -21,6 +21,7 @@ alias catkin_make_compile_commands='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=
 alias watchexec='f(){ watch -n1 "watch -t -g ls --full-time \"$1\" >/dev/null && $2"; unset -f f;}; f'
 alias ssh-start-agent='eval $(keychain --eval ~/.ssh/<your_key>)'
 alias ssh-agent-start='eval "$(ssh-agent)"'
+alias timesync='if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then sudo hwclock -s; else sudo timedatectl set-ntp off && sudo timedatectl set-ntp on; fi'
 
 # windows (wsl) specific
 alias pwsh='powershell -Command'
