@@ -6,6 +6,7 @@ end
 
 local null_ls = require('null-ls')
 local helpers = require('null-ls.helpers')
+local cmd_resolver = require("null-ls.helpers.command_resolver")
 local plenary_path = require('plenary.path')
 null_ls.setup({
   -- debug = true,
@@ -227,8 +228,61 @@ local js_beautify = {
     to_stdin = true,
   }),
 }
+local prettier = null_ls.builtins.formatting.prettier.with({
+  filetypes = {
+    "javascript",
+    "typescript",
+    "svelte",
+  }
+})
+local eslint_action = null_ls.builtins.code_actions.eslint.with({
+  filetypes = {
+    "javascript",
+    "typescript",
+    "svelte",
+  }
+})
+local eslint =  null_ls.builtins.diagnostics.eslint.with({
+  filetypes = {
+    "javascript",
+    "typescript",
+    "svelte",
+  }
+})
+local prettylint = {
+  name = 'prettylint',
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = {
+    "javascript",
+    "typescript",
+    "svelte",
+  },
+  generator = null_ls.generator({
+    dynamic_command = cmd_resolver.from_node_modules(),
+    command = 'prettylint',
+    args = {'$FILENAME'},
+    format = 'line',
+    to_temp_file = true,
+		check_exit_code = function(code, stderr)
+			return code <= 1
+		end,
+    cwd = function(params)
+      return vim.fn.fnamemodify(params.bufname, ":h")
+    end,
+    on_output = helpers.diagnostics.from_patterns({
+      {
+        pattern = [[[^%d]+(%d+):(%d+)(.*)]],
+        groups = { "row", "col", "message" },
+      },
+    }),
+  }),
+}
 null_ls.register(jshint)
-null_ls.register(js_beautify)
+-- null_ls.register(js_beautify)
+null_ls.register(prettier)
+null_ls.register(eslint_action)
+null_ls.register(eslint)
+null_ls.register(prettylint)
 
 -- Html
 -- local djlint = null_ls.builtins.formatting.djlint, -- python 3
