@@ -5,13 +5,6 @@ if not ok then
 end
 
 require('nvim-treesitter.configs').setup({
-  context_commentstring = {
-    enable = true,
-    config = {
-      http = '# %s',
-      bash = '# %s',
-    }
-  },
   yati = {
     enable = true,
   },
@@ -52,6 +45,15 @@ require('nvim-treesitter.configs').setup({
       },
     },
   },
+})
+
+-- nvim-ts-context-commentstring config
+require('ts_context_commentstring').setup({
+  enable = true,
+  config = {
+    http = '# %s',
+    bash = '# %s',
+  }
 })
 
 -- ssr config
