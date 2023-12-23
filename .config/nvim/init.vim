@@ -21,7 +21,6 @@ Source './config/textobject.vim'
 Source './config/note.vim'
 Source './config/curl.vim'
 Source './config/treesitter.lua'
-Source './config/lsp.lua'
 Source './config/dap.lua'
 
 " Note Directory
