@@ -5,6 +5,21 @@ if not ok then
 end
 
 require('nvim-treesitter.configs').setup({
+  ensure_installed = {
+    'c',
+    'cpp',
+    'css',
+    'javascript',
+    'html',
+    'python',
+    'svelte',
+    'vimdoc',
+    'vim',
+    'markdown',
+    'lua',
+    'bash',
+  },
+  sync_install = false,
   yati = {
     enable = true,
   },
