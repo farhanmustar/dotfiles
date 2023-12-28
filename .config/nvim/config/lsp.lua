@@ -76,6 +76,12 @@ vim.diagnostic.config({
 	},
 })
 
+vim.api.nvim_create_user_command("NullLsReset", function()
+  for _, source in ipairs(null_ls.get_sources()) do
+    source.generator._failed = false
+  end
+end, {})
+
 -- Misc
 local refactoring = null_ls.builtins.code_actions.refactoring
 null_ls.register(refactoring)
