@@ -54,6 +54,8 @@ command! -nargs=0 DisableDiagnosticPopup silent call <SID>DisableDiagnosticPopup
 command! -nargs=0 EnableDiagnosticPopup silent call <SID>EnableDiagnosticPopup()
 command! -nargs=0 DisableDiagnostic silent lua vim.diagnostic.disable(0, nil); vim.diagnostic.reset(nil, 0)
 command! -nargs=0 EnableDiagnostic silent lua vim.diagnostic.enable(0, nil)
+command! -nargs=0 DisableAllDiagnostic silent lua vim.diagnostic.disable(); vim.diagnostic.reset()
+command! -nargs=0 EnableAllDiagnostic silent lua vim.diagnostic.enable()
 
 augroup diagnosticbehaviour
   autocmd!
