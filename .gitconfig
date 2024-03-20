@@ -20,6 +20,9 @@
   slog = log --oneline
   mlog = log --format=format:'%C(yellow)%h %C(white)%s %Cgreen(%ar by %an) %Cred%d'
 
+  # backup current state. but will not save diff between staged and not staged.
+  save = !git stash -u && git stash apply stash@{0} --index && git add . && git commit -m 'save commit' && git reset --hard HEAD~ && git stash pop --index
+
   cloneempty = clone --filter=blob:none --no-checkout
   unstage = reset -q HEAD --
   discard = checkout --
