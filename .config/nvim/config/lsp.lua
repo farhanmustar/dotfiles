@@ -269,10 +269,11 @@ local prettylint = {
     dynamic_command = cmd_resolver.from_node_modules(),
     command = 'prettylint',
     args = {'$FILENAME'},
+    ignore_stderr = true,
     format = 'line',
     to_temp_file = true,
 		check_exit_code = function(code, stderr)
-			return code <= 1
+			return code > 0
 		end,
     cwd = function(params)
       return vim.fn.fnamemodify(params.bufname, ":h")
