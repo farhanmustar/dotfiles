@@ -88,7 +88,6 @@ vim.keymap.set('n', '<leader>du', dap.run_to_cursor, {silent = true})
 vim.keymap.set('n', '<leader>ds', dap.terminate, {silent = true})
 local isOpen = false
 vim.keymap.set('n', '<leader>dv', function()
-  print(isOpen)
   if not isOpen then
     dapui.open({reset = true, layout = 1})
     dapui.open({reset = true, layout = 2})
@@ -153,6 +152,41 @@ vim.keymap.set('n', '<leader>dh', function()
     choice[2]()
   end)
 end, {silent = true})
+
+-- dap sub mode
+local submode = require("submode")
+-- TODO: if used elsewhere need to move setup to plugin.lua
+submode.setup()
+
+submode.create("DAPMode", {
+  mode = "n",
+  enter = "<leader>dm",
+  leave = { "q", "<ESC>" },
+  enter_cb = function()
+    vim.notify('DAP Mode Enabled', vim.log.levels.INFO)
+  end,
+  leave_cb = function()
+    vim.notify('DAP Mode Disabled', vim.log.levels.INFO)
+  end,
+}, {
+  lhs = "j",
+  rhs = dap.step_over,
+}, {
+  lhs = "i",
+  rhs = dap.step_into,
+}, {
+  lhs = "o",
+  rhs = dap.step_out,
+}, {
+  lhs = "s",
+  rhs = dap.terminate,
+}, {
+  lhs = "d",
+  rhs = dap.continue,
+}, {
+  lhs = "<space>",
+  rhs = dap.continue,
+})
 
 local codelldb_command = '/usr/bin/codelldb'
 dap.adapters.codelldb = function(on_adapter)
