@@ -1,0 +1,7 @@
+{
+    "print": {
+        "prefix": "print",
+        "body": "console.log(${1:variable});",
+        "description": "Add print statement"
+    }
+}

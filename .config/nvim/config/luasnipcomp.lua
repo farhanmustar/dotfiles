@@ -1,4 +1,4 @@
--- source: https://github.com/potamides/dotfiles/blob/master/.config/nvim/plugin/snipcomp.lua
+-- source: https://github.com/potamides/dotfiles/blob/master/.config/nvim/lua/snipcomp.lua
 
 -- use first plugin to check for installed plugin
 local ok, _ = pcall(require, 'luasnip')
@@ -9,6 +9,13 @@ end
 -- lazy load LuaSnip, only useful when LuaSnip wasn't already loaded elsewhere
 local luasnip = setmetatable({}, {__index = function(_, key) return require("luasnip")[key] end})
 vim.luasnip = {}
+
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip/loaders/from_vscode").lazy_load({
+  paths = {
+    vim.fn.expand("<sfile>:p:h:h") .. "/snippets",
+  }
+})
 
 local function snippet2completion(snippet)
   return {
@@ -48,3 +55,9 @@ function vim.luasnip.completion_expand(item)
     luasnip.expand()
   end
 end
+
+-- friendly-snippets extends framework
+-- TODO: django-rest extend not working.
+-- TODO: python for/else not working.
+luasnip.filetype_extend("python", { "django", "django-rest" })
+luasnip.filetype_extend("html", { "htmldjango" })

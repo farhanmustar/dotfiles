@@ -53,9 +53,6 @@ vim.cmd([[
   nmap <expr> <silent> <Esc> <SID>MyEscAction()
 ]])
 
--- LuaSnip config
-require("luasnip.loaders.from_vscode").lazy_load()
-
 -- aerial config
 local aerial = require('aerial')
 aerial.setup({
