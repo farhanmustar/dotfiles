@@ -36,7 +36,7 @@ if [ "$yn" = "y" ]; then
   sudo apt-get install ripgrep xclip -y
   # build neovim
   sudo apt-get install ninja-build gettext cmake unzip curl -y
-  git clone https://github.com/neovim/neovim.git -b v0.9.2 --depth 1 /tmp/neovim
+  git clone https://github.com/neovim/neovim.git -b v0.9.4 --depth 1 /tmp/neovim
   (cd /tmp/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install)
   rm -rf /tmp/neovim
   # setup neovim
