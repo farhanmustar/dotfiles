@@ -22,6 +22,8 @@ alias watchexec='f(){ watch -n1 "watch -t -g ls --full-time \"$1\" >/dev/null &&
 alias ssh-start-agent='eval $(keychain --eval ~/.ssh/<your_key>)'
 alias ssh-agent-start='eval "$(ssh-agent)"'
 alias timesync='if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then sudo hwclock -s; else sudo timedatectl set-ntp off && sudo timedatectl set-ntp on; fi'
+# alias fvim='NVIM_APPNAME=fvim nvim'
+# alias fvimg='NVIM_APPNAME=fvim nvim -c GV -c "silent! G" -c "silent! tabonly"'
 
 # windows (wsl) specific
 alias pwsh='powershell -Command'
