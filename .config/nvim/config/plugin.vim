@@ -63,6 +63,20 @@ let g:xremap = {'gr': 'gR'}
 " GV.vim shortcuts
 command! -nargs=* GVBB silent execute "GVB --branches ".<q-args>
 command! -nargs=* GVDB silent execute "GVB --branches --date-order ".<q-args>
+command! -nargs=* GVBBB call s:GitBranchesWithRemotes(<q-args>)
+function! s:GitBranchesWithRemotes(args)
+  let l:data = FugitiveExecute('for-each-ref', '--format="%(refname:short) %(upstream:short)"', 'refs/heads')
+  if l:data['exit_status'] != 0
+    echoerr 'Branch listing return error'
+    return
+  endif
+  let l:branches = l:data['stdout']
+  for i in range(len(l:branches))
+      let l:branches[i] = substitute(l:branches[i], '^"\(.*\)"$', '\1', '')
+      let l:branches[i] = trim(l:branches[i])
+  endfor
+  silent execute 'GVB '. join(l:branches, ' ') . ' '. a:args
+endfunction
 
 " tagbar config
 let g:tagbar_map_close = 'gq'

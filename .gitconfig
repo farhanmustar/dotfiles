@@ -40,6 +40,8 @@
   graph = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
   graphd = log --graph -100 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d' --date-order
   graphb = log --graph -100 --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
+  graphbb = log --graph -100 --branches --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d'
+  graphbbb = !git log --graph -100 --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d' $(git for-each-ref --format='%(refname:short) %(upstream:short)' refs/heads)
   graphs = log --graph -100 --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%aN, %ar) %Cred%d' --first-parent
   whatadded = log --diff-filter=A
 
