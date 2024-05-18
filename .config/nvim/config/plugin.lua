@@ -125,26 +125,6 @@ require('dressing').setup({
   },
 });
 
--- harpoon config
-vim.keymap.set('n', '<leader>hh', require("harpoon.ui").toggle_quick_menu)
-vim.keymap.set('n', '<leader>hm', require("harpoon.mark").add_file)
-
--- nvim-tree config
-require("nvim-tree").setup({
-  on_attach = function()
-    local api = require('nvim-tree.api')
-    vim.keymap.set('n', '<CR>', api.node.open.preview)
-    vim.keymap.set('n', 'o', api.node.open.edit)
-    vim.keymap.set('n', 'O', api.node.open.tab)
-    vim.keymap.set('n', 's', api.node.open.horizontal)
-    vim.keymap.set('n', 'V', api.node.open.vertical)
-    vim.keymap.set('n', 'I', api.tree.change_root_to_node)
-    vim.keymap.set('n', '.', api.node.run.cmd)
-  end
-})
-vim.keymap.set('n', '<leader>ft', function()
-  require("nvim-tree.api").tree.toggle(true, true, vim.fn.expand('%:p:h'))
-end)
 
 -- rest.nvim config
 require("rest-nvim").setup({

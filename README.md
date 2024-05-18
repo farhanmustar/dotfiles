@@ -140,6 +140,12 @@ npm run build
 google-chrome-stable --remote-debugging-port=9222
 ```
 
+### Svelte
+* svelte language server from vscode plugin
+```bash
+sudo npm i -g svelte-language-server
+```
+
 ### Dart
 * Tagbar support
   * Instal dart ctags.
