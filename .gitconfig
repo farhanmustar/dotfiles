@@ -70,10 +70,10 @@
   renames = true
 
 [log]
-	date = iso-local
+  date = iso-local
 
 [rerere]
-	enabled = true
+  enabled = true
 
 [user]
   ; email = farhanmustar@gmail.com
