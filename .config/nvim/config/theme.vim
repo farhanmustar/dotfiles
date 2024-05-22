@@ -33,6 +33,11 @@ function! s:ModifyColorScheme()
   highlight link Function         GruvboxAqua
   highlight link @variable        Variable
   highlight link @text.todo.unchecked GruvboxRed
+
+  highlight DiffAdd    ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
+  highlight DiffChange ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
+  highlight DiffText   ctermbg=10 guibg=#745203 cterm=NONE guifg=NONE    gui=NONE
+  highlight DiffDelete ctermbg=10 guibg=#750e02 cterm=NONE guifg=#865050 gui=NONE
 endfunction
 augroup modifycolorscheme
   autocmd!
