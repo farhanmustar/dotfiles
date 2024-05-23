@@ -49,6 +49,8 @@
 
   please = push --force-with-lease
 
+  difflist = diff --name-only
+
 [merge]
   tool = vimdiff
   conflictstyle = diff3
