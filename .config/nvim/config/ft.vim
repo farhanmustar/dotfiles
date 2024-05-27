@@ -25,6 +25,8 @@ augroup END
 augroup gitfiletype
   autocmd!
   autocmd FileType git setlocal foldmethod=syntax
+  " TODO: consider modify isfname
+  autocmd FileType git nmap <buffer> gF viWogf
 augroup END
 
 " python filetype
