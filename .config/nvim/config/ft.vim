@@ -37,3 +37,9 @@ augroup pythonfiletype
   autocmd BufEnter *.py setlocal expandtab
   autocmd BufEnter *.py setlocal smarttab
 augroup END
+
+" gitcommit filetype
+augroup gitcommitfiletype
+  autocmd!
+  autocmd FileType gitcommit setlocal spell
+augroup END
