@@ -88,12 +88,14 @@ vnoremap <Leader>fF y?<C-r>"<CR>:set hlsearch<CR>:lua require("hlslens").start()
 " Diff shortcuts
 nnoremap <silent> <leader>df :call <SID>diffToggle()<CR>
 function! <SID>diffToggle()
+  let l:winid = win_getid()
   if &diff
     diffoff!
-    windo setlocal nocursorbind
+    windo execute win_gettype() == '' ? 'setlocal nocursorbind': ''
   else
-    windo diffthis
+    windo execute win_gettype() == '' ? 'diffthis' : ''
   endif
+  call win_gotoid(l:winid)
 endfunction
 
 " Toggle paste mode
