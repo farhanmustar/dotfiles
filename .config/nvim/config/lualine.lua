@@ -31,6 +31,9 @@ local function fugitiveFilename()
   if vim.o.readonly then
     filename = filename .. ' [RO]'
   end
+  if vim.bo.modified then
+    filename = filename .. ' [+]'
+  end
   return filename
 end
 local function fugitiveBranch()
