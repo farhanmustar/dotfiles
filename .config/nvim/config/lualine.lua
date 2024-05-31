@@ -81,6 +81,8 @@ lualine.setup({
   },
   inactive_sections = {
     lualine_c = {
+      {fugitiveBranch, icon=''},
+      'branch',
       {
         'filename',
         path=1,
