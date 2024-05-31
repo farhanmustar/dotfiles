@@ -12,6 +12,14 @@
             {
                 "language": "javascript",
                 "path": "./javascript/base.json"
+            },
+            {
+                "language": "lua",
+                "path": "./lua/base.json"
+            },
+            {
+                "language": "lua",
+                "path": "./lua/vim.json"
             }
         ]
     }

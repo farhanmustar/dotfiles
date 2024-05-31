@@ -34,11 +34,13 @@ local function fugitiveFilename()
   return filename
 end
 local function fugitiveBranch()
-  if isSpecialFiletype() or not isFugitive() then
+  if not isFugitive() then
     return ''
   end
   local obj = vim.fn['fugitive#Object'](vim.fn.bufname())
-  if obj:sub(1, 3) == ':0:' then
+  if obj == ':' then
+    return vim.fn.FugitiveHead()
+  elseif obj:sub(1, 3) == ':0:' then
     return 'Staged'
   end
   return obj:sub(1,6)
