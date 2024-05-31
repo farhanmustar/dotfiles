@@ -1,0 +1,7 @@
+{
+    "print": {
+        "prefix": "print",
+        "body": "print(${1:variable})",
+        "description": "Add print statement"
+    }
+}

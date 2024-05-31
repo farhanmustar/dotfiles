@@ -1,0 +1,12 @@
+{
+    "notify": {
+        "prefix": "notify",
+        "body": "vim.notify(${1:variable}, vim.log.levels.INFO)",
+        "description": "Add vim notify statement"
+    },
+    "inspect": {
+        "prefix": "inspect",
+        "body": "print(vim.inspect(${1:variable}))",
+        "description": "Add vim inspect statement"
+    }
+}
