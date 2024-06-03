@@ -207,20 +207,30 @@ require('ecb').setup {
 -- telescope configs
 require('telescope').setup{
   defaults = {
+    layout_strategy = 'bottom_pane',
+    layout_config = {
+      prompt_position = 'bottom'
+    },
     mappings = {
       i = {
-        ['<C-h>'] = 'which_key'
+        ['<C-h>'] = 'which_key',
+        ['gq'] = 'close',
+        ['<esc>'] = 'close', -- TODO: this does not work
+        ['<CR>'] = { '<esc>', type = 'command' },
       },
       n = {
         ['<C-h>'] = 'which_key',
+        ['gq'] = 'close',
         ['v'] = 'file_vsplit',
-        ['O'] = 'file_tab',
+        ['t'] = 'file_tab',
         ['o'] = 'file_split',
       }
     }
   },
 }
-vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').git_files() end)
+vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').git_files({
+  previewer = false
+}) end)
 
 -- nvim-ufo config
 vim.o.foldlevel  = 99
