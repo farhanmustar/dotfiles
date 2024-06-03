@@ -25,7 +25,7 @@ cmp.setup({
           elseif vim.fn.pumvisible() == 1 and vim.fn.CB_can_expand() == 1 then
             vim.fn.CB_expand()
             return
-          elseif cmp.visible() then 
+          elseif cmp.visible() then
             cmp.close()
             return
           end
@@ -60,7 +60,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { 
+    {
       name = 'buffer',
       option = {
         get_bufnrs = function()
@@ -69,7 +69,7 @@ cmp.setup({
       }
     },
   }, {
-    { 
+    {
       name = 'buffer',
       option = {
         get_bufnrs = function()
@@ -104,7 +104,7 @@ vim.cmd([[
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { 
+    {
       name = 'buffer',
       option = {
         get_bufnrs = function()
@@ -118,7 +118,7 @@ cmp.setup.cmdline({ '/', '?' }, {
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = {
-    { 
+    {
       name = 'buffer',
       option = {
         get_bufnrs = function()
@@ -127,4 +127,13 @@ cmp.setup.filetype('gitcommit', {
       }
     },
   }
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })
