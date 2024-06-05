@@ -76,6 +76,7 @@ Plug 'tpope/vim-surround'
 Plug 'tzachar/highlight-undo.nvim'
 Plug 'uga-rosa/ccc.nvim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'yioneko/nvim-yati'
 
 Plug 'msva/lua-htmlparser', {'do':'ln -sT ./src lua'}

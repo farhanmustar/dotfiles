@@ -10,7 +10,7 @@
                 "path": "./python/base.json"
             },
             {
-                "language": "javascript",
+                "language": ["javascript", "svelte"],
                 "path": "./javascript/base.json"
             },
             {

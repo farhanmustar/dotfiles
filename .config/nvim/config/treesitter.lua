@@ -103,3 +103,6 @@ vim.keymap.set('n', '<leader>ss', require("ts-node-action").node_action)
 
 -- template-string.nvim config
 require('template-string').setup()
+
+-- nvim-ts-autotag config
+require('nvim-ts-autotag').setup()

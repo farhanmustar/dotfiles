@@ -3,5 +3,10 @@
         "prefix": "print",
         "body": "console.log(${1:variable});",
         "description": "Add print statement"
+    },
+    "console": {
+        "prefix": "console",
+        "body": "console.log(${1:variable});",
+        "description": "Add print statement"
     }
 }
