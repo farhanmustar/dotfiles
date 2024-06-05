@@ -126,6 +126,12 @@ cmp.setup.filetype('gitcommit', {
         end
       }
     },
+    {
+      name = "spell",
+      option = {
+        preselect_correct_word = false,
+      },
+    },
   }
 })
 

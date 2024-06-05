@@ -19,6 +19,7 @@ Plug 'djoshea/vim-autoread'
 Plug 'eandrju/cellular-automaton.nvim'
 Plug 'easymotion/vim-easymotion'
 Plug 'ellisonleao/gruvbox.nvim', {'tag': '1.*'}
+Plug 'f3fora/cmp-spell'
 Plug 'farhanmustar/gv.vim'
 Plug 'fidian/hexmode'
 Plug 'ggVGc/vim-fuzzysearch'
