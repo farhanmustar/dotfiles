@@ -9,6 +9,7 @@ local ls = require('luasnip')
 local compare = require('cmp.config.compare')
 local cmp_buffer = require('cmp_buffer')
 
+vim.g.lexima_map_escape = ''
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -34,6 +35,7 @@ cmp.setup({
           fallback()
         end, { 'i' }),
     ['<Esc>'] = cmp.mapping(function(fallback)
+          vim.fn['lexima#insmode#escape']()
           ls.unlink_current()
           fallback()
         end, { 'i' }),
