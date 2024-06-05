@@ -88,6 +88,9 @@ Plug 'yioneko/nvim-yati'
 
 Plug 'msva/lua-htmlparser', {'do':'ln -sT ./src lua'}
 
+" disable nvim-unception to use this.
+" Plug 'dstein64/vim-startuptime'
+
 " Plug 'dart-lang/dart-vim-plugin'
 " Plug 'erisian/rest_tools'
 
