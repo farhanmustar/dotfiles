@@ -9,6 +9,53 @@ local ls = require('luasnip')
 local compare = require('cmp.config.compare')
 local cmp_buffer = require('cmp_buffer')
 
+local cmp_config = require('cmp.config')
+local cmp_api = require('cmp.utils.api')
+local cmp_str = require('cmp.utils.str')
+local cmp_keymap = require('cmp.utils.keymap')
+local cmp_feedkeys = require('cmp.utils.feedkeys')
+local complete_common_string = function(max_entry)
+  max_entry = max_entry or 5
+  if cmp.get_selected_entry() then
+    return false
+  end
+
+  cmp_config.set_onetime({
+    sources = cmp_config.get().sources,
+    matching = {
+      disallow_prefix_unmatching = true,
+      disallow_partial_matching = true,
+      disallow_fuzzy_matching = true,
+    },
+  })
+
+  cmp.core:filter()
+
+  cmp_config.set_onetime({})
+
+  local cursor = cmp_api.get_cursor()
+  local offset = cmp.core.view:get_offset() or cursor[2]
+  local common_string
+  for i, e in ipairs(cmp.core.view:get_entries()) do
+    if i > max_entry then
+        break
+    end
+    local vim_item = e:get_vim_item(offset)
+    if not common_string then
+      common_string = vim_item.word
+    else
+      common_string = cmp_str.get_common_string(common_string, vim_item.word)
+    end
+  end
+  local cursor_before_line = cmp_api.get_cursor_before_line()
+  local pretext = cursor_before_line:sub(offset)
+  if common_string and #common_string > #pretext then
+    cmp_feedkeys.call(cmp_keymap.backspace(pretext) .. common_string, 'n')
+    return true
+  end
+  return false
+end
+
 vim.g.lexima_map_escape = ''
 cmp.setup({
   snippet = {
@@ -40,7 +87,9 @@ cmp.setup({
         end, { 'i', 'x', 's' }),
     ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item()
+            if not complete_common_string() then
+              cmp.select_next_item()
+            end
             return
           elseif ls.jumpable(1) then
             ls.jump(1)
@@ -102,7 +151,18 @@ vim.keymap.set('x', '<S-Tab>', function() ls.jump(-1) end)
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmp.mapping.preset.cmdline({
+    ['<Tab>'] = cmp.mapping(
+      function(fallback)
+        if cmp.visible() then
+          if not complete_common_string() then
+            cmp.select_next_item()
+          end
+          return
+        end
+        fallback()
+      end, { 'c' }),
+  }),
   sources = {
     {
       name = 'buffer',
@@ -136,7 +196,18 @@ cmp.setup.filetype('gitcommit', {
 })
 
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmp.mapping.preset.cmdline({
+    ['<Tab>'] = cmp.mapping(
+      function(fallback)
+        if cmp.visible() then
+          if not complete_common_string() then
+            cmp.select_next_item()
+          end
+          return
+        end
+        fallback()
+      end, { 'c' }),
+  }),
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
