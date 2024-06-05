@@ -35,10 +35,9 @@ cmp.setup({
           fallback()
         end, { 'i' }),
     ['<Esc>'] = cmp.mapping(function(fallback)
-          vim.fn['lexima#insmode#escape']()
           ls.unlink_current()
           fallback()
-        end, { 'i' }),
+        end, { 'i', 'x', 's' }),
     ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -100,21 +99,6 @@ vim.keymap.set('s', '<Tab>', function() ls.jump(1) end)
 vim.keymap.set('x', '<Tab>', function() ls.jump(1) end)
 vim.keymap.set('s', '<S-Tab>', function() ls.jump(-1) end)
 vim.keymap.set('x', '<S-Tab>', function() ls.jump(-1) end)
-
-vim.cmd([[
-  snoremap <plug>MyEsc <Esc>
-  function! MyEscAction()
-    silent LuaSnipUnlinkCurrent
-    return "\<plug>MyEsc"
-  endfunction
-  smap <expr> <silent> <Esc> MyEscAction()
-  xnoremap <plug>MyEsc <Esc>
-  function! MyEscAction()
-    silent LuaSnipUnlinkCurrent
-    return "\<plug>MyEsc"
-  endfunction
-  xmap <expr> <silent> <Esc> MyEscAction()
-]])
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
