@@ -6,6 +6,8 @@ end
 
 local cmp = require('cmp')
 local ls = require('luasnip')
+local compare = require('cmp.config.compare')
+local cmp_buffer = require('cmp_buffer')
 
 cmp.setup({
   snippet = {
@@ -69,6 +71,7 @@ cmp.setup({
       }
     },
   }, {
+    { name = 'bufname' },
     {
       name = 'buffer',
       option = {
@@ -77,7 +80,18 @@ cmp.setup({
         end
       }
     },
-  })
+  }),
+  sorting = {
+    comparators = {
+      compare.recently_used,
+      function (...) return cmp_buffer:compare_locality(...) end,
+      compare.locality,
+      compare.score,
+      compare.exact,
+      compare.offset,
+      compare.order,
+    }
+  }
 })
 
 vim.keymap.set('s', '<Tab>', function() ls.jump(1) end)
