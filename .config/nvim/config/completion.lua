@@ -9,7 +9,6 @@ local ls = require('luasnip')
 local compare = require('cmp.config.compare')
 local cmp_buffer = require('cmp_buffer')
 
-local cmp_config = require('cmp.config')
 local cmp_api = require('cmp.utils.api')
 local cmp_str = require('cmp.utils.str')
 local cmp_keymap = require('cmp.utils.keymap')
@@ -19,19 +18,6 @@ local complete_common_string = function(max_entry)
   if cmp.get_selected_entry() then
     return false
   end
-
-  cmp_config.set_onetime({
-    sources = cmp_config.get().sources,
-    matching = {
-      disallow_prefix_unmatching = true,
-      disallow_partial_matching = true,
-      disallow_fuzzy_matching = true,
-    },
-  })
-
-  cmp.core:filter()
-
-  cmp_config.set_onetime({})
 
   local cursor = cmp_api.get_cursor()
   local offset = cmp.core.view:get_offset() or cursor[2]
