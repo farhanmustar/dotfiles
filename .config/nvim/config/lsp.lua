@@ -14,6 +14,10 @@ null_ls.setup({
     null_ls.builtins.code_actions.gitsigns,
   },
   should_attach = function(bufnr)
+    if vim.g.disable_lsp then
+      return false
+    end
+
     -- perf issue with large file.
     if vim.api.nvim_buf_line_count(bufnr) > 10000 then
       return false
@@ -82,6 +86,18 @@ vim.api.nvim_create_user_command("NullLsReset", function()
   for _, source in ipairs(null_ls.get_sources()) do
     source.generator._failed = false
   end
+end, {})
+
+-- TODO: auto trigger DisableLsp when user run cdo command.
+vim.api.nvim_create_user_command("DisableLsp", function()
+  vim.g.disable_lsp = true
+  vim.lsp.stop_client(vim.lsp.get_active_clients())
+end, {})
+
+vim.api.nvim_create_user_command("EnableLsp", function()
+  -- TODO: notify to trigger edit manually to start lsp
+  vim.g.disable_lsp = false
+  vim.api.nvim_cmd({cmd='NullLsReset'}, {})
 end, {})
 
 -- Misc
