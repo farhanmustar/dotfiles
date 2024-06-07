@@ -13,6 +13,12 @@ local function isFugitive()
   return false
 end
 local function isSpecialFiletype()
+  if vim.o.filetype == 'git' then
+    local obj = vim.fn['fugitive#Object'](vim.fn.bufname())
+    if obj:find(':') then
+      return false
+    end
+  end
   return vim.o.filetype == 'fugitive' or vim.o.filetype == 'git'
 end
 local function showQuickfix()
