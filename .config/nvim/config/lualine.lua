@@ -15,12 +15,18 @@ end
 local function isSpecialFiletype()
   return vim.o.filetype == 'fugitive' or vim.o.filetype == 'git'
 end
+local function showQuickfix()
+  return vim.o.filetype == 'qf'
+end
+local function showBranch()
+  return not showQuickfix()
+end
 local function showFilename()
   return not vim.o.previewwindow and
     vim.fn.bufname() ~= '' and not isSpecialFiletype() and not isFugitive()
 end
 local function showFiletype()
-  return not vim.o.previewwindow and (vim.fn.bufname() == '' or isSpecialFiletype())
+  return not showQuickfix() and not vim.o.previewwindow and (vim.fn.bufname() == '' or isSpecialFiletype())
 end
 local function fugitiveFilename()
   if isSpecialFiletype() or not isFugitive() then
@@ -61,7 +67,14 @@ lualine.setup({
   },
   sections = {
     lualine_a = {},
-    lualine_b = {{fugitiveBranch, icon=''}, 'branch', 'diff', 'diagnostics', ctrlspace},
+    lualine_b = {
+      {fugitiveBranch, icon=''},
+      {'branch', cond=showBranch},
+      {'%t', cond=showQuickfix},
+      'diff',
+      'diagnostics',
+      ctrlspace,
+    },
     lualine_c = {
       {
         'filename',
@@ -77,6 +90,7 @@ lualine.setup({
         separator={ right = '' },
       },
       {'filetype', cond=showFiletype},
+      {'w:quickfix_title', cond=showQuickfix},
     },
     lualine_x = {'filetype'},
     lualine_y = {'progress', 'location'},
@@ -85,7 +99,8 @@ lualine.setup({
   inactive_sections = {
     lualine_c = {
       {fugitiveBranch, icon=''},
-      'branch',
+      {'branch', cond=showBranch},
+      {'%t', cond=showQuickfix},
       {
         'filename',
         path=1,
@@ -100,6 +115,7 @@ lualine.setup({
         separator={ right = '' },
       },
       {'filetype', cond=showFiletype},
+      {'w:quickfix_title', cond=showQuickfix},
     },
   }
 })
