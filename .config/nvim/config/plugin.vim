@@ -32,10 +32,10 @@ let g:table_mode_header_fillchar='='
 command! Gv vertical topleft G
 command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
-command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
-command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(<q-args>)
-command! -nargs=+ -count LL silent execute "Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- %:h".RepeatStr(<count>,":h")
-command! -nargs=+ -count LT silent execute "tab sbuffer | Ggrep! -niI --no-exclude-standard --untracked ".string(<q-args>)." -- %:h".RepeatStr(<count>,":h")
+command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))
+command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))
+command! -nargs=+ -count LL silent execute "Ggrep! -niI --no-exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))." -- %:h".RepeatStr(<count>,":h")
+command! -nargs=+ -count LT silent execute "tab sbuffer | Ggrep! -niI --no-exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))." -- %:h".RepeatStr(<count>,":h")
 nnoremap <silent> <Leader>gg :call CMD('GG <C-r><C-w>')<CR>
 vnoremap <silent> <Leader>gg y:call CMD('GG <C-r>"')<CR>
 nnoremap <silent> <Leader>gt :call CMD('GT <C-r><C-w>')<CR>
