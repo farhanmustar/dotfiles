@@ -208,6 +208,16 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
   group = nvim_cmp_group,
   pattern = '*',
   callback = function ()
+    -- cannot switch permanently cause cb_plugin not integrate with nvim-cmp yet
+    vim.o.completeopt=''
     cmp.setup.buffer(cmdLineConf)
+  end
+})
+vim.api.nvim_create_autocmd("CmdwinLeave", {
+  group = nvim_cmp_group,
+  pattern = '*',
+  callback = function ()
+    -- cannot switch permanently cause cb_plugin not integrate with nvim-cmp yet
+    vim.o.completeopt='menu,menuone,noselect'
   end
 })
