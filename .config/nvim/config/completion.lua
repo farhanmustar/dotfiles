@@ -183,7 +183,7 @@ cmp.setup.filetype('gitcommit', {
   }
 })
 
-cmp.setup.cmdline(':', {
+local cmdLineConf = {
   mapping = cmp.mapping.preset.cmdline({
     ['<Tab>'] = cmp.mapping(
       function(fallback)
@@ -201,4 +201,13 @@ cmp.setup.cmdline(':', {
   }, {
     { name = 'cmdline' }
   })
+}
+cmp.setup.cmdline(':', cmdLineConf)
+local nvim_cmp_group = vim.api.nvim_create_augroup("nvimcmp", { clear = true })
+vim.api.nvim_create_autocmd("CmdwinEnter", {
+  group = nvim_cmp_group,
+  pattern = '*',
+  callback = function ()
+    cmp.setup.buffer(cmdLineConf)
+  end
 })

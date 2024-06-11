@@ -38,8 +38,7 @@ set undofile
 " CursorHold timer
 set updatetime=500
 " Completion option
-set completeopt+=menuone,noselect
-set completeopt-=preview
+set completeopt=
 set shortmess+=c
 set complete-=t
 set pumheight=10
