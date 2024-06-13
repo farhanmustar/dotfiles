@@ -16,3 +16,9 @@ function VCountStr()
   let l:count = get(v:, 'count')
   return l:count == 0 ? '': l:count
 endfunction
+
+function! AddHighlightWithTimeout(group, pos, timeout)
+    let match_id = matchaddpos(a:group, a:pos)
+    
+    call timer_start(a:timeout, {-> matchdelete(match_id)})
+endfunction

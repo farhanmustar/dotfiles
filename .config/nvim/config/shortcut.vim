@@ -146,6 +146,18 @@ function! s:RemoveQFItem() range
   call winrestview(win_state)
 endfunction
 
+function! s:YankQFItem() range
+  let qfsel = getqflist()[a:firstline - 1: a:lastline - 1]
+  " map is mutable operation, make copy
+  let sel = qfsel[:]->map('v:val["text"]')->join("\n")."\n"
+  let @0 = sel
+  let @" = sel
+
+  " highlight indicator
+  let pos = qfsel->map('[v:key + a:firstline, v:val["module"]->len() + v:val["lnum"]->len() + 4, v:val["text"]->len()]')
+  call AddHighlightWithTimeout('IncSearch', pos, 150)
+endfunction
+
 function! s:OlderQF() range
   let win_state = winsaveview()
   let cur_qf = getqflist({'nr' : 0}).nr
@@ -177,6 +189,10 @@ augroup quickfix
   autocmd Filetype qf nnoremap <buffer> <silent> r :Creload<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> dd :call <SID>RemoveQFItem()<CR>
   autocmd Filetype qf vnoremap <buffer> <silent> d :call <SID>RemoveQFItem()<CR>
+  autocmd Filetype qf nnoremap <buffer> <silent> yy :call <SID>YankQFItem()<CR>
+  autocmd Filetype qf vnoremap <buffer> <silent> y :call <SID>YankQFItem()<CR>
+  autocmd Filetype qf nnoremap <buffer> <silent> <leader>yy yy
+  autocmd Filetype qf vnoremap <buffer> <silent> <leader>y y
 
   " Auto open quickfix window
   autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!
