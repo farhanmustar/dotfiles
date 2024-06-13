@@ -200,6 +200,15 @@ local cmdLineConf = {
     { name = 'path' }
   }, {
     { name = 'cmdline' }
+  }, {
+    {
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
   })
 }
 cmp.setup.cmdline(':', cmdLineConf)
