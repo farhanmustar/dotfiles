@@ -13,6 +13,7 @@
   stashes = stash list
   sts = stash list
   sta = stash
+  stashall = stash -u
   tags = tag
   summary = show --summary
   sum = show --summary
