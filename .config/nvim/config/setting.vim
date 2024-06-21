@@ -47,6 +47,10 @@ set encoding=utf-8
 set nohlsearch
 " Treat - as part of word.
 set iskeyword+=-
+" Make wrap more readable
+set wrap
+set linebreak
+set breakindent
 
 " Disable netrw plugin
 let g:loaded_netrwPlugin=1
