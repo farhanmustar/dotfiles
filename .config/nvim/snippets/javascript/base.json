@@ -8,5 +8,15 @@
         "prefix": "console",
         "body": "console.log(${1:variable});",
         "description": "Add print statement"
+    },
+    "lambda": {
+        "prefix": "lambda",
+        "body": "(${1}) => {${0}}",
+        "description": "Add print statement"
+    },
+    "elseif": {
+        "prefix": "elseif",
+        "body": "} else if (${0}) {",
+        "description": "Add print statement"
     }
 }

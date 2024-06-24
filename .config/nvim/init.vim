@@ -32,5 +32,6 @@ let g:SimpleNoteTODOFile = '~/.todo.md'
 " Bookmarks
 let g:startify_bookmarks = [
 \   '~/.config/'.g:NVIM_APPNAME.'/init.vim', 
+\   '~/.config/'.g:NVIM_APPNAME.'/snippets/package.json', 
 \   '~/notes', 
 \]
