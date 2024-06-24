@@ -42,6 +42,7 @@ set completeopt+=menuone,noselect
 set completeopt-=preview
 set shortmess+=c
 set complete-=t
+set pumheight=10
 " Force encoding (windows default to latin)
 set encoding=utf-8
 set nohlsearch

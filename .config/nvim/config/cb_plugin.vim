@@ -96,7 +96,7 @@ function! CB_can_expand() abort
   return get(v:completed_item, 'menu', '') == '[cb]'
 endfunction
 
-function! s:expand() abort
+function! CB_expand() abort
   if get(v:completed_item, 'menu', '') != '[cb]'
     return
   endif
@@ -111,5 +111,3 @@ function! s:expand() abort
 
   return ''
 endfunction
-
-imap <expr> <silent> <plug>CBExpand <SID>expand()
