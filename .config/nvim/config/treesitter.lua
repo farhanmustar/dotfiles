@@ -20,11 +20,8 @@ require('nvim-treesitter.configs').setup({
     'bash',
   },
   sync_install = false,
-  yati = {
-    enable = true,
-  },
   indent = {
-    enable = false,
+    enable = true,
   },
   highlight = {
     enable = true,

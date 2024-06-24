@@ -64,7 +64,7 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'rasulomaroff/cmp-bufname'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'rcarriga/nvim-notify'
-Plug 'romgrk/nvim-treesitter-context', { 'commit': 'dc45b3e' }
+Plug 'romgrk/nvim-treesitter-context'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'samjwill/nvim-unception'
 Plug 'skywind3000/asyncrun.vim'
@@ -83,7 +83,6 @@ Plug 'tzachar/highlight-undo.nvim'
 Plug 'uga-rosa/ccc.nvim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'windwp/nvim-ts-autotag'
-Plug 'yioneko/nvim-yati'
 
 Plug 'msva/lua-htmlparser', {'do':'ln -sT ./src lua'}
 
