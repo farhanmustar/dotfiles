@@ -64,7 +64,6 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'rasulomaroff/cmp-bufname'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'rcarriga/nvim-notify'
-Plug 'rest-nvim/rest.nvim'
 Plug 'romgrk/nvim-treesitter-context', { 'commit': 'dc45b3e' }
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'samjwill/nvim-unception'
@@ -87,6 +86,9 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'yioneko/nvim-yati'
 
 Plug 'msva/lua-htmlparser', {'do':'ln -sT ./src lua'}
+
+" http request client need to explore.
+" Plug 'rest-nvim/rest.nvim'
 
 " disable nvim-unception to use this.
 " Plug 'dstein64/vim-startuptime'
