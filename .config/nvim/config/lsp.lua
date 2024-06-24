@@ -302,7 +302,7 @@ local prettylint = {
     }),
   }),
 }
-null_ls.register(jshint)
+-- null_ls.register(jshint)
 -- null_ls.register(js_beautify)
 null_ls.register(prettier)
 null_ls.register(eslint_action)
