@@ -268,3 +268,6 @@ require('highlight-undo').setup()
 require('term-edit').setup({
   prompt_end = '%$ ',
 })
+
+-- nvim-early-retirement config
+require("early-retirement").setup({})
