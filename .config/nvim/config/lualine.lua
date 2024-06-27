@@ -98,7 +98,7 @@ lualine.setup({
       {'filetype', cond=showFiletype},
       {'w:quickfix_title', cond=showQuickfix},
     },
-    lualine_x = {'filetype'},
+    lualine_x = {},
     lualine_y = {'progress', 'location'},
     lualine_z = {}
   },
