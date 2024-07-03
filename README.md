@@ -39,6 +39,15 @@ sudo apt-get install ripgrep -y
 ## Vim-Ale linter list
 * In vim, run `:ALEInfo` to find list of available linter.
 
+## Misc
+
+### Setup LAUNCH_EDITOR env variable.
+* edit in .bashrc to set LAUNCH_EDITOR to point to `.bin/launch_editor.sh`
+* use by svelte inspector to open files when clicking component.
+```bash
+export LAUNCH_EDITOR=~/dotfiles/.bin/launch_editor.sh
+```
+
 ## Language Config
 
 ### Vim

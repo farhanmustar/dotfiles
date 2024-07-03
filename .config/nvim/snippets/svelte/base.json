@@ -1,0 +1,7 @@
+{
+    "s-const": {
+        "prefix": "s-const",
+        "body": "{@const ${1:var} = ${2:expression}}",
+        "description": "Add const statement"
+    }
+}

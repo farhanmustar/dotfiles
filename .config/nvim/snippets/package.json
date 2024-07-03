@@ -20,6 +20,10 @@
             {
                 "language": "lua",
                 "path": "./lua/vim.json"
+            },
+            {
+                "language": ["svelte"],
+                "path": "./svelte/base.json"
             }
         ]
     }
