@@ -331,8 +331,8 @@ else
 endif
 
 " command window shortcut
-nnoremap <leader>; :<C-f>
-vnoremap <leader>; :<C-f>
+nnoremap <leader>; q:
+vnoremap <leader>; q:
 
 " run macro on multiple selected line
 xnoremap @ :<C-u>call <SID>executeMacroOverVisualRange()<CR>
