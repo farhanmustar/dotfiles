@@ -43,6 +43,23 @@ local complete_common_string = function(max_entry)
 end
 
 vim.g.lexima_map_escape = ''
+local bufferSrc = {
+  name = 'buffer',
+  option = {
+    keyword_pattern = [[\k\+]],
+    get_bufnrs = function()
+      local bufs = {}
+      for _, x in ipairs(vim.api.nvim_list_bufs()) do
+        print(x)
+        local byte_size = vim.api.nvim_buf_get_offset(x, vim.api.nvim_buf_line_count(x))
+        if byte_size < 1024 * 1024 then -- 1 Megabyte max
+          table.insert(bufs, x)
+        end
+      end
+      return bufs
+    end
+  }
+}
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -98,26 +115,10 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    {
-      name = 'buffer',
-      option = {
-        keyword_pattern = [[\k\+]],
-        get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
-        end
-      }
-    },
+    bufferSrc,
   }, {
     { name = 'bufname' },
-    {
-      name = 'buffer',
-      option = {
-        keyword_pattern = [[\k\+]],
-        get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
-        end
-      }
-    },
+    bufferSrc,
   }),
   sorting = {
     comparators = {
@@ -152,28 +153,14 @@ cmp.setup.cmdline({ '/', '?' }, {
       end, { 'c' }),
   }),
   sources = {
-    {
-      name = 'buffer',
-      option = {
-        get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
-        end
-      }
-    },
+    bufferSrc,
   }
 })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = {
-    {
-      name = 'buffer',
-      option = {
-        get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
-        end
-      }
-    },
+    bufferSrc,
     {
       name = "spell",
       option = {
@@ -201,14 +188,7 @@ local cmdLineConf = {
   }, {
     { name = 'cmdline' }
   }, {
-    {
-      name = 'buffer',
-      option = {
-        get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
-        end
-      }
-    },
+    bufferSrc,
   })
 }
 cmp.setup.cmdline(':', cmdLineConf)
