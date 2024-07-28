@@ -271,3 +271,12 @@ require('term-edit').setup({
 
 -- nvim-early-retirement config
 require("early-retirement").setup({})
+
+--- ccc.nvim
+local ccc = require("ccc")
+ccc.setup({
+  highlighter = {
+    auto_enable = true,
+    lsp = true,
+  },
+})
