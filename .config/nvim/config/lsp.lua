@@ -348,3 +348,7 @@ null_ls.register(astyle)
 
 -- c_sharp
 require('lspconfig').csharp_ls.setup({})
+
+-- shell
+null_ls.register(null_ls.builtins.diagnostics.shellcheck)
+null_ls.register(null_ls.builtins.code_actions.shellcheck)
