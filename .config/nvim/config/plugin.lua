@@ -276,7 +276,7 @@ require("early-retirement").setup({})
 local ccc = require("ccc")
 ccc.setup({
   highlighter = {
-    auto_enable = true,
+    auto_enable = false,
     lsp = true,
   },
 })
