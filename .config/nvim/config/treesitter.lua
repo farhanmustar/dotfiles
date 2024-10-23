@@ -65,6 +65,7 @@ require('ts_context_commentstring').setup({
   config = {
     http = '# %s',
     bash = '# %s',
+    dart = '// %s',
   }
 })
 
