@@ -9,6 +9,34 @@ local ls = require('luasnip')
 local compare = require('cmp.config.compare')
 local cmp_buffer = require('cmp_buffer')
 
+local kind_icons = {
+  Text = "󰉿",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
+  Field = "󰜢",
+  Variable = "󰀫",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "󰑭",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈙",
+  Reference = "󰈇",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
+  Struct = "󰙅",
+  Event = "",
+  Operator = "󰆕",
+  TypeParameter = "",
+}
+
 local cmp_api = require('cmp.utils.api')
 local cmp_str = require('cmp.utils.str')
 local cmp_keymap = require('cmp.utils.keymap')
@@ -128,7 +156,15 @@ cmp.setup({
       compare.offset,
       compare.order,
     }
-  }
+  },
+  formatting = {
+    fields = { "abbr", "kind", "menu" },
+    format = function(_, vim_item)
+      local kind = vim_item.kind
+      vim_item.kind = " " .. (kind_icons[kind] or "?") .. ""
+      return vim_item
+    end,
+  },
 })
 
 vim.keymap.set('s', '<Tab>', function() ls.jump(1) end)
