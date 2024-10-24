@@ -58,7 +58,29 @@ local function fugitiveBranch()
   elseif obj:sub(1, 3) == ':0:' then
     return 'Staged'
   end
-  return obj:sub(1,6)
+  local commitHash = obj:sub(1,6)
+
+  local out = vim.fn.FugitiveExecute('tag', '--points-at', commitHash)
+  if #out['stdout'] > 1 then
+    out = out['stdout'][1]
+    return trimString(out)
+  end
+  out = vim.fn.FugitiveExecute('branch', '--points-at', commitHash)
+  if #out['stdout'] > 1 then
+    out = out['stdout'][1]
+    -- cleanup * indicator for HEAD
+    if string.sub(out, 1, 1) == '*' then
+        out = string.sub(out, 2)
+    end
+    return trimString(out)
+  end
+  out = vim.fn.FugitiveExecute('branch', '-r', '--points-at', commitHash)
+  if #out['stdout'] > 1 then
+    out = out['stdout'][1]
+    return trimString(out)
+  end
+
+  return commitHash
 end
 local fugitiveFilenameColor = { bg = '#314f26', fg = '#f7f0df' }
 local gruvbox = require('lualine.themes.gruvbox_dark')

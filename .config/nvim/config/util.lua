@@ -118,3 +118,7 @@ function bind(func, ...)
    return func(unpackn(mergen(args, packn(...))))
  end
 end
+
+function trimString(str)
+    return str:match("^%s*(.-)%s*$")
+end
