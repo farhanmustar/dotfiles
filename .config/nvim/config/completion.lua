@@ -76,7 +76,6 @@ local buffer_option = {
   get_bufnrs = function()
     local bufs = {}
     for _, x in ipairs(vim.api.nvim_list_bufs()) do
-      print(x)
       local byte_size = vim.api.nvim_buf_get_offset(x, vim.api.nvim_buf_line_count(x))
       if byte_size < 1024 * 1024 then -- 1 Megabyte max
         table.insert(bufs, x)
