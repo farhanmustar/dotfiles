@@ -190,9 +190,7 @@ augroup quickfix
   autocmd Filetype qf nnoremap <buffer> <silent> dd :call <SID>RemoveQFItem()<CR>
   autocmd Filetype qf vnoremap <buffer> <silent> d :call <SID>RemoveQFItem()<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> yy :call <SID>YankQFItem()<CR>
-  autocmd Filetype qf vnoremap <buffer> <silent> y :call <SID>YankQFItem()<CR>
   autocmd Filetype qf nnoremap <buffer> <silent> <leader>yy yy
-  autocmd Filetype qf vnoremap <buffer> <silent> <leader>y y
 
   " Auto open quickfix window
   autocmd QuickFixCmdPost [^l]* nested bot cwindow 20 | redraw!
