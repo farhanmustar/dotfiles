@@ -43,3 +43,9 @@ augroup gitcommitfiletype
   autocmd!
   autocmd FileType gitcommit setlocal spell
 augroup END
+
+" ejs filetype
+augroup ejsfiletype
+  autocmd!
+  autocmd BufRead,BufNewFile *.ejs setfiletype embedded_template
+augroup END

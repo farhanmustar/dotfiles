@@ -127,6 +127,7 @@ pip install debugpy
   git clone https://github.com/microsoft/vscode-node-debug2.git ~/.bin/vscode-node-debug2
   cd ~/.bin/vscode-node-debug2
   npm install
+  export NODE_OPTIONS="--no-experimental-fetch"
   npm run build
   ```
 

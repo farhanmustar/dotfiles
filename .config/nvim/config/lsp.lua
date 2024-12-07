@@ -247,6 +247,7 @@ local js_beautify = {
   method = null_ls.methods.FORMATTING,
   filetypes = {'javascript',},
   generator = null_ls.formatter({
+    dynamic_command = cmd_resolver.from_node_modules(),
     command = 'js-beautify',
     args = {'--jslint-happy', '-s', '2', '-n', '-f', '-'},
     to_stdin = true,

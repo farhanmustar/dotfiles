@@ -230,6 +230,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+command! Cadd caddexpr expand("%") .. ":" .. line(".") ..  ":" .. getline(".")
+
 " grep in current file
 command! -nargs=+ -range FG silent execute "vimgrep /".(<range>? "\\%(\\%'<\\|\\%>'<\\%<'>\\|\\%'>\\)" : "").<q-args>."/j %"
 nnoremap <silent> <Leader>fg :call CMD('FG <C-r><C-w>')<CR>
