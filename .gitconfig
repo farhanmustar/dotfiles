@@ -52,6 +52,8 @@
 
   difflist = diff --name-only
 
+  sm = submodule
+
 [merge]
   tool = vimdiff
   conflictstyle = diff3
@@ -60,8 +62,8 @@
   prompt = false
 
 [pull]
-  rebase = preserve
-  ; rebase = merges  ; for newer git.
+  rebase = merges 
+  ; rebase = preserve ; for old git
 
 [push]
   default = simple
