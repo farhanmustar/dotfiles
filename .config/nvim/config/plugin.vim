@@ -19,11 +19,6 @@ if has('termux')
   let g:CtrlSpaceFileEngine = "file_engine_termux"
 endif
 
-" vim-over config
-let g:over#command_line#substitute#replace_pattern_visually = 1
-nnoremap <silent> <Leader>oo :OverCommandLine %s/<CR>
-vnoremap <silent> <Leader>oo :OverCommandLine s/<CR>
-
 " vim-table-mode config
 let g:table_mode_corner_corner='+'
 let g:table_mode_header_fillchar='='

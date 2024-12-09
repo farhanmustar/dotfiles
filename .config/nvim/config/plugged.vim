@@ -58,7 +58,6 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'commit': '5b8b126' }
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
-Plug 'osyo-manga/vim-over'
 Plug 'petertriho/nvim-scrollbar'
 Plug 'pogyomo/submode.nvim', {'tag': 'v1.0.0'}
 Plug 'powerman/vim-plugin-AnsiEsc'
