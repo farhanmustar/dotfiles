@@ -27,18 +27,18 @@ let g:table_mode_header_fillchar='='
 command! Gv vertical topleft G
 command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
-command! -nargs=+ GG silent execute "Ggrep! -niI --exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))
-command! -nargs=+ GT silent execute "tab sbuffer | Ggrep! -niI --exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))
-command! -nargs=+ -count LL silent execute "Ggrep! -niI --no-exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))." -- %:h".RepeatStr(<count>,":h")
-command! -nargs=+ -count LT silent execute "tab sbuffer | Ggrep! -niI --no-exclude-standard --untracked ".string(substitute(<q-args>, '\\{-}', '*', 'g'))." -- %:h".RepeatStr(<count>,":h")
-nnoremap <silent> <Leader>gg :call CMD('GG <C-r><C-w>')<CR>
-vnoremap <silent> <Leader>gg y:call CMD('GG <C-r>"')<CR>
-nnoremap <silent> <Leader>gt :call CMD('GT <C-r><C-w>')<CR>
-vnoremap <silent> <Leader>gt y:call CMD('GT <C-r>"')<CR>
-nnoremap <silent> <Leader>ll :call CMD(VCountStr().'LL <C-r><C-w>')<CR>
-vnoremap <silent> <Leader>ll y:call CMD(VCountStr().'LL <C-r>"')<CR>
-nnoremap <silent> <Leader>lt :call CMD(VCountStr().'LT <C-r><C-w>')<CR>
-vnoremap <silent> <Leader>lt y:call CMD(VCountStr().'LT <C-r>"')<CR>
+command! -nargs=+ GG call <SID>gitgrep(<q-args>, 0, 0, 0)
+command! -nargs=+ GT call <SID>gitgrep(<q-args>, 1, 0, 0)
+command! -nargs=+ -count LL call <SID>gitgrep(<q-args>, 0, 1, <count>)
+command! -nargs=+ -count LT call <SID>gitgrep(<q-args>, 1, 1, <count>)
+nnoremap <silent> <Leader>gg :call CMD("GG <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
+vnoremap <silent> <Leader>gg y:call CMD("GG <C-r>=escape(getreg('"'), '"')<CR>")<CR>
+nnoremap <silent> <Leader>gt :call CMD("GT <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
+vnoremap <silent> <Leader>gt y:call CMD("GT <C-r>=escape(getreg('"'), '"')<CR>")<CR>
+nnoremap <silent> <Leader>ll :call CMD(VCountStr()."LL <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
+vnoremap <silent> <Leader>ll y:call CMD(VCountStr()."LL <C-r>=escape(getreg('"'), '"')<CR>")<CR>
+nnoremap <silent> <Leader>lt :call CMD(VCountStr()."LT <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
+vnoremap <silent> <Leader>lt y:call CMD(VCountStr()."LT <C-r>=escape(getreg('"'), '"')<CR>")<CR>
 cnoreabbrev GBlame G blame
 cnoreabbrev GFetch G fetch
 cnoreabbrev GPull G pull
@@ -54,6 +54,44 @@ cnoreabbrev Gstash G stash
 let g:nremap = {'gr': 'gR'}
 let g:oremap = {'gr': 'gR'}
 let g:xremap = {'gr': 'gR'}
+
+function! <SID>gitgrep(args, tab, local, count)
+  let l:gitref = ''
+  if match(bufname(), '^fugitive://') >= 0
+    let l:obj = fugitive#Object(bufname())
+    if l:obj == ':'
+      let l:gitref = FugitiveHead()
+    elseif match(l:obj, '^:0:') >= 0
+      let l:gitref = '' " in staged buf (skip gitref)
+    else
+      let l:gitref = l:obj[:5]
+    endif
+  endif
+
+  let l:tab = ''
+  if a:tab == 1
+    let l:tab = 'tab sbuffer | '
+  endif
+
+  let l:tags = ''
+  if empty(l:gitref)
+    if a:local == 1
+      let l:tags = '--no-exclude-standard --untracked '
+    else
+      " to avoid search in large path such as node_modules
+      let l:tags = '--exclude-standard --untracked '
+    endif
+  endif
+
+  let l:path = ''
+  if a:local == 1
+    let l:path = " -- %:h".RepeatStr(a:count, ":h")
+  endif
+
+  let l:args = string(substitute(a:args, '\\{-}', '*', 'g'))." "
+
+  silent execute l:tab."Ggrep! -niI ".l:tags.l:args.l:gitref.l:path
+endfunction
 
 " GV.vim shortcuts
 command! -nargs=* GVBB silent execute "GVB --branches ".<q-args>
