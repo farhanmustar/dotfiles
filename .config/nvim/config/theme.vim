@@ -33,6 +33,12 @@ function! s:ModifyColorScheme()
   highlight link Function         GruvboxAqua
   highlight link @variable        Variable
   highlight link @text.todo.unchecked GruvboxRed
+  highlight link @markup.heading  GruvboxOrange
+  highlight link @markup.heading_content  GruvboxGreen
+  highlight link diffAdded  GruvboxGreen
+  highlight link diffRemoved  GruvboxRed
+  highlight link diffIndexLine  GruvboxAqua
+  highlight link qfFileName  GruvboxBlueBold
 
   highlight DiffAdd    ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
   highlight DiffChange ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE

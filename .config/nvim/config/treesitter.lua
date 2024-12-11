@@ -18,6 +18,8 @@ require('nvim-treesitter.configs').setup({
     'markdown',
     'lua',
     'bash',
+    'powershell',
+    'query',
   },
   sync_install = false,
   indent = {
