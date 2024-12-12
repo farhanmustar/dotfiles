@@ -6,20 +6,21 @@ end
 
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
+    'bash',
     'c',
     'cpp',
     'css',
-    'javascript',
     'html',
-    'python',
-    'svelte',
-    'vimdoc',
-    'vim',
-    'markdown',
+    'javascript',
+    'json',
     'lua',
-    'bash',
+    'markdown',
     'powershell',
+    'python',
     'query',
+    'svelte',
+    'vim',
+    'vimdoc',
   },
   sync_install = false,
   indent = {
