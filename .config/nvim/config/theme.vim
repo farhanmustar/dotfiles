@@ -39,6 +39,7 @@ function! s:ModifyColorScheme()
   highlight link diffRemoved  GruvboxRed
   highlight link diffIndexLine  GruvboxAqua
   highlight link qfFileName  GruvboxBlueBold
+  highlight FugitiveDeltaText ctermbg=10 guibg=#3c2b02 cterm=NONE guifg=NONE gui=NONE
 
   highlight DiffAdd    ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
   highlight DiffChange ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
