@@ -85,12 +85,12 @@ function! <SID>gitgrep(args, tab, local, count)
 
   let l:path = ''
   if a:local == 1
-    let l:path = " -- %:h".RepeatStr(a:count, ":h")
+    let l:path = " %:h".RepeatStr(a:count, ":h")
   endif
 
   let l:args = string(substitute(a:args, '\\{-}', '*', 'g'))." "
 
-  silent execute l:tab."Ggrep! -niI ".l:tags.l:args.l:gitref.l:path
+  silent execute l:tab."Ggrep! -niI ".l:tags.' -- '.l:args.l:gitref.l:path
 endfunction
 
 " GV.vim shortcuts
