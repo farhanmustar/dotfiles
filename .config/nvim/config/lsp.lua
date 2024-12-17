@@ -187,7 +187,7 @@ null_ls.register(autopep8)
 null_ls.register(python_compile)
 if vim.fn.executable('rosrun') ~= 0 then
   -- tmp disable for noetic
-  local output = vim.fn.system('rosrun roslint pep8')
+  local output = vim.fn.system('rosrun roslint pep8 /dev/null')
   if output == 0 then
     -- null_ls.register(roslint_pep8)
   end
