@@ -3,5 +3,10 @@
         "prefix": "print",
         "body": "print(${1:variable})",
         "description": "Add print statement"
+    },
+    "todo": {
+        "prefix": "todo",
+        "body": "# TODO: ${1:comment}",
+        "description": "Add todo comment"
     }
 }

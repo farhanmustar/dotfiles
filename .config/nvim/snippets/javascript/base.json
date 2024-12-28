@@ -18,5 +18,10 @@
         "prefix": "elseif",
         "body": "} else if (${0}) {",
         "description": "Add print statement"
+    },
+    "todo": {
+        "prefix": "todo",
+        "body": "// TODO: ${1:comment}",
+        "description": "Add todo comment"
     }
 }
