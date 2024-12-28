@@ -18,6 +18,10 @@ bind-key -n M-k select-pane -U
 bind-key -n M-l select-pane -R
 bind-key -n M-z resize-pane -Z
 
+bind-key -n M-b new-window -c "#{pane_current_path}" \; rename-window -
+bind-key -n M-n previous-window
+bind-key -n M-m next-window
+
 unbind p
 bind p paste-buffer
 bind Escape copy-mode
