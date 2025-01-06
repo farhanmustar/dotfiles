@@ -280,3 +280,6 @@ ccc.setup({
     lsp = true,
   },
 })
+
+--- mdx.nvim
+require("mdx").setup()
