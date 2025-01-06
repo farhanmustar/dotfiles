@@ -61,3 +61,4 @@ end
 -- TODO: python for/else not working.
 luasnip.filetype_extend("python", { "django", "django-rest" })
 luasnip.filetype_extend("html", { "htmldjango" })
+luasnip.filetype_extend("mdx", { "markdown" })
