@@ -62,7 +62,7 @@
   prompt = false
 
 [pull]
-  rebase = merges 
+  rebase = true
   ; rebase = preserve ; for old git
 
 [push]
