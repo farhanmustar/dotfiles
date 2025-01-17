@@ -66,7 +66,7 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'rasulomaroff/cmp-bufname'
 Plug 'rcarriga/nvim-dap-ui'
-Plug 'rcarriga/nvim-notify'
+Plug 'rcarriga/nvim-notify', {'commit': '29b33ef'}
 Plug 'farhanmustar/nvim-treesitter-context'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'samjwill/nvim-unception'
