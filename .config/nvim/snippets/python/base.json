@@ -8,5 +8,14 @@
         "prefix": "todo",
         "body": "# TODO: ${1:comment}",
         "description": "Add todo comment"
+    },
+    "tag": {
+        "prefix": "tag",
+        "body": [
+          "from django.test import tag",
+          "",
+          "@tag('${1:test}')"
+        ],
+        "description": "Add test tag decoration"
     }
 }
