@@ -7,17 +7,22 @@
     "console": {
         "prefix": "console",
         "body": "console.log(${1:variable});",
-        "description": "Add print statement"
+        "description": "Add console statement"
     },
     "lambda": {
         "prefix": "lambda",
         "body": "(${1}) => {${0}}",
-        "description": "Add print statement"
+        "description": "Add lambda statement"
     },
     "elseif": {
         "prefix": "elseif",
         "body": "} else if (${0}) {",
-        "description": "Add print statement"
+        "description": "Add elseif statement"
+    },
+    "else": {
+        "prefix": "else",
+        "body": "} else {",
+        "description": "Add else statement"
     },
     "todo": {
         "prefix": "todo",
