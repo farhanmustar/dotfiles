@@ -1,3 +1,9 @@
+-- use first plugin to check for installed plugin
+local ok, _ = pcall(require, 'lualine')
+if not ok then
+  return
+end
+
 -- lualine config
 local lualine = require('lualine')
 local function ctrlspace()
