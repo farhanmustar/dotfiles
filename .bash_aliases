@@ -51,7 +51,7 @@ _pwsh()
 
   case ${COMP_CWORD} in
     1)
-      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm vmconnect choco sudo winget ipconfig" -- ${cur}))
+      COMPREPLY=($(compgen -W "get-vm start-vm stop-vm suspend-vm save-vm resume-vm set-vmmemory vmconnect choco sudo winget ipconfig" -- ${cur}))
       ;;
     2)
       case ${prev} in
@@ -69,6 +69,9 @@ _pwsh()
           ;;
         resume-vm)
           COMPREPLY=($(compgen -W "$(_get_vm_status paused)" -- ${cur}))
+          ;;
+        set-vmmemory)
+          COMPREPLY=($(compgen -W "$(_get_vm_status off saved)" -- ${cur}))
           ;;
         vmconnect)
           COMPREPLY=($(compgen -W "localhost" -- ${cur}))
@@ -99,6 +102,9 @@ _pwsh()
               COMPREPLY=($(compgen -W "$(pwsh get-vm \| select-object -expand name | tr -d "\r")" -- ${cur}))
               ;;
           esac
+          ;;
+        set-vmmemory)
+          COMPREPLY=($(compgen -W "-startupbytes" -- ${cur}))
           ;;
       esac
       ;;
