@@ -85,6 +85,8 @@ pip install bandit
   * debugger for python app by simply prefix with `python -m debugpy`.
 ```bash
 pip install debugpy
+# for python 3
+pip install -U "debugpy<=1.6.3"
 ```
 
 ### C++
