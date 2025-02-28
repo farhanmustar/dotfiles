@@ -94,6 +94,7 @@ cmp.setup({
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
   },
+  preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
     ['<CR>'] = cmp.mapping(function(fallback)
           if cmp.visible() and cmp.get_selected_entry() ~= nil then
