@@ -232,6 +232,8 @@ nnoremap <Leader>/ :FuzzySearch<CR>
 
 " cg.vim config
 let g:cg_api_key = getenv('OPENAPI_KEY')
+" let g:cg_chat_model = 'gpt-3.5-turbo'
+let g:cg_chat_model = 'gpt-4o-mini'
 
 " linediff.vim config
 vnoremap <leader>df :Linediff<CR>
