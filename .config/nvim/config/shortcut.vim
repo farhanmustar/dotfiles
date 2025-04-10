@@ -324,11 +324,9 @@ tnoremap <silent> <expr> <C-r> '<C-\><C-n>"'.nr2char(getchar()).'pi'
 nnoremap <Leader>wt :Terminal<CR>
 
 " terminal selection
-if has('win32')
-  command! Terminal execute 'bot new | terminal pwsh.exe'
-else
-  command! Terminal execute 'bot new | terminal'
-endif
+" TODO: is win32 need fix?
+command! Terminal let s:term_dir=expand('%:p:h') | below new | call termopen([&shell], {'cwd': s:term_dir })
+
 
 " command window shortcut
 nnoremap <leader>; q:
