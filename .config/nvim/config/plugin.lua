@@ -98,8 +98,10 @@ require('gitsigns').setup({
   numhl = true,
   -- base  = 'HEAD',  -- use :Gitsigns change_base HEAD -> to display all including staged
 })
-vim.keymap.set('n', 'gj', '<Cmd>Gitsigns next_hunk<CR>')
-vim.keymap.set('n', 'gk', '<Cmd>Gitsigns prev_hunk<CR>')
+vim.keymap.set('n', 'gj', '<Cmd>lua require("gitsigns").nav_hunk("next", {target="unstaged"})<CR>')
+vim.keymap.set('n', 'gk', '<Cmd>lua require("gitsigns").nav_hunk("prev", {target="unstaged"})<CR>')
+vim.keymap.set('n', '<leader>gj', '<Cmd>lua require("gitsigns").nav_hunk("next", {target="staged"})<CR>')
+vim.keymap.set('n', '<leader>gk', '<Cmd>lua require("gitsigns").nav_hunk("prev", {target="staged"})<CR>')
 vim.keymap.set('n', 'gp', '<Cmd>Gitsigns preview_hunk<CR><Cmd>Gitsigns preview_hunk<CR>')
 
 -- dressing config
