@@ -21,16 +21,10 @@ Plug 'djoshea/vim-autoread'
 Plug 'eandrju/cellular-automaton.nvim'
 Plug 'easymotion/vim-easymotion'
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'f3fora/cmp-spell'
 Plug 'farhanmustar/fugitive-delta.nvim'
 Plug 'farhanmustar/gv.vim'
 Plug 'fidian/hexmode'
 Plug 'ggVGc/vim-fuzzysearch'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-diff'
@@ -64,11 +58,9 @@ Plug 'petertriho/nvim-scrollbar'
 Plug 'pogyomo/submode.nvim', {'tag': 'v1.0.0'}
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'rafamadriz/friendly-snippets'
-Plug 'rasulomaroff/cmp-bufname'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'rcarriga/nvim-notify', {'commit': '29b33ef'}
 Plug 'farhanmustar/nvim-treesitter-context'
-Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'samjwill/nvim-unception'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'stevearc/aerial.nvim'
@@ -97,6 +89,17 @@ Plug 'msva/lua-htmlparser', {'do':'ln -sT ./src lua'}
 
 " Plug 'dart-lang/dart-vim-plugin'
 " Plug 'erisian/rest_tools'
+
+if g:LOG_MODE == v:null
+  Plug 'f3fora/cmp-spell'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'rasulomaroff/cmp-bufname'
+  Plug 'saadparwaiz1/cmp_luasnip'
+endif
 
 if executable('roscore')
   Plug 'ompugao/ros.vim'

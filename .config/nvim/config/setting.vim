@@ -51,7 +51,9 @@ set iskeyword+=-
 " Make wrap more readable
 set wrap
 set linebreak
-set breakindent
+if g:LOG_MODE == v:null
+  set breakindent
+endif
 
 " Disable netrw plugin
 let g:loaded_netrwPlugin=1
