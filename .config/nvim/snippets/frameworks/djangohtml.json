@@ -1,0 +1,12 @@
+{
+    "else": {
+        "prefix": "else",
+        "body": "{% else %}",
+        "description": "Add else statement"
+    },
+    "elif": {
+        "prefix": "elif",
+        "body": "{% elif ${0} %}",
+        "description": "Add elif statement"
+    }
+}
