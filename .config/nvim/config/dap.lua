@@ -155,8 +155,6 @@ end, {silent = true})
 
 -- dap sub mode
 local submode = require("submode")
--- TODO: if used elsewhere need to move setup to plugin.lua
-submode.setup()
 
 submode.create("DAPMode", {
   mode = "n",

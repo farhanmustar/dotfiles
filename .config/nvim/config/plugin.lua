@@ -274,7 +274,7 @@ require('term-edit').setup({
 -- nvim-early-retirement config
 require("early-retirement").setup({})
 
---- ccc.nvim
+-- ccc.nvim
 local ccc = require("ccc")
 ccc.setup({
   highlighter = {
@@ -283,5 +283,44 @@ ccc.setup({
   },
 })
 
---- mdx.nvim
+-- mdx.nvim
 require("mdx").setup()
+
+-- submode
+local submode = require("submode")
+submode.setup()
+
+--- treewalker.nvim
+local treewalker = require('treewalker')
+treewalker.setup({ highlight = true, highlight_duration = 250, highlight_group = 'CursorLine', jumplist = true })
+
+-- treewalker sub mode
+submode.create("TreewalkerMode", {
+  mode = "n",
+  enter = "<leader>sm",
+  leave = { "q", "<ESC>" },
+  enter_cb = function()
+    vim.notify('Treewalker Mode Enabled', vim.log.levels.INFO)
+  end,
+  leave_cb = function()
+    vim.notify('Treewalker Mode Disabled', vim.log.levels.INFO)
+  end,
+}, {
+  lhs = "j",
+  rhs = treewalker.move_down,
+}, {
+  lhs = "k",
+  rhs = treewalker.move_up,
+}, {
+  lhs = "h",
+  rhs = treewalker.move_out,
+}, {
+  lhs = "l",
+  rhs = treewalker.move_in,
+}, {
+  lhs = "i",
+  rhs = treewalker.move_in,
+}, {
+  lhs = "o",
+  rhs = treewalker.move_out,
+})
