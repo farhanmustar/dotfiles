@@ -161,9 +161,11 @@ submode.create("DAPMode", {
   enter = "<leader>dm",
   leave = { "q", "<ESC>" },
   enter_cb = function()
+    vim.api.nvim_echo({ { "-- DAP --", "ModeMsg" } }, false, {})
     vim.notify('DAP Mode Enabled', vim.log.levels.INFO)
   end,
   leave_cb = function()
+    vim.api.nvim_echo({ {""} }, false, {})
     vim.notify('DAP Mode Disabled', vim.log.levels.INFO)
   end,
 }, {

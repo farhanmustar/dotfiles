@@ -300,9 +300,11 @@ submode.create("TreewalkerMode", {
   enter = "<leader>sm",
   leave = { "q", "<ESC>" },
   enter_cb = function()
+    vim.api.nvim_echo({ { "-- Treewalker --", "ModeMsg" } }, false, {})
     vim.notify('Treewalker Mode Enabled', vim.log.levels.INFO)
   end,
   leave_cb = function()
+    vim.api.nvim_echo({ {""} }, false, {})
     vim.notify('Treewalker Mode Disabled', vim.log.levels.INFO)
   end,
 }, {
