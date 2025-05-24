@@ -18,6 +18,9 @@ local function isFugitive()
   end
   return false
 end
+local function isOil()
+  return vim.o.filetype == 'oil'
+end
 local function isSpecialFiletype()
   if vim.o.filetype == 'git' then
     local obj = vim.fn['fugitive#Object'](vim.fn.bufname())
@@ -35,7 +38,7 @@ local function showBranch()
 end
 local function showFilename()
   return not vim.o.previewwindow and
-    vim.fn.bufname() ~= '' and not isSpecialFiletype() and not isFugitive()
+    vim.fn.bufname() ~= '' and not isSpecialFiletype() and not isFugitive() and not isOil()
 end
 local function showFiletype()
   return not showQuickfix() and not vim.o.previewwindow and (vim.fn.bufname() == '' or isSpecialFiletype())
@@ -89,6 +92,7 @@ local function fugitiveBranch()
   return commitHash
 end
 local fugitiveFilenameColor = { bg = '#314f26', fg = '#f7f0df' }
+local oilFilenameColor = { bg = '#745203', fg = '#f7f0df' }
 local gruvbox = require('lualine.themes.gruvbox_dark')
 gruvbox['insert'] = gruvbox['normal']
 gruvbox['visual'] = gruvbox['normal']
@@ -119,6 +123,16 @@ lualine.setup({
         }
       },
       {
+        'filename',
+        path=1,
+        cond=isOil,
+        symbols={
+          readonly = '[RO]'
+        },
+        color=oilFilenameColor,
+        separator={ right = '' },
+      },
+      {
         fugitiveFilename,
         color=fugitiveFilenameColor,
         separator={ right = '' },
@@ -142,6 +156,16 @@ lualine.setup({
         symbols={
           readonly = '[RO]'
         }
+      },
+      {
+        'filename',
+        path=1,
+        cond=isOil,
+        symbols={
+          readonly = '[RO]'
+        },
+        color=oilFilenameColor,
+        separator={ right = '' },
       },
       {
         fugitiveFilename,
