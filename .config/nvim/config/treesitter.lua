@@ -18,6 +18,7 @@ require('nvim-treesitter.configs').setup({
     'powershell',
     'python',
     'query',
+    'rst',
     'svelte',
     'vim',
     'vimdoc',
