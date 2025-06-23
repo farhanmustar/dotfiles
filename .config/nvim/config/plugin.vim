@@ -81,11 +81,11 @@ function! <SID>gitgrep(args, tab, local, count)
   if match(bufname(), '^fugitive://') >= 0
     let l:obj = fugitive#Object(bufname())
     if l:obj == ':'
-      let l:gitref = FugitiveHead()
+      let l:gitref = ''
     elseif match(l:obj, '^:0:') >= 0
       let l:gitref = '' " in staged buf (skip gitref)
     else
-      let l:gitref = l:obj[:5]
+      let l:gitref = l:obj[:6]
     endif
   endif
 
@@ -104,14 +104,18 @@ function! <SID>gitgrep(args, tab, local, count)
     endif
   endif
 
-  let l:path = ''
   if a:local == 1
-    let l:path = " %:h".RepeatStr(a:count, ":h")
+    let l:obj = fugitive#Object(bufname())
+    if l:obj == ':'
+      let l:gitref = ''
+    else
+      let l:gitref = fnamemodify(fugitive#Path(bufname(), l:gitref.':'), ":h".RepeatStr(a:count, ":h"))
+    endif
   endif
 
   let l:args = string(substitute(a:args, '\\{-}', '*', 'g'))." "
 
-  silent execute l:tab."Ggrep! -niI ".l:tags.' -- '.l:args.l:gitref.l:path
+  silent execute l:tab."Ggrep! -niI ".l:tags.' -- '.l:args.l:gitref
 endfunction
 
 " GV.vim shortcuts
