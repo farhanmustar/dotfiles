@@ -29,8 +29,8 @@ command! Gt tab G
 command! Greload :e "<C-r>%"<CR>
 command! -nargs=+ GG call <SID>gitgrep(<q-args>, 0, 0, 0)
 command! -nargs=+ GT call <SID>gitgrep(<q-args>, 1, 0, 0)
-command! -nargs=* -count LL call <SID>localgitgrep(<q-args>, 0, 1, <count>)
-command! -nargs=* -count LT call <SID>localgitgrep(<q-args>, 1, 1, <count>)
+command! -nargs=* -count LL call <SID>localgitgrep(<q-args>, 0, <count>)
+command! -nargs=* -count LT call <SID>localgitgrep(<q-args>, 1, <count>)
 nnoremap <silent> <Leader>gg :call CMD("GG <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
 vnoremap <silent> <Leader>gg y:call CMD("GG <C-r>=escape(getreg('"'), '"')<CR>")<CR>
 nnoremap <silent> <Leader>gt :call CMD("GT <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
@@ -55,7 +55,7 @@ let g:nremap = {'gr': 'gR'}
 let g:oremap = {'gr': 'gR'}
 let g:xremap = {'gr': 'gR'}
 
-function! <SID>localgitgrep(args, tab, local, count)
+function! <SID>localgitgrep(args, tab, count)
   " handle command quirks when using nargs and count together.
   " this still not handle if user search LL 404 32 (404 is considered count)
 
@@ -73,7 +73,7 @@ function! <SID>localgitgrep(args, tab, local, count)
     let l:args = a:count
     let l:count = 0
   endif
-  call <SID>gitgrep(l:args, a:tab, a:local, l:count)
+  call <SID>gitgrep(l:args, a:tab, 1, l:count)
 endfunction
 
 function! <SID>gitgrep(args, tab, local, count)
@@ -109,7 +109,7 @@ function! <SID>gitgrep(args, tab, local, count)
     if l:obj == ':'
       let l:gitref = ''
     else
-      let l:gitref = fnamemodify(fugitive#Path(bufname(), l:gitref.':'), ":h".RepeatStr(a:count, ":h"))
+      let l:gitref = fnamemodify(fugitive#Path(bufname(), l:gitref == '' ? '' : l:gitref.':'), ":h".RepeatStr(a:count, ":h"))
     endif
   endif
 
