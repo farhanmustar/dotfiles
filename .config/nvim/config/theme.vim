@@ -47,6 +47,10 @@ function! s:ModifyColorScheme()
   highlight DiffChange ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
   highlight DiffText   ctermbg=10 guibg=#745203 cterm=NONE guifg=NONE    gui=NONE
   highlight DiffDelete ctermbg=10 guibg=#750e02 cterm=NONE guifg=#865050 gui=NONE
+
+  highlight link gvTree LineNr
+  highlight link gvAnsi2 GruvboxGreen
+  highlight link gvAnsi9 LineNr
 endfunction
 augroup modifycolorscheme
   autocmd!
