@@ -54,6 +54,8 @@ set linebreak
 if g:LOG_MODE == v:null
   set breakindent
 endif
+" make increment decrement ignore sign
+set nrformats+=unsigned
 
 " Disable netrw plugin
 let g:loaded_netrwPlugin=1
