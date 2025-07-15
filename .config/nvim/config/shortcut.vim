@@ -236,7 +236,14 @@ nnoremap <silent> <Leader>fg :call CMD("FG <C-r>=escape(expand('<cword>'), '"')<
 vnoremap <silent> <Leader>fg y:call CMD("FG <C-r>=escape(getreg('"'), '"')<CR>")<CR>
 
 " grep in current path
-command! -nargs=+ -count GP silent execute "grep! -ri '".<q-args>."' %:p:h".RepeatStr(<count>,":h")."/*"
+" use ripgrep as grepprg
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-column
+  command! -nargs=+ -count GP silent execute "grep! '".<q-args>."' %:p:h".RepeatStr(<count>,":h")."/*"
+else
+  command! -nargs=+ -count GP silent execute "grep! -ri '".<q-args>."' %:p:h".RepeatStr(<count>,":h")."/*"
+endif
+
 nnoremap <silent> <Leader>gp :call CMD(VCountStr()."GP <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
 vnoremap <silent> <Leader>gp y:call CMD(VCountStr()."GP <C-r>=escape(getreg('"'), '"')<CR>")<CR>
 
