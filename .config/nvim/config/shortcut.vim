@@ -254,6 +254,11 @@ function! CopyFileName(...) abort
   let @0 = fnamemodify(@%, get(a:, '1', ':t'))
   let @" = @0
 endfunction
+nnoremap <silent> <Leader>yn :call CopyGitFilePath() \| echo "Copy Git Filepath!"<CR>
+function! CopyGitFilePath() abort
+  let @0 = fugitive#Path(expand('%'), '')
+  let @" = @0
+endfunction
 
 " duplicate line without using register
 nnoremap <silent> <leader>yp :copy.<CR>
