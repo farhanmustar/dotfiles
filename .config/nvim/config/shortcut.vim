@@ -259,6 +259,24 @@ function! CopyGitFilePath() abort
   let @0 = fugitive#Path(expand('%'), '')
   let @" = @0
 endfunction
+" claude instruction shortcut
+function! ClaudeCodeCommand(...) abort
+  let l:f = get(a:, '1', 'instruction.md')
+  let l:f = len(l:f) > 0 ? l:f : 'instruction.md'
+  let l:f = substitute(l:f, ' ', '_', 'g')
+  if !s:isPrefix('.md', l:f)
+    let l:f = l:f.'.md'
+  endif
+  let l:p = fnamemodify(FugitiveGitDir(), ':h')
+  let l:p = l:p.'/.claude/commands/'.l:f
+  execute 'botright' 'split'
+  execute 'edit' l:p
+endfunction
+command! -nargs=? ClaudeCodeCommand silent call ClaudeCodeCommand(<q-args>)
+
+function! s:isPrefix(prefix, str)
+    return strpart(a:str, len(a:str) - len(a:prefix)) == a:prefix
+endfunction
 
 " duplicate line without using register
 nnoremap <silent> <leader>yp :copy.<CR>

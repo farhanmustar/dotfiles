@@ -11,3 +11,12 @@
     )
   )
 )
+
+(lexical_declaration
+  (variable_declarator
+    (identifier) @_name (#match? @_name ".+(Shader)$")
+    (template_string
+      (string_fragment) @glsl
+    )
+  )
+)
