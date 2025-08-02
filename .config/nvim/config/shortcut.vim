@@ -484,3 +484,7 @@ nnoremap gh _
 nnoremap gl g_
 vnoremap gh _
 vnoremap gl g_
+nnoremap <A-u> 10zl
+nnoremap <A-d> 10zh
+vnoremap <A-u> 10zl
+vnoremap <A-d> 10zh
