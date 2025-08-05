@@ -37,6 +37,28 @@ vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
 local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = true})
 end
+local function create_code_action(title, action_fn)
+  return {
+    method = null_ls.methods.CODE_ACTION,
+    filetypes = { "_all" },
+    generator = {
+      fn = function()
+        return {
+          {
+            title = title,
+            action = action_fn
+          }
+        }
+      end
+    }
+  }
+end
+null_ls.register(create_code_action("Rename Symbol", vim.lsp.buf.rename))
+null_ls.register(create_code_action("List Implementations", vim.lsp.buf.implementation))
+null_ls.register(create_code_action("List References", vim.lsp.buf.references))
+null_ls.register(create_code_action("List Incoming Calls", vim.lsp.buf.incoming_calls))
+null_ls.register(create_code_action("View Signature", vim.lsp.buf.signature_help))
+null_ls.register(create_code_action("List Hierarchy", vim.lsp.buf.typehierarchy))
 
 -- Configs
 vim.cmd([[
@@ -341,6 +363,9 @@ local cpplint = {
   }),
 }
 null_ls.register(cpplint)
+require('lspconfig').clangd.setup({
+  on_attach = on_attach,
+})
 
 local astyle = null_ls.builtins.formatting.astyle.with({
   extra_args = {'--mode=c', '--style=allman', '--indent=spaces=2', '--pad-oper', '--unpad-paren', '--pad-header', '--convert-tabs'}
