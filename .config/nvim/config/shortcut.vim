@@ -268,7 +268,11 @@ function! ClaudeCodeCommand(...) abort
     let l:f = l:f.'.md'
   endif
   let l:p = fnamemodify(FugitiveGitDir(), ':h')
-  let l:p = l:p.'/.claude/commands/'.l:f
+  let l:dir = l:p.'/.claude/commands'
+  let l:p = l:dir.'/'.l:f
+  if !isdirectory(l:dir)
+    call mkdir(l:dir, 'p')
+  endif
   execute 'botright' 'split'
   execute 'edit' l:p
 endfunction
