@@ -56,7 +56,7 @@ vim.cmd([[
 -- aerial config
 local aerial = require('aerial')
 aerial.setup({
-  backends = { "treesitter" },
+  backends = { 'lsp', 'treesitter' },
   keymaps = {},
   layout = {
     width = 60,
