@@ -1,3 +1,3 @@
 (script_element
-  (raw_text) @javascript
+  (raw_text) @injection.content (#set! injection.language "javascript")
 )
