@@ -28,6 +28,10 @@
             {
                 "language": ["svelte"],
                 "path": "./svelte/base.json"
+            },
+            {
+                "language": "cpp",
+                "path": "./cpp/base.json"
             }
         ]
     }

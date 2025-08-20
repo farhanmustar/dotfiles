@@ -1,0 +1,7 @@
+{
+    "todo": {
+        "prefix": "todo",
+        "body": "// TODO: ${1:comment}",
+        "description": "Add todo comment"
+    }
+}
