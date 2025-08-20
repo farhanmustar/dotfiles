@@ -37,12 +37,12 @@ Plug 'kevinhwang91/nvim-hlslens'
 Plug 'kevinhwang91/nvim-ufo'
 Plug 'kevinhwang91/promise-async'
 Plug 'lambdalisue/suda.vim'
-Plug 'lewis6991/gitsigns.nvim'
+Plug 'lewis6991/gitsigns.nvim', {'tag': 'release'}
 Plug 'ludovicchabant/vim-lawrencium'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'mfussenegger/nvim-dap'
-Plug 'mfussenegger/nvim-dap-python', { 'branch': 'multi-session' }
+Plug 'mfussenegger/nvim-dap-python', {'branch': 'multi-session'}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mong8se/actually.nvim'
@@ -53,7 +53,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-treesitter/nvim-treesitter', { 'commit': '5b8b126' }
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'petertriho/nvim-scrollbar'
