@@ -89,6 +89,13 @@ pip install debugpy
 pip install -U "debugpy<=1.6.3"
 ```
 
+<!-- NOTE: if debugpy not working might be due to this, just patch this part -->
+```python
+# debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_collect_bytecode_info.py
+def collect_return_info(co, use_func_first_line=False):
+    return lst
+```
+
 ### C++
 * clangd
   * Download binary file from [clangd github](https://github.com/clangd/clangd/releases/) release page.
