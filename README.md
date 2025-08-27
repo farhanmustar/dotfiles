@@ -201,11 +201,17 @@ sudo apt install dotnet-sdk-6.0
 dotnet tool install --global csharp-ls --version 0.5.7
 ```
 
-## HTML
+### HTML
 * tidy linter and formatter
 ```bash
 wget -c https://github.com/htacg/tidy-html5/releases/download/5.9.14-next/tidy-5.9.14-Linux-64bit.deb
 sudo dpkg -i tidy-5.9.14-Linux-64bit.deb
+```
+
+### Ubuntu
+```bash
+# newer version has execution time by default?, this disable it.
+export PS1="\[\e[38;5;202m\]$(byobu_prompt_status)\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;172m\]\h\[\e[00m\]:\[\e[38;5;5m\]\w\[\e[00m\]$(byobu_prompt_symbol) "
 ```
 
 ### Terminal Apps
