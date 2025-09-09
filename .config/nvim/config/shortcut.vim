@@ -277,6 +277,7 @@ function! ClaudeCodeCommand(...) abort
   execute 'edit' l:p
 endfunction
 command! -nargs=? ClaudeCodeCommand silent call ClaudeCodeCommand(<q-args>)
+nnoremap <silent> <leader>cI <Cmd>ClaudeCodeCommand<CR>
 
 function! s:isPrefix(prefix, str)
     return strpart(a:str, len(a:str) - len(a:prefix)) == a:prefix
