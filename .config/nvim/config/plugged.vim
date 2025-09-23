@@ -96,7 +96,7 @@ if g:LOG_MODE == v:null
   Plug 'f3fora/cmp-spell'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-nvim-lsp', {'commit': 'a8912b8'}
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'rasulomaroff/cmp-bufname'
