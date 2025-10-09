@@ -363,7 +363,7 @@ nnoremap <Leader>wt :Terminal<CR>
 
 " terminal selection
 " TODO: is win32 need fix?
-command! Terminal let s:term_dir=expand('%:p:h') | below new | call termopen([&shell], {'cwd': s:term_dir })
+command! Terminal let s:term_dir=expand('%:p:h') | below new | setlocal nonumber | call termopen([&shell], {'cwd': s:term_dir })
 
 
 " command window shortcut
