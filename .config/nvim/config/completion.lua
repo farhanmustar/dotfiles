@@ -210,6 +210,58 @@ cmp.setup.filetype('gitcommit', {
   }
 })
 
+local cmd_abbrev = {
+  cache = { items = {}, last_update = 0 },
+
+  new = function(self)
+    return setmetatable({}, { __index = self })
+  end,
+
+  get_debug_name = function() return 'cmd_abbrev' end,
+
+  is_available = function()
+    return vim.bo.buftype == 'prompt' or vim.fn.mode() == 'c'
+  end,
+
+  get_trigger_characters = function() return { ':' } end,
+
+  complete = function(self, params, callback)
+    local now = vim.loop.now()
+
+    -- Update cache every 5 seconds or if empty
+    if now - self.cache.last_update > 5000 or #self.cache.items == 0 then
+      self.cache.items = {}
+      for line in vim.fn.execute('cabbrev'):gmatch('[^\r\n]+') do
+        local lhs, rhs = line:match('^c%s+(%S+)%s+(.+)')
+        if lhs and rhs then
+          table.insert(self.cache.items, {
+            label = lhs,
+            kind = vim.lsp.protocol.CompletionItemKind.Keyword,
+            detail = rhs:gsub('^[*@]', ''),
+            documentation = {
+              kind = 'markdown',
+              value = ('**Command Abbreviation**\n\n`%s` → `%s`'):format(lhs, rhs)
+            }
+          })
+        end
+      end
+      self.cache.last_update = now
+    end
+
+    -- Filter and return items
+    local input = params.context.cursor_before_line:sub(params.offset):lower()
+    local items = {}
+    for _, item in ipairs(self.cache.items) do
+      if input == '' or item.label:lower():find(input, 1, true) == 1 then
+        table.insert(items, item)
+      end
+    end
+    callback({ items = items, isIncomplete = false })
+  end
+}
+
+cmp.register_source('cmd_abbrev', cmd_abbrev)
+
 local cmdLineConf = {
   mapping = cmp.mapping.preset.cmdline({
     ['<Tab>'] = cmp.mapping(
@@ -226,7 +278,8 @@ local cmdLineConf = {
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
-    { name = 'cmdline' }
+    { name = 'cmdline' },
+    { name = 'cmd_abbrev' }
   }, {
     {
       name = 'buffer',

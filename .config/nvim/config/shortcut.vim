@@ -493,3 +493,6 @@ nnoremap <A-u> 10zl
 nnoremap <A-d> 10zh
 vnoremap <A-u> 10zl
 vnoremap <A-d> 10zh
+
+"script shortcut
+cnoreabbrev convertepoch %s/\v(\d{10}.\d{6})/\=strftime("%Y-%m-%d %H:%M:%S", str2nr(submatch(1)))/g
