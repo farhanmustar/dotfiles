@@ -92,7 +92,7 @@ Plug 'msva/lua-htmlparser', {'do':'ln -sT ./src lua'}
 " Plug 'dart-lang/dart-vim-plugin'
 " Plug 'erisian/rest_tools'
 
-if g:LOG_MODE == v:null
+if g:S_MODE == v:null
   Plug 'f3fora/cmp-spell'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-cmdline'

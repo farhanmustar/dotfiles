@@ -51,7 +51,7 @@ set iskeyword+=-
 " Make wrap more readable
 set wrap
 set linebreak
-if g:LOG_MODE == v:null
+if g:S_MODE == v:null
   set breakindent
 endif
 " make increment decrement ignore sign
