@@ -49,9 +49,19 @@ function! s:SimpleNoteOpenTodo(mods)
   call s:SimpleNoteOpenBuffer(a:mods, g:SimpleNoteTODOFile)
 endfunction
 
+function! s:SimpleNoteOpenProject(mods)
+  let l:path = FugitivePath('note.md')
+  call s:SimpleNoteOpenBuffer(a:mods, l:path)
+endfunction
+
 function! s:SimpleNote(ft, mods)
-  if a:ft == 'todo'
+  if a:ft == '_todo'
     call s:SimpleNoteOpenTodo(a:mods)
+    return
+  endif
+
+  if a:ft == '_project'
+    call s:SimpleNoteOpenProject(a:mods)
     return
   endif
 
@@ -64,4 +74,5 @@ endfunction
 
 command! -nargs=? -complete=custom,s:SimpleNoteComplete SN call s:SimpleNote(<q-args>, <q-mods>)
 nnoremap <silent> <expr> <Leader>sn ":SN <C-r>=empty(fnamemodify(expand('%'), ':e'))? &filetype : fnamemodify(expand('%'), ':e')<CR><CR>"
-nnoremap <silent> <expr> <Leader>nn ":SN todo<CR>"
+nnoremap <silent> <expr> <Leader>nn ":SN _todo<CR>"
+nnoremap <silent> <expr> <Leader>np ":SN _project<CR>"
