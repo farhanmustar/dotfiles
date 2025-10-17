@@ -31,6 +31,7 @@ alias timesync='if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then su
 
 # windows (wsl) specific
 alias pwsh='powershell -Command'
+alias explore='pwsh start . && exit'
 
 _get_vm_status()
 {
