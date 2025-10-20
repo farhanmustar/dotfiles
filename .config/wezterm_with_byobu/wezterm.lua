@@ -4,11 +4,6 @@ return {
   default_prog = { '/usr/bin/bash' },
   -- default_prog = { 'wsl.exe', '--cd', '/home/devo' },
   window_background_opacity = 0.95,
-  text_background_opacity = 0.7,
-  tab_bar_at_bottom = true,
-  hide_tab_bar_if_only_one_tab = true,
-  use_fancy_tab_bar = false,
-
   window_decorations = "INTEGRATED_BUTTONS|RESIZE",
   window_padding = {
     left = 10,
@@ -16,6 +11,10 @@ return {
     top = 10,
     bottom = 0,
   },
+  -- text_background_opacity = 0.7,
+  tab_bar_at_bottom = true,
+  hide_tab_bar_if_only_one_tab = true,
+  use_fancy_tab_bar = false,
 
   font = wezterm.font('SeriousShanns Nerd Font Mono'),
   font_rules = {
