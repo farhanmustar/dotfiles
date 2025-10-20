@@ -195,7 +195,11 @@ require("oil").setup({
 vim.keymap.set("n", "-", require("oil").open)
 
 -- neoscroll config
-require('neoscroll').setup()
+require('neoscroll').setup({
+  ignored_events = {           -- Events ignored while scrolling
+      'CursorMoved'
+  },
+})
 
 -- edit-code-block config
 require('ecb').setup {
