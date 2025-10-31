@@ -496,3 +496,4 @@ vnoremap <A-d> 10zh
 
 "script shortcut
 cnoreabbrev convertepoch %s/\v(\d{10}.\d{6})/\=strftime("%Y-%m-%d %H:%M:%S", str2nr(submatch(1)))/g
+command! -nargs=0 Convertepoch silent execute '%s/\v(\d{10}.\d{6})/\=strftime("%Y-%m-%d %H:%M:%S", str2nr(submatch(1)))/g'
