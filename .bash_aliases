@@ -29,6 +29,9 @@ alias timesync='if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then su
 # alias fvim='NVIM_APPNAME=fvim nvim'
 # alias fvimg='NVIM_APPNAME=fvim nvim -c GV -c "silent! G" -c "silent! tabonly"'
 
+# deb specific
+alias install-build-deps="sudo mk-build-deps --install --tool='apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' debian/control"
+
 # windows (wsl) specific
 alias pwsh='powershell -Command'
 alias explore='pwsh start . && exit'
