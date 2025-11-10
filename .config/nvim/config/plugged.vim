@@ -77,7 +77,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tzachar/highlight-undo.nvim'
-Plug 'uga-rosa/ccc.nvim'
+Plug 'uga-rosa/ccc.nvim', {'tag': 'v2.0.3'}
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'windwp/nvim-ts-autotag'
 
