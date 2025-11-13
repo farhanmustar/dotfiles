@@ -135,6 +135,8 @@ function! s:GitBranchesWithRemotes(args)
   endfor
   silent execute 'GVB '. join(l:branches, ' ') . ' '. a:args
 endfunction
+" verbose mode to show orphan branch, (add new line at the end of format)
+command! -nargs=* GVV silent execute "GV --branches --format=format:%h\\ %<(75,trunc)%s\\ (%aN,\\ %ar)\\ %d%n".<q-args>
 
 " tagbar config
 let g:tagbar_map_close = 'gq'
