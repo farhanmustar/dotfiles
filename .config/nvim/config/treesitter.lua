@@ -19,6 +19,7 @@ require('nvim-treesitter.configs').setup({
     'python',
     'query',
     'rst',
+    'rust',
     'svelte',
     'vim',
     'vimdoc',

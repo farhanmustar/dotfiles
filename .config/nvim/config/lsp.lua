@@ -372,6 +372,32 @@ local astyle = null_ls.builtins.formatting.astyle.with({
 })
 null_ls.register(astyle)
 
+-- rust
+require('lspconfig').rust_analyzer.setup({
+  on_attach = function(client, bufnr)
+
+    -- disable lsp highlight.
+    client.server_capabilities.semanticTokensProvider = nil
+    client.server_capabilities.codeActionProvider = nil
+
+    on_attach(client, bufnr)
+  end,
+  settings = {
+    ['rust-analyzer'] = {
+      cachePriming = {
+        enable = false,
+      },
+      checkOnSave = false,
+      diagnostics = {
+        enable = false,
+        experimental = {
+          enable = false,
+        }
+      }
+    }
+  }
+})
+
 -- c_sharp
 require('lspconfig').csharp_ls.setup({})
 

@@ -36,6 +36,10 @@
             {
                 "language": "markdown",
                 "path": "./markdown/base.json"
+            },
+            {
+                "language": "rust",
+                "path": "./rust/base.json"
             }
         ]
     }

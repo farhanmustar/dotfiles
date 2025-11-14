@@ -384,3 +384,6 @@ require("claude-code").setup({
     scrolling = false,         -- Enable scrolling keymaps (<C-f/b>) for page up/down
   }
 })
+
+-- j-hui/fidget.nvim
+require("fidget").setup({})

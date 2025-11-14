@@ -1,0 +1,45 @@
+{
+    "console": {
+        "prefix": "console",
+        "body": "println!(\"${0}\");",
+        "description": "Add print statement"
+    },
+    "lambda": {
+        "prefix": "lambda",
+        "body": "|${1:parameters}| -> ${2:return_type} { ${0} }",
+        "description": "Add closures statement"
+    },
+    "elseif": {
+        "prefix": "elseif",
+        "body": "} else if ${0} {",
+        "description": "Add elseif statement"
+    },
+    "else": {
+        "prefix": "else",
+        "body": "} else {",
+        "description": "Add else statement"
+    },
+    "function": {
+        "prefix": "function",
+        "body": [
+            "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
+            "    ${5:todo!();}",
+            "}"
+        ],
+        "description": "fn …(…) { … }"
+    },
+    "impl": {
+        "prefix": "impl",
+        "body": [
+            "impl ${1:Type} {",
+            "    ${2}",
+            "}"
+        ],
+        "description": "fn …(…) { … }"
+    },
+    "todo": {
+        "prefix": "todo",
+        "body": "// TODO: ${1:comment}",
+        "description": "Add todo comment"
+    }
+}
