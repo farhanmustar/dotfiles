@@ -83,3 +83,10 @@
 [user]
   ; email = farhanmustar@gmail.com
   ; name = Farhan Mustar
+  ; signingkey = ~/dotfiles/.ssh/farhan_devo_2025.pub
+
+[gpg]
+  ; format = ssh
+
+[commit]
+  ; gpgsign = true
