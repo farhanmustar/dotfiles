@@ -14,7 +14,7 @@ if [ "$yn" = "y" ]; then
   rm -rf ~/.bash_aliases
   ln -sT $SCRIPTPATH/.bash_aliases ~/.bash_aliases
   rm -rf ~/.gitconfig
-  ln -sT $SCRIPTPATH/.gitconfig ~/.gitconfig
+  cp $SCRIPTPATH/.gitconfig ~/.gitconfig
   rm -rf ~/.gitignore_global
   ln -sT $SCRIPTPATH/.gitignore_global ~/.gitignore_global
 fi
