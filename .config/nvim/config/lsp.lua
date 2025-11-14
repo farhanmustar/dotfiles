@@ -374,13 +374,13 @@ null_ls.register(astyle)
 
 -- rust
 require('lspconfig').rust_analyzer.setup({
-  on_attach = function(client, bufnr)
-
+  on_attach = on_attach,
+  on_init = function(client, initialization_result)
     -- disable lsp highlight.
-    client.server_capabilities.semanticTokensProvider = nil
-    client.server_capabilities.codeActionProvider = nil
-
-    on_attach(client, bufnr)
+    if client.server_capabilities then
+      client.server_capabilities.semanticTokensProvider = nil
+      client.server_capabilities.codeActionProvider = nil
+    end
   end,
   settings = {
     ['rust-analyzer'] = {
