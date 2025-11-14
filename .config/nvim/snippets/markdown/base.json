@@ -1,0 +1,11 @@
+{
+    "bash": {
+        "prefix": "bash",
+        "body": [
+          "```bash",
+          "${0}",
+          "```"
+        ],
+        "description": "Add bash codeblock"
+    }
+}

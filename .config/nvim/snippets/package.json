@@ -32,6 +32,10 @@
             {
                 "language": "cpp",
                 "path": "./cpp/base.json"
+            },
+            {
+                "language": "markdown",
+                "path": "./markdown/base.json"
             }
         ]
     }
