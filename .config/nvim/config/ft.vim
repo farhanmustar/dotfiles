@@ -49,3 +49,11 @@ augroup ejsfiletype
   autocmd!
   autocmd BufRead,BufNewFile *.ejs setfiletype embedded_template
 augroup END
+
+" rust filetype
+augroup rustfiletype
+  autocmd!
+  autocmd BufEnter *.rs command! -buffer RunClippy Run timeout 30s cargo clippy --tests
+  autocmd BufEnter *.rs command! -buffer RunClippyFull Run cargo clippy --tests
+augroup END
+
