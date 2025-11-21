@@ -378,6 +378,14 @@ require('lspconfig').rust_analyzer.setup({
   on_init = function(client, initialization_result)
     -- disable lsp highlight.
     if client.server_capabilities then
+
+      client.server_capabilities.documentSymbolProvider = false
+      client.server_capabilities.documentHighlightProvider = false
+      client.server_capabilities.referencesProvider = false
+      client.server_capabilities.renameProvider = false
+      -- client.server_capabilities.hoverProvider = false
+      client.server_capabilities.completionProvider = false
+
       client.server_capabilities.semanticTokensProvider = nil
       client.server_capabilities.codeActionProvider = nil
     end
@@ -385,6 +393,9 @@ require('lspconfig').rust_analyzer.setup({
   settings = {
     ['rust-analyzer'] = {
       cachePriming = {
+        enable = false,
+      },
+      procMacro = {
         enable = false,
       },
       checkOnSave = false,
