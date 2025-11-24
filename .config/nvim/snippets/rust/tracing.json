@@ -1,0 +1,27 @@
+{
+    "tracingtrace": {
+        "prefix": "tracingtrace",
+        "body": "tracing::trace!(\"${0}\");",
+        "description": "Add trace tracing."
+    },
+    "tracingdebug": {
+        "prefix": "tracingdebug",
+        "body": "tracing::debug!(\"${0}\");",
+        "description": "Add debug tracing."
+    },
+    "tracinginfo": {
+        "prefix": "tracinginfo",
+        "body": "tracing::info!(\"${0}\");",
+        "description": "Add info tracing."
+    },
+    "tracingwarn": {
+        "prefix": "tracingwarn",
+        "body": "tracing::warn!(\"${0}\");",
+        "description": "Add warn tracing."
+    },
+    "tracingerror": {
+        "prefix": "tracingerror",
+        "body": "tracing::error!(\"${0}\");",
+        "description": "Add error tracing."
+    }
+}

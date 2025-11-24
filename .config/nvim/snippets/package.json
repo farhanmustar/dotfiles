@@ -40,6 +40,10 @@
             {
                 "language": "rust",
                 "path": "./rust/base.json"
+            },
+            {
+                "language": "rust",
+                "path": "./rust/tracing.json"
             }
         ]
     }
