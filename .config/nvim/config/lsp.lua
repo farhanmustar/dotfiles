@@ -33,6 +33,7 @@ vim.keymap.set('n', '<leader>ej', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>ek', vim.diagnostic.goto_prev)
 vim.keymap.set('n', '<leader>e;', vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>ed', vim.lsp.buf.definition)
+vim.keymap.set('n', '<leader>et', vim.lsp.buf.type_definition)
 vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
 local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = true})
@@ -381,10 +382,10 @@ require('lspconfig').rust_analyzer.setup({
 
       client.server_capabilities.documentSymbolProvider = false
       client.server_capabilities.documentHighlightProvider = false
-      client.server_capabilities.referencesProvider = false
+      -- client.server_capabilities.referencesProvider = false
       client.server_capabilities.renameProvider = false
       -- client.server_capabilities.hoverProvider = false
-      client.server_capabilities.completionProvider = false
+      -- client.server_capabilities.completionProvider = false
 
       client.server_capabilities.semanticTokensProvider = nil
       client.server_capabilities.codeActionProvider = nil
