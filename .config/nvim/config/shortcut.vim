@@ -239,7 +239,8 @@ vnoremap <silent> <Leader>fg y:call CMD("FG <C-r>=escape(getreg('"'), '"')<CR>")
 " use ripgrep as grepprg
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-column
-  command! -nargs=+ -count GP silent execute "grep! '".<q-args>."' '%:p:h".RepeatStr(<count>,":h")."'/*"
+  set grepformat=%f:%l:%m
+  command! -nargs=+ -count GP silent execute "grep! '".<q-args>."' '%:p:h".RepeatStr(<count>, ":h")."'"
 else
   command! -nargs=+ -count GP silent execute "grep! -ri '".<q-args>."' %:p:h".RepeatStr(<count>,":h")."/*"
 endif
