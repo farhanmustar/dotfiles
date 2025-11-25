@@ -26,6 +26,8 @@ fi
 
 read -p "Update git using git-core ppa? (y/n) : " gityn
 
+read -p "Install git-delta? (y/n) " gitdeltayn
+
 read -p "Install neovim and its companion? (y/n) : " yn
 if [ "$yn" = "y" ]; then
   mkdir ~/.config > /dev/null 2>&1
@@ -51,4 +53,10 @@ if [ "$gityn" = "y" ]; then
   sudo add-apt-repository ppa:git-core/ppa -y
   sudo apt-get update
   sudo apt-get install git -y
+fi
+
+if [ "$gitdeltayn" = "y" ]; then
+  curl -fsSL -o /tmp/git-delta.deb https://github.com/dandavison/delta/releases/download/0.18.2/git-delta_0.18.2_amd64.deb
+  sudo apt-get install /tmp/git-delta.deb -y
+  rm /tmp/git-delta.deb
 fi
