@@ -64,7 +64,7 @@ require('dap-python').setup(command, {
 -- nvim-dap shortcuts
 vim.keymap.set('n', '<leader>dp', dap.toggle_breakpoint, {silent = true})
 vim.keymap.set('n', '<leader>d;', function()
-  vim.ui.input({prompt = 'Breakpoint condition: '}, function(input) 
+  vim.ui.input({prompt = 'Breakpoint condition: '}, function(input)
     if not input then
       return
     end
@@ -118,7 +118,7 @@ local dapMenuExtra = {
 function showExtraMenu()
   vim.ui.select(dapMenuExtra, {
     prompt = 'Select Debugger Window:',
-    format_item = function(item) 
+    format_item = function(item)
       return item[1]
     end,
   }, function(choice)
@@ -142,7 +142,7 @@ local dapMenu = {
 vim.keymap.set('n', '<leader>dh', function()
   vim.ui.select(dapMenu, {
     prompt = 'Select Debugger Window:',
-    format_item = function(item) 
+    format_item = function(item)
       return item[1]
     end,
   }, function(choice)
@@ -237,7 +237,13 @@ dap.adapters.codelldb = function(on_adapter)
   vim.defer_fn(function() on_adapter(adapter) end, 500)
 end
 
-local pick_cur_dir_file = function() 
+-- TODO: remove old config if this working for all
+dap.adapters.codelldbexe = {
+  type = "executable",
+  command = 'codelldb',
+}
+
+local pick_cur_dir_file = function()
   local label_fn = function(p)
     return string.format("%s", vim.fn.fnamemodify(p, ':~:.'))
   end
@@ -364,4 +370,83 @@ dap.configurations.javascript = {
 		port = 9222,
 		webRoot = "${workspaceFolder}"
 	}
+}
+
+local function find_cargo_root()
+  local result = vim.fn.system('cargo locate-project --workspace --message-format=plain 2>/dev/null')
+  if vim.v.shell_error == 0 then
+    return vim.fn.fnamemodify(result:gsub('\n', ''), ':h')
+  end
+  return vim.fn.getcwd()
+end
+
+local function cargo_program()
+  -- TODO: cargo build migh fail silently. make it not silent.
+  vim.fn.system('cargo build')
+
+  -- Get package name from cargo metadata (no jq needed)
+  local metadata = vim.fn.system('cargo metadata --no-deps --format-version 1')
+  local decoded = vim.fn.json_decode(metadata)
+  local package_name = decoded.packages[1].name
+
+  return find_cargo_root() .. '/target/debug/' .. package_name
+end
+
+function rustlldbCommands()
+  -- source: https://github.com/rust-lang/rust/blob/main/src/etc/rust-lldb
+  -- hint: run rust-lldb and see the top 2 line it exec
+
+  -- Get the rustc sysroot
+  local rustc_sysroot = vim.fn.system('rustc --print sysroot'):gsub('%s+$', '')
+  if vim.v.shell_error ~= 0 then
+    vim.notify('Failed to get rustc sysroot', vim.log.levels.ERROR)
+    return {}
+  end
+
+  -- Build the paths dynamically
+  local script_import = string.format('command script import "%s/lib/rustlib/etc/lldb_lookup.py"', rustc_sysroot)
+  local commands_file = string.format('command source -s 0 "%s/lib/rustlib/etc/lldb_commands"', rustc_sysroot)
+
+  return {
+    script_import,
+    commands_file,
+  }
+end
+
+dap.configurations.rust = {
+  {
+    name = "Cargo run",
+    type = "codelldbexe",
+    request = "launch",
+    program = cargo_program,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    initCommands = rustlldbCommands,
+  },
+  {
+    name = "Cargo run (with args)",
+    type = "codelldbexe",
+    request = "launch",
+    program = cargo_program,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    initCommands = rustlldbCommands,
+    args = function()
+      local args_string = vim.fn.input('Arguments: ')
+      if args_string == nil or args_string == '' then
+        print('dap cancelled.')
+        return
+      end
+      table.insert(dap.configurations.rust, {
+        name = "Cargo run ("..args_string..")",
+        type = 'codelldb',
+        request = 'launch',
+        program = cargo_program,
+        cwd = '${workspaceFolder}',
+        args = vim.split(args_string, " +"),
+        initCommands = rustlldbCommands,
+      })
+      return vim.split(args_string, " +")
+    end;
+  },
 }

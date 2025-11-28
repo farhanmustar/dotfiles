@@ -123,9 +123,11 @@ def collect_return_info(co, use_func_first_line=False):
   * download and extract using unzip.
   * then link to bin path.
   ```bash
-  wget -c https://github.com/vadimcn/vscode-lldb/releases/download/v1.7.0/codelldb-x86_64-linux.vsix
-  unzip codelldb-x86_64-linux.vsix
-  ln -sT <codelldb>/extension/adapter/codelldb /usr/bin/codelldb
+  mkdir ~/.codelldb
+  cd ~/.codelldb/
+  wget -c https://github.com/vadimcn/codelldb/releases/download/v1.11.8/codelldb-linux-x64.vsix
+  unzip codelldb-linux-x64.vsix
+  sudo ln -sT $(pwd)/extension/adapter/codelldb /usr/bin/codelldb
   ```
 
 ### Node
