@@ -393,12 +393,6 @@ require('lspconfig').rust_analyzer.setup({
   end,
   settings = {
     ['rust-analyzer'] = {
-      cachePriming = {
-        enable = false,
-      },
-      procMacro = {
-        enable = false,
-      },
       checkOnSave = false,
       diagnostics = {
         enable = false,

@@ -20,6 +20,9 @@ set hidden
 set belloff=all
 set scrolloff=5
 set diffopt+=linematch:1000
+" TODO: explore this suggestion.
+" vim.opt.diffopt="filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
+" vim.opt.diffopt="internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
 " set diffopt+=algorithm:histogram
 " set diffopt+=algorithm:patience
 " Tabs settings
