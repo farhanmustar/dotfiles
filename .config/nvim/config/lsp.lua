@@ -387,8 +387,8 @@ require('lspconfig').rust_analyzer.setup({
       -- client.server_capabilities.hoverProvider = false
       -- client.server_capabilities.completionProvider = false
 
-      client.server_capabilities.semanticTokensProvider = nil
-      client.server_capabilities.codeActionProvider = nil
+      client.server_capabilities.semanticTokensProvider = false
+      client.server_capabilities.codeActionProvider = false
     end
   end,
   settings = {
