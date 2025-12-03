@@ -393,11 +393,18 @@ require('lspconfig').rust_analyzer.setup({
   end,
   settings = {
     ['rust-analyzer'] = {
+      -- NOTE: default cargo check should be faster?
+      -- check = {
+      --   -- overrideCommand = {'timeout', '30s', 'cargo', 'clippy', '--tests', '--message-format=json'},
+      --   command = 'clippy',
+      --   extraArgs = { '--no-deps', '--tests' },
+      -- },
+      -- checkOnSave = true,  -- slow, due to running clippy on save, diagnostics only check local file only?
       checkOnSave = false,
       diagnostics = {
-        enable = false,
+        enable = true,
         experimental = {
-          enable = false,
+          enable = true,
         }
       }
     }

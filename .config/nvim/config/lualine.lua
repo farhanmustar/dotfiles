@@ -109,7 +109,6 @@ lualine.setup({
       {fugitiveBranch, icon=''},
       {'branch', cond=showBranch},
       {'%t', cond=showQuickfix},
-      'diff',
       'diagnostics',
       ctrlspace,
     },
