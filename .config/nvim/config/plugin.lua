@@ -287,9 +287,6 @@ ccc.setup({
   },
 })
 
--- mdx.nvim
-require("mdx").setup()
-
 -- submode
 local submode = require("submode")
 submode.setup()
