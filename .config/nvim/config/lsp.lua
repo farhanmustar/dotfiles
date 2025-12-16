@@ -153,9 +153,13 @@ null_ls.register(luacheck)
 
 -- Python
 
--- require('lspconfig').pyright.setup({
---   on_attach = on_attach,
--- })
+require('lspconfig').pyright.setup({
+  -- cmd = { '/usr/local/n/versions/node/22.17.1/bin/node', '/usr/local/bin/pyright-langserver', '--stdio' },
+  on_attach = on_attach,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end,
+  },
+})
 
 local flake8 = null_ls.builtins.diagnostics.flake8.with({
   -- extra_args = {'--max-line-length=199', '--ignore=W504,E128'}, -- more strict mode
