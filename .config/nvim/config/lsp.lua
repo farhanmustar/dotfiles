@@ -153,12 +153,16 @@ null_ls.register(luacheck)
 
 -- Python
 
-require('lspconfig').pyright.setup({
-  -- cmd = { '/usr/local/n/versions/node/22.17.1/bin/node', '/usr/local/bin/pyright-langserver', '--stdio' },
+-- require('lspconfig').pyright.setup({
+--   -- cmd = { '/usr/local/n/versions/node/22.17.1/bin/node', '/usr/local/bin/pyright-langserver', '--stdio' },
+--   on_attach = on_attach,
+--   handlers = {
+--     ["textDocument/publishDiagnostics"] = function() end,
+--   },
+-- })
+
+require('lspconfig').jedi_language_server.setup({
   on_attach = on_attach,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = function() end,
-  },
 })
 
 local flake8 = null_ls.builtins.diagnostics.flake8.with({

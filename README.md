@@ -64,6 +64,12 @@ npm install -g vim-language-server
 ```bash
 pip install jedi-language-server
 ```
+  * use pipx for better support.
+```bash
+/usr/bin/python3 -m pip install --user pipx
+/usr/bin/python3 -m pipx ensurepath
+pipx install jedi-language-server
+```
 
 * python-language-server (pyls)
   * language server for python. (available for python 2.7)
