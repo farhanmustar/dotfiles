@@ -283,8 +283,9 @@ local ccc = require("ccc")
 ccc.setup({
   highlighter = {
     auto_enable = false,
-    lsp = true,
+    lsp = false,
   },
+  lsp = false,
 })
 
 -- submode
