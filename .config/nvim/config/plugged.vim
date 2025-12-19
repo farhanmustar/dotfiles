@@ -65,6 +65,7 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'rcarriga/nvim-notify', {'commit': '29b33ef'}
 Plug 'farhanmustar/nvim-treesitter-context'
 Plug 'samjwill/nvim-unception'
+Plug 'sindrets/diffview.nvim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'stevearc/aerial.nvim'
 Plug 'stevearc/dressing.nvim'

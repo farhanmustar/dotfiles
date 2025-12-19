@@ -43,10 +43,10 @@ function! s:ModifyColorScheme()
   highlight! link MiniCursorword Visual
   highlight Visual guibg=#443e38
 
-  highlight DiffAdd    ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
-  highlight DiffChange ctermbg=10 guibg=#314f26 cterm=NONE guifg=NONE    gui=NONE
-  highlight DiffText   ctermbg=10 guibg=#745203 cterm=NONE guifg=NONE    gui=NONE
-  highlight DiffDelete ctermbg=10 guibg=#750e02 cterm=NONE guifg=#865050 gui=NONE
+  highlight DiffAdd    ctermbg=10 guibg=#1a2914 cterm=NONE guifg=NONE    gui=NONE
+  highlight DiffChange ctermbg=10 guibg=#1a2914 cterm=NONE guifg=NONE    gui=NONE
+  highlight DiffText   ctermbg=10 guibg=#4c3602 cterm=NONE guifg=NONE    gui=NONE
+  highlight DiffDelete ctermbg=10 guibg=#200400 cterm=NONE guifg=#865050 gui=NONE
 
   highlight link gvTree LineNr
   highlight link gvAnsi2 GruvboxGreen
