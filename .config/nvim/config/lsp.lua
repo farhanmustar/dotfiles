@@ -163,6 +163,14 @@ null_ls.register(luacheck)
 
 require('lspconfig').jedi_language_server.setup({
   on_attach = on_attach,
+  on_init = function(client, initialization_result)
+    if client.server_capabilities then
+      client.server_capabilities.documentHighlightProvider = false
+      client.server_capabilities.renameProvider = false
+      client.server_capabilities.semanticTokensProvider = false
+      client.server_capabilities.codeActionProvider = false
+    end
+  end,
 })
 
 local flake8 = null_ls.builtins.diagnostics.flake8.with({
