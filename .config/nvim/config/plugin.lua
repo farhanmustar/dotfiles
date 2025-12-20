@@ -385,3 +385,6 @@ require("claude-code").setup({
 
 -- j-hui/fidget.nvim
 require("fidget").setup({})
+
+-- tabout.nvim
+require("tabout").setup({})
