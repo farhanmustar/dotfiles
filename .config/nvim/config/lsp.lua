@@ -35,6 +35,10 @@ vim.keymap.set('n', '<leader>e;', vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>ed', vim.lsp.buf.definition)
 vim.keymap.set('n', '<leader>et', vim.lsp.buf.type_definition)
 vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
+vim.keymap.set("n", '<leader>ei',
+  function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({0}),{0})
+  end)
 local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = true})
 end
