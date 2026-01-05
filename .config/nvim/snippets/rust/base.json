@@ -41,5 +41,15 @@
         "prefix": "todo",
         "body": "// TODO: ${1:comment}",
         "description": "Add todo comment"
+    },
+    "and": {
+        "prefix": "and",
+        "body": "&&",
+        "description": "Add and statement"
+    },
+    "or": {
+        "prefix": "or",
+        "body": "||",
+        "description": "Add or statement"
     }
 }
