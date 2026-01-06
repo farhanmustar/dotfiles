@@ -1,7 +1,6 @@
 call plug#begin('~/.config/'.g:NVIM_APPNAME.'/plugged')
 
 Plug 'AndrewRadev/linediff.vim'
-Plug 'abecodes/tabout.nvim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'Julian/vim-textobj-brace'
 Plug 'L3MON4D3/LuaSnip'
