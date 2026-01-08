@@ -42,10 +42,10 @@ vim.keymap.set("n", '<leader>ei',
 local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = true})
 end
-local function create_code_action(title, action_fn)
+local function create_code_action(title, action_fn, filetypes)
   return {
     method = null_ls.methods.CODE_ACTION,
-    filetypes = { "_all" },
+    filetypes = filetypes or { "_all" },
     generator = {
       fn = function()
         return {
@@ -430,6 +430,54 @@ require('lspconfig').rust_analyzer.setup({
     }
   }
 })
+
+local function to_some_rs()
+  local line = vim.api.nvim_get_current_line()
+
+  -- Define conversion patterns
+  local conversions = {
+    -- contains_key() to let Some
+    {
+      pattern = "([^%s]+)%.contains_key%((.-)%)",
+      build_old = function(captures)
+        return captures[1] .. ".contains_key(" .. captures[2] .. ")"
+      end,
+      build_new = function(captures)
+        return "let Some(value) = " .. captures[1] .. ".get(" .. captures[2] .. ")"
+      end,
+    },
+    -- is_some() to let Some
+    {
+      pattern = "([^%s]+)%.is_some%(%)",
+      build_old = function(captures)
+        return captures[1] .. ".is_some()"
+      end,
+      build_new = function(captures)
+        return "let Some(value) = " .. captures[1]
+      end,
+    },
+  }
+
+  -- Try each conversion pattern
+  for _, conversion in ipairs(conversions) do
+    local captures = {line:match(conversion.pattern)}
+    if #captures > 0 then
+      local old_text = conversion.build_old(captures)
+      local new_text = conversion.build_new(captures)
+      local new_line = line:gsub(vim.pesc(old_text), new_text, 1)
+      vim.api.nvim_set_current_line(new_line)
+
+      -- Move cursor to the "Some(value)"
+      local row = vim.api.nvim_win_get_cursor(0)[1]
+      local col = new_line:find("Some%(value%)")
+      if col then
+        vim.api.nvim_win_set_cursor(0, {row, col + 4})
+      end
+      return
+    end
+  end
+end
+null_ls.register(create_code_action("Convert To Some", to_some_rs, {"rust"}))
 
 -- c_sharp
 require('lspconfig').csharp_ls.setup({})
