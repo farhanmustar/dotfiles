@@ -16,6 +16,32 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   use_fancy_tab_bar = false,
 
+  -- font = wezterm.font('Pixel Code Regular'),
+  -- font_rules = {
+  --   {
+  --     intensity = 'Bold',
+  --     italic = false,
+  --     font = wezterm.font('Pixel Code ExtraBold', { weight = 'Bold', stretch = 'Normal', style = 'Normal' }),
+  --   },
+  --   {
+  --     intensity = 'Bold',
+  --     italic = true,
+  --     font = wezterm.font('Pixel Code ExtraBold', { weight = 'Bold', stretch = 'Normal', style = 'Italic' }),
+  --   },
+  --   {
+  --     intensity = 'Normal',
+  --     italic = true,
+  --        font = wezterm.font(
+  --          'Pixel Code Thin',
+  --          { weight = 'Regular', stretch = 'Normal', style = 'Normal' }
+  --        ),
+  --   },
+  -- },
+  -- line_height = 1,
+  -- font_size = 7.0,
+  -- underline_position = -2,
+  -- cell_width = 1.1,
+
   font = wezterm.font('SeriousShanns Nerd Font Mono'),
   font_rules = {
     {
@@ -38,10 +64,15 @@ return {
     },
   },
   line_height = 1.05,
-  font_size = 12.0,
+  font_size = 11.0,
   use_cap_height_to_scale_fallback_fonts = true,
   underline_position = -2,
   -- force_reverse_video_cursor = true,
+
+  -- font = wezterm.font('Comic Code Ligatures Medium'),
+  -- cell_width = 0.85,
+  -- line_height = 1.4,
+  -- font_size = 10.0,
 
   harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
   use_ime = false,

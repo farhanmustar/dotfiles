@@ -1,0 +1,32 @@
+#!/usr/bin/bash
+
+echo -e "\n=== BASIC TEXT STYLES ==="
+echo -e "Normal text"
+echo -e "\033[1mBold text\033[0m"
+echo -e "\033[2mDim text\033[0m"
+echo -e "\033[3mItalic text\033[0m"
+echo -e "\033[4mUnderlined text\033[0m"
+echo -e "\033[5mBlinking text\033[0m"
+echo -e "\033[7mReversed text\033[0m"
+echo -e "\033[8mHidden text\033[0m"
+echo -e "\033[9mStrikethrough text\033[0m"
+
+echo -e "\n=== COMBINED STYLES ==="
+echo -e "\033[1;4mBold + Underline\033[0m"
+echo -e "\033[1;3mBold + Italic\033[0m"
+echo -e "\033[3;4mItalic + Underline\033[0m"
+echo -e "\033[1;3;4mBold + Italic + Underline\033[0m"
+
+echo -e "\n=== STYLES WITH COLORS ==="
+echo -e "\033[1;31mBold Red\033[0m"
+echo -e "\033[3;32mItalic Green\033[0m"
+echo -e "\033[4;34mUnderlined Blue\033[0m"
+echo -e "\033[1;4;35mBold Underlined Magenta\033[0m"
+
+echo -e "\n=== ANSI ESCAPE CODE REFERENCE ==="
+echo "\\033[1m = Bold"
+echo "\\033[2m = Dim"
+echo "\\033[3m = Italic"
+echo "\\033[4m = Underline"
+echo "\\033[9m = Strikethrough"
+echo "\\033[0m = Reset all"
