@@ -145,6 +145,7 @@ cmp.setup({
       option = buffer_option,
     },
     { name = 'bufname' },
+    { name = 'nvim_lsp_signature_help' },
   }),
   sorting = {
     comparators = {
