@@ -392,6 +392,15 @@ local function cargo_program()
   return find_cargo_root() .. '/target/debug/' .. package_name
 end
 
+local function rust_debug()
+  -- Get package name from cargo metadata (no jq needed)
+  local metadata = vim.fn.system('cargo metadata --no-deps --format-version 1')
+  local decoded = vim.fn.json_decode(metadata)
+  local package_name = decoded.packages[1].name
+
+  return find_cargo_root() .. '/target/debug/' .. package_name
+end
+
 function rustlldbCommands()
   -- source: https://github.com/rust-lang/rust/blob/main/src/etc/rust-lldb
   -- hint: run rust-lldb and see the top 2 line it exec
@@ -415,7 +424,42 @@ end
 
 dap.configurations.rust = {
   {
-    name = "Cargo run",
+    name = "Rust debug",
+    type = "codelldbexe",
+    request = "launch",
+    program = rust_debug,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    initCommands = rustlldbCommands,
+  },
+  {
+    name = "Rust debug (with args)",
+    type = "codelldbexe",
+    request = "launch",
+    program = rust_debug,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    initCommands = rustlldbCommands,
+    args = function()
+      local args_string = vim.fn.input('Arguments: ')
+      if args_string == nil or args_string == '' then
+        print('dap cancelled.')
+        return
+      end
+      table.insert(dap.configurations.rust, {
+        name = "Rust debug ("..args_string..")",
+        type = 'codelldb',
+        request = 'launch',
+        program = rust_debug,
+        cwd = '${workspaceFolder}',
+        args = vim.split(args_string, " +"),
+        initCommands = rustlldbCommands,
+      })
+      return vim.split(args_string, " +")
+    end;
+  },
+  {
+    name = "Cargo build and run",
     type = "codelldbexe",
     request = "launch",
     program = cargo_program,
@@ -424,7 +468,7 @@ dap.configurations.rust = {
     initCommands = rustlldbCommands,
   },
   {
-    name = "Cargo run (with args)",
+    name = "Cargo build and run (with args)",
     type = "codelldbexe",
     request = "launch",
     program = cargo_program,
@@ -438,7 +482,7 @@ dap.configurations.rust = {
         return
       end
       table.insert(dap.configurations.rust, {
-        name = "Cargo run ("..args_string..")",
+        name = "Cargo build and run ("..args_string..")",
         type = 'codelldb',
         request = 'launch',
         program = cargo_program,
