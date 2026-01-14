@@ -366,6 +366,72 @@ nnoremap <Leader>wt :Terminal<CR>
 " TODO: is win32 need fix?
 command! Terminal let s:term_dir=expand('%:p:h') | below new | setlocal nonumber | call termopen([&shell], {'cwd': s:term_dir })
 
+" terminal file path navigation
+function! s:TerminalOpenFile(stay_in_terminal) abort
+  " Get the text under cursor (broader than <cfile> to include :line:col)
+  let l:cword = expand('<cWORD>')
+
+  " Try to parse file:line:col or file:line format
+  let l:match = matchlist(l:cword, '\(^[^:]\+\):\(\d\+\)\(:\(\d\+\)\)\?')
+
+  if !empty(l:match)
+    " Found file:line or file:line:col format
+    let l:file = l:match[1]
+    let l:line = str2nr(l:match[2])
+    let l:col = !empty(l:match[4]) ? str2nr(l:match[4]) : 0
+  else
+    " Fall back to simple file path
+    let l:file = expand('<cfile>')
+    let l:line = 0
+    let l:col = 0
+  endif
+
+  if empty(l:file)
+    echo 'No file path under cursor'
+    return
+  endif
+
+  " Save current window for returning if needed
+  let l:term_win = winnr()
+
+  " Check if previous window exists
+  let l:prev_win = winnr('#')
+  if l:prev_win != 0 && winbufnr(l:prev_win) != -1
+    " Go to previous window
+    wincmd p
+  else
+    " No previous window, create split at top
+    wincmd k
+    if &buftype ==# 'terminal'
+      " Still in terminal, create new split at top
+      topleft split
+    endif
+  endif
+
+  " Open the file
+  execute 'edit' fnameescape(l:file)
+
+  " Navigate to line and column if specified
+  if l:line > 0
+    execute 'normal! ' . l:line . 'G'
+    if l:col > 0
+      execute 'normal! ' . l:col . '|'
+    endif
+    normal! zz
+  endif
+
+  " Return to terminal if requested
+  if a:stay_in_terminal
+    execute l:term_win . 'wincmd w'
+  endif
+endfunction
+
+augroup terminal
+  autocmd!
+  autocmd TermOpen * nnoremap <buffer> <silent> <CR> :call <SID>TerminalOpenFile(1)<CR>
+  autocmd TermOpen * nnoremap <buffer> <silent> o :call <SID>TerminalOpenFile(0)<CR>
+augroup END
+
 
 " command window shortcut
 nnoremap <leader>; q:
