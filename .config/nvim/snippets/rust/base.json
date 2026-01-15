@@ -51,5 +51,17 @@
         "prefix": "or",
         "body": "||",
         "description": "Add or statement"
+    },
+    "tryerror": {
+        "prefix": "tryerror",
+        "body": [
+            "let result: Result<()> = async {",
+            "    ${0}",
+            "}.await;",
+            "if let Err(e) = result {",
+            "",
+            "}"
+        ],
+        "description": "fn …(…) { … }"
     }
 }
