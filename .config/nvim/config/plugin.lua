@@ -385,3 +385,10 @@ require("claude-code").setup({
 
 -- j-hui/fidget.nvim
 require("fidget").setup({})
+
+-- diffview.nvim
+require("diffview").setup({
+  file_panel = {
+    listing_style = "list", -- One of 'list' or 'tree'
+  },
+})
