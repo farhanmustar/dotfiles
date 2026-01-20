@@ -52,16 +52,22 @@
         "body": "||",
         "description": "Add or statement"
     },
+    "ok": {
+        "prefix": "ok",
+        "body": "Ok(())",
+        "description": "Add ok statement"
+    },
     "tryerror": {
         "prefix": "tryerror",
         "body": [
             "let result: Result<()> = async {",
             "    ${0}",
+            "    Ok(())",
             "}.await;",
             "if let Err(e) = result {",
             "",
             "}"
         ],
-        "description": "fn …(…) { … }"
+        "description": "Add async block"
     }
 }

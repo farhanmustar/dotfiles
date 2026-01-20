@@ -54,7 +54,7 @@ augroup END
 augroup rustfiletype
   autocmd!
   autocmd BufEnter *.rs setlocal scrolloff=5  " TODO: who set it to 0???
-  autocmd BufEnter *.rs command! -buffer RunClippy Run timeout 30s cargo clippy --tests
-  autocmd BufEnter *.rs command! -buffer RunClippyFull Run cargo clippy --tests
+  autocmd BufEnter *.rs command! -buffer RunClippy Run timeout 30s cargo clippy
+  autocmd BufEnter *.rs command! -buffer RunClippyFull Run cargo clippy
 augroup END
 
