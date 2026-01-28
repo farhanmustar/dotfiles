@@ -392,3 +392,29 @@ require("diffview").setup({
     listing_style = "list", -- One of 'list' or 'tree'
   },
 })
+
+-- resolve.nvim
+require("resolve").setup({
+  default_keymaps = false,
+  on_conflict_detected = nil,
+  on_conflicts_resolved = nil,
+})
+
+vim.api.nvim_set_hl(0, "ResolveOursMarker", {})
+vim.api.nvim_set_hl(0, "ResolveTheirsMarker", {})
+vim.api.nvim_set_hl(0, "ResolveSeparatorMarker", {})
+vim.api.nvim_set_hl(0, "ResolveAncestorMarker", {})
+vim.api.nvim_set_hl(0, "ResolveOursSection", {})
+vim.api.nvim_set_hl(0, "ResolveTheirsSection", {})
+vim.api.nvim_set_hl(0, "ResolveAncestorSection", {})
+
+vim.keymap.set("n", "gdn", "<Plug>(resolve-next)", { desc = "Next conflict" })
+vim.keymap.set("n", "gdN", "<Plug>(resolve-prev)", { desc = "Previous conflict" })
+vim.keymap.set("n", "gdh", "<Plug>(resolve-ours)", { desc = "Choose ours" })
+vim.keymap.set("n", "gdl", "<Plug>(resolve-theirs)", { desc = "Choose theirs" })
+vim.keymap.set("n", "gdb", "<Plug>(resolve-both)", { desc = "Choose both" })
+vim.keymap.set("n", "gdB", "<Plug>(resolve-both-reverse)", { desc = "Choose both reverse" })
+vim.keymap.set("n", "gdm", "<Plug>(resolve-base)", { desc = "Choose base" })
+vim.keymap.set("n", "gdd", "<Plug>(resolve-none)", { desc = "Choose none" })
+vim.keymap.set("n", "gdp", "<Plug>(resolve-diff-both)", { desc = "Diff both" })
+vim.keymap.set("n", "gdq", "<Plug>(resolve-list)", { desc = "List conflicts" })
