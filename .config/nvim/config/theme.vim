@@ -51,6 +51,10 @@ function! s:ModifyColorScheme()
   highlight link gvTree LineNr
   highlight link gvAnsi2 GruvboxGreen
   highlight link gvAnsi9 LineNr
+
+  highlight link GitSignsAddLnInline DiffAdd
+  highlight link GitSignsChangeLnInline DiffChange
+  highlight link GitSignsDeleteLnInline DiffDelete
 endfunction
 augroup modifycolorscheme
   autocmd!
