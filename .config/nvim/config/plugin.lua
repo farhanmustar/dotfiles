@@ -387,9 +387,15 @@ require("claude-code").setup({
 require("fidget").setup({})
 
 -- diffview.nvim
+local actions = require("diffview.actions")
 require("diffview").setup({
   file_panel = {
     listing_style = "list", -- One of 'list' or 'tree'
+  },
+  keymaps = {
+    file_panel = {
+      { "n", "O", actions.goto_file_tab, { desc = "Open the file in a new tab" } },
+    },
   },
 })
 
