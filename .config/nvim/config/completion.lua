@@ -96,6 +96,8 @@ cmp.setup({
   },
   preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<CR>'] = cmp.mapping(function(fallback)
           if cmp.visible() and cmp.get_selected_entry() ~= nil then
             cmp.confirm()
