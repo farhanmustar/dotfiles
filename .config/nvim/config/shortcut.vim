@@ -562,5 +562,14 @@ vnoremap <A-u> 10zl
 vnoremap <A-d> 10zh
 
 "script shortcut
-cnoreabbrev convertepoch %s/\v(\d{10}.\d{6})/\=strftime("%Y-%m-%d %H:%M:%S", str2nr(submatch(1)))/g
-command! -nargs=0 Convertepoch silent execute '%s/\v(\d{10}.\d{6})/\=strftime("%Y-%m-%d %H:%M:%S", str2nr(submatch(1)))/g'
+cnoreabbrev runconvertepoch %s/\v(\d{10}.\d{6})/\=strftime("%Y-%m-%d %H:%M:%S", str2nr(submatch(1)))/g
+command! -nargs=0 RunConvertepoch silent execute '%s/\v(\d{10}.\d{6})/\=strftime("%Y-%m-%d %H:%M:%S", str2nr(submatch(1)))/g'
+lua << EOF
+function _G.ConvertUtcToMy(y, m, d, H, M, S, frac)
+  local t = os.time({ year = y, month = m, day = d, hour = H, min = M, sec = S })
+  local now = os.time()
+  local utc_offset = os.difftime(now, os.time(os.date("!*t", now)))
+  return os.date("!%Y-%m-%dT%H:%M:%S", t + utc_offset + 8 * 3600) .. "." .. frac .. "+08:00"
+end
+EOF
+command! -nargs=0 RunConvertTzMy silent execute '%s/\v(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.(\d+)Z/\=v:lua.ConvertUtcToMy(submatch(1)+0,submatch(2)+0,submatch(3)+0,submatch(4)+0,submatch(5)+0,submatch(6)+0,submatch(7))/g'
