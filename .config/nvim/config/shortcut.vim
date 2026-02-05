@@ -573,3 +573,4 @@ function _G.ConvertUtcToMy(y, m, d, H, M, S, frac)
 end
 EOF
 command! -nargs=0 RunConvertTzMy silent execute '%s/\v(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.(\d+)Z/\=v:lua.ConvertUtcToMy(submatch(1)+0,submatch(2)+0,submatch(3)+0,submatch(4)+0,submatch(5)+0,submatch(6)+0,submatch(7))/g'
+command! -nargs=0 RunStripAnsiEsc silent execute '%s/\e\[\?[0-9;]*[a-zA-Z@]//g' | silent execute '%s/\e\][^\x07]*\x07//g' | silent execute '%s/\e[()][0-9A-B]//g' | silent execute '%s/\e[=>]//g'
