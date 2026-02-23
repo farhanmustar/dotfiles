@@ -493,4 +493,42 @@ dap.configurations.rust = {
       return vim.split(args_string, " +")
     end;
   },
+  (function()
+    local _args = {}
+    return {
+      name = "Rust binary from target",
+      type = "codelldbexe",
+      request = "launch",
+      program = function()
+        local prefix = find_cargo_root() .. '/target/'
+        local path = vim.fn.input('Binary path: ', prefix, 'file')
+        if path == nil or path == '' or path == prefix then
+          print('dap cancelled.')
+          _args = {}
+          return
+        end
+        local args_string = vim.fn.input('Flags: ', '--test-threads 1 ')
+        _args = args_string ~= '' and vim.split(args_string, ' +') or {}
+        local bin_name = vim.fn.fnamemodify(path, ':t')
+        local entry_name = args_string ~= ''
+          and "Rust run (" .. bin_name .. " " .. args_string .. ")"
+          or "Rust run (" .. bin_name .. ")"
+        table.insert(dap.configurations.rust, {
+          name = entry_name,
+          type = "codelldbexe",
+          request = "launch",
+          program = path,
+          args = _args,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+          initCommands = rustlldbCommands,
+        })
+        return path
+      end,
+      args = function() return _args end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+      initCommands = rustlldbCommands,
+    }
+  end)(),
 }
