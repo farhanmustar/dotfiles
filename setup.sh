@@ -37,7 +37,7 @@ if [ "$yn" = "y" ]; then
     sudo add-apt-repository ppa:x4121/ripgrep -y
   fi
   sudo apt-get update
-  sudo apt-get install ripgrep xclip -y
+  sudo apt-get install ripgrep xclip jq -y
   # build neovim
   sudo apt-get install ninja-build gettext cmake unzip curl -y
   git clone https://github.com/neovim/neovim.git -b v0.10.4 --depth 1 /tmp/neovim
