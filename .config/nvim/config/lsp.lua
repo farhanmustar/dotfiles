@@ -443,7 +443,7 @@ local function to_some_rs()
         return captures[1] .. ".contains_key(" .. captures[2] .. ")"
       end,
       build_new = function(captures)
-        return "let Some(value) = " .. captures[1] .. ".get(" .. captures[2] .. ")"
+        return "let Some(value) = &" .. captures[1] .. ".get(" .. captures[2] .. ")"
       end,
     },
     -- is_some() to let Some
@@ -453,7 +453,7 @@ local function to_some_rs()
         return captures[1] .. ".is_some()"
       end,
       build_new = function(captures)
-        return "let Some(value) = " .. captures[1]
+        return "let Some(value) = &" .. captures[1]
       end,
     },
   }
