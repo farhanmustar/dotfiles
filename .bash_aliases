@@ -28,8 +28,12 @@ alias ssh-start-agent='eval $(keychain --eval ~/.ssh/<your_key>)'
 alias ssh-agent-start='eval "$(ssh-agent)"'
 alias timesync='if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then sudo hwclock -s; else sudo timedatectl set-ntp off && sudo timedatectl set-ntp on; fi'
 # alias claude='/usr/local/n/versions/node/22.17.1/bin/node /usr/bin/claude'
+# alias codex='/usr/local/n/versions/node/24.11.1/bin/node /usr/local/bin/codex'
 # alias fvim='NVIM_APPNAME=fvim nvim'
 # alias fvimg='NVIM_APPNAME=fvim nvim -c GV -c "silent! G" -c "silent! tabonly"'
+alias claude-work='CLAUDE_CONFIG_DIR=$HOME/.claude-work claude'
+alias claude-set-work='export CLAUDE_CONFIG_DIR=$HOME/.claude-work'
+alias claude-set-personal='export CLAUDE_CONFIG_DIR=$HOME/.claude'
 
 # rust cargo
 alias cargo-test='RUST_BACKTRACE=1 RUST_LOG=info cargo test -- --test-threads 1'
