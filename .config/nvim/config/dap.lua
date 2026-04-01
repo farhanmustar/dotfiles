@@ -424,6 +424,14 @@ end
 
 dap.configurations.rust = {
   {
+    name = "Attach to process",
+    type = 'codelldb',
+    request = 'attach',
+    pid = require('dap.utils').pick_process,
+    args = {},
+    initCommands = rustlldbCommands,
+  },
+  {
     name = "Rust debug",
     type = "codelldbexe",
     request = "launch",
