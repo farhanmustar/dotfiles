@@ -52,7 +52,7 @@ Plug 'neovim/nvim-lspconfig', {'tag': 'v1.*'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-neotest/nvim-nio'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', {'commit': '5255aa2'}
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'commit': '42fc28b'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
