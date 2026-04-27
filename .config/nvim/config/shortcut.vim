@@ -235,6 +235,34 @@ command! -nargs=+ -range FG silent execute "vimgrep /".(<range>? "\\%(\\%'<\\|\\
 nnoremap <silent> <Leader>fg :call CMD("FG <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
 vnoremap <silent> <Leader>fg y:call CMD("FG <C-r>=escape(getreg('"'), '"')<CR>")<CR>
 
+" append grep in current file (merges into existing quickfix, sorted by file/line)
+function! s:AFGImpl(range_used, args) abort
+  let l:old_qf = getqflist()
+  let l:old_nr = getqflist({'nr': 0}).nr
+  try
+    silent execute "vimgrep /".( a:range_used ? "\\%(\\%'<\\|\\%>'<\\%<'>\\|\\%'>\\)" : "").a:args."/j %"
+  catch /E480/
+    echo 'AFG: no match'
+    return
+  catch
+    echohl ErrorMsg | echom v:exception | echohl None
+    return
+  endtry
+  let l:new_qf = getqflist()
+  if getqflist({'nr': 0}).nr != l:old_nr
+    colder
+  endif
+  let l:merged = l:old_qf + l:new_qf
+  call sort(l:merged, {a, b ->
+    \ a.bufnr != b.bufnr ? (a.bufnr - b.bufnr) :
+    \ a.lnum != b.lnum ? (a.lnum - b.lnum) :
+    \ (a.col - b.col)})
+  call setqflist(l:merged, 'r')
+endfunction
+command! -nargs=+ -range AFG silent call <SID>AFGImpl(<range>, <q-args>)
+nnoremap <silent> <Leader>FG :call CMD("AFG <C-r>=escape(expand('<cword>'), '"')<CR>")<CR>
+vnoremap <silent> <Leader>FG y:call CMD("AFG <C-r>=escape(getreg('"'), '"')<CR>")<CR>
+
 " grep in current path
 " use ripgrep as grepprg
 if executable('rg')
