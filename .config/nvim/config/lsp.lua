@@ -58,6 +58,92 @@ local function create_code_action(title, action_fn, filetypes)
     }
   }
 end
+null_ls.register({
+  method = null_ls.methods.CODE_ACTION,
+  filetypes = { "_all" },
+  generator = {
+    fn = function()
+      return {
+        {
+          title = "Line Action",
+          action = function()
+            -- vim.schedule to avoid reentrancy: null-ls is still processing
+            -- its own action callback when this runs.
+            vim.schedule(function()
+              -- Use client.request directly on each client to bypass capability
+              -- checks (e.g. rust-analyzer has codeActionProvider disabled but
+              -- we still want to query it here).
+              local clients = vim.lsp.get_clients({ bufnr = 0 })
+              -- exclude null-ls: its actions are already in the parent picker
+              clients = vim.tbl_filter(function(c) return c.name ~= 'null-ls' end, clients)
+              if #clients == 0 then
+                vim.notify('No LSP clients attached', vim.log.levels.INFO)
+                return
+              end
+
+              local actions = {}
+              local pending = #clients
+              local function on_all_done()
+                if #actions == 0 then
+                  vim.notify('No code actions available', vim.log.levels.INFO)
+                  return
+                end
+                vim.ui.select(actions, {
+                  prompt = 'Line Actions',
+                  format_item = function(item)
+                    local kind = item.action.kind and (' [' .. item.action.kind .. ']') or ''
+                    return item.action.title .. kind
+                  end,
+                }, function(selected)
+                  if not selected then return end
+                  local action = selected.action
+                  local client = vim.lsp.get_client_by_id(selected.client_id)
+                  if not client then return end
+                  local enc = client.offset_encoding or 'utf-16'
+                  if action.edit then
+                    vim.lsp.util.apply_workspace_edit(action.edit, enc)
+                  end
+                  if action.command then
+                    local cmd = type(action.command) == 'table' and action.command or { command = action.command }
+                    client.request('workspace/executeCommand', cmd, nil, 0)
+                  elseif not action.edit then
+                    client.request('codeAction/resolve', action, function(_, resolved)
+                      if not resolved then return end
+                      if resolved.edit then
+                        vim.lsp.util.apply_workspace_edit(resolved.edit, enc)
+                      end
+                      if resolved.command then
+                        local cmd = type(resolved.command) == 'table' and resolved.command or { command = resolved.command }
+                        client.request('workspace/executeCommand', cmd, nil, 0)
+                      end
+                    end, 0)
+                  end
+                end)
+              end
+
+              for _, client in ipairs(clients) do
+                local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
+                params.context = {
+                  diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 }),
+                  triggerKind = 1,
+                }
+                client.request('textDocument/codeAction', params, function(err, result)
+                  if not err and result then
+                    for _, a in ipairs(result) do
+                      table.insert(actions, { action = a, client_id = client.id })
+                    end
+                  end
+                  pending = pending - 1
+                  if pending == 0 then on_all_done() end
+                end, 0)
+              end
+            end)
+          end,
+        }
+      }
+    end
+  }
+})
 null_ls.register(create_code_action("Rename Symbol", vim.lsp.buf.rename))
 null_ls.register(create_code_action("List Implementations", vim.lsp.buf.implementation))
 null_ls.register(create_code_action("List References", vim.lsp.buf.references))
