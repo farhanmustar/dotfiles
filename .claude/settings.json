@@ -1,0 +1,8 @@
+{
+  "model": "claude-opus-4-6",
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": false
+  },
+  "effortLevel": "high",
+  "disableAgentView": true
+}
