@@ -102,7 +102,7 @@ def collect_return_info(co, use_func_first_line=False):
     return lst
 ```
 
-### C++
+### C++/cpp
 * clangd
   * Download binary file from [clangd github](https://github.com/clangd/clangd/releases/) release page.
     * Copy to bin dir.
@@ -114,7 +114,6 @@ def collect_return_info(co, use_func_first_line=False):
     * then link the generated `compile_command.json` file to outside the build folder for ale to find.
       * `ln -sT /home/user/ws/build/compile_command.json /home/user/ws/compile_command.json`
 * ccls
-  * seems to be faster then clangd.
   ```bash
   git clone --depth=1 --recursive https://github.com/MaskRay/ccls
   cd ccls

@@ -470,8 +470,16 @@ local cpplint = {
   }),
 }
 null_ls.register(cpplint)
+local threads = math.max(1, (tonumber(vim.fn.system('nproc')) or 2) - 1)
 require('lspconfig').clangd.setup({
+  cmd = { 'clangd', '-j=' .. threads },
   on_attach = on_attach,
+  on_init = function(client, initialization_result)
+    if client.server_capabilities then
+      client.server_capabilities.documentHighlightProvider = false
+      client.server_capabilities.semanticTokensProvider = false
+    end
+  end,
 })
 
 local astyle = null_ls.builtins.formatting.astyle.with({
