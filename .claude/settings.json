@@ -4,5 +4,6 @@
     "rust-analyzer-lsp@claude-plugins-official": false
   },
   "effortLevel": "high",
+  "remoteControlAtStartup": false,
   "disableAgentView": true
 }
