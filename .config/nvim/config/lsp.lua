@@ -469,7 +469,32 @@ local cpplint = {
     }),
   }),
 }
-null_ls.register(cpplint)
+local roslint_cpplint = {
+  name = 'roslint_cpplint',
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = {'c', 'cpp', 'h',},
+  generator = null_ls.generator({
+    command = 'rosrun',
+    args = { 'roslint', 'cpplint', '--filter=-legal/copyright,-readability/todo,-readability/casting,-whitespace/braces,-whitespace/newline,-whitespace/comments,-readability/multiline_comment', '-' },
+    to_stdin = true,
+    from_stderr = true,
+    format = 'line',
+    check_exit_code = function(code, stderr)
+      return code <= 1
+    end,
+    on_output = helpers.diagnostics.from_patterns({
+      {
+        pattern = [[[^:]:(%d+):  (.*)]],
+        groups = { "row", "message" },
+      },
+    }),
+  }),
+}
+if vim.fn.executable('rosrun') ~= 0 then
+  null_ls.register(roslint_cpplint)
+else
+  null_ls.register(cpplint)
+end
 local threads = math.max(1, (tonumber(vim.fn.system('nproc')) or 2) - 1)
 require('lspconfig').clangd.setup({
   cmd = { 'clangd', '-j=' .. threads },
