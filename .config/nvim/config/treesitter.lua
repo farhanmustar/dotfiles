@@ -13,6 +13,7 @@ require('nvim-treesitter.configs').setup({
     'html',
     'javascript',
     'json',
+    'just',
     'lua',
     'markdown',
     'powershell',
