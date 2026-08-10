@@ -233,3 +233,14 @@ Push x11 session over vnc (mirror exisiting display).
 ```bash
 sudo apt install x11vnc
 ```
+
+# Note for Bionic
+* To allow building neovim, need to update cmake version. we use kitware ppa.
+```bash
+# Add signing key:
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
+# Add repository:
+sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+# Update and install:
+sudo apt update && sudo apt install cmake
+```
