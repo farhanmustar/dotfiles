@@ -10,12 +10,11 @@
 
 ### Variables ##################################################################
 
-# GlazeWM's modifier is Alt, so $mod is Alt (Mod1) here to keep muscle memory.
-# Swap the two lines below if you'd rather drive sway with Super.
+# GlazeWM uses Alt. Swap these to drive sway with Super instead.
 set $mod Mod1
 #set $mod Mod4
 
-# Super / the Windows key. GlazeWM calls this `lwin`.
+# Super, a.k.a. GlazeWM's lwin.
 set $sup Mod4
 
 # Home row direction keys, like vim
@@ -24,22 +23,19 @@ set $down j
 set $up k
 set $right l
 
-# Resize/move step. GlazeWM uses 2% -> sway's `ppt` (percentage points).
+# Resize step, in percentage points. GlazeWM used 2%.
 set $step 2
 
-# Applications. GlazeWM launched wezterm-gui.exe and msedge.exe.
+# Applications
 set $term wezterm
 # set $browser firefox
-# GlazeWM had no explorer binding, but lwin+e is the Windows reflex.
-# Use `xdg-open ~` instead if you'd rather follow the xdg default handler.
 set $filemanager nautilus
 set $browser chromium
-# Wallpaper. Sway expands ~, and a relative path resolves against this
-# config's directory.
+# Sway expands ~ here.
 set $wallpaper ~/Pictures/background.jpg
 
 set $menu wofi --show drun
-# Bare process name of $menu, used by the Super-tap toggle below.
+# Process name of $menu, for the Super-tap toggle.
 set $menu_bin wofi
 
 include /etc/sway/config-vars.d/*
@@ -52,8 +48,7 @@ include /etc/sway/config-vars.d/*
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-# Background. Sway starts swaybg itself, so no `exec` line is needed.
-# Modes: fill (crop to cover), fit (letterbox), stretch, center, tile.
+# Modes: fill, fit, stretch, center, tile.
 output * bg $wallpaper fill
 
 # A solid colour instead of an image:
@@ -72,14 +67,16 @@ output * bg $wallpaper fill
 
 ### Input configuration ########################################################
 #
-#   input type:touchpad {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
 # Read `man 5 sway-input` for more information about this section.
+
+# natural_scroll inverts the scroll direction. The TrackPoint is a
+# type:pointer, so it's unaffected.
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    #middle_emulation enabled
+}
 
 ### general: ###################################################################
 
@@ -235,18 +232,12 @@ bindsym $mod+Shift+f exec $browser
 # lwin+e opens the file manager, like Win+E on Windows.
 bindsym $sup+e exec $filemanager
 
-# Application launcher. Sway needs one and GlazeWM has no equivalent, so this
-# sits on combos neither config claims.
+# Application launcher. GlazeWM has no equivalent, so these are new.
 bindsym $mod+Shift+Return exec $menu
 bindsym $sup+d            exec $menu
 
-# Tapping lwin (Super) on its own opens the launcher, like the Windows key.
-# Sway masks this binding when Super is part of a keyboard combo, so Super+d
-# and Ctrl+Super+hjkl below still behave normally.
-# `pkill || ...` makes it a toggle: tap again to dismiss the launcher.
-# CAVEAT: sway does NOT mask it for Super + mouse drag (sway#8162). That's
-# harmless while `floating_modifier` is Alt, but if you switch $mod to Mod4 at
-# the top of this file, drop this binding or every mouse-drag opens the menu.
+# Tapping lwin alone opens it, like the Windows key. pkill makes it a toggle.
+# Drop this if you set $mod to Mod4: Super+drag would then trigger it (sway#8162).
 bindsym --release Super_L exec pkill $menu_bin || $menu
 
 # Drag floating windows with $mod + left mouse, resize with right mouse.
