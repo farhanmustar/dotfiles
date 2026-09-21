@@ -1,0 +1,370 @@
+# Sway config ported from GlazeWM
+# ==============================================================================
+# Source: ~/windows-config/.glzr/glazewm/config.yaml  (personal config)
+#         glzr-io/glazewm resources/assets/sample-config.yaml  (upstream default)
+#
+# Where the two disagree, the PERSONAL config wins and the upstream default
+# binding is kept only if it doesn't collide. Collisions are noted inline.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables ##################################################################
+
+# GlazeWM's modifier is Alt, so $mod is Alt (Mod1) here to keep muscle memory.
+# Swap the two lines below if you'd rather drive sway with Super.
+set $mod Mod1
+#set $mod Mod4
+
+# Super / the Windows key. GlazeWM calls this `lwin`.
+set $sup Mod4
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Resize/move step. GlazeWM uses 2% -> sway's `ppt` (percentage points).
+set $step 2
+
+# Applications. GlazeWM launched wezterm-gui.exe and msedge.exe.
+set $term wezterm
+# set $browser firefox
+# GlazeWM had no explorer binding, but lwin+e is the Windows reflex.
+# Use `xdg-open ~` instead if you'd rather follow the xdg default handler.
+set $filemanager nautilus
+set $browser chromium
+set $menu wofi --show drun
+# Bare process name of $menu, used by the Super-tap toggle below.
+set $menu_bin wofi
+
+include /etc/sway/config-vars.d/*
+
+### Output configuration #######################################################
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+### Idle configuration #########################################################
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+
+### Input configuration ########################################################
+#
+#   input type:touchpad {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# Read `man 5 sway-input` for more information about this section.
+
+### general: ###################################################################
+
+# focus_follows_cursor: false
+focus_follows_mouse no
+
+# toggle_workspace_on_refocus: false
+workspace_auto_back_and_forth no
+
+# cursor_jump: { enabled: true, trigger: 'monitor_focus' }
+mouse_warping output
+
+# startup_commands. GlazeWM ran zebar + gat-gwm; on Linux swaybar (below) takes
+# that job. Add your own `exec` lines here.
+# exec waybar
+
+### gaps: ######################################################################
+
+# inner_gap: '5px'
+gaps inner 5
+
+# outer_gap: top 40px / right 10px / bottom 10px / left 10px.
+# The 40px top was reserved for Zebar; swaybar already reserves its own strip,
+# so outer is a flat 10px here. Uncomment `gaps top 40` if you switch to an
+# overlay bar that does not reserve space.
+gaps outer 10
+#gaps top 40
+
+### window_effects: ############################################################
+
+default_border pixel 2
+default_floating_border pixel 2
+
+# focused_window.border.color: '#6c8bcd'
+# other_windows.border.color:  '#273e70'
+#                       border   background  text     indicator  child_border
+client.focused          #6c8bcd  #6c8bcd     #ffffff  #6c8bcd    #6c8bcd
+client.focused_inactive #273e70  #273e70     #ffffff  #273e70    #273e70
+client.unfocused        #273e70  #273e70     #888888  #273e70    #273e70
+client.urgent           #c05050  #c05050     #ffffff  #c05050    #c05050
+
+### window_behavior: ###########################################################
+
+# initial_state: 'tiling' is sway's default, so nothing to set.
+# state_defaults.floating.centered: true
+for_window [floating] move position center
+
+### window_rules: ##############################################################
+#
+# GlazeWM's `ignore` means "don't tile this window". The nearest sway
+# equivalent is `floating enable`. Only the rules with a Linux counterpart are
+# carried over; the Windows-only ones (PowerToys, Lively, Taskmgr, ...) are not.
+
+# Ignores picture-in-picture windows for browsers.
+for_window [title="(?i)picture.in.?picture"] floating enable, sticky enable
+
+# Old rule: apps that were excluded from tiling.
+for_window [app_id="(?i)^(vlc|blender|qemu|virt-manager|org.gnome.DiskUtility)$"] floating enable
+for_window [class="(?i)^(vlc|blender|qemu-system-.*)$"] floating enable
+
+### Key bindings ###############################################################
+
+# --- Shift focus in a given direction ----------------------------------------
+# Personal config: alt+shift+hjkl. Upstream default: alt+hjkl / alt+arrows.
+# Both are bound; they don't collide.
+bindsym $mod+Shift+$left  focus left
+bindsym $mod+Shift+$down  focus down
+bindsym $mod+Shift+$up    focus up
+bindsym $mod+Shift+$right focus right
+
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# --- Move focused window in a given direction --------------------------------
+# Personal config binds only the arrow variants. The upstream default also
+# binds alt+shift+hjkl, but the personal config uses those for FOCUS (above),
+# so the letter variants are intentionally NOT bound to move.
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# --- Resize focused window by a percentage -----------------------------------
+# Personal config: ctrl+alt+arrows.
+bindsym Ctrl+$mod+Left  resize shrink width $step ppt
+bindsym Ctrl+$mod+Right resize grow   width $step ppt
+bindsym Ctrl+$mod+Up    resize grow   height $step ppt
+bindsym Ctrl+$mod+Down  resize shrink height $step ppt
+
+# Upstream default: alt+u/p (width), alt+o/i (height).
+bindsym $mod+u resize shrink width $step ppt
+bindsym $mod+p resize grow   width $step ppt
+bindsym $mod+o resize grow   height $step ppt
+bindsym $mod+i resize shrink height $step ppt
+
+# --- Binding modes -----------------------------------------------------------
+# wm-enable-binding-mode --name resize
+bindsym $mod+r mode "resize"
+
+# wm-enable-binding-mode --name pause  (wm-toggle-pause upstream)
+bindsym $mod+Shift+p mode "pause"
+
+# --- Layout ------------------------------------------------------------------
+# toggle-tiling-direction: where the next tiling window is inserted.
+bindsym $mod+v layout toggle split
+
+# wm-cycle-focus: tiling -> floating -> fullscreen.
+bindsym $mod+space focus mode_toggle
+
+# toggle-floating --centered. Personal: alt+shift+g. Upstream: alt+shift+space.
+bindsym $mod+Shift+g     floating toggle, move position center
+bindsym $mod+Shift+space floating toggle, move position center
+
+# toggle-tiling: force the focused window back into the tree.
+bindsym $mod+t floating disable
+
+# toggle-fullscreen. Personal: alt+shift+z. Upstream: alt+f.
+bindsym $mod+Shift+z fullscreen toggle
+bindsym $mod+f       fullscreen toggle
+
+# toggle-minimized. Sway has no minimize, so the scratchpad stands in:
+# alt+m hides the window, alt+shift+m brings the next one back.
+bindsym $mod+m       move scratchpad
+bindsym $mod+Shift+m scratchpad show
+
+# --- Window / WM commands ----------------------------------------------------
+# close
+bindsym $mod+Shift+q kill
+
+# wm-exit
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# wm-reload-config
+bindsym $mod+Shift+r reload
+
+# wm-redraw (alt+shift+w upstream) is NOT bound: the personal config reuses
+# alt+shift+w for `move-workspace --direction up`, which wins. Sway redraws on
+# its own anyway.
+
+# --- Launch applications -----------------------------------------------------
+# Personal: alt+shift+t = wezterm, alt+shift+f = edge. Upstream: alt+enter = cmd.
+bindsym $mod+Shift+t exec $term
+bindsym $mod+Return  exec $term
+bindsym $mod+Shift+f exec $browser
+
+# lwin+e opens the file manager, like Win+E on Windows.
+bindsym $sup+e exec $filemanager
+
+# Application launcher. Sway needs one and GlazeWM has no equivalent, so this
+# sits on combos neither config claims.
+bindsym $mod+Shift+Return exec $menu
+bindsym $sup+d            exec $menu
+
+# Tapping lwin (Super) on its own opens the launcher, like the Windows key.
+# Sway masks this binding when Super is part of a keyboard combo, so Super+d
+# and Ctrl+Super+hjkl below still behave normally.
+# `pkill || ...` makes it a toggle: tap again to dismiss the launcher.
+# CAVEAT: sway does NOT mask it for Super + mouse drag (sway#8162). That's
+# harmless while `floating_modifier` is Alt, but if you switch $mod to Mod4 at
+# the top of this file, drop this binding or every mouse-drag opens the menu.
+bindsym --release Super_L exec pkill $menu_bin || $menu
+
+# Drag floating windows with $mod + left mouse, resize with right mouse.
+floating_modifier $mod normal
+
+# --- Workspace navigation ----------------------------------------------------
+# Personal config, doubled on ctrl+alt and ctrl+super just as GlazeWM had it.
+# focus --next/prev-active-workspace-on-monitor
+bindsym Ctrl+$mod+j workspace next_on_output
+bindsym Ctrl+$sup+j workspace next_on_output
+bindsym Ctrl+$mod+k workspace prev_on_output
+bindsym Ctrl+$sup+k workspace prev_on_output
+
+# focus --direction left/right
+bindsym Ctrl+$mod+h focus left
+bindsym Ctrl+$sup+h focus left
+bindsym Ctrl+$mod+l focus right
+bindsym Ctrl+$sup+l focus right
+
+# Upstream default: alt+s / alt+a cycle active workspaces, alt+d is most recent.
+bindsym $mod+s workspace next
+bindsym $mod+a workspace prev
+bindsym $mod+d workspace back_and_forth
+
+# focus --workspace N
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+
+# --- Move workspace to another monitor ---------------------------------------
+# Personal: alt+shift+a/d/w/s = left/right/up/down.
+# Upstream used alt+shift+a/f/d/s; alt+shift+f is the browser here and
+# alt+shift+d is `right`, so the personal layout wins outright.
+bindsym $mod+Shift+a move workspace to output left
+bindsym $mod+Shift+d move workspace to output right
+bindsym $mod+Shift+w move workspace to output up
+bindsym $mod+Shift+s move workspace to output down
+
+# --- Move focused window to a workspace --------------------------------------
+# GlazeWM ran `move --workspace N` then `focus --workspace N`, i.e. it follows
+# the window. The trailing `workspace number N` reproduces that.
+bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
+
+### binding_modes: #############################################################
+
+# 'resize': h/l adjust width, k/j adjust height, arrows do the same.
+# Note GlazeWM's k grows height and j shrinks it.
+mode "resize" {
+    bindsym $left  resize shrink width $step ppt
+    bindsym $right resize grow   width $step ppt
+    bindsym $up    resize grow   height $step ppt
+    bindsym $down  resize shrink height $step ppt
+
+    bindsym Left  resize shrink width $step ppt
+    bindsym Right resize grow   width $step ppt
+    bindsym Up    resize grow   height $step ppt
+    bindsym Down  resize shrink height $step ppt
+
+    # Press escape/enter/alt+r to return to default keybindings.
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym $mod+r mode "default"
+}
+
+# 'pause': every keybinding is off until alt+shift+p is pressed again.
+mode "pause" {
+    bindsym $mod+Shift+p mode "default"
+}
+
+### Utilities ##################################################################
+
+# Special keys to adjust volume via PulseAudio
+bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+# Special keys to adjust brightness via brightnessctl
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+# Special key to take a screenshot with grim
+bindsym Print exec grim
+
+### Status Bar #################################################################
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+
+    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+
+    colors {
+        statusline #ffffff
+        background #1a2238
+        focused_workspace  #6c8bcd #6c8bcd #ffffff
+        inactive_workspace #273e70 #273e70 #b0b0b0
+    }
+}
+
+
+### Key remap ####################################################
+input type:keyboard {
+    xkb_options caps:escape
+}
+
+
+### Monitor config ###############################################
+# use this to get list of monitors
+# swaymsg -t get_outputs
+#
+# config example
+# output <output_name> pos <x_coordinate> <y_coordinate>
+# output eDP-1 pos 0 0
+# output HDMI-A-1 pos 1920 0
+#
+# use this to reload
+# swaymsg reload
+output eDP-1 pos 0 0
+output HDMI-A-2 pos 1366 0
+
+include /etc/sway/config.d/*
