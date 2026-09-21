@@ -34,6 +34,10 @@ set $term wezterm
 # Use `xdg-open ~` instead if you'd rather follow the xdg default handler.
 set $filemanager nautilus
 set $browser chromium
+# Wallpaper. Sway expands ~, and a relative path resolves against this
+# config's directory.
+set $wallpaper ~/Pictures/background.jpg
+
 set $menu wofi --show drun
 # Bare process name of $menu, used by the Super-tap toggle below.
 set $menu_bin wofi
@@ -48,7 +52,16 @@ include /etc/sway/config-vars.d/*
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# Background. Sway starts swaybg itself, so no `exec` line is needed.
+# Modes: fill (crop to cover), fit (letterbox), stretch, center, tile.
+output * bg $wallpaper fill
+
+# A solid colour instead of an image:
+#output * bg #273e70 solid_color
+#
+# Per-monitor wallpaper, using names from `swaymsg -t get_outputs`:
+#output eDP-1   bg ~/Pictures/laptop.jpg  fill
+#output HDMI-A-1 bg ~/Pictures/external.jpg fill
 
 ### Idle configuration #########################################################
 #
