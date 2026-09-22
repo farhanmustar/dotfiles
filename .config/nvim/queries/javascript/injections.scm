@@ -21,6 +21,13 @@
   )
 )
 
+(variable_declarator
+  name: (identifier) @_name (#match? @_name ".+(Html|Svg|Tpl)$")
+  value: (binary_expression) @injection.content
+  (#set! injection.language "html")
+  (#set! injection.include-children)
+)
+
 (object
   (pair
     (property_identifier) @_name (#match? @_name ".+(Shader)$")
