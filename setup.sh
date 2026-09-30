@@ -39,7 +39,7 @@ if [ "$yn" = "y" ]; then
   sudo apt-get update
   sudo apt-get install ripgrep xclip jq -y
   # build neovim
-  sudo apt-get install ninja-build gettext cmake unzip curl -y
+  sudo apt-get install build-essential ninja-build gettext cmake unzip curl -y
   git clone https://github.com/neovim/neovim.git -b v0.10.4 --depth 1 /tmp/neovim
   (cd /tmp/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install)
   rm -rf /tmp/neovim
