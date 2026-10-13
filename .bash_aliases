@@ -24,7 +24,7 @@ alias vimlog='vim -u ~/.config/nvim/config/util.vim -u ~/.config/nvim/config/sho
 alias vimclean='vim --clean -N -c "set number" -c "set smartcase" -c "set ignorecase"'
 alias catkin_make_compile_commands='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias watchexec='f(){ watch -n1 "watch -t -g ls --full-time \"$1\" >/dev/null && $2"; unset -f f;}; f'
-alias ssh-start-agent='eval $(keychain --eval ~/.ssh/<your_key>)'
+alias ssh-start-agent='eval $(keychain -q --eval ~/.ssh/<your_key>)'
 alias ssh-agent-start='eval "$(ssh-agent)"'
 alias timesync='if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then sudo hwclock -s; else sudo timedatectl set-ntp off && sudo timedatectl set-ntp on; fi'
 # alias claude='/usr/local/n/versions/node/22.17.1/bin/node /usr/bin/claude'
