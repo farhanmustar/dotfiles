@@ -383,6 +383,11 @@ require("claude-code").setup({
   }
 })
 
+-- treesitter-context (breadcrumb) config
+require('treesitter-context').setup({})
+vim.api.nvim_create_user_command('DisableBreadcrumb', function() require('treesitter-context').disable() end, {})
+vim.api.nvim_create_user_command('EnableBreadcrumb', function() require('treesitter-context').enable() end, {})
+
 -- j-hui/fidget.nvim
 require("fidget").setup({})
 
