@@ -57,7 +57,7 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'commit': '42fc28b'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
-Plug 'petertriho/nvim-scrollbar'
+Plug 'petertriho/nvim-scrollbar', {'branch': 'v1'}
 Plug 'pogyomo/submode.nvim', {'tag': 'v1.0.0'}
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'rafamadriz/friendly-snippets'
