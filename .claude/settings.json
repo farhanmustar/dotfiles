@@ -9,5 +9,6 @@
   "effortLevel": "high",
   "theme": "dark",
   "remoteControlAtStartup": false,
-  "disableAgentView": true
+  "disableAgentView": true,
+  "tui": "default"
 }
