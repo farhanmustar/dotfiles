@@ -390,9 +390,19 @@ tmap <C-l> <Esc><C-w>l
 tnoremap <silent> <expr> <C-r> '<C-\><C-n>"'.nr2char(getchar()).'pi'
 nnoremap <Leader>wt :Terminal<CR>
 
-" terminal selection
-" TODO: is win32 need fix?
-command! Terminal let s:term_dir=expand('%:p:h') | below new | setlocal nonumber | call termopen([&shell], {'cwd': s:term_dir })
+function! s:Terminal() abort
+  if &filetype ==# 'oil'
+    let l:dir = luaeval("require('oil').get_current_dir()")
+  elseif &filetype ==# 'fugitive'
+    let l:dir = FugitiveWorkTree()
+  else
+    let l:dir = expand('%:p:h')
+  endif
+  below new
+  setlocal nonumber
+  call termopen([&shell], {'cwd': l:dir})
+endfunction
+command! Terminal call s:Terminal()
 
 " terminal file path navigation
 function! s:TerminalOpenFile(stay_in_terminal) abort
