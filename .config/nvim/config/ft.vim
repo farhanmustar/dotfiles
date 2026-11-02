@@ -24,7 +24,8 @@ augroup END
 " git filetype config
 augroup gitfiletype
   autocmd!
-  autocmd FileType git setlocal foldmethod=syntax
+  " syntax folding is slow on long commits, so skip it for large buffers
+  autocmd FileType git if line('$') < 2000 | setlocal foldmethod=syntax | endif
   " TODO: consider modify isfname
   autocmd FileType git nmap <buffer> gF viWogf
 augroup END
