@@ -22,10 +22,20 @@ augroup rosfiletype
 augroup END
 
 " git filetype config
+function! GitDiffFoldExpr()
+  let line = getline(v:lnum)
+  if line =~# '^diff --git '
+    return '>1'
+  " elseif line =~# '^@@ '
+  "   return '>2'
+  else
+    return '='
+  endif
+endfunction
+
 augroup gitfiletype
   autocmd!
-  " syntax folding is slow on long commits, so skip it for large buffers
-  autocmd FileType git if line('$') < 2000 | setlocal foldmethod=syntax | endif
+  autocmd FileType git setlocal foldmethod=expr foldexpr=GitDiffFoldExpr()
   " TODO: consider modify isfname
   autocmd FileType git nmap <buffer> gF viWogf
 augroup END
