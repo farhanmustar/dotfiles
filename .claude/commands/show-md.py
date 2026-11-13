@@ -183,9 +183,18 @@ def serve(md_path, port, bind):
     watcher = threading.Thread(target=watch_file, args=(md_path,), daemon=True)
     watcher.start()
 
-    server = http.server.ThreadingHTTPServer((bind, port), Handler)
+    for attempt in range(10):
+        try:
+            server = http.server.ThreadingHTTPServer((bind, port + attempt), Handler)
+            break
+        except OSError:
+            if attempt == 9:
+                print(f"Error: ports {port}-{port + 9} all in use", file=sys.stderr)
+                sys.exit(1)
+            print(f"[show-md] Port {port + attempt} in use, trying {port + attempt + 1}")
+    actual_port = server.server_address[1]
     print(f"Serving {md_path}")
-    print(f"  -> http://{bind}:{port}")
+    print(f"  -> http://{bind}:{actual_port}")
     print("File watcher active - changes will hot reload.")
     print("Press Ctrl+C to stop.")
 
