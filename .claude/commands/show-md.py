@@ -21,6 +21,7 @@ def escape_for_js(text):
         text.replace("\\", "\\\\")
         .replace("`", "\\`")
         .replace("$", "\\$")
+        .replace("</script", "<\\/script")  # don't close the inline <script> early
     )
 
 
@@ -48,9 +49,11 @@ def build_html(md_path):
   .markdown-body {{
     min-width: 200px;
   }}
-  .mermaid {{
+  .markdown-body pre.mermaid {{
     text-align: center;
     background: transparent;
+    padding: 0;
+    overflow-x: auto;
   }}
   @media (max-width: 767px) {{
     body {{ padding: 1rem; }}
@@ -65,23 +68,32 @@ mermaid.initialize({{ startOnLoad: false, theme: 'default' }});
 const renderer = new marked.Renderer();
 const defaultCode = renderer.code.bind(renderer);
 
-renderer.code = function(block) {{
-  const text = block.text || block;
-  const lang = block.lang || '';
+function escapeHtml(s) {{
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}}
+
+// marked <=12 calls code(text, lang, escaped); marked >=13 passes a single token object.
+renderer.code = function(code, infostring, escaped) {{
+  const isToken = code !== null && typeof code === 'object';
+  const text = isToken ? code.text : code;
+  const lang = ((isToken ? code.lang : infostring) || '').trim().split(/\s+/)[0];
   if (lang === 'mermaid') {{
-    return '<div class="mermaid">' + text + '</div>';
+    // Escape so labels like <br/> survive as text; mermaid decodes entities itself.
+    return '<pre class="mermaid">' + escapeHtml(text) + '</pre>';
   }}
-  return defaultCode.call(this, block);
+  return defaultCode.apply(this, arguments);
 }};
 
 marked.setOptions({{ renderer: renderer, gfm: true, breaks: true }});
 
 function renderMarkdown(raw) {{
   document.getElementById('content').innerHTML = marked.parse(raw);
-  document.querySelectorAll('.mermaid').forEach(function(el) {{
-    el.removeAttribute('data-processed');
-  }});
-  mermaid.run({{ nodes: document.querySelectorAll('.mermaid') }});
+  const nodes = document.querySelectorAll('pre.mermaid');
+  if (nodes.length) {{
+    mermaid.run({{ nodes: nodes, suppressErrors: true }}).catch(function(err) {{
+      console.error('mermaid render failed:', err);
+    }});
+  }}
 }}
 
 renderMarkdown(`{escaped}`);
