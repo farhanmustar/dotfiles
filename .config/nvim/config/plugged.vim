@@ -55,7 +55,7 @@ Plug 'nvim-neotest/nvim-nio'
 Plug 'nvim-telescope/telescope.nvim', {'commit': '5255aa2'}
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'commit': '42fc28b'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch': 'master'}
 Plug 'nvim-treesitter/playground'
 Plug 'petertriho/nvim-scrollbar', {'branch': 'v1'}
 Plug 'pogyomo/submode.nvim', {'tag': 'v1.0.0'}
