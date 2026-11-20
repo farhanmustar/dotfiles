@@ -408,6 +408,7 @@ command! Terminal call s:Terminal()
 function! s:TerminalOpenFile(stay_in_terminal) abort
   " Get the text under cursor (broader than <cfile> to include :line:col)
   let l:cword = expand('<cWORD>')
+  let l:cword = substitute(l:cword, '^[("''\[]\+\|[)"''\],:]\+$', '', 'g')
 
   " Try to parse file:line:col or file:line format
   let l:match = matchlist(l:cword, '\(^[^:]\+\):\(\d\+\)\(:\(\d\+\)\)\?')
